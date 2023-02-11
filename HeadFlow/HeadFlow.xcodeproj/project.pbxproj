@@ -18,6 +18,15 @@
 		B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793FB2997DB7B006BFE29 /* DependecyContainer.swift */; };
 		B86793FE2997DD6C006BFE29 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793FD2997DD6C006BFE29 /* UserSession.swift */; };
 		B86794012997E206006BFE29 /* UserDefaults + property wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86794002997E206006BFE29 /* UserDefaults + property wrapper.swift */; };
+		B867943129982EFD006BFE29 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867941F29982EFD006BFE29 /* Lato-Thin.ttf */; };
+		B867943229982EFD006BFE29 /* Lato-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942029982EFD006BFE29 /* Lato-Medium.ttf */; };
+		B867943329982EFD006BFE29 /* Lato-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942129982EFD006BFE29 /* Lato-Semibold.ttf */; };
+		B867943429982EFD006BFE29 /* Lato-Heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942229982EFD006BFE29 /* Lato-Heavy.ttf */; };
+		B867943629982EFD006BFE29 /* Lato-Hairline.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942429982EFD006BFE29 /* Lato-Hairline.ttf */; };
+		B867943829982EFD006BFE29 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942629982EFD006BFE29 /* Lato-Regular.ttf */; };
+		B867943D29982EFD006BFE29 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942B29982EFD006BFE29 /* Lato-Bold.ttf */; };
+		B867943E29982EFD006BFE29 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942C29982EFD006BFE29 /* Lato-Light.ttf */; };
+		B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B867943F299832B4006BFE29 /* Font + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +43,15 @@
 		B86793FB2997DB7B006BFE29 /* DependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependecyContainer.swift; sourceTree = "<group>"; };
 		B86793FD2997DD6C006BFE29 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		B86794002997E206006BFE29 /* UserDefaults + property wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + property wrapper.swift"; sourceTree = "<group>"; };
+		B867941F29982EFD006BFE29 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
+		B867942029982EFD006BFE29 /* Lato-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Medium.ttf"; sourceTree = "<group>"; };
+		B867942129982EFD006BFE29 /* Lato-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Semibold.ttf"; sourceTree = "<group>"; };
+		B867942229982EFD006BFE29 /* Lato-Heavy.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Heavy.ttf"; sourceTree = "<group>"; };
+		B867942429982EFD006BFE29 /* Lato-Hairline.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Hairline.ttf"; sourceTree = "<group>"; };
+		B867942629982EFD006BFE29 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		B867942B29982EFD006BFE29 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		B867942C29982EFD006BFE29 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
+		B867943F299832B4006BFE29 /* Font + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +119,26 @@
 		B86793FF2997E1E9006BFE29 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B867940229982DF5006BFE29 /* Fonts */,
 				B86794002997E206006BFE29 /* UserDefaults + property wrapper.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		B867940229982DF5006BFE29 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				B867942229982EFD006BFE29 /* Lato-Heavy.ttf */,
+				B867942B29982EFD006BFE29 /* Lato-Bold.ttf */,
+				B867942129982EFD006BFE29 /* Lato-Semibold.ttf */,
+				B867942629982EFD006BFE29 /* Lato-Regular.ttf */,
+				B867942029982EFD006BFE29 /* Lato-Medium.ttf */,
+				B867942C29982EFD006BFE29 /* Lato-Light.ttf */,
+				B867941F29982EFD006BFE29 /* Lato-Thin.ttf */,
+				B867942429982EFD006BFE29 /* Lato-Hairline.ttf */,
+				B867943F299832B4006BFE29 /* Font + Extensions.swift */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,9 +199,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B867943629982EFD006BFE29 /* Lato-Hairline.ttf in Resources */,
+				B867943129982EFD006BFE29 /* Lato-Thin.ttf in Resources */,
 				B86793EE2997C539006BFE29 /* LaunchScreen.storyboard in Resources */,
+				B867943E29982EFD006BFE29 /* Lato-Light.ttf in Resources */,
 				B86793EB2997C539006BFE29 /* Assets.xcassets in Resources */,
+				B867943229982EFD006BFE29 /* Lato-Medium.ttf in Resources */,
+				B867943829982EFD006BFE29 /* Lato-Regular.ttf in Resources */,
+				B867943329982EFD006BFE29 /* Lato-Semibold.ttf in Resources */,
+				B867943D29982EFD006BFE29 /* Lato-Bold.ttf in Resources */,
 				B86793E92997C538006BFE29 /* Main.storyboard in Resources */,
+				B867943429982EFD006BFE29 /* Lato-Heavy.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,6 +224,7 @@
 				B86793F72997D841006BFE29 /* RootCoordinator.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */,
 				B86793E62997C538006BFE29 /* ViewController.swift in Sources */,
+				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
 				B86793FE2997DD6C006BFE29 /* UserSession.swift in Sources */,
 				B86793FA2997D880006BFE29 /* Coordinator.swift in Sources */,
 				B86793E22997C538006BFE29 /* AppDelegate.swift in Sources */,
