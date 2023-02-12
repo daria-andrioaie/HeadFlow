@@ -9,12 +9,14 @@ import Foundation
 import UIKit
 
 class RootCoordinator: Coordinator {
+    private var authenticationCoordinator: AuthenticationCoordinator?
     
     private let navigationController: UINavigationController
-    private let window: UIWindow?
+    private let window: UIWindow
     var rootViewController: UIViewController? {
         return navigationController
     }
+    private let dependecyContainer = DependecyContainer()
     
     init(window: UIWindow) {
         self.window = window
@@ -27,7 +29,7 @@ class RootCoordinator: Coordinator {
         
     }
     
-    func start(connectionOptions: UIScene.ConnectionOptions) {
+    func start(connectionOptions: UIScene.ConnectionOptions?) {
         if Session.isValid {
             showMainCoordinator()
         } else {
@@ -36,7 +38,11 @@ class RootCoordinator: Coordinator {
     }
     
     func showAuthenticationCoordinator() {
-        
+        let coordinator = AuthenticationCoordinator(window: window, dependencies: dependecyContainer) { [weak self] in
+            self?.showMainCoordinator()
+        }
+        self.authenticationCoordinator = coordinator
+        coordinator.start(connectionOptions: nil)
     }
     
     func showMainCoordinator() {
