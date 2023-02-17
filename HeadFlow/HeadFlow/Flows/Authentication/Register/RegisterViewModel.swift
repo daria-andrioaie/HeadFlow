@@ -1,14 +1,14 @@
 //
-//  LoginViewModel.swift
+//  RegisterViewModel.swift
 //  HeadFlow
 //
-//  Created by Daria Andrioaie on 12.02.2023.
+//  Created by Daria Andrioaie on 17.02.2023.
 //
 
 import Foundation
 import SwiftUI
 
-extension Login {
+extension Register {
     class ViewModel: ObservableObject {
         var onBack: () -> Void
         

@@ -25,10 +25,16 @@
 		B867943D29982EFD006BFE29 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942B29982EFD006BFE29 /* Lato-Bold.ttf */; };
 		B867943E29982EFD006BFE29 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942C29982EFD006BFE29 /* Lato-Light.ttf */; };
 		B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B867943F299832B4006BFE29 /* Font + Extensions.swift */; };
+		B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFAF299FD215005BA947 /* RegisterView.swift */; };
+		B8A6DFB2299FD24D005BA947 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFB1299FD24D005BA947 /* RegisterViewModel.swift */; };
+		B8A6DFB4299FD3B7005BA947 /* UINavigationController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFB3299FD3B7005BA947 /* UINavigationController + Extensions.swift */; };
+		B8A6DFBA29A0120E005BA947 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFB929A0120E005BA947 /* OnboardingView.swift */; };
+		B8A6DFBC29A0127C005BA947 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFBB29A0127C005BA947 /* OnboardingViewModel.swift */; };
+		B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFBE29A0149D005BA947 /* NavigationBar.swift */; };
+		B8A6DFC229A0150D005BA947 /* ContainerWithNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFC129A0150D005BA947 /* ContainerWithNavigationBar.swift */; };
 		B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */; };
 		B8EA8435299917D7009D83E7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8434299917D7009D83E7 /* LoginView.swift */; };
 		B8EA8437299917E2009D83E7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8436299917E2009D83E7 /* LoginViewModel.swift */; };
-		B8EA8439299917F4009D83E7 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8438299917F4009D83E7 /* LoginViewController.swift */; };
 		B8EA843C299937F6009D83E7 /* UIWindow + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,10 +59,16 @@
 		B867942B29982EFD006BFE29 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		B867942C29982EFD006BFE29 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		B867943F299832B4006BFE29 /* Font + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + Extensions.swift"; sourceTree = "<group>"; };
+		B8A6DFAF299FD215005BA947 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
+		B8A6DFB1299FD24D005BA947 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		B8A6DFB3299FD3B7005BA947 /* UINavigationController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extensions.swift"; sourceTree = "<group>"; };
+		B8A6DFB929A0120E005BA947 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		B8A6DFBB29A0127C005BA947 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		B8A6DFBE29A0149D005BA947 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
+		B8A6DFC129A0150D005BA947 /* ContainerWithNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerWithNavigationBar.swift; sourceTree = "<group>"; };
 		B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B8EA8434299917D7009D83E7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B8EA8436299917E2009D83E7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		B8EA8438299917F4009D83E7 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,6 +106,7 @@
 				B86793E32997C538006BFE29 /* SceneDelegate.swift */,
 				B86793F82997D86C006BFE29 /* Services */,
 				B86793F52997D82B006BFE29 /* Flows */,
+				B8A6DFBD29A01483005BA947 /* Reusables */,
 				B86793FF2997E1E9006BFE29 /* Utils */,
 				B86793EA2997C539006BFE29 /* Assets.xcassets */,
 				B86793EC2997C539006BFE29 /* LaunchScreen.storyboard */,
@@ -148,11 +161,48 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		B8A6DFAE299FD200005BA947 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				B8A6DFAF299FD215005BA947 /* RegisterView.swift */,
+				B8A6DFB1299FD24D005BA947 /* RegisterViewModel.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		B8A6DFB829A011FD005BA947 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				B8A6DFB929A0120E005BA947 /* OnboardingView.swift */,
+				B8A6DFBB29A0127C005BA947 /* OnboardingViewModel.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		B8A6DFBD29A01483005BA947 /* Reusables */ = {
+			isa = PBXGroup;
+			children = (
+				B8A6DFC029A014EF005BA947 /* NavigationBar */,
+			);
+			path = Reusables;
+			sourceTree = "<group>";
+		};
+		B8A6DFC029A014EF005BA947 /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				B8A6DFBE29A0149D005BA947 /* NavigationBar.swift */,
+				B8A6DFC129A0150D005BA947 /* ContainerWithNavigationBar.swift */,
+			);
+			path = NavigationBar;
+			sourceTree = "<group>";
+		};
 		B8EA842F299909DB009D83E7 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
 				B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */,
+				B8A6DFB829A011FD005BA947 /* Onboarding */,
 				B8EA8433299917C8009D83E7 /* Login */,
+				B8A6DFAE299FD200005BA947 /* Register */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -169,7 +219,6 @@
 			children = (
 				B8EA8434299917D7009D83E7 /* LoginView.swift */,
 				B8EA8436299917E2009D83E7 /* LoginViewModel.swift */,
-				B8EA8438299917F4009D83E7 /* LoginViewController.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -178,6 +227,7 @@
 			isa = PBXGroup;
 			children = (
 				B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */,
+				B8A6DFB3299FD3B7005BA947 /* UINavigationController + Extensions.swift */,
 			);
 			path = "UIKit + Utils";
 			sourceTree = "<group>";
@@ -260,18 +310,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B8EA8439299917F4009D83E7 /* LoginViewController.swift in Sources */,
+				B8A6DFB4299FD3B7005BA947 /* UINavigationController + Extensions.swift in Sources */,
+				B8A6DFB2299FD24D005BA947 /* RegisterViewModel.swift in Sources */,
 				B86794012997E206006BFE29 /* UserDefaults + property wrapper.swift in Sources */,
 				B86793F72997D841006BFE29 /* RootCoordinator.swift in Sources */,
+				B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */,
+				B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */,
 				B8EA8437299917E2009D83E7 /* LoginViewModel.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
 				B86793FE2997DD6C006BFE29 /* UserSession.swift in Sources */,
+				B8A6DFBC29A0127C005BA947 /* OnboardingViewModel.swift in Sources */,
 				B8EA843C299937F6009D83E7 /* UIWindow + Extensions.swift in Sources */,
 				B86793FA2997D880006BFE29 /* Coordinator.swift in Sources */,
+				B8A6DFC229A0150D005BA947 /* ContainerWithNavigationBar.swift in Sources */,
 				B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */,
 				B86793E22997C538006BFE29 /* AppDelegate.swift in Sources */,
 				B8EA8435299917D7009D83E7 /* LoginView.swift in Sources */,
+				B8A6DFBA29A0120E005BA947 /* OnboardingView.swift in Sources */,
 				B86793E42997C538006BFE29 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

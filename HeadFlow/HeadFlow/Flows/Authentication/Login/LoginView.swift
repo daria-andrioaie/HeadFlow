@@ -13,14 +13,17 @@ struct Login {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            Text("welcome to the Login Page")
+            ContainerWithNavigationBar(title: "Login", leftAction: viewModel.onBack) {
+                Text("welcome to the Login Page")
+            }
         }
     }
 }
 
-
+#if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        Login.ContentView(viewModel: .init())
+        Login.ContentView(viewModel: .init(onBack: { }))
     }
 }
+#endif

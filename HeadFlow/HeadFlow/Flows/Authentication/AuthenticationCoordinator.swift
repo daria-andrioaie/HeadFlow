@@ -7,9 +7,9 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 class AuthenticationCoordinator: Coordinator {
-//    private weak var presentationController: UIViewController?
     private let window: UIWindow
     private var navigationController: UINavigationController = {
         let navVC = UINavigationController()
@@ -22,16 +22,6 @@ class AuthenticationCoordinator: Coordinator {
         navigationController
     }
     
-//    init(presentationController: UIViewController?,
-//         dependencies: DependecyContainer,
-//         onEndAuthenticationFlow: @escaping () -> Void) {
-//        self.presentationController = presentationController
-//        self.onEndAuthenticationFlow = onEndAuthenticationFlow
-//
-//        navigationController.navigationBar.isHidden = true
-//        navigationController.modalPresentationStyle = .fullScreen
-//    }
-    
     init(window: UIWindow,
          dependencies: DependecyContainer,
          onEndAuthenticationFlow: @escaping () -> Void) {
@@ -40,12 +30,30 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
-        showLogin()
+        window.transitionViewController(navigationController)
+        showOnboarding()
+    }
+    
+    func showOnboarding() {
+        let onboardingVM = Onboaridng.ViewModel(navigateToRegister: { [weak self] in
+            self?.showRegister()
+        }, navigateToLogin: { [weak self] in
+            self?.showLogin()
+        })
+        navigationController.pushHostingController(rootView: Onboaridng.ContentView(viewModel: onboardingVM))
     }
     
     func showLogin(animated: Bool = true) {
-        let loginVC = Login.ViewController()
-        navigationController.setViewControllers([loginVC], animated: animated)
-        window.transitionViewController(navigationController)
+        let loginVM = Login.ViewModel { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+        navigationController.pushHostingController(rootView: Login.ContentView(viewModel: loginVM), animated: animated)
+    }
+    
+    func showRegister(animated: Bool = true) {
+        let registerVM = Register.ViewModel { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+        navigationController.pushHostingController(rootView: Register.ContentView(viewModel: registerVM), animated: animated)
     }
 }
