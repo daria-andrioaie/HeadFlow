@@ -23,7 +23,7 @@ struct NavigationBar: View {
             
         }
         .frame(height: 48)
-        .background(Color.mint)
+        .background(Color.apricot)
     }
 }
 

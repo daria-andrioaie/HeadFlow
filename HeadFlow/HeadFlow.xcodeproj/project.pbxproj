@@ -32,6 +32,7 @@
 		B8A6DFBC29A0127C005BA947 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFBB29A0127C005BA947 /* OnboardingViewModel.swift */; };
 		B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFBE29A0149D005BA947 /* NavigationBar.swift */; };
 		B8A6DFC229A0150D005BA947 /* ContainerWithNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFC129A0150D005BA947 /* ContainerWithNavigationBar.swift */; };
+		B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */; };
 		B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */; };
 		B8EA8435299917D7009D83E7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8434299917D7009D83E7 /* LoginView.swift */; };
 		B8EA8437299917E2009D83E7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8436299917E2009D83E7 /* LoginViewModel.swift */; };
@@ -66,6 +67,7 @@
 		B8A6DFBB29A0127C005BA947 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		B8A6DFBE29A0149D005BA947 /* NavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		B8A6DFC129A0150D005BA947 /* ContainerWithNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerWithNavigationBar.swift; sourceTree = "<group>"; };
+		B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extensions.swift"; sourceTree = "<group>"; };
 		B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B8EA8434299917D7009D83E7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		B8EA8436299917E2009D83E7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 		B86793FF2997E1E9006BFE29 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				B8D3E6E629A0CEF000A588A8 /* SwiftUI + Utils */,
 				B8EA843A299937B1009D83E7 /* UIKit + Utils */,
 				B867940229982DF5006BFE29 /* Fonts */,
 				B86794002997E206006BFE29 /* UserDefaults + property wrapper.swift */,
@@ -194,6 +197,14 @@
 				B8A6DFC129A0150D005BA947 /* ContainerWithNavigationBar.swift */,
 			);
 			path = NavigationBar;
+			sourceTree = "<group>";
+		};
+		B8D3E6E629A0CEF000A588A8 /* SwiftUI + Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */,
+			);
+			path = "SwiftUI + Utils";
 			sourceTree = "<group>";
 		};
 		B8EA842F299909DB009D83E7 /* Authentication */ = {
@@ -315,6 +326,7 @@
 				B86794012997E206006BFE29 /* UserDefaults + property wrapper.swift in Sources */,
 				B86793F72997D841006BFE29 /* RootCoordinator.swift in Sources */,
 				B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */,
+				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
 				B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */,
 				B8EA8437299917E2009D83E7 /* LoginViewModel.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */,
