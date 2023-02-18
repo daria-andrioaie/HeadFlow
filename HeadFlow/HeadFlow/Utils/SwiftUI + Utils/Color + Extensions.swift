@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 extension Color {
+    static let feathers = Color("Feathers")
+    static let diamond = Color("Diamond")
     static let apricot = Color("Apricot")
     static let classicRose = Color("ClassicRose")
     static let danubeBlue = Color("DanubeBlue")

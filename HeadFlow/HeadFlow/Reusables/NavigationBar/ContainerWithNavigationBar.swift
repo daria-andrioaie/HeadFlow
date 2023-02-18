@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct ContainerWithNavigationBar<Content: View>: View {
-    let title: String
-    let leftAction: () -> Void
+    let title: String?
+    let leftButtonAction: () -> Void
     @ViewBuilder let content: Content
     
     var body: some View {
         VStack {
-            NavigationBar(title: title, leftAction: leftAction)
+            NavigationBar(title: title, leftButtonAction: leftButtonAction)
             content
-                .frame(maxHeight: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .fillBackground()
     }
 }
 
 #if DEBUG
 struct ContainerWithNavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        ContainerWithNavigationBar(title: "navbar title", leftAction: { }) {
+        ContainerWithNavigationBar(title: "navbar title", leftButtonAction: { }) {
             Text("hello world")
         }
     }

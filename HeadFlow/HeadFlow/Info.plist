@@ -5,13 +5,13 @@
 	<key>UIAppFonts</key>
 	<array>
 		<string>Lato-Heavy.ttf</string>
-		<string>Lato-Bold.tff</string>
-		<string>Lato-Semibold.tff</string>
-		<string>Lato-Regular.tff</string>
-		<string>Lato-Medium.tff</string>
-		<string>Lato-Light.tff</string>
-		<string>Lato-Thin.tff</string>
-		<string>Lato-Hairline.tff</string>
+		<string>Lato-Bold.ttf</string>
+		<string>Lato-Semibold.ttf</string>
+		<string>Lato-Regular.ttf</string>
+		<string>Lato-Medium.ttf</string>
+		<string>Lato-Light.ttf</string>
+		<string>Lato-Thin.ttf</string>
+		<string>Lato-Hairline.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

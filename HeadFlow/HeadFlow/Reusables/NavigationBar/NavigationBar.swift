@@ -8,27 +8,42 @@
 import SwiftUI
 
 struct NavigationBar: View {
-    let title: String
-    let leftAction: () -> Void
+    let title: String?
+    let leftButtonAction: () -> Void
     
     var body: some View {
         HStack {
             Button {
-                leftAction()
+                leftButtonAction()
             } label: {
-                Text("back")
+                Circle()
+                    .fill(Color.diamond)
+                    .frame(width: 35, height: 35)
+                    .overlay(
+                        Image(systemName: "chevron.left")
+                            .renderingMode(.template)
+                            .foregroundColor(.danubeBlue)
+                    )
+            }
+            .buttonStyle(.plain)
+            .padding(.trailing, 8)
+            if let title {
+                Text(title)
+                    .font(.Main.semibold(size: 24))
+                    .foregroundColor(.danubeBlue)
             }
             Spacer()
-            Text(title)
-            
         }
+        .padding(.horizontal, 24)
         .frame(height: 48)
-        .background(Color.apricot)
     }
 }
 
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationBar(title: "navbar title", leftAction: { })
+        VStack {
+            NavigationBar(title: "Daria is amazing", leftButtonAction: { })
+        }
+        
     }
 }

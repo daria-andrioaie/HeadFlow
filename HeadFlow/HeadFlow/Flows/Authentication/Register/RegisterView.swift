@@ -12,7 +12,7 @@ struct Register {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            ContainerWithNavigationBar(title: "Register", leftAction: viewModel.onBack) {
+            ContainerWithNavigationBar(title: nil, leftButtonAction: viewModel.onBack) {
                 Text("welcome to the Register Page")
             }
         }

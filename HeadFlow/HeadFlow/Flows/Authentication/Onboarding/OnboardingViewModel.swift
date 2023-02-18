@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Onboaridng {
+extension Onboarding {
     class ViewModel: ObservableObject {
         var navigateToRegister: () -> Void
         var navigateToLogin: () -> Void

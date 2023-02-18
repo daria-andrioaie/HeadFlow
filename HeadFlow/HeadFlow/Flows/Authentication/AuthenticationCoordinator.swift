@@ -35,12 +35,12 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func showOnboarding() {
-        let onboardingVM = Onboaridng.ViewModel(navigateToRegister: { [weak self] in
+        let onboardingVM = Onboarding.ViewModel(navigateToRegister: { [weak self] in
             self?.showRegister()
         }, navigateToLogin: { [weak self] in
             self?.showLogin()
         })
-        navigationController.pushHostingController(rootView: Onboaridng.ContentView(viewModel: onboardingVM))
+        navigationController.pushHostingController(rootView: Onboarding.ContentView(viewModel: onboardingVM))
     }
     
     func showLogin(animated: Bool = true) {

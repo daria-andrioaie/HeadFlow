@@ -7,29 +7,34 @@
 
 import SwiftUI
 
-struct Onboaridng {
+struct Onboarding {
     struct ContentView: View {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
             VStack {
-                Text("Onboarding")
-                HStack {
-                    Button {
-                        viewModel.navigateToLogin()
-                    } label: {
-                        Text("login")
-                    }
-                    .buttonStyle(.bordered)
-                    
-                    Button {
-                        viewModel.navigateToRegister()
-                    } label: {
-                        Text("register")
-                    }
-                    .buttonStyle(.borderedProminent)
-                }
+                Onboarding.CarouselView()
+                    .padding(.vertical, 45)
+                authenticationButtons
             }
+            .padding(.vertical, 30)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .fillBackground()
+        }
+        
+        var authenticationButtons: some View {
+            HStack {
+                Spacer()
+                Buttons.BorderedButton(title: "Log In", borderColor: .feathers) {
+                    viewModel.navigateToLogin()
+                }
+                Spacer()
+                Buttons.BorderedButton(title: "Sign Up", width: 200) {
+                    viewModel.navigateToRegister()
+                }
+                
+            }
+            .padding(.horizontal, 24)
         }
     }
 }
@@ -37,7 +42,7 @@ struct Onboaridng {
 #if DEBUG
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        Onboaridng.ContentView(viewModel: .init(navigateToRegister: { }, navigateToLogin: { }))
+        Onboarding.ContentView(viewModel: .init(navigateToRegister: { }, navigateToLogin: { }))
     }
 }
 #endif

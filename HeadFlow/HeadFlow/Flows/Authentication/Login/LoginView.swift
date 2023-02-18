@@ -13,7 +13,7 @@ struct Login {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            ContainerWithNavigationBar(title: "Login", leftAction: viewModel.onBack) {
+            ContainerWithNavigationBar(title: nil, leftButtonAction: viewModel.onBack) {
                 Text("welcome to the Login Page")
             }
         }
