@@ -11,7 +11,7 @@ import SwiftUI
 extension Buttons {
     struct FilledButton: View {
         let title: String
-        
+        var rightIcon: HFImage? = nil
         var isEnabled: Bool = true
         var backgroundColor: Color  = .danubeBlue
         var foregroundColor: Color = .feathers
@@ -25,9 +25,16 @@ extension Buttons {
             Button {
                 action()
             } label: {
-                Text(title)
-                    .foregroundColor(foregroundColor)
-                    .font(font)
+                HStack {
+                    Text(title)
+                        .foregroundColor(foregroundColor)
+                        .font(font)
+                    if let rightIcon {
+                        Image(rightIcon)
+                            .renderingMode(.template)
+                            .foregroundColor(foregroundColor)
+                    }
+                }
             }
             .buttonStyle(ButtonStyles.Filled(isEnabled: isEnabled, fillColor: backgroundColor, size: size, width: width))
             .disabled(!isEnabled)

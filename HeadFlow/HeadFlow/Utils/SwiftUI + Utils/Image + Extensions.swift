@@ -13,6 +13,15 @@ enum HFImage: String {
     case mobility = "mobility-clipped"
     case posture = "posture-clipped"
     case sleep = "sleep-clipped"
+    
+    //MARK: icons
+    case chevronRight = "chevron-right"
+    case chevronRightBold = "chevron-right-bold"
+
+    //MARK: social icons
+    case appleIcon = "apple-icon"
+    case googleIcon = "google-icon"
+    case facebookIcon = "facebook-icon"
 }
 
 extension Image {

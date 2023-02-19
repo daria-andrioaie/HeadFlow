@@ -10,10 +10,28 @@ import SwiftUI
 
 extension Login {
     class ViewModel: ObservableObject {
-        var onBack: () -> Void
+        //TODO: validate and format phone number
+        @Published var phoneNumber: String = "" {
+            didSet {
+                if phoneNumber.count == 12 {
+                    nextButtonIsEnabled = true
+                }
+            }
+        }
+        @Published var nextButtonIsEnabled: Bool = false
         
-        init(onBack: @escaping () -> Void) {
+        var onBack: () -> Void
+        var onNext: () -> Void
+        
+        init(onBack: @escaping () -> Void, onNext: @escaping () -> Void) {
             self.onBack = onBack
+            self.onNext = onNext
+        }
+        
+        func loginAction() {
+            //TODO: send sms code
+            
+            onNext()
         }
     }
 }

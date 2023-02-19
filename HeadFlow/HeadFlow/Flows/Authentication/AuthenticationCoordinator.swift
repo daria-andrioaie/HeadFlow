@@ -44,9 +44,11 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func showLogin(animated: Bool = true) {
-        let loginVM = Login.ViewModel { [weak self] in
+        let loginVM = Login.ViewModel(onBack: { [weak self] in
             self?.navigationController.popViewController(animated: true)
-        }
+        }, onNext: { [weak self] in
+            // show code confirmation screen
+        })
         navigationController.pushHostingController(rootView: Login.ContentView(viewModel: loginVM), animated: animated)
     }
     
