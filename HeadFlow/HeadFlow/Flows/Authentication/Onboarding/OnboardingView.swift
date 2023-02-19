@@ -14,10 +14,10 @@ struct Onboarding {
         var body: some View {
             VStack {
                 Onboarding.CarouselView()
-                    .padding(.vertical, 45)
+                    .padding(.bottom, 45)
                 authenticationButtons
             }
-            .padding(.vertical, 30)
+            .padding(.bottom, 30)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .fillBackground()
         }
@@ -25,11 +25,11 @@ struct Onboarding {
         var authenticationButtons: some View {
             HStack {
                 Spacer()
-                Buttons.BorderedButton(title: "Log In", borderColor: .feathers) {
+                Buttons.BorderedButton(title: Texts.Onboarding.loginLabel, borderColor: .feathers) {
                     viewModel.navigateToLogin()
                 }
                 Spacer()
-                Buttons.BorderedButton(title: "Sign Up", width: 200) {
+                Buttons.BorderedButton(title: Texts.Onboarding.signupLabel, width: 200) {
                     viewModel.navigateToRegister()
                 }
                 

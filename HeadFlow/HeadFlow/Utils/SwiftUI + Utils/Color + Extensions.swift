@@ -17,4 +17,5 @@ extension Color {
     static let decoGreen = Color("DecoGreen")
     static let paleYellow = Color("PaleYellow")
     static let skyBlue = Color("SkyBlue")
+    static let oceanBlue = Color("OceanBlue")
 }

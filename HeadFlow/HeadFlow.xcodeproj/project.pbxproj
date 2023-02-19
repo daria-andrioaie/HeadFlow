@@ -11,6 +11,10 @@
 		B86297D129A1640B0059280B /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D029A1640B0059280B /* BorderedButton.swift */; };
 		B86297D329A164130059280B /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D229A164130059280B /* FilledButton.swift */; };
 		B86297D529A166890059280B /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D429A166890059280B /* ButtonStyles.swift */; };
+		B86297D729A25D4F0059280B /* Texts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D629A25D4F0059280B /* Texts.swift */; };
+		B86297D929A25D690059280B /* Texts + Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D829A25D690059280B /* Texts + Onboarding.swift */; };
+		B86297DB29A25F490059280B /* CarouselItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297DA29A25F490059280B /* CarouselItem.swift */; };
+		B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297DC29A260BE0059280B /* Image + Extensions.swift */; };
 		B86793E22997C538006BFE29 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793E12997C538006BFE29 /* AppDelegate.swift */; };
 		B86793E42997C538006BFE29 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793E32997C538006BFE29 /* SceneDelegate.swift */; };
 		B86793EB2997C539006BFE29 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B86793EA2997C539006BFE29 /* Assets.xcassets */; };
@@ -51,6 +55,10 @@
 		B86297D029A1640B0059280B /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B86297D229A164130059280B /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
 		B86297D429A166890059280B /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		B86297D629A25D4F0059280B /* Texts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Texts.swift; sourceTree = "<group>"; };
+		B86297D829A25D690059280B /* Texts + Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + Onboarding.swift"; sourceTree = "<group>"; };
+		B86297DA29A25F490059280B /* CarouselItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselItem.swift; sourceTree = "<group>"; };
+		B86297DC29A260BE0059280B /* Image + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image + Extensions.swift"; sourceTree = "<group>"; };
 		B86793DE2997C538006BFE29 /* HeadFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HeadFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86793E12997C538006BFE29 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B86793E32997C538006BFE29 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +177,7 @@
 				B8EA843A299937B1009D83E7 /* UIKit + Utils */,
 				B867940229982DF5006BFE29 /* Fonts */,
 				B86794002997E206006BFE29 /* UserDefaults + property wrapper.swift */,
+				B86297D629A25D4F0059280B /* Texts.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -204,6 +213,8 @@
 				B8A6DFB929A0120E005BA947 /* OnboardingView.swift */,
 				B8A6DFBB29A0127C005BA947 /* OnboardingViewModel.swift */,
 				B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */,
+				B86297DA29A25F490059280B /* CarouselItem.swift */,
+				B86297D829A25D690059280B /* Texts + Onboarding.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -232,6 +243,7 @@
 				B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */,
 				B8D3E6E929A118F200A588A8 /* View + Extensions.swift */,
 				B8D3E6F329A1368D00A588A8 /* Shape + Utils.swift */,
+				B86297DC29A260BE0059280B /* Image + Extensions.swift */,
 			);
 			path = "SwiftUI + Utils";
 			sourceTree = "<group>";
@@ -355,9 +367,12 @@
 				B86794012997E206006BFE29 /* UserDefaults + property wrapper.swift in Sources */,
 				B86793F72997D841006BFE29 /* RootCoordinator.swift in Sources */,
 				B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */,
+				B86297D929A25D690059280B /* Texts + Onboarding.swift in Sources */,
 				B86297D329A164130059280B /* FilledButton.swift in Sources */,
 				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
+				B86297DB29A25F490059280B /* CarouselItem.swift in Sources */,
 				B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */,
+				B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */,
 				B8EA8437299917E2009D83E7 /* LoginViewModel.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
@@ -372,6 +387,7 @@
 				B86793E22997C538006BFE29 /* AppDelegate.swift in Sources */,
 				B8EA8435299917D7009D83E7 /* LoginView.swift in Sources */,
 				B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */,
+				B86297D729A25D4F0059280B /* Texts.swift in Sources */,
 				B86297D529A166890059280B /* ButtonStyles.swift in Sources */,
 				B8D3E6F429A1368D00A588A8 /* Shape + Utils.swift in Sources */,
 				B8D3E6F229A12ACA00A588A8 /* CarouselView.swift in Sources */,
