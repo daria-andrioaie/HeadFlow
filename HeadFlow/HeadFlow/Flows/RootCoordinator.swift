@@ -26,7 +26,6 @@ class RootCoordinator: Coordinator {
         navigationController.navigationBar.isHidden = true
         
         //TODO: init dependency container
-        
     }
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {

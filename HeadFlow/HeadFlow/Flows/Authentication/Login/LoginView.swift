@@ -6,14 +6,15 @@
 //
 
 import SwiftUI
-import iPhoneNumberField
 
 struct Login {
     struct ContentView: View {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            ContainerWithNavigationBar(title: nil, leftButtonAction: viewModel.onBack) {
+            ContainerWithNavigationBar(title: nil, leftButtonAction: {
+                viewModel.onLoginNavigation?(.goBack)
+            }) {
                 VStack {
                     greetingView
                         .padding(.top, 20)
@@ -28,15 +29,14 @@ struct Login {
                 .padding(.horizontal, 24)
             }
             .onTapGesture(perform: hideKeyboard)
-
         }
         
         var greetingView: some View {
             VStack(alignment: .leading, spacing: 8) {
-                Text("Welcome back! 👋🏼")
+                Text(Texts.Login.greetingsLabel)
                     .font(.Main.bold(size: 26))
                     .foregroundColor(.danubeBlue)
-                Text("Let's get you logged in.")
+                Text(Texts.Login.loginLabel)
                     .font(.Main.regular(size: 18))
                     .foregroundColor(.danubeBlue)
             }
@@ -44,23 +44,13 @@ struct Login {
         }
         
         var phoneNumberField: some View {
-            iPhoneNumberField("Enter your number", text: $viewModel.phoneNumber)
-                .defaultRegion("RO")
-                .flagHidden(false)
-                .flagSelectable(true)
-                .prefixHidden(false)
-                .font(UIFont(name: "Lato-Light", size: 18))
-                .maximumDigits(10)
-                .foregroundColor(Color.oceanBlue)
-                .padding()
-                .background(Color.white)
-                .cornerRadius(15)
-                .roundedBorder(.oceanBlue, cornerRadius: 15, lineWidth: 0.5)
+            CustomTextField(inputText: viewModel.phoneNumberBinding, placeholder: Texts.Login.phoneFieldPlaceholder, keyboardType: .numberPad, inputError: viewModel.invalidPhoneNumberError)
+                .font(.Main.light(size: 16))
         }
         
         var socialLoginView: some View {
             VStack(spacing: 15) {
-                Text("Or log in with:")
+                Text(Texts.Login.alternativesLabel)
                     .font(.Main.p1Regular)
                     .foregroundColor(.danubeBlue)
                 HStack(spacing: 15) {
@@ -78,7 +68,7 @@ struct Login {
         }
         
         var nextButton: some View {
-            Buttons.FilledButton(title: "Next", rightIcon: .chevronRightBold, isEnabled: viewModel.nextButtonIsEnabled, size: .small, width: 105) {
+            Buttons.FilledButton(title: Texts.Login.nextButtonLabel, rightIcon: .chevronRightBold, isEnabled: viewModel.nextButtonIsEnabled, size: .small, width: 105) {
                 viewModel.loginAction()
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
@@ -89,7 +79,7 @@ struct Login {
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        Login.ContentView(viewModel: .init(onBack: { }, onNext: { }))
+        Login.ContentView(viewModel: .init())
     }
 }
 #endif

@@ -44,12 +44,27 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func showLogin(animated: Bool = true) {
-        let loginVM = Login.ViewModel(onBack: { [weak self] in
-            self?.navigationController.popViewController(animated: true)
-        }, onNext: { [weak self] in
-            // show code confirmation screen
-        })
+        let loginVM = Login.ViewModel()
+        loginVM.onLoginNavigation = { [weak self] navigationType in
+            switch navigationType {
+            case .goBack:
+                self?.navigationController.popViewController(animated: true)
+            case .goToSMSValidation:
+                self?.showSMSValidation()
+            }
+        }
         navigationController.pushHostingController(rootView: Login.ContentView(viewModel: loginVM), animated: animated)
+    }
+    
+    func showSMSValidation(animated: Bool = true) {
+        let smsValidationVM = SMSValidation.ViewModel()
+        smsValidationVM.onNavigation = { [weak self] navigationType in
+            switch navigationType {
+            case .goBack:
+                self?.navigationController.popViewController(animated: true)
+            }
+        }
+        navigationController.pushHostingController(rootView: SMSValidation.ContentView(viewModel: smsValidationVM), animated: true)
     }
     
     func showRegister(animated: Bool = true) {
