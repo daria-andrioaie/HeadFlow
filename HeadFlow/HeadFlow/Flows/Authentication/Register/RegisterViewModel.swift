@@ -14,6 +14,8 @@ extension Register {
             didSet {
                 if !nameInput.isEmpty {
                     nextButtonIsEnabled = true
+                } else {
+                    nextButtonIsEnabled = false
                 }
             }
         }

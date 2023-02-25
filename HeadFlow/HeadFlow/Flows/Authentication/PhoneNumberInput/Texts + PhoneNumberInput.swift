@@ -10,7 +10,7 @@ import Foundation
 extension Texts {
     struct PhoneNumberInput {
         static let loginGreetingsLabel = NSLocalizedString("login_greeting_label", value: "Welcome back! 👋🏼", comment: "")
-        static func signupGreetingsLabel(name: String) -> String { NSLocalizedString("signup_greeting_label", value: "Hi there, \(name)!👋🏼", comment: "") }
+        static func signupGreetingsLabel(name: String) -> String { NSLocalizedString("signup_greeting_label", value: "Hi there, \(name)! 👋🏼", comment: "") }
 
         static let loginLabel = NSLocalizedString("login_label", value: "Let's get you logged in.", comment: "")
         static let signupLabel = NSLocalizedString("signup_label", value: "Let's confirm your mobile number.", comment: "")

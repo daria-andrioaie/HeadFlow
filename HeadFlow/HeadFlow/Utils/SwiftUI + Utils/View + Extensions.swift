@@ -30,6 +30,15 @@ extension View {
             for: nil
         )
     }
+    
+    @ViewBuilder
+    func activityIndicator(_ isLoading: Bool, scale: CGFloat = 1.3, tint: Color = .oceanBlue) -> some View {
+        if isLoading {
+            ActivityIndicator(tint: tint, scale: scale)
+        } else {
+            self
+        }
+    }
 }
 
 

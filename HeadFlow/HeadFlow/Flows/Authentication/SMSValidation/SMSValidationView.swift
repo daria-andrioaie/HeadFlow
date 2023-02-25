@@ -20,8 +20,11 @@ struct SMSValidation {
             }) {
                 VStack(spacing: 60) {
                     noticeView
-                    codeField
-                    resendCodeView
+                    Group {
+                        codeField
+                        resendCodeView
+                    }
+                    .activityIndicator(viewModel.isLoading)
                 }
                 .padding(.horizontal, 24)
                 .frame(maxHeight: .infinity, alignment: .top)

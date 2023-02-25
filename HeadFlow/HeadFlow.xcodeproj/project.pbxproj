@@ -12,6 +12,8 @@
 		B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DEE29AA507500A4EC3B /* HomeView.swift */; };
 		B8009DF229AA543B00A4EC3B /* AuthenticationCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF129AA543B00A4EC3B /* AuthenticationCompleteView.swift */; };
 		B8009DF429AA624400A4EC3B /* Texts + Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF329AA624400A4EC3B /* Texts + Register.swift */; };
+		B8009DF629AAAF2600A4EC3B /* AnimatedCheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */; };
+		B8009DF929AAB15700A4EC3B /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF829AAB15700A4EC3B /* ActivityIndicator.swift */; };
 		B86297CF29A163BC0059280B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297CE29A163BC0059280B /* Buttons.swift */; };
 		B86297D129A1640B0059280B /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D029A1640B0059280B /* BorderedButton.swift */; };
 		B86297D329A164130059280B /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D229A164130059280B /* FilledButton.swift */; };
@@ -70,6 +72,8 @@
 		B8009DEE29AA507500A4EC3B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		B8009DF129AA543B00A4EC3B /* AuthenticationCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCompleteView.swift; sourceTree = "<group>"; };
 		B8009DF329AA624400A4EC3B /* Texts + Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + Register.swift"; sourceTree = "<group>"; };
+		B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCheckmarkView.swift; sourceTree = "<group>"; };
+		B8009DF829AAB15700A4EC3B /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		B86297CE29A163BC0059280B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B86297D029A1640B0059280B /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B86297D229A164130059280B /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -149,6 +153,16 @@
 				B8009DF129AA543B00A4EC3B /* AuthenticationCompleteView.swift */,
 			);
 			path = AuthenticationComplete;
+			sourceTree = "<group>";
+		};
+		B8009DF729AAB13600A4EC3B /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */,
+				B890AC1329A3F85A00D30572 /* CustomTextField.swift */,
+				B8009DF829AAB15700A4EC3B /* ActivityIndicator.swift */,
+			);
+			path = CustomComponents;
 			sourceTree = "<group>";
 		};
 		B86297CD29A162CC0059280B /* Buttons */ = {
@@ -288,9 +302,9 @@
 		B8A6DFBD29A01483005BA947 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				B8009DF729AAB13600A4EC3B /* CustomComponents */,
 				B86297CD29A162CC0059280B /* Buttons */,
 				B8A6DFC029A014EF005BA947 /* NavigationBar */,
-				B890AC1329A3F85A00D30572 /* CustomTextField.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -458,6 +472,7 @@
 				B890AC1A29A3FC4100D30572 /* DispatchQueue + Extensions.swift in Sources */,
 				B890AC2329A40E9600D30572 /* Collections + Utils.swift in Sources */,
 				B86297DB29A25F490059280B /* CarouselItem.swift in Sources */,
+				B8009DF929AAB15700A4EC3B /* ActivityIndicator.swift in Sources */,
 				B8009DEA29AA139600A4EC3B /* Texts + SMSValidation.swift in Sources */,
 				B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */,
 				B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */,
@@ -479,6 +494,7 @@
 				B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */,
 				B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */,
 				B8009DEC29AA4F7700A4EC3B /* MainCoordinator.swift in Sources */,
+				B8009DF629AAAF2600A4EC3B /* AnimatedCheckmarkView.swift in Sources */,
 				B86297D729A25D4F0059280B /* Texts.swift in Sources */,
 				B86297D529A166890059280B /* ButtonStyles.swift in Sources */,
 				B8D3E6F429A1368D00A588A8 /* Shape + Utils.swift in Sources */,

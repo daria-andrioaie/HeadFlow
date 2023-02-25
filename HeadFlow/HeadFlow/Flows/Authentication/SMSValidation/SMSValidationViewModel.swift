@@ -9,6 +9,7 @@ import Foundation
 
 extension SMSValidation {
     class ViewModel: ObservableObject {
+        @Published var isLoading: Bool = false
         @Published var timeRemaining = 30
         @Published var inputCode: String = "" {
             didSet {
@@ -28,7 +29,11 @@ extension SMSValidation {
         
         func validateSMS() {
             //validate SMS
-            navigationAction(.onSMSValidated)
+            isLoading = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.navigationAction(.onSMSValidated)
+            }
+            
         }
     }
     

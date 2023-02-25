@@ -17,6 +17,7 @@ enum HFImage: String {
     //MARK: icons
     case chevronRight = "chevron-right"
     case chevronRightBold = "chevron-right-bold"
+    case checkIcon = "check-icon-light"
 
     //MARK: social icons
     case appleIcon = "apple-icon"
