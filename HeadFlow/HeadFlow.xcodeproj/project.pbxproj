@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8009DEA29AA139600A4EC3B /* Texts + SMSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DE929AA139600A4EC3B /* Texts + SMSValidation.swift */; };
+		B8009DEC29AA4F7700A4EC3B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DEB29AA4F7700A4EC3B /* MainCoordinator.swift */; };
+		B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DEE29AA507500A4EC3B /* HomeView.swift */; };
+		B8009DF229AA543B00A4EC3B /* AuthenticationCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF129AA543B00A4EC3B /* AuthenticationCompleteView.swift */; };
+		B8009DF429AA624400A4EC3B /* Texts + Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF329AA624400A4EC3B /* Texts + Register.swift */; };
 		B86297CF29A163BC0059280B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297CE29A163BC0059280B /* Buttons.swift */; };
 		B86297D129A1640B0059280B /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D029A1640B0059280B /* BorderedButton.swift */; };
 		B86297D329A164130059280B /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D229A164130059280B /* FilledButton.swift */; };
@@ -40,7 +45,8 @@
 		B890AC1A29A3FC4100D30572 /* DispatchQueue + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC1929A3FC4100D30572 /* DispatchQueue + Extensions.swift */; };
 		B890AC1C29A4004900D30572 /* SMSValidationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC1B29A4004900D30572 /* SMSValidationView.swift */; };
 		B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC1E29A4009E00D30572 /* SMSValidationViewModel.swift */; };
-		B890AC2129A4031200D30572 /* Texts + Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC2029A4031200D30572 /* Texts + Login.swift */; };
+		B890AC2129A4031200D30572 /* Texts + PhoneNumberInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC2029A4031200D30572 /* Texts + PhoneNumberInput.swift */; };
+		B890AC2329A40E9600D30572 /* Collections + Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC2229A40E9600D30572 /* Collections + Utils.swift */; };
 		B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFAF299FD215005BA947 /* RegisterView.swift */; };
 		B8A6DFB2299FD24D005BA947 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFB1299FD24D005BA947 /* RegisterViewModel.swift */; };
 		B8A6DFB4299FD3B7005BA947 /* UINavigationController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFB3299FD3B7005BA947 /* UINavigationController + Extensions.swift */; };
@@ -53,12 +59,17 @@
 		B8D3E6F229A12ACA00A588A8 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */; };
 		B8D3E6F429A1368D00A588A8 /* Shape + Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6F329A1368D00A588A8 /* Shape + Utils.swift */; };
 		B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */; };
-		B8EA8435299917D7009D83E7 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8434299917D7009D83E7 /* LoginView.swift */; };
-		B8EA8437299917E2009D83E7 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8436299917E2009D83E7 /* LoginViewModel.swift */; };
+		B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */; };
+		B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */; };
 		B8EA843C299937F6009D83E7 /* UIWindow + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B8009DE929AA139600A4EC3B /* Texts + SMSValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + SMSValidation.swift"; sourceTree = "<group>"; };
+		B8009DEB29AA4F7700A4EC3B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		B8009DEE29AA507500A4EC3B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B8009DF129AA543B00A4EC3B /* AuthenticationCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCompleteView.swift; sourceTree = "<group>"; };
+		B8009DF329AA624400A4EC3B /* Texts + Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + Register.swift"; sourceTree = "<group>"; };
 		B86297CE29A163BC0059280B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B86297D029A1640B0059280B /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B86297D229A164130059280B /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -92,7 +103,8 @@
 		B890AC1929A3FC4100D30572 /* DispatchQueue + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue + Extensions.swift"; sourceTree = "<group>"; };
 		B890AC1B29A4004900D30572 /* SMSValidationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSValidationView.swift; sourceTree = "<group>"; };
 		B890AC1E29A4009E00D30572 /* SMSValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSValidationViewModel.swift; sourceTree = "<group>"; };
-		B890AC2029A4031200D30572 /* Texts + Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + Login.swift"; sourceTree = "<group>"; };
+		B890AC2029A4031200D30572 /* Texts + PhoneNumberInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + PhoneNumberInput.swift"; sourceTree = "<group>"; };
+		B890AC2229A40E9600D30572 /* Collections + Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections + Utils.swift"; sourceTree = "<group>"; };
 		B8A6DFAF299FD215005BA947 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		B8A6DFB1299FD24D005BA947 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B8A6DFB3299FD3B7005BA947 /* UINavigationController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extensions.swift"; sourceTree = "<group>"; };
@@ -105,8 +117,8 @@
 		B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		B8D3E6F329A1368D00A588A8 /* Shape + Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape + Utils.swift"; sourceTree = "<group>"; };
 		B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
-		B8EA8434299917D7009D83E7 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		B8EA8436299917E2009D83E7 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputView.swift; sourceTree = "<group>"; };
+		B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputViewModel.swift; sourceTree = "<group>"; };
 		B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow + Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -123,6 +135,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B8009DED29AA504400A4EC3B /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B8009DEE29AA507500A4EC3B /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B8009DF029AA540100A4EC3B /* AuthenticationComplete */ = {
+			isa = PBXGroup;
+			children = (
+				B8009DF129AA543B00A4EC3B /* AuthenticationCompleteView.swift */,
+			);
+			path = AuthenticationComplete;
+			sourceTree = "<group>";
+		};
 		B86297CD29A162CC0059280B /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -220,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				B890AC1929A3FC4100D30572 /* DispatchQueue + Extensions.swift */,
+				B890AC2229A40E9600D30572 /* Collections + Utils.swift */,
 			);
 			path = "Foundation + utils";
 			sourceTree = "<group>";
@@ -229,6 +258,7 @@
 			children = (
 				B890AC1B29A4004900D30572 /* SMSValidationView.swift */,
 				B890AC1E29A4009E00D30572 /* SMSValidationViewModel.swift */,
+				B8009DE929AA139600A4EC3B /* Texts + SMSValidation.swift */,
 			);
 			path = SMSValidation;
 			sourceTree = "<group>";
@@ -238,6 +268,7 @@
 			children = (
 				B8A6DFAF299FD215005BA947 /* RegisterView.swift */,
 				B8A6DFB1299FD24D005BA947 /* RegisterViewModel.swift */,
+				B8009DF329AA624400A4EC3B /* Texts + Register.swift */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -289,9 +320,10 @@
 			children = (
 				B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */,
 				B8A6DFB829A011FD005BA947 /* Onboarding */,
-				B8EA8433299917C8009D83E7 /* Login */,
-				B890AC1D29A4007000D30572 /* SMSValidation */,
+				B8EA8433299917C8009D83E7 /* PhoneNumberInput */,
 				B8A6DFAE299FD200005BA947 /* Register */,
+				B890AC1D29A4007000D30572 /* SMSValidation */,
+				B8009DF029AA540100A4EC3B /* AuthenticationComplete */,
 			);
 			path = Authentication;
 			sourceTree = "<group>";
@@ -299,18 +331,20 @@
 		B8EA8430299909E4009D83E7 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				B8009DEB29AA4F7700A4EC3B /* MainCoordinator.swift */,
+				B8009DED29AA504400A4EC3B /* Home */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		B8EA8433299917C8009D83E7 /* Login */ = {
+		B8EA8433299917C8009D83E7 /* PhoneNumberInput */ = {
 			isa = PBXGroup;
 			children = (
-				B8EA8434299917D7009D83E7 /* LoginView.swift */,
-				B8EA8436299917E2009D83E7 /* LoginViewModel.swift */,
-				B890AC2029A4031200D30572 /* Texts + Login.swift */,
+				B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */,
+				B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */,
+				B890AC2029A4031200D30572 /* Texts + PhoneNumberInput.swift */,
 			);
-			path = Login;
+			path = PhoneNumberInput;
 			sourceTree = "<group>";
 		};
 		B8EA843A299937B1009D83E7 /* UIKit + Utils */ = {
@@ -412,7 +446,7 @@
 				B8A6DFB2299FD24D005BA947 /* RegisterViewModel.swift in Sources */,
 				B86794012997E206006BFE29 /* UserDefaults + property wrapper.swift in Sources */,
 				B890AC1C29A4004900D30572 /* SMSValidationView.swift in Sources */,
-				B890AC2129A4031200D30572 /* Texts + Login.swift in Sources */,
+				B890AC2129A4031200D30572 /* Texts + PhoneNumberInput.swift in Sources */,
 				B86793F72997D841006BFE29 /* RootCoordinator.swift in Sources */,
 				B890AC1229A3F7CF00D30572 /* Errors.swift in Sources */,
 				B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */,
@@ -420,11 +454,14 @@
 				B86297D329A164130059280B /* FilledButton.swift in Sources */,
 				B890AC1429A3F85A00D30572 /* CustomTextField.swift in Sources */,
 				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
+				B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */,
 				B890AC1A29A3FC4100D30572 /* DispatchQueue + Extensions.swift in Sources */,
+				B890AC2329A40E9600D30572 /* Collections + Utils.swift in Sources */,
 				B86297DB29A25F490059280B /* CarouselItem.swift in Sources */,
+				B8009DEA29AA139600A4EC3B /* Texts + SMSValidation.swift in Sources */,
 				B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */,
 				B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */,
-				B8EA8437299917E2009D83E7 /* LoginViewModel.swift in Sources */,
+				B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */,
 				B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
@@ -436,9 +473,12 @@
 				B8A6DFC229A0150D005BA947 /* ContainerWithNavigationBar.swift in Sources */,
 				B86297CF29A163BC0059280B /* Buttons.swift in Sources */,
 				B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */,
+				B8009DF429AA624400A4EC3B /* Texts + Register.swift in Sources */,
 				B86793E22997C538006BFE29 /* AppDelegate.swift in Sources */,
-				B8EA8435299917D7009D83E7 /* LoginView.swift in Sources */,
+				B8009DF229AA543B00A4EC3B /* AuthenticationCompleteView.swift in Sources */,
+				B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */,
 				B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */,
+				B8009DEC29AA4F7700A4EC3B /* MainCoordinator.swift in Sources */,
 				B86297D729A25D4F0059280B /* Texts.swift in Sources */,
 				B86297D529A166890059280B /* ButtonStyles.swift in Sources */,
 				B8D3E6F429A1368D00A588A8 /* Shape + Utils.swift in Sources */,

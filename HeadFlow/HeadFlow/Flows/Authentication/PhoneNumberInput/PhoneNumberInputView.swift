@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-struct Login {
+struct PhoneNumberInput {
     struct ContentView: View {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
             ContainerWithNavigationBar(title: nil, leftButtonAction: {
-                viewModel.onLoginNavigation?(.goBack)
+                viewModel.navigationAction(.goBack)
             }) {
                 VStack {
                     greetingView
@@ -33,10 +33,10 @@ struct Login {
         
         var greetingView: some View {
             VStack(alignment: .leading, spacing: 8) {
-                Text(Texts.Login.greetingsLabel)
+                Text(viewModel.greetingsLabel)
                     .font(.Main.bold(size: 26))
                     .foregroundColor(.danubeBlue)
-                Text(Texts.Login.loginLabel)
+                Text(viewModel.infoLabel)
                     .font(.Main.regular(size: 18))
                     .foregroundColor(.danubeBlue)
             }
@@ -44,13 +44,13 @@ struct Login {
         }
         
         var phoneNumberField: some View {
-            CustomTextField(inputText: viewModel.phoneNumberBinding, placeholder: Texts.Login.phoneFieldPlaceholder, keyboardType: .numberPad, inputError: viewModel.invalidPhoneNumberError)
+            CustomTextField(inputText: viewModel.phoneNumberBinding, placeholder: Texts.PhoneNumberInput.phoneFieldPlaceholder, keyboardType: .numberPad, inputError: viewModel.invalidPhoneNumberError)
                 .font(.Main.light(size: 16))
         }
         
         var socialLoginView: some View {
             VStack(spacing: 15) {
-                Text(Texts.Login.alternativesLabel)
+                Text(viewModel.alternativesLabel)
                     .font(.Main.p1Regular)
                     .foregroundColor(.danubeBlue)
                 HStack(spacing: 15) {
@@ -68,8 +68,8 @@ struct Login {
         }
         
         var nextButton: some View {
-            Buttons.FilledButton(title: Texts.Login.nextButtonLabel, rightIcon: .chevronRightBold, isEnabled: viewModel.nextButtonIsEnabled, size: .small, width: 105) {
-                viewModel.loginAction()
+            Buttons.FilledButton(title: Texts.PhoneNumberInput.nextButtonLabel, rightIcon: .chevronRightBold, isEnabled: viewModel.nextButtonIsEnabled, size: .small, width: 105) {
+                viewModel.onNext()
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
@@ -79,7 +79,7 @@ struct Login {
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        Login.ContentView(viewModel: .init())
+        PhoneNumberInput.ContentView(viewModel: .init(screenType: .signup("Daria"), navigationAction: { _ in }))
     }
 }
 #endif

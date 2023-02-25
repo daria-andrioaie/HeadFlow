@@ -10,10 +10,28 @@ import SwiftUI
 
 extension Register {
     class ViewModel: ObservableObject {
-        var onBack: () -> Void
-        
-        init(onBack: @escaping () -> Void) {
-            self.onBack = onBack
+        @Published var nameInput: String = "" {
+            didSet {
+                if !nameInput.isEmpty {
+                    nextButtonIsEnabled = true
+                }
+            }
         }
+        @Published var nextButtonIsEnabled: Bool = false
+        
+        var navigationAction: (RegisterNavigationType) -> Void
+        
+        init(navigationAction: @escaping (RegisterNavigationType) -> Void) {
+            self.navigationAction = navigationAction
+        }
+        
+        func onNext() {
+            navigationAction(.next(nameInput))
+        }
+    }
+    
+    enum RegisterNavigationType {
+        case goBack
+        case next(String)
     }
 }

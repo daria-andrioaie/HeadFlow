@@ -38,39 +38,50 @@ class AuthenticationCoordinator: Coordinator {
         let onboardingVM = Onboarding.ViewModel(navigateToRegister: { [weak self] in
             self?.showRegister()
         }, navigateToLogin: { [weak self] in
-            self?.showLogin()
+            self?.showPhoneNumberInput(screenType: .login)
         })
         navigationController.pushHostingController(rootView: Onboarding.ContentView(viewModel: onboardingVM))
     }
     
-    func showLogin(animated: Bool = true) {
-        let loginVM = Login.ViewModel()
-        loginVM.onLoginNavigation = { [weak self] navigationType in
+    func showPhoneNumberInput(screenType: PhoneNumberInput.ScreenType, animated: Bool = true) {
+        let phoneNumberInputVM = PhoneNumberInput.ViewModel(screenType: screenType, navigationAction: { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
-            case .goToSMSValidation:
-                self?.showSMSValidation()
+            case .goToSMSValidation(let phoneNumber):
+                self?.showSMSValidation(phoneNumber: phoneNumber)
             }
-        }
-        navigationController.pushHostingController(rootView: Login.ContentView(viewModel: loginVM), animated: animated)
+        })
+        navigationController.pushHostingController(rootView: PhoneNumberInput.ContentView(viewModel: phoneNumberInputVM), animated: animated)
     }
     
-    func showSMSValidation(animated: Bool = true) {
-        let smsValidationVM = SMSValidation.ViewModel()
-        smsValidationVM.onNavigation = { [weak self] navigationType in
+    func showSMSValidation(phoneNumber: String, animated: Bool = true) {
+        let smsValidationVM = SMSValidation.ViewModel(phoneNumber: phoneNumber, navigationAction: { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
+            case .onSMSValidated:                
+                self?.showAuthenticationCompleted()
             }
-        }
+        })
         navigationController.pushHostingController(rootView: SMSValidation.ContentView(viewModel: smsValidationVM), animated: true)
     }
     
     func showRegister(animated: Bool = true) {
-        let registerVM = Register.ViewModel { [weak self] in
-            self?.navigationController.popViewController(animated: true)
+        let registerVM = Register.ViewModel { [weak self] navigationType in
+            switch navigationType {
+            case .goBack:
+                self?.navigationController.popViewController(animated: true)
+            case .next(let name):
+                self?.showPhoneNumberInput(screenType: .signup(name))
+            }
         }
         navigationController.pushHostingController(rootView: Register.ContentView(viewModel: registerVM), animated: animated)
+    }
+    
+    func showAuthenticationCompleted(animated: Bool = false) {
+        navigationController.pushHostingController(rootView: AuthenticationCompleteView(afterAppear: { [weak self] in
+            self?.onEndAuthenticationFlow()
+        }))
     }
 }

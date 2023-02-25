@@ -10,6 +10,7 @@ import UIKit
 
 class RootCoordinator: Coordinator {
     private var authenticationCoordinator: AuthenticationCoordinator?
+    private var mainCoordinator: MainCoordinator?
     
     private let navigationController: UINavigationController
     private let window: UIWindow
@@ -45,7 +46,9 @@ class RootCoordinator: Coordinator {
     }
     
     func showMainCoordinator() {
-        
+        let coordinator = MainCoordinator(window: window, dependencies: dependecyContainer)
+        self.mainCoordinator = coordinator
+        coordinator.start(connectionOptions: nil)
     }
     
 }
