@@ -1,11 +1,18 @@
-const express = require('express');
-const app = express();
-const port = 3000;
+const app = require("./app");
+const mongoose = require("./config/mongoose");
 
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+const PORT = process.env.PORT;
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+async function StartServer() {
+  try {
+    await mongoose();
+    server = app.listen(PORT, () => {
+      console.log(`Listening on port ${PORT}`);
+    });
+  } catch (error) {
+    console.error(`Fail to start server: ${error}`);
+    process.exit(-1);
+  }
+}
+
+StartServer();
