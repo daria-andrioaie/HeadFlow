@@ -2,17 +2,16 @@ const UserModel = require("../model/user.model");
 
 const otpService = require("../service/otp.service");
 
-const signUp = async ({ username, mobileNo, name }) => {
+const signUp = async ({ username, mobileNo }) => {
   try {
     const user = new UserModel({
       username,
       mobileNo,
-      name,
       status: "PENDING",
     });
 
     const savedUser = await user.save();
-    const otpResponse = await otpService.sendOTP(username, mobileNo, name);
+    const otpResponse = await otpService.sendOTP(username, mobileNo);
     console.log(otpResponse.message);
     return savedUser;
   } catch (error) {

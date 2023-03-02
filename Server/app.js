@@ -1,16 +1,6 @@
-// require('dotenv').config();
-// const db = require('./config/db.js');
-// db();
 // var createError = require('http-errors');
-// var express = require('express');
-// var path = require('path');
 // var cookieParser = require('cookie-parser');
-// var logger = require('morgan');
 // const port = 3000;
-
-// // const authRouter = require('./routes/auth');
-
-// var app = express();
 
 // app.use(logger('dev'));
 // app.use(express.json());
@@ -18,7 +8,6 @@
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
-// // app.use('/api/auth', authRouter);
 
 // app.use(function (req, res, next) {
 //     next(createError(404));
@@ -35,24 +24,18 @@
 //     res.render('error');
 //   });
 
-// app.listen(port, () => {
-//   console.log(`Example app listening at http://localhost:${port}`);
-// });
-
-//   module.exports = app;
-
+require("dotenv").config();
 const express = require("express");
 const bodyParser = require("body-parser");
-
+const logger = require('morgan');
+const path = require("path");
 const userRoute = require("./route/user.route");
 const otpRoute = require("./route/otp.route");
-
-const path = require("path");
-require("dotenv").config();
 
 const app = express();
 
 app.use(bodyParser.json());
+app.use(logger('dev'))
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/otp", otpRoute);

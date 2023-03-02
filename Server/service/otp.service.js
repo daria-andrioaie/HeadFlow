@@ -11,17 +11,18 @@ const courier = CourierClient({
     authorizationToken: process.env.COURIER_TOKEN,
 });
 
-const sendOTP = async (username, mobile, name) => {
+const sendOTP = async ( username, mobile ) => {
     try {
-      const otp = otpGenerator.generate(6, {
+      const otp = otpGenerator.generate(4, {
+        lowerCaseAlphabets: false, 
         upperCaseAlphabets: false,
         specialChars: false,
       });
   
-      await addNewOTP(otp, 15, username, "PENDING");
+      await addNewOTP(otp, 15, mobile, "PENDING");
       await sendVerificationMessage(
         {
-          name,
+          username,
           otp,
         },
         mobile
@@ -36,21 +37,21 @@ const sendOTP = async (username, mobile, name) => {
     }
   };
 
-  const reSendOTP = async (username, mobile, name) => {
+  const reSendOTP = async (username, mobile) => {
     try {
-        await rejectPendingOTP(username);
-        return await sendOTP(username, mobile, name);
+        await rejectPendingOTP(mobile);
+        return await sendOTP(username, mobile);
     } catch (error) {
         console.error(error);
         throw error;
     }
 };
 
-const verifyOTP = async (username, otp) => {
+const verifyOTP = async (mobile, otp) => {
     try {
         const validOTP = await OTPModel.findOne({
-            otp,
-            username,
+            otp: otp,
+            mobileNo: mobile,
             status: "PENDING",
             expireIn: { $gte: new Date().getTime() },
         });
@@ -60,7 +61,7 @@ const verifyOTP = async (username, otp) => {
                 { _id: validOTP._id },
                 { $set: { status: "CONFIRMED" } }
             );
-            await UserModel.updateOne({ username }, { $set: { status: "VERIFIED" } });
+            await UserModel.updateOne({ mobileNo: mobile }, { $set: { status: "VERIFIED" } });
             return {
                 success: true,
                 message: "User verified",
@@ -82,7 +83,7 @@ const sendVerificationMessage = (params, mobileNumber) => {
         },
         content: {
             title: "HeadFlow Verification",
-            body: "Hi {{name}},\nYour verification code for HeadFlow is {{otp}}.",
+            body: "Hi {{username}},\nYour verification code for HeadFlow is {{otp}}.",
         },
         routing: {
             method: "single",
@@ -96,19 +97,19 @@ const addMinutesToDate = (date, minutes) => {
     return new Date(date.getTime() + minutes * 60000);
   };
   
-  const addNewOTP = (otp, expirationTime, username, status) => {
+  const addNewOTP = (otp, expirationTime, mobile, status) => {
     const otpModel = new OTPModel({
-      otp,
+      otp: otp,
       expireIn: addMinutesToDate(new Date(), expirationTime),
-      username,
-      status,
+      mobileNo: mobile,
+      status: status,
     });
     return otpModel.save();
   };
   
-  const rejectPendingOTP = (username) => {
+  const rejectPendingOTP = (mobile) => {
     return OTPModel.updateMany(
-      { username, status: "PENDING" },
+      { mobile, status: "PENDING" },
       { $set: { status: "REJECTED" } }
     );
   };
