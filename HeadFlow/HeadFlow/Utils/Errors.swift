@@ -15,5 +15,22 @@ struct Errors {
             return self.rawValue
         }
     }
+    
+    struct APIError: Error, Decodable {
+        let message: String
+        var code: Int?
+        
+        static let defaultServerError: APIError = .init(message: "There was an unexpected error. Please try again later or contact support if the problem persists.")
+    }
+
+    struct CustomError: LocalizedError {
+        var message: String
+        
+        init(_ message: String) {
+            self.message = message
+        }
+        
+        public var errorDescription: String? { NSLocalizedString(message, comment: "") }
+    }
 }
 

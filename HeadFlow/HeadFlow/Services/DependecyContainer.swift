@@ -9,8 +9,11 @@ import Foundation
 
 class DependecyContainer {
     //TODO: declare services
+    let authenticationService: AuthenticationServiceProtocol
     
-    init() { }
+    init() {
+        authenticationService = AuthenticationService()
+    }
 }
 
 class MockDependencyContainer: DependecyContainer {

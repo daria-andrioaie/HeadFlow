@@ -21,14 +21,17 @@ struct PhoneNumberInput {
                         .padding(.bottom, 60)
                     phoneNumberField
                         .padding(.bottom, 80)
+                    
                     socialLoginView
                     Spacer()
                     nextButton
                         .padding(.bottom, 20)
                 }
                 .padding(.horizontal, 24)
+                .activityIndicator(viewModel.isLoading)
             }
             .onTapGesture(perform: hideKeyboard)
+            .errorDisplay(error: $viewModel.apiError)
         }
         
         var greetingView: some View {
@@ -44,7 +47,7 @@ struct PhoneNumberInput {
         }
         
         var phoneNumberField: some View {
-            CustomTextField(inputText: viewModel.phoneNumberBinding, placeholder: Texts.PhoneNumberInput.phoneFieldPlaceholder, keyboardType: .numberPad, inputError: viewModel.invalidPhoneNumberError)
+            CustomTextField(inputText: $viewModel.phoneNumber, placeholder: Texts.PhoneNumberInput.phoneFieldPlaceholder, keyboardType: .numberPad, inputError: viewModel.invalidPhoneNumberError)
                 .font(.Main.light(size: 16))
         }
         
@@ -79,7 +82,7 @@ struct PhoneNumberInput {
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneNumberInput.ContentView(viewModel: .init(screenType: .signup("Daria"), navigationAction: { _ in }))
+        PhoneNumberInput.ContentView(viewModel: .init(screenType: .signup("Daria"), authenticationService: MockAuthenticationService(), navigationAction: { _ in }))
     }
 }
 #endif

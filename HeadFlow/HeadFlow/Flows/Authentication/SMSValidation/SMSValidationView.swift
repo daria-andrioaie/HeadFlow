@@ -34,6 +34,8 @@ struct SMSValidation {
                     viewModel.timeRemaining -= 1
                 }
             }
+            .errorDisplay(error: $viewModel.apiError)
+            .toastDisplay(isPresented: $viewModel.isResendConfirmationPresented, message: viewModel.resendConfirmationMessage)
         }
         
         var noticeView: some View {
@@ -99,7 +101,7 @@ struct SMSValidation {
                     .font(.Main.bold(size: 18))
                 
                 Button {
-                    //resend code
+                    viewModel.resendCode()
                     viewModel.timeRemaining = 30
                 } label: {
                     Text(Texts.SMSValidation.resendCodeLabel)
@@ -116,7 +118,7 @@ struct SMSValidation {
 #if DEBUG
 struct SMSValidationView_Previews: PreviewProvider {
     static var previews: some View {
-        SMSValidation.ContentView(viewModel: .init(phoneNumber: "+40767998715", navigationAction: { _ in }))
+        SMSValidation.ContentView(viewModel: .init(phoneNumber: "+40767998715", authenticationService: MockAuthenticationService(), navigationAction: { _ in }))
     }
 }
 #endif

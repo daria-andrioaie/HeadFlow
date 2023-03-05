@@ -14,6 +14,11 @@
 		B8009DF429AA624400A4EC3B /* Texts + Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF329AA624400A4EC3B /* Texts + Register.swift */; };
 		B8009DF629AAAF2600A4EC3B /* AnimatedCheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */; };
 		B8009DF929AAB15700A4EC3B /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF829AAB15700A4EC3B /* ActivityIndicator.swift */; };
+		B82BA8AD29B1367C00853304 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8AC29B1367C00853304 /* Constants.swift */; };
+		B82BA8B029B138F500853304 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B82BA8AF29B138F500853304 /* Alamofire */; };
+		B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B129B1390B00853304 /* AuthenticationService.swift */; };
+		B82BA8B529B3B42700853304 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B429B3B42700853304 /* User.swift */; };
+		B82BA8B929B4DA5900853304 /* ToastDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B829B4DA5900853304 /* ToastDisplayView.swift */; };
 		B86297CF29A163BC0059280B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297CE29A163BC0059280B /* Buttons.swift */; };
 		B86297D129A1640B0059280B /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D029A1640B0059280B /* BorderedButton.swift */; };
 		B86297D329A164130059280B /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D229A164130059280B /* FilledButton.swift */; };
@@ -74,6 +79,10 @@
 		B8009DF329AA624400A4EC3B /* Texts + Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + Register.swift"; sourceTree = "<group>"; };
 		B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCheckmarkView.swift; sourceTree = "<group>"; };
 		B8009DF829AAB15700A4EC3B /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		B82BA8AC29B1367C00853304 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		B82BA8B129B1390B00853304 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		B82BA8B429B3B42700853304 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		B82BA8B829B4DA5900853304 /* ToastDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastDisplayView.swift; sourceTree = "<group>"; };
 		B86297CE29A163BC0059280B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B86297D029A1640B0059280B /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B86297D229A164130059280B /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -131,6 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82BA8B029B138F500853304 /* Alamofire in Frameworks */,
 				B890AC1029A3C35600D30572 /* PhoneNumberKit in Frameworks */,
 				B890AC1729A3FBFB00D30572 /* Introspect in Frameworks */,
 			);
@@ -161,8 +171,25 @@
 				B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */,
 				B890AC1329A3F85A00D30572 /* CustomTextField.swift */,
 				B8009DF829AAB15700A4EC3B /* ActivityIndicator.swift */,
+				B82BA8B829B4DA5900853304 /* ToastDisplayView.swift */,
 			);
 			path = CustomComponents;
+			sourceTree = "<group>";
+		};
+		B82BA8A629B1332E00853304 /* Network services */ = {
+			isa = PBXGroup;
+			children = (
+				B82BA8B129B1390B00853304 /* AuthenticationService.swift */,
+			);
+			path = "Network services";
+			sourceTree = "<group>";
+		};
+		B82BA8B329B3B41400853304 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B82BA8B429B3B42700853304 /* User.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		B86297CD29A162CC0059280B /* Buttons */ = {
@@ -197,8 +224,9 @@
 			children = (
 				B86793E12997C538006BFE29 /* AppDelegate.swift */,
 				B86793E32997C538006BFE29 /* SceneDelegate.swift */,
-				B86793F82997D86C006BFE29 /* Services */,
 				B86793F52997D82B006BFE29 /* Flows */,
+				B82BA8B329B3B41400853304 /* Model */,
+				B86793F82997D86C006BFE29 /* Services */,
 				B8A6DFBD29A01483005BA947 /* Reusables */,
 				B86793FF2997E1E9006BFE29 /* Utils */,
 				B86793EA2997C539006BFE29 /* Assets.xcassets */,
@@ -221,6 +249,7 @@
 		B86793F82997D86C006BFE29 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				B82BA8A629B1332E00853304 /* Network services */,
 				B86793F92997D880006BFE29 /* Coordinator.swift */,
 				B86793FB2997DB7B006BFE29 /* DependecyContainer.swift */,
 				B86793FD2997DD6C006BFE29 /* UserSession.swift */,
@@ -238,6 +267,7 @@
 				B86794002997E206006BFE29 /* UserDefaults + property wrapper.swift */,
 				B86297D629A25D4F0059280B /* Texts.swift */,
 				B890AC1129A3F7CF00D30572 /* Errors.swift */,
+				B82BA8AC29B1367C00853304 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -389,6 +419,7 @@
 			packageProductDependencies = (
 				B890AC0F29A3C35600D30572 /* PhoneNumberKit */,
 				B890AC1629A3FBFB00D30572 /* Introspect */,
+				B82BA8AF29B138F500853304 /* Alamofire */,
 			);
 			productName = HeadFlow;
 			productReference = B86793DE2997C538006BFE29 /* HeadFlow.app */;
@@ -421,6 +452,7 @@
 			packageReferences = (
 				B890AC0E29A3C35600D30572 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				B890AC1529A3FBFB00D30572 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = B86793DF2997C538006BFE29 /* Products */;
 			projectDirPath = "";
@@ -465,7 +497,9 @@
 				B890AC1229A3F7CF00D30572 /* Errors.swift in Sources */,
 				B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */,
 				B86297D929A25D690059280B /* Texts + Onboarding.swift in Sources */,
+				B82BA8B929B4DA5900853304 /* ToastDisplayView.swift in Sources */,
 				B86297D329A164130059280B /* FilledButton.swift in Sources */,
+				B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */,
 				B890AC1429A3F85A00D30572 /* CustomTextField.swift in Sources */,
 				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
 				B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */,
@@ -475,9 +509,11 @@
 				B8009DF929AAB15700A4EC3B /* ActivityIndicator.swift in Sources */,
 				B8009DEA29AA139600A4EC3B /* Texts + SMSValidation.swift in Sources */,
 				B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */,
+				B82BA8B529B3B42700853304 /* User.swift in Sources */,
 				B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */,
 				B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */,
+				B82BA8AD29B1367C00853304 /* Constants.swift in Sources */,
 				B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
 				B86297D129A1640B0059280B /* BorderedButton.swift in Sources */,
@@ -714,6 +750,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.6.1;
+			};
+		};
 		B890AC0E29A3C35600D30572 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
@@ -733,6 +777,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B82BA8AF29B138F500853304 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		B890AC0F29A3C35600D30572 /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B890AC0E29A3C35600D30572 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;

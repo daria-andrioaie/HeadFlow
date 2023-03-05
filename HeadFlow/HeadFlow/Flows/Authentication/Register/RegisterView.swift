@@ -44,7 +44,7 @@ struct Register {
         }
         
         var nameInputField: some View {
-            CustomTextField(inputText: $viewModel.nameInput, placeholder: Texts.Register.nameInputPlaceholder, keyboardType: .numberPad)
+            CustomTextField(inputText: $viewModel.nameInput, placeholder: Texts.Register.nameInputPlaceholder)
                 .font(.Main.light(size: 16))
         }
         

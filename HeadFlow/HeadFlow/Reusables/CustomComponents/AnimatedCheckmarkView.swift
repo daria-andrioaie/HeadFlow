@@ -13,7 +13,7 @@ struct AnimatedCheckmarkView: View {
     var shouldScale = true
     var size: CGSize = .init(width: 150, height: 150)
     var innerShapeSizeRatio: CGFloat = 1/3
-    var fromColor: Color = .green
+    var fromColor: Color = .oceanBlue
     var toColor: Color = .feathers
     var strokeStyle: StrokeStyle = .init(lineWidth: 10, lineCap: .round, lineJoin: .round)
     var animateOnTap = true

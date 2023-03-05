@@ -39,6 +39,48 @@ extension View {
             self
         }
     }
+    
+    func toastDisplay(
+        isPresented: Binding<Bool>,
+        message: String,
+        backgroundColor: Color = .decoGreen
+    ) -> some View {
+        
+        ZStack(alignment: Alignment(horizontal: .center, vertical: .top)) {
+            self
+            ToastDisplayView(
+                isPresented: isPresented,
+                message: message,
+                backgroundColor: backgroundColor
+            )
+            .zIndex(1)
+        }
+    }
+    
+    func errorDisplay(
+        error: Binding<Error?>,
+        backgroundColor: Color = .red
+    ) -> some View {
+        var isPresentedBinding: Binding<Bool> {
+            Binding {
+                return error.wrappedValue != nil
+            } set: { newValue in
+                if !newValue {
+                    error.wrappedValue = nil
+                }
+            }
+        }
+        
+        return ZStack(alignment: Alignment(horizontal: .center, vertical: .top)) {
+            self
+            ToastDisplayView(
+                isPresented: isPresentedBinding,
+                message: error.wrappedValue?.localizedDescription ?? "",
+                backgroundColor: backgroundColor
+            )
+            .zIndex(1)
+        }
+    }
 }
 
 

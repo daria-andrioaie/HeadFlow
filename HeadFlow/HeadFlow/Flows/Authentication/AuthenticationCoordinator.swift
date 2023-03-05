@@ -21,11 +21,13 @@ class AuthenticationCoordinator: Coordinator {
     var rootViewController: UIViewController? {
         navigationController
     }
+    let dependencies: DependecyContainer
     
     init(window: UIWindow,
          dependencies: DependecyContainer,
          onEndAuthenticationFlow: @escaping () -> Void) {
         self.window = window
+        self.dependencies = dependencies
         self.onEndAuthenticationFlow = onEndAuthenticationFlow
     }
     
@@ -44,7 +46,9 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func showPhoneNumberInput(screenType: PhoneNumberInput.ScreenType, animated: Bool = true) {
-        let phoneNumberInputVM = PhoneNumberInput.ViewModel(screenType: screenType, navigationAction: { [weak self] navigationType in
+        let phoneNumberInputVM = PhoneNumberInput.ViewModel(screenType: screenType,
+                                                            authenticationService: dependencies.authenticationService,
+                                                            navigationAction: { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
@@ -56,7 +60,9 @@ class AuthenticationCoordinator: Coordinator {
     }
     
     func showSMSValidation(phoneNumber: String, animated: Bool = true) {
-        let smsValidationVM = SMSValidation.ViewModel(phoneNumber: phoneNumber, navigationAction: { [weak self] navigationType in
+        let smsValidationVM = SMSValidation.ViewModel(phoneNumber: phoneNumber,
+                                                      authenticationService: dependencies.authenticationService,
+                                                      navigationAction: { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)

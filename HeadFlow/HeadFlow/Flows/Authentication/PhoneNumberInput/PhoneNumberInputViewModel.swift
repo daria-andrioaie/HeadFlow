@@ -11,55 +11,73 @@ import PhoneNumberKit
 
 extension PhoneNumberInput {
     class ViewModel: ObservableObject {
-        private var phoneNumber: String = "" {
+        @Published var isLoading: Bool = true
+        @Published var nextButtonIsEnabled: Bool = false
+        @Published var invalidPhoneNumberError: Error?
+        @Published var phoneNumber: String = "" {
             didSet {
                 if phoneNumber.count == 10 {
                     nextButtonIsEnabled = true
-                } else if phoneNumber.count == 13 {
+                } else {
                     nextButtonIsEnabled = false
                 }
             }
         }
-        @Published var nextButtonIsEnabled: Bool = false
-        @Published var invalidPhoneNumberError: Error?
+        @Published var apiError: Error?
         
-        var phoneNumberBinding: Binding<String> {
-            return Binding<String>.init {
-                return self.formatPhoneNumber(self.phoneNumber)
-            } set: { newValue in
-                self.phoneNumber = newValue
-            }
-        }
-        
+        let authenticationService: AuthenticationServiceProtocol
         let screenType: ScreenType
         var navigationAction: (PhoneNumberInputNavigationType) -> Void
         let phoneNumberKit = PhoneNumberKit()
         
         init(screenType: ScreenType,
+             authenticationService: AuthenticationServiceProtocol,
              navigationAction: @escaping (PhoneNumberInputNavigationType) -> Void) {
             self.screenType = screenType
+            self.authenticationService = authenticationService
             self.navigationAction = navigationAction
         }
         
         func onNext() {
-//            guard isPhoneNumberValid(phoneNumber) else {
-//                invalidPhoneNumberError = Errors.ValidationError.invalidPhoneNumber
-//                return
-//            }
-            invalidPhoneNumberError = nil
+            isLoading = true
+            guard validatePhoneNumber() else {
+                isLoading = false
+                return
+            }
             //TODO: send sms code
-            
-            navigationAction(.goToSMSValidation(phoneNumber))
+            Task(priority: .userInitiated) {
+                switch screenType {
+                case .signup(let username):
+                    await authenticationService.register(username: username, phoneNumber: phoneNumber, onRequestCompleted: { [unowned self] result in
+                        switch result {
+                        case .success(_):
+                            self.navigationAction(.goToSMSValidation(self.phoneNumber))
+                        case .failure(let error):
+                            apiError = Errors.CustomError(error.message)
+                            isLoading = false
+                        }
+                    })
+                case .login:
+                    await authenticationService.login(phoneNumber: phoneNumber, onRequestCompleted: { [unowned self] result in
+                        switch result {
+                        case .success(_):
+                            self.navigationAction(.goToSMSValidation(self.phoneNumber))
+                        case .failure(let error):
+                            apiError = Errors.CustomError(error.message)
+                            isLoading = false
+                        }
+                    })
+                }
+            }
         }
         
-        func formatPhoneNumber( _ phoneNumber: String) -> String {
-            let phoneNumberWithoutEmptySpaces = phoneNumber.replacingOccurrences(of: " ", with: "")
-
-            if let validPhoneNumber = try? phoneNumberKit.parse(phoneNumberWithoutEmptySpaces, withRegion: "RO") {
-                let formattedPhoneNumber = phoneNumberKit.format(validPhoneNumber, toType: .national)
-                return formattedPhoneNumber
+        private func validatePhoneNumber() -> Bool {
+            guard isPhoneNumberValid(phoneNumber) else {
+                invalidPhoneNumberError = Errors.ValidationError.invalidPhoneNumber
+                return false
             }
-            return phoneNumberWithoutEmptySpaces
+            invalidPhoneNumberError = nil
+            return true
         }
         
         private func isPhoneNumberValid(_ phoneNumber: String) -> Bool {

@@ -12,7 +12,7 @@ const otpSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
-    mobileNo: {
+    phoneNumber: {
       type: String,
       required: true,
       trim: true,
