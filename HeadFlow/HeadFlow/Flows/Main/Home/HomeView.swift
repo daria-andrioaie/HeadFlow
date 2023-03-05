@@ -9,8 +9,15 @@ import SwiftUI
 
 struct Home {
     struct ContentView: View {
+        @ObservedObject var viewModel: ViewModel
+        
         var body: some View {
-            Text("Welcome to home screen")
+            VStack(spacing: 50) {
+                Text("Welcome to home screen")
+                Buttons.FilledButton(title: "Logout", action: viewModel.logout)
+            }
+            .toastDisplay(isPresented: $viewModel.isConfirmationMessagePresented, message: viewModel.confirmationMessage)
+            .errorDisplay(error: $viewModel.apiError)
         }
     }
 }
@@ -18,7 +25,7 @@ struct Home {
 #if DEBUG
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        Home.ContentView()
+        Home.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), onLogout: { }))
     }
 }
 #endif

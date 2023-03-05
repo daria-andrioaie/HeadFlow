@@ -75,6 +75,7 @@ struct SMSValidation {
                     }
                     .frame(height: 55)
                     .opacity(0)
+                    .textFieldStyle(.plain)
             )
         }
         

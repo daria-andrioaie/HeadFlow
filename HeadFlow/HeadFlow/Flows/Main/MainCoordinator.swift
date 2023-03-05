@@ -21,9 +21,15 @@ class MainCoordinator: Coordinator {
         navigationController
     }
     
+    let dependencies: DependecyContainer
+    var onLogout: () -> Void
+
+    
     init(window: UIWindow,
-         dependencies: DependecyContainer) {
+         dependencies: DependecyContainer, onLogout: @escaping () -> Void) {
         self.window = window
+        self.dependencies = dependencies
+        self.onLogout = onLogout
     }
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
@@ -32,6 +38,7 @@ class MainCoordinator: Coordinator {
     }
     
     func showHomescreen() {
-        navigationController.pushHostingController(rootView: Home.ContentView())
+        let homescreenVM = Home.ViewModel(authenticationService: dependencies.authenticationService, onLogout: onLogout)
+        navigationController.pushHostingController(rootView: Home.ContentView(viewModel: homescreenVM))
     }
 }

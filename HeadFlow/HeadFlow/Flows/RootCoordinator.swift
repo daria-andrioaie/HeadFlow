@@ -46,7 +46,10 @@ class RootCoordinator: Coordinator {
     }
     
     func showMainCoordinator() {
-        let coordinator = MainCoordinator(window: window, dependencies: dependecyContainer)
+        let coordinator = MainCoordinator(window: window, dependencies: dependecyContainer) { [weak self] in
+            Session.accessToken = nil
+            self?.showAuthenticationCoordinator()
+        }
         self.mainCoordinator = coordinator
         coordinator.start(connectionOptions: nil)
     }

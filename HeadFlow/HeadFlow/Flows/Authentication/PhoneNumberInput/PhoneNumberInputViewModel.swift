@@ -11,7 +11,7 @@ import PhoneNumberKit
 
 extension PhoneNumberInput {
     class ViewModel: ObservableObject {
-        @Published var isLoading: Bool = true
+        @Published var isLoading: Bool = false
         @Published var nextButtonIsEnabled: Bool = false
         @Published var invalidPhoneNumberError: Error?
         @Published var phoneNumber: String = "" {

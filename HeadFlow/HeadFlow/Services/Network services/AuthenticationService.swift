@@ -11,6 +11,8 @@ import Alamofire
 protocol AuthenticationServiceProtocol {
     func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
     func login(phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
+    func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
+
     func verifyOTP(_ otp: String, for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
     func resendOTP(for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
 }
@@ -27,7 +29,6 @@ struct BasicResponseDTO: Decodable {
     let success: Bool
     let message: String
 }
-
 
 class AuthenticationService: AuthenticationServiceProtocol {
     let localPath = "http://daria.local:3000/api/v1/"
@@ -81,6 +82,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
                     
                 case .success(let verificationResponse):
                     onRequestCompleted(.success(verificationResponse.token))
+                    Session.accessToken = verificationResponse.token
                     
                 case .failure(let error):
                     if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
@@ -116,6 +118,36 @@ class AuthenticationService: AuthenticationServiceProtocol {
                 }
             }
     }
+    
+    func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
+        let sessionToken = Session.accessToken
+        if let sessionToken {
+            let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
+            
+            AF.request(localPath + "user/logout", method: .post, headers: headers)
+                .responseDecodable(of: BasicResponseDTO.self) { response in
+                    switch response.result {
+                        
+                    case .success(let logoutResponse):
+                        if logoutResponse.success {
+                            onRequestCompleted(.success(logoutResponse.message))
+                        } else {
+                            onRequestCompleted(.failure(Errors.APIError(message: logoutResponse.message)))
+                        }
+                        
+                    case .failure(let error):
+                        if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
+                            onRequestCompleted(.failure(apiError))
+                        }
+                        else {
+                            onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error: " + error.localizedDescription)))
+                        }
+                    }
+                }
+        } else {
+            onRequestCompleted(.failure(Errors.APIError(message: "No token in user defaults.")))
+        }
+    }
 }
 
 class MockAuthenticationService: AuthenticationServiceProtocol {
@@ -132,6 +164,10 @@ class MockAuthenticationService: AuthenticationServiceProtocol {
     }
     
     func resendOTP(for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
+        
+    }
+    
+    func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         
     }
 }
