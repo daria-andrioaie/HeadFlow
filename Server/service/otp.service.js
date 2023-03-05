@@ -4,6 +4,7 @@ const otpGenerator = require("otp-generator");
 
 const OTPModel = require("../model/otp.model");
 const UserModel = require("../model/user.model");
+const SessionModel = require("../model/session.model");
 
 const jwt = require("jsonwebtoken");
 const jwtKey = process.env.JWT_SECRET;
@@ -31,7 +32,7 @@ const sendOTP = async (username, phoneNumber) => {
   );
   return {
     success: true,
-    message: "OTP sent successfully",
+    message: "OTP sent successfully.",
   };
 };
 
@@ -73,13 +74,19 @@ const verifyOTP = async (phoneNumber, otp) => {
     try {
       token = jwt.sign({ userId: user._id }, jwtKey, { expiresIn: "1h" });
 
+      const session = new SessionModel({
+        userId: user._id,
+        token: token,
+      })
+      await session.save()
+
       return token;
     } catch (err) {
       console.log(err);
       const error = new Error("Error! Something went wrong.");
     }
   }
-  throw new Error("Invalid OTP");
+  throw new Error("Invalid OTP.");
 };
 
 const sendVerificationMessage = (params, phoneNumber) => {

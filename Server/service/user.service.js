@@ -1,6 +1,5 @@
 const UserModel = require("../model/user.model");
-const OTPModel = require("../model/otp.model");
-
+const SessionModel = require("../model/session.model");
 const jwt = require("jsonwebtoken");
 const jwtKey = process.env.JWT_SECRET;
 
@@ -15,16 +14,16 @@ const signUp = async ({ username, phoneNumber }) => {
     throw new Error("Phone number not provided.");
   }
 
+  let existingUser = await UserModel.findOne({ phoneNumber: phoneNumber });
+  if (existingUser) {
+    throw new Error("An account already exists for the given phone number.");
+  }
+
   const user = new UserModel({
     username,
     phoneNumber,
     status: "PENDING",
   });
-
-  let existingUser = await UserModel.findOne({ phoneNumber: phoneNumber });
-  if (existingUser) {
-    throw new Error("An account already exists for the given phone number.");
-  }
 
   const savedUser = await user.save();
   const otpResponse = await otpService.sendOTP(username, phoneNumber);
@@ -50,7 +49,20 @@ const login = async ({ phoneNumber }) => {
   return existingUser;
 };
 
+const logout = async (token) => {
+  const decodedToken = jwt.verify(token, jwtKey);
+  console.log(token);
+  let existingToken = await SessionModel.findOne({ token: token });
+  if (!existingToken) {
+    throw new Error("The token is invalid.");
+  }
+
+  await SessionModel.deleteOne({ token: token });
+  return "Logout successful.";
+};
+
 module.exports = {
   signUp,
   login,
+  logout,
 };
