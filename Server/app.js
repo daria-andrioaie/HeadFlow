@@ -31,6 +31,7 @@ const logger = require('morgan');
 const path = require("path");
 const userRoute = require("./route/user.route");
 const otpRoute = require("./route/otp.route");
+const healthcheckRoute = require('./route/healthchecker.route')
 
 const app = express();
 
@@ -39,5 +40,6 @@ app.use(logger('dev'))
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/otp", otpRoute);
+app.use('/healthcheck', healthcheckRoute);
 
 module.exports = app;
