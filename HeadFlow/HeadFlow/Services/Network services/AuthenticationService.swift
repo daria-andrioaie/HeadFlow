@@ -31,12 +31,17 @@ struct BasicResponseDTO: Decodable {
 }
 
 class AuthenticationService: AuthenticationServiceProtocol {
-    let localPath = "http://daria.local:3000/api/v1/"
+    enum PathType: String {
+        case local = "http://daria.local:3000/api/v1"
+        case hosted = "https://headflow.onrender.com/api/v1"
+    }
+    
+    var path: PathType = .hosted
     
     func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         let parameters = ["username": username, "phoneNumber": phoneNumber]
         
-        AF.request(localPath + "user", method: .post, parameters: parameters, encoder: .json)
+        AF.request(path.rawValue + "/user", method: .post, parameters: parameters, encoder: .json)
             .responseDecodable(of: UserDTO.self) { response in
                 switch response.result {
                     
@@ -56,7 +61,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     
     func login(phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         let parameters = ["phoneNumber": phoneNumber]
-        AF.request(localPath + "user/login", method: .post, parameters: parameters, encoder: .json)
+        AF.request(path.rawValue + "/user/login", method: .post, parameters: parameters, encoder: .json)
             .responseDecodable(of: UserDTO.self) { response in
                 switch response.result {
                     
@@ -76,7 +81,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     
     func verifyOTP(_ otp: String, for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         let parameters = ["otp": otp, "phoneNumber": phoneNumber]
-        AF.request(localPath + "otp/verify", method: .post, parameters: parameters, encoder: .json)
+        AF.request(path.rawValue + "/otp/verify", method: .post, parameters: parameters, encoder: .json)
             .responseDecodable(of: TokenDTO.self) { response in
                 switch response.result {
                     
@@ -97,7 +102,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     
     func resendOTP(for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         let parameters = ["phoneNumber": phoneNumber]
-        AF.request(localPath + "otp/resend", method: .post, parameters: parameters, encoder: .json)
+        AF.request(path.rawValue + "/otp/resend", method: .post, parameters: parameters, encoder: .json)
             .responseDecodable(of: BasicResponseDTO.self) { response in
                 switch response.result {
                     
@@ -124,7 +129,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
         if let sessionToken {
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             
-            AF.request(localPath + "user/logout", method: .post, headers: headers)
+            AF.request(path.rawValue + "/user/logout", method: .post, headers: headers)
                 .responseDecodable(of: BasicResponseDTO.self) { response in
                     switch response.result {
                         

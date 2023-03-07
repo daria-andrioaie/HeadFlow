@@ -31,6 +31,7 @@ class RootCoordinator: Coordinator {
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
         if Session.isValid {
+            print(Session.accessToken)
             showMainCoordinator()
         } else {
             showAuthenticationCoordinator()
