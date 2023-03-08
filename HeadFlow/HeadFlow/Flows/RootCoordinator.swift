@@ -17,7 +17,7 @@ class RootCoordinator: Coordinator {
     var rootViewController: UIViewController? {
         return navigationController
     }
-    private let dependecyContainer = DependecyContainer()
+    private let dependencyContainer = DependencyContainer()
     
     init(window: UIWindow) {
         self.window = window
@@ -30,8 +30,8 @@ class RootCoordinator: Coordinator {
     }
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
-        if Session.isValid {
-            print(Session.accessToken)
+        if Session.shared.isValid {
+            print(Session.shared.accessToken)
             showMainCoordinator()
         } else {
             showAuthenticationCoordinator()
@@ -39,7 +39,7 @@ class RootCoordinator: Coordinator {
     }
     
     func showAuthenticationCoordinator() {
-        let coordinator = AuthenticationCoordinator(window: window, dependencies: dependecyContainer) { [weak self] in
+        let coordinator = AuthenticationCoordinator(window: window, dependencies: dependencyContainer) { [weak self] in
             self?.showMainCoordinator()
         }
         self.authenticationCoordinator = coordinator
@@ -47,8 +47,8 @@ class RootCoordinator: Coordinator {
     }
     
     func showMainCoordinator() {
-        let coordinator = MainCoordinator(window: window, dependencies: dependecyContainer) { [weak self] in
-            Session.accessToken = nil
+        let coordinator = MainCoordinator(window: window, dependencies: dependencyContainer) { [weak self] in
+            Session.shared.accessToken = nil
             self?.showAuthenticationCoordinator()
         }
         self.mainCoordinator = coordinator

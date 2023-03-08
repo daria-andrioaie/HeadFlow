@@ -51,7 +51,6 @@ const login = async ({ phoneNumber }) => {
 
 const logout = async (token) => {
   const decodedToken = jwt.verify(token, jwtKey);
-  console.log(token);
   let existingToken = await SessionModel.findOne({ token: token });
   if (!existingToken) {
     throw new Error("The token is invalid.");

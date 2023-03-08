@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SwiftUI
+import UserNotifications
 
 class MainCoordinator: Coordinator {
     private let window: UIWindow
@@ -21,12 +22,12 @@ class MainCoordinator: Coordinator {
         navigationController
     }
     
-    let dependencies: DependecyContainer
+    let dependencies: DependencyContainer
     var onLogout: () -> Void
 
     
     init(window: UIWindow,
-         dependencies: DependecyContainer, onLogout: @escaping () -> Void) {
+         dependencies: DependencyContainer, onLogout: @escaping () -> Void) {
         self.window = window
         self.dependencies = dependencies
         self.onLogout = onLogout
@@ -34,11 +35,11 @@ class MainCoordinator: Coordinator {
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
         window.transitionViewController(navigationController)
-        showHomescreen()
+        showHomeScreen()
     }
     
-    func showHomescreen() {
-        let homescreenVM = Home.ViewModel(authenticationService: dependencies.authenticationService, onLogout: onLogout)
-        navigationController.pushHostingController(rootView: Home.ContentView(viewModel: homescreenVM))
+    func showHomeScreen() {
+        let homeScreenVM = Home.ViewModel(authenticationService: dependencies.authenticationService, onLogout: onLogout)
+        navigationController.pushHostingController(rootView: Home.ContentView(viewModel: homeScreenVM))
     }
 }

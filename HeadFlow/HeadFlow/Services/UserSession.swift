@@ -12,13 +12,29 @@ import UserNotifications
 
 class Session {
     @UserDefault(key: StorageKeys.accessToken, defaultValue: nil)
-    static var accessToken: String?
+    var accessToken: String?
     
     @UserDefault(key: StorageKeys.currentUserID, defaultValue: nil)
-    static var currentUserID: String?
+    var currentUserID: String?
     
-    static var isValid: Bool {
+    @UserDefault(key: StorageKeys.notificationsEnabled, defaultValue: nil)
+    var notificationsEnabled: Bool?
+    
+    static let shared: Session = Session()
+    
+    var isValid: Bool {
         return accessToken?.isEmpty == false
+    }
+    
+    func close(error: Error? = nil) {
+        guard isValid else { return }
+        
+        removeSessionData()
+    }
+    
+    func removeSessionData() {
+        accessToken = nil
+        currentUserID = nil
     }
 }
 
@@ -26,6 +42,6 @@ fileprivate extension Session {
     struct StorageKeys {
         static let accessToken = "accessToken"
         static let currentUserID = "currentUserID"
-        static let natificationsEnabled = "notificationsEnabled"
+        static let notificationsEnabled = "notificationsEnabled"
     }
 }

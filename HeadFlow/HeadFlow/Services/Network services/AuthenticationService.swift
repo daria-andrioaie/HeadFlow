@@ -7,6 +7,7 @@
 
 import Foundation
 import Alamofire
+import RealmSwift
 
 protocol AuthenticationServiceProtocol {
     func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
@@ -17,12 +18,9 @@ protocol AuthenticationServiceProtocol {
     func resendOTP(for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
 }
 
-struct UserDTO: Decodable {
-    let user: User
-}
-
-struct TokenDTO: Decodable {
-    let token: String
+struct AuthenticationDTO: Decodable {
+    let user: User?
+    let token: String?
 }
 
 struct BasicResponseDTO: Decodable {
@@ -32,21 +30,25 @@ struct BasicResponseDTO: Decodable {
 
 class AuthenticationService: AuthenticationServiceProtocol {
     enum PathType: String {
-        case local = "http://daria.local:3000/api/v1"
+        case local = "http://daria.local:3030/api/v1"
         case hosted = "https://headflow.onrender.com/api/v1"
     }
     
-    var path: PathType = .hosted
+    var path: PathType = .local
     
     func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         let parameters = ["username": username, "phoneNumber": phoneNumber]
         
         AF.request(path.rawValue + "/user", method: .post, parameters: parameters, encoder: .json)
-            .responseDecodable(of: UserDTO.self) { response in
+            .responseDecodable(of: AuthenticationDTO.self) { response in
                 switch response.result {
                     
                 case .success(let authenticationResponse):
-                    onRequestCompleted(.success(authenticationResponse.user))
+                    if let user = authenticationResponse.user {
+                        onRequestCompleted(.success(user))
+                    } else {
+                        onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error while decoding user.")))
+                    }
                     
                 case .failure(let error):
                     if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
@@ -62,12 +64,15 @@ class AuthenticationService: AuthenticationServiceProtocol {
     func login(phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         let parameters = ["phoneNumber": phoneNumber]
         AF.request(path.rawValue + "/user/login", method: .post, parameters: parameters, encoder: .json)
-            .responseDecodable(of: UserDTO.self) { response in
+            .responseDecodable(of: AuthenticationDTO.self) { response in
                 switch response.result {
                     
                 case .success(let authenticationResponse):
-                    onRequestCompleted(.success(authenticationResponse.user))
-                    
+                    if let user = authenticationResponse.user {
+                        onRequestCompleted(.success(user))
+                    } else {
+                        onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error while decoding user.")))
+                    }
                 case .failure(let error):
                     if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
                         onRequestCompleted(.failure(apiError))
@@ -82,12 +87,31 @@ class AuthenticationService: AuthenticationServiceProtocol {
     func verifyOTP(_ otp: String, for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         let parameters = ["otp": otp, "phoneNumber": phoneNumber]
         AF.request(path.rawValue + "/otp/verify", method: .post, parameters: parameters, encoder: .json)
-            .responseDecodable(of: TokenDTO.self) { response in
+            .responseDecodable(of: AuthenticationDTO.self) { response in
                 switch response.result {
                     
                 case .success(let verificationResponse):
-                    onRequestCompleted(.success(verificationResponse.token))
-                    Session.accessToken = verificationResponse.token
+                    if let user = verificationResponse.user, let token = verificationResponse.token {
+                        Session.shared.accessToken = token
+                        Session.shared.currentUserID = user.id
+                        
+                        let realm = try! Realm()
+                        let permissions = realm.objects(NotificationsPermissions.self)
+                        if !permissions.contains(where: { $0.userID == user.id}) {
+                            let permissionsStatus = NotificationsPermissions()
+                            permissionsStatus.userID = user.id
+                            permissionsStatus.notificationsStatusPresented = false
+                            
+                            try! realm.write {
+                                realm.add(permissionsStatus)
+                            }
+                        }
+                        
+                        onRequestCompleted(.success(token))
+
+                    } else {
+                        onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error while decoding user and token.")))
+                    }
                     
                 case .failure(let error):
                     if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
@@ -125,7 +149,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     }
     
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
-        let sessionToken = Session.accessToken
+        let sessionToken = Session.shared.accessToken
         if let sessionToken {
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             

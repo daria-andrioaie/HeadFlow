@@ -72,7 +72,7 @@ const verifyOTP = async (phoneNumber, otp) => {
 
     let token;
     try {
-      token = jwt.sign({ userId: user._id }, jwtKey, { expiresIn: "1h" });
+      token = jwt.sign({ userId: user._id }, jwtKey, { expiresIn: "24h" });
 
       const session = new SessionModel({
         userId: user._id,
@@ -80,7 +80,7 @@ const verifyOTP = async (phoneNumber, otp) => {
       })
       await session.save()
 
-      return token;
+      return { token: token, user: user };
     } catch (err) {
       console.log(err);
       const error = new Error("Error! Something went wrong.");

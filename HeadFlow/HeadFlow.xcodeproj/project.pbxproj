@@ -33,7 +33,7 @@
 		B86793EE2997C539006BFE29 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B86793EC2997C539006BFE29 /* LaunchScreen.storyboard */; };
 		B86793F72997D841006BFE29 /* RootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793F62997D841006BFE29 /* RootCoordinator.swift */; };
 		B86793FA2997D880006BFE29 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793F92997D880006BFE29 /* Coordinator.swift */; };
-		B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793FB2997DB7B006BFE29 /* DependecyContainer.swift */; };
+		B86793FC2997DB7B006BFE29 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793FB2997DB7B006BFE29 /* DependencyContainer.swift */; };
 		B86793FE2997DD6C006BFE29 /* UserSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86793FD2997DD6C006BFE29 /* UserSession.swift */; };
 		B86794012997E206006BFE29 /* UserDefaults + property wrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86794002997E206006BFE29 /* UserDefaults + property wrapper.swift */; };
 		B867943129982EFD006BFE29 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867941F29982EFD006BFE29 /* Lato-Thin.ttf */; };
@@ -66,6 +66,8 @@
 		B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6E929A118F200A588A8 /* View + Extensions.swift */; };
 		B8D3E6F229A12ACA00A588A8 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */; };
 		B8D3E6F429A1368D00A588A8 /* Shape + Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6F329A1368D00A588A8 /* Shape + Utils.swift */; };
+		B8DE006C29B90A3C0099F374 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B8DE006B29B90A3C0099F374 /* RealmSwift */; };
+		B8DE006E29B90A9C0099F374 /* NotificationsPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DE006D29B90A9C0099F374 /* NotificationsPermissions.swift */; };
 		B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */; };
 		B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */; };
 		B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */; };
@@ -100,7 +102,7 @@
 		B86793EF2997C539006BFE29 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B86793F62997D841006BFE29 /* RootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinator.swift; sourceTree = "<group>"; };
 		B86793F92997D880006BFE29 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		B86793FB2997DB7B006BFE29 /* DependecyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependecyContainer.swift; sourceTree = "<group>"; };
+		B86793FB2997DB7B006BFE29 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		B86793FD2997DD6C006BFE29 /* UserSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSession.swift; sourceTree = "<group>"; };
 		B86794002997E206006BFE29 /* UserDefaults + property wrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults + property wrapper.swift"; sourceTree = "<group>"; };
 		B867941F29982EFD006BFE29 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		B8D3E6E929A118F200A588A8 /* View + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extensions.swift"; sourceTree = "<group>"; };
 		B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		B8D3E6F329A1368D00A588A8 /* Shape + Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape + Utils.swift"; sourceTree = "<group>"; };
+		B8DE006D29B90A9C0099F374 /* NotificationsPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPermissions.swift; sourceTree = "<group>"; };
 		B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputView.swift; sourceTree = "<group>"; };
 		B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputViewModel.swift; sourceTree = "<group>"; };
@@ -142,6 +145,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8DE006C29B90A3C0099F374 /* RealmSwift in Frameworks */,
 				B82BA8B029B138F500853304 /* Alamofire in Frameworks */,
 				B890AC1029A3C35600D30572 /* PhoneNumberKit in Frameworks */,
 				B890AC1729A3FBFB00D30572 /* Introspect in Frameworks */,
@@ -191,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				B82BA8B429B3B42700853304 /* User.swift */,
+				B8DE006D29B90A9C0099F374 /* NotificationsPermissions.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -254,7 +259,7 @@
 			children = (
 				B82BA8A629B1332E00853304 /* Network services */,
 				B86793F92997D880006BFE29 /* Coordinator.swift */,
-				B86793FB2997DB7B006BFE29 /* DependecyContainer.swift */,
+				B86793FB2997DB7B006BFE29 /* DependencyContainer.swift */,
 				B86793FD2997DD6C006BFE29 /* UserSession.swift */,
 			);
 			path = Services;
@@ -423,6 +428,7 @@
 				B890AC0F29A3C35600D30572 /* PhoneNumberKit */,
 				B890AC1629A3FBFB00D30572 /* Introspect */,
 				B82BA8AF29B138F500853304 /* Alamofire */,
+				B8DE006B29B90A3C0099F374 /* RealmSwift */,
 			);
 			productName = HeadFlow;
 			productReference = B86793DE2997C538006BFE29 /* HeadFlow.app */;
@@ -456,6 +462,7 @@
 				B890AC0E29A3C35600D30572 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				B890AC1529A3FBFB00D30572 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				B8DE006A29B90A3C0099F374 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = B86793DF2997C538006BFE29 /* Products */;
 			projectDirPath = "";
@@ -516,8 +523,9 @@
 				B82BA8B529B3B42700853304 /* User.swift in Sources */,
 				B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */,
 				B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */,
-				B86793FC2997DB7B006BFE29 /* DependecyContainer.swift in Sources */,
+				B86793FC2997DB7B006BFE29 /* DependencyContainer.swift in Sources */,
 				B82BA8AD29B1367C00853304 /* Constants.swift in Sources */,
+				B8DE006E29B90A9C0099F374 /* NotificationsPermissions.swift in Sources */,
 				B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
 				B86297D129A1640B0059280B /* BorderedButton.swift in Sources */,
@@ -778,6 +786,14 @@
 				minimumVersion = 0.2.3;
 			};
 		};
+		B8DE006A29B90A3C0099F374 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -795,6 +811,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B890AC1529A3FBFB00D30572 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		B8DE006B29B90A3C0099F374 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8DE006A29B90A3C0099F374 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -25,9 +25,9 @@ const reSendOTP = async (req, res) => {
 const verifyOTP = async (req, res) => {
   try {
     const { phoneNumber, otp } = req.body;
-    const token = await otpService.verifyOTP(phoneNumber, otp);
+    const { token, user } = await otpService.verifyOTP(phoneNumber, otp);
   
-    res.status(200).send({ success: true, token: token });
+    res.status(200).send({ success: true, token: token, user: user });
   } catch (error) {
     console.log(error.message)
     res.status(404).send({ success: false, message: error.message });

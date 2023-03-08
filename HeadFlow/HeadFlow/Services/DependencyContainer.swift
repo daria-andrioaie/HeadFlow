@@ -1,5 +1,5 @@
 //
-//  DependecyContainer.swift
+//  DependencyContainer.swift
 //  HeadFlow
 //
 //  Created by Daria Andrioaie on 11.02.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DependecyContainer {
+class DependencyContainer {
     //TODO: declare services
     let authenticationService: AuthenticationServiceProtocol
     
@@ -16,7 +16,7 @@ class DependecyContainer {
     }
 }
 
-class MockDependencyContainer: DependecyContainer {
+class MockDependencyContainer: DependencyContainer {
     override init() {
         //TODO: pass mock services in the init
         super.init()

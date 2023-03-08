@@ -21,10 +21,10 @@ class AuthenticationCoordinator: Coordinator {
     var rootViewController: UIViewController? {
         navigationController
     }
-    let dependencies: DependecyContainer
+    let dependencies: DependencyContainer
     
     init(window: UIWindow,
-         dependencies: DependecyContainer,
+         dependencies: DependencyContainer,
          onEndAuthenticationFlow: @escaping () -> Void) {
         self.window = window
         self.dependencies = dependencies
