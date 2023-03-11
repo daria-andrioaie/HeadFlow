@@ -10,9 +10,11 @@ import Foundation
 class DependencyContainer {
     //TODO: declare services
     let authenticationService: AuthenticationServiceProtocol
+    let notificationsService: NotificationsServiceProtocol
     
     init() {
-        authenticationService = AuthenticationService()
+        notificationsService = NotificationsService()
+        authenticationService = AuthenticationService(path: .local, notificationsService: notificationsService)
     }
 }
 

@@ -10,6 +10,8 @@ import Alamofire
 import RealmSwift
 
 protocol AuthenticationServiceProtocol {
+    var notificationsService: NotificationsServiceProtocol { get }
+    
     func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
     func login(phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
@@ -19,7 +21,7 @@ protocol AuthenticationServiceProtocol {
 }
 
 struct AuthenticationDTO: Decodable {
-    let user: User?
+    let user: User
     let token: String?
 }
 
@@ -36,6 +38,13 @@ class AuthenticationService: AuthenticationServiceProtocol {
     
     var path: PathType = .local
     
+    var notificationsService: NotificationsServiceProtocol
+    
+    init(path: PathType, notificationsService: NotificationsServiceProtocol) {
+        self.path = path
+        self.notificationsService = notificationsService
+    }
+    
     func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         let parameters = ["username": username, "phoneNumber": phoneNumber]
         
@@ -44,11 +53,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
                 switch response.result {
                     
                 case .success(let authenticationResponse):
-                    if let user = authenticationResponse.user {
-                        onRequestCompleted(.success(user))
-                    } else {
-                        onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error while decoding user.")))
-                    }
+                    onRequestCompleted(.success(authenticationResponse.user))
                     
                 case .failure(let error):
                     if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
@@ -68,11 +73,8 @@ class AuthenticationService: AuthenticationServiceProtocol {
                 switch response.result {
                     
                 case .success(let authenticationResponse):
-                    if let user = authenticationResponse.user {
-                        onRequestCompleted(.success(user))
-                    } else {
-                        onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error while decoding user.")))
-                    }
+                    onRequestCompleted(.success(authenticationResponse.user))
+
                 case .failure(let error):
                     if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
                         onRequestCompleted(.failure(apiError))
@@ -91,21 +93,11 @@ class AuthenticationService: AuthenticationServiceProtocol {
                 switch response.result {
                     
                 case .success(let verificationResponse):
-                    if let user = verificationResponse.user, let token = verificationResponse.token {
-                        Session.shared.accessToken = token
-                        Session.shared.currentUserID = user.id
+                    if let token = verificationResponse.token {
+                        let user = verificationResponse.user
+                        Session.shared.saveCurrentUser(userId: user.id, token: token)
                         
-                        let realm = try! Realm()
-                        let permissions = realm.objects(NotificationsPermissions.self)
-                        if !permissions.contains(where: { $0.userID == user.id}) {
-                            let permissionsStatus = NotificationsPermissions()
-                            permissionsStatus.userID = user.id
-                            permissionsStatus.notificationsStatusPresented = false
-                            
-                            try! realm.write {
-                                realm.add(permissionsStatus)
-                            }
-                        }
+                        self.notificationsService.saveNotificationsStatusOfUser(userId: user.id, notificationsStatusPresented: false)
                         
                         onRequestCompleted(.success(token))
 
@@ -180,6 +172,8 @@ class AuthenticationService: AuthenticationServiceProtocol {
 }
 
 class MockAuthenticationService: AuthenticationServiceProtocol {
+    var notificationsService: NotificationsServiceProtocol = MockNotificationsService()
+    
     func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         
     }

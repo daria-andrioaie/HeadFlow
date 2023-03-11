@@ -26,6 +26,11 @@ class Session {
         return accessToken?.isEmpty == false
     }
     
+    func saveCurrentUser(userId: String, token: String) {
+        currentUserID = userId
+        accessToken = token
+    }
+    
     func close(error: Error? = nil) {
         guard isValid else { return }
         

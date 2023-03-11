@@ -66,6 +66,9 @@
 		B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6E929A118F200A588A8 /* View + Extensions.swift */; };
 		B8D3E6F229A12ACA00A588A8 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */; };
 		B8D3E6F429A1368D00A588A8 /* Shape + Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6F329A1368D00A588A8 /* Shape + Utils.swift */; };
+		B8DA4C7329BD093900C6AD3B /* Texts + Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA4C7229BD093900C6AD3B /* Texts + Home.swift */; };
+		B8DA4C7529BD144300C6AD3B /* NotificationsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA4C7429BD144300C6AD3B /* NotificationsService.swift */; };
+		B8DA4C7729BD198C00C6AD3B /* UIApplication + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DA4C7629BD198C00C6AD3B /* UIApplication + Extensions.swift */; };
 		B8DE006C29B90A3C0099F374 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B8DE006B29B90A3C0099F374 /* RealmSwift */; };
 		B8DE006E29B90A9C0099F374 /* NotificationsPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DE006D29B90A9C0099F374 /* NotificationsPermissions.swift */; };
 		B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */; };
@@ -133,6 +136,9 @@
 		B8D3E6E929A118F200A588A8 /* View + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extensions.swift"; sourceTree = "<group>"; };
 		B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		B8D3E6F329A1368D00A588A8 /* Shape + Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shape + Utils.swift"; sourceTree = "<group>"; };
+		B8DA4C7229BD093900C6AD3B /* Texts + Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + Home.swift"; sourceTree = "<group>"; };
+		B8DA4C7429BD144300C6AD3B /* NotificationsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsService.swift; sourceTree = "<group>"; };
+		B8DA4C7629BD198C00C6AD3B /* UIApplication + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication + Extensions.swift"; sourceTree = "<group>"; };
 		B8DE006D29B90A9C0099F374 /* NotificationsPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPermissions.swift; sourceTree = "<group>"; };
 		B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputView.swift; sourceTree = "<group>"; };
@@ -160,6 +166,7 @@
 			children = (
 				B8009DEE29AA507500A4EC3B /* HomeView.swift */,
 				B8BB787029B52DD8001A4B71 /* HomeViewModel.swift */,
+				B8DA4C7229BD093900C6AD3B /* Texts + Home.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -261,6 +268,7 @@
 				B86793F92997D880006BFE29 /* Coordinator.swift */,
 				B86793FB2997DB7B006BFE29 /* DependencyContainer.swift */,
 				B86793FD2997DD6C006BFE29 /* UserSession.swift */,
+				B8DA4C7429BD144300C6AD3B /* NotificationsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -404,6 +412,7 @@
 			children = (
 				B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */,
 				B8A6DFB3299FD3B7005BA947 /* UINavigationController + Extensions.swift */,
+				B8DA4C7629BD198C00C6AD3B /* UIApplication + Extensions.swift */,
 			);
 			path = "UIKit + Utils";
 			sourceTree = "<group>";
@@ -508,12 +517,15 @@
 				B890AC1229A3F7CF00D30572 /* Errors.swift in Sources */,
 				B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */,
 				B86297D929A25D690059280B /* Texts + Onboarding.swift in Sources */,
+				B8DA4C7529BD144300C6AD3B /* NotificationsService.swift in Sources */,
 				B82BA8B929B4DA5900853304 /* ToastDisplayView.swift in Sources */,
 				B86297D329A164130059280B /* FilledButton.swift in Sources */,
 				B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */,
+				B8DA4C7329BD093900C6AD3B /* Texts + Home.swift in Sources */,
 				B890AC1429A3F85A00D30572 /* CustomTextField.swift in Sources */,
 				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
 				B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */,
+				B8DA4C7729BD198C00C6AD3B /* UIApplication + Extensions.swift in Sources */,
 				B890AC1A29A3FC4100D30572 /* DispatchQueue + Extensions.swift in Sources */,
 				B890AC2329A40E9600D30572 /* Collections + Utils.swift in Sources */,
 				B86297DB29A25F490059280B /* CarouselItem.swift in Sources */,
