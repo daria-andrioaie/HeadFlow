@@ -72,7 +72,7 @@ const verifyOTP = async (phoneNumber, otp) => {
 
     let token;
     try {
-      token = jwt.sign({ userId: user._id }, jwtKey, { expiresIn: "24h" });
+      token = jwt.sign({ userId: user._id }, jwtKey, { expiresIn: "672h" });
 
       const session = new SessionModel({
         userId: user._id,
