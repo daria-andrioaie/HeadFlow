@@ -18,6 +18,8 @@ protocol AuthenticationServiceProtocol {
 
     func verifyOTP(_ otp: String, for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
     func resendOTP(for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
+    
+    func socialSignIn(socialToken: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
 }
 
 struct AuthenticationDTO: Decodable {
@@ -169,6 +171,36 @@ class AuthenticationService: AuthenticationServiceProtocol {
             onRequestCompleted(.failure(Errors.APIError(message: "No token in user defaults.")))
         }
     }
+    
+    func socialSignIn(socialToken: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
+        let parameters = ["socialToken": socialToken]
+        
+        AF.request(path.rawValue + "/user/social-sign-in", method: .post, parameters: parameters, encoder: .json)
+            .responseDecodable(of: AuthenticationDTO.self) { response in
+                switch response.result {
+                    
+                case .success(let authenticationResponse):
+                    if let token = authenticationResponse.token {
+                        let user = authenticationResponse.user
+                        Session.shared.saveCurrentUser(userId: user.id, token: token)
+                        
+                        self.notificationsService.saveNotificationsStatusOfUser(userId: user.id, notificationsStatusPresented: false)
+                        
+                        onRequestCompleted(.success(token))
+                    } else {
+                        onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error while decoding user and token.")))
+                    }
+                    
+                case .failure(let error):
+                    if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
+                        onRequestCompleted(.failure(apiError))
+                    }
+                    else {
+                        onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error: " + error.localizedDescription)))
+                    }
+                }
+            }
+    }
 }
 
 class MockAuthenticationService: AuthenticationServiceProtocol {
@@ -191,6 +223,10 @@ class MockAuthenticationService: AuthenticationServiceProtocol {
     }
     
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
+        
+    }
+    
+    func socialSignIn(socialToken: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         
     }
 }

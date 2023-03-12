@@ -47,6 +47,9 @@
 		B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B867943F299832B4006BFE29 /* Font + Extensions.swift */; };
 		B870BF4B29BDED7B00CC2921 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870BF4A29BDED7B00CC2921 /* Alerts.swift */; };
 		B870BF4D29BE14B300CC2921 /* CustomAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870BF4C29BE14B300CC2921 /* CustomAlert.swift */; };
+		B870BF5029BE4BAB00CC2921 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = B870BF4F29BE4BAB00CC2921 /* GoogleSignIn */; };
+		B870BF5229BE4BAB00CC2921 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B870BF5129BE4BAB00CC2921 /* GoogleSignInSwift */; };
+		B870BF5429BE4C9D00CC2921 /* Google-credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = B870BF5329BE4C9D00CC2921 /* Google-credentials.plist */; };
 		B890AC1029A3C35600D30572 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = B890AC0F29A3C35600D30572 /* PhoneNumberKit */; };
 		B890AC1229A3F7CF00D30572 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC1129A3F7CF00D30572 /* Errors.swift */; };
 		B890AC1429A3F85A00D30572 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC1329A3F85A00D30572 /* CustomTextField.swift */; };
@@ -121,6 +124,7 @@
 		B867943F299832B4006BFE29 /* Font + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + Extensions.swift"; sourceTree = "<group>"; };
 		B870BF4A29BDED7B00CC2921 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		B870BF4C29BE14B300CC2921 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
+		B870BF5329BE4C9D00CC2921 /* Google-credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Google-credentials.plist"; sourceTree = "<group>"; };
 		B890AC1129A3F7CF00D30572 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B890AC1329A3F85A00D30572 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B890AC1929A3FC4100D30572 /* DispatchQueue + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue + Extensions.swift"; sourceTree = "<group>"; };
@@ -155,8 +159,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B870BF5029BE4BAB00CC2921 /* GoogleSignIn in Frameworks */,
 				B8DE006C29B90A3C0099F374 /* RealmSwift in Frameworks */,
 				B82BA8B029B138F500853304 /* Alamofire in Frameworks */,
+				B870BF5229BE4BAB00CC2921 /* GoogleSignInSwift in Frameworks */,
 				B890AC1029A3C35600D30572 /* PhoneNumberKit in Frameworks */,
 				B890AC1729A3FBFB00D30572 /* Introspect in Frameworks */,
 			);
@@ -252,6 +258,7 @@
 				B86793EA2997C539006BFE29 /* Assets.xcassets */,
 				B86793EC2997C539006BFE29 /* LaunchScreen.storyboard */,
 				B86793EF2997C539006BFE29 /* Info.plist */,
+				B870BF5329BE4C9D00CC2921 /* Google-credentials.plist */,
 			);
 			path = HeadFlow;
 			sourceTree = "<group>";
@@ -444,6 +451,8 @@
 				B890AC1629A3FBFB00D30572 /* Introspect */,
 				B82BA8AF29B138F500853304 /* Alamofire */,
 				B8DE006B29B90A3C0099F374 /* RealmSwift */,
+				B870BF4F29BE4BAB00CC2921 /* GoogleSignIn */,
+				B870BF5129BE4BAB00CC2921 /* GoogleSignInSwift */,
 			);
 			productName = HeadFlow;
 			productReference = B86793DE2997C538006BFE29 /* HeadFlow.app */;
@@ -478,6 +487,7 @@
 				B890AC1529A3FBFB00D30572 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				B8DE006A29B90A3C0099F374 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				B870BF4E29BE4BAB00CC2921 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 			);
 			productRefGroup = B86793DF2997C538006BFE29 /* Products */;
 			projectDirPath = "";
@@ -501,6 +511,7 @@
 				B867943229982EFD006BFE29 /* Lato-Medium.ttf in Resources */,
 				B867943829982EFD006BFE29 /* Lato-Regular.ttf in Resources */,
 				B867943329982EFD006BFE29 /* Lato-Semibold.ttf in Resources */,
+				B870BF5429BE4C9D00CC2921 /* Google-credentials.plist in Resources */,
 				B867943D29982EFD006BFE29 /* Lato-Bold.ttf in Resources */,
 				B867943429982EFD006BFE29 /* Lato-Heavy.ttf in Resources */,
 			);
@@ -790,6 +801,14 @@
 				minimumVersion = 5.6.1;
 			};
 		};
+		B870BF4E29BE4BAB00CC2921 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		B890AC0E29A3C35600D30572 /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
@@ -821,6 +840,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		B870BF4F29BE4BAB00CC2921 /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B870BF4E29BE4BAB00CC2921 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		B870BF5129BE4BAB00CC2921 /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B870BF4E29BE4BAB00CC2921 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
 		};
 		B890AC0F29A3C35600D30572 /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;

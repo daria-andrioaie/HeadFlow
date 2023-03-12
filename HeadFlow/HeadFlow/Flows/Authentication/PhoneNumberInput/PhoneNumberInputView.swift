@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import GoogleSignInSwift
 
 struct PhoneNumberInput {
     struct ContentView: View {
@@ -63,9 +64,14 @@ struct PhoneNumberInput {
                     Image(.facebookIcon)
                         .resizable()
                         .frame(width: 50, height: 50)
-                    Image(.googleIcon)
-                        .resizable()
-                        .frame(width: 40, height: 40)
+                    Button {
+                        viewModel.signupWithGoogle()
+                    } label: {
+                        Image(.googleIcon)
+                            .resizable()
+                            .frame(width: 40, height: 40)
+                    }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -82,7 +88,7 @@ struct PhoneNumberInput {
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneNumberInput.ContentView(viewModel: .init(screenType: .signup("Daria"), authenticationService: MockAuthenticationService(), navigationAction: { _ in }))
+        PhoneNumberInput.ContentView(viewModel: .init(screenType: .signup("Daria"), authenticationService: MockAuthenticationService(), presentationController: nil, navigationAction: { _ in }))
     }
 }
 #endif

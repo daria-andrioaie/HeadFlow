@@ -20,6 +20,18 @@ const login = async (req, res) => {
   }
 };
 
+const socialSignIn = async (req, res) => {
+  try {
+    const { socialToken } = req.body;
+    const { token, user } = await userService.socialSignIn(socialToken);
+  
+    res.status(200).send({ success: true, token: token, user: user });
+  } catch (error) {
+    console.log(error.message)
+    res.status(404).send({ success: false, message: error.message });
+  }
+}
+
 const logout = async (req, res) => {
   const bearerHeader = req.headers['authorization'];
   if(typeof bearerHeader === 'undefined') {
@@ -43,5 +55,6 @@ const logout = async (req, res) => {
 module.exports = {
   signUp,
   login,
+  socialSignIn,
   logout,
 };

@@ -48,12 +48,15 @@ class AuthenticationCoordinator: Coordinator {
     func showPhoneNumberInput(screenType: PhoneNumberInput.ScreenType, animated: Bool = true) {
         let phoneNumberInputVM = PhoneNumberInput.ViewModel(screenType: screenType,
                                                             authenticationService: dependencies.authenticationService,
+                                                            presentationController: navigationController,
                                                             navigationAction: { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
             case .goToSMSValidation(let phoneNumber):
                 self?.showSMSValidation(phoneNumber: phoneNumber)
+            case .socialLoginCompleted:
+                self?.showAuthenticationCompleted()
             }
         })
         navigationController.pushHostingController(rootView: PhoneNumberInput.ContentView(viewModel: phoneNumberInputVM), animated: animated)

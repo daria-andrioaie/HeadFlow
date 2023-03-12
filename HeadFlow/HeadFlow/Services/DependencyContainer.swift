@@ -14,7 +14,7 @@ class DependencyContainer {
     
     init() {
         notificationsService = NotificationsService()
-        authenticationService = AuthenticationService(path: .hosted, notificationsService: notificationsService)
+        authenticationService = AuthenticationService(path: .local, notificationsService: notificationsService)
     }
 }
 
