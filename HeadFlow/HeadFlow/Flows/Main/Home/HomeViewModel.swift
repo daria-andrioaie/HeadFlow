@@ -14,16 +14,17 @@ extension Home {
     class ViewModel: ObservableObject {
         @Published var apiError: Error?
         @Published var isConfirmationMessagePresented: Bool = false
-        @Published var showNotificationsAlert: Bool = false
+        @Published var isNotificationsAlertPresented: Bool = false
         @Published var notificationsStatus: NotificationsStatusType = .disabled
         var confirmationMessage: String = ""
         
-        var notificationsAlertMessage: String {
-            notificationsStatus == .disabled ? Texts.Home.enableNotificationsAlertMessage : Texts.Home.disableNotificationsAlertMessage
+        var notificationsAlert: Alert {
+            notificationsStatus == .disabled ?
+            Alert.init(title: Texts.Home.notificationsAlertTitle, message: Texts.Home.enableNotificationsAlertMessage, actionButtonMessage: Texts.Home.goToSettingsButtonLabel, action: openSettings) :
+            Alert.init(title: Texts.Home.notificationsAlertTitle, message: Texts.Home.disableNotificationsAlertMessage, actionButtonMessage: Texts.Home.goToSettingsButtonLabel, action: openSettings)
+            
         }
-        
         let authenticationService: AuthenticationServiceProtocol
-        
         let onLogout: () -> Void
         
         init(authenticationService: AuthenticationServiceProtocol, onLogout: @escaping () -> Void) {
@@ -48,7 +49,7 @@ extension Home {
             }
         }
         
-        func openSettings() {
+        private func openSettings() {
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
                 return
             }
@@ -90,7 +91,7 @@ extension Home {
                         if !permissionsForCurrentUser.notificationsStatusPresented {
                             DispatchQueue.main.async {
                                 self.notificationsStatus = .disabled
-                                self.showNotificationsAlert = true
+                                self.isNotificationsAlertPresented = true
                             }
                             
                             try! realm.write {
@@ -112,7 +113,7 @@ extension Home {
                         if !permissionsForCurrentUser.notificationsStatusPresented {
                             DispatchQueue.main.async {
                                 self.notificationsStatus = .enabled
-                                self.showNotificationsAlert = true
+                                self.isNotificationsAlertPresented = true
                             }
                             
                             try! realm.write {
@@ -133,6 +134,8 @@ extension Home {
             var dateComponents = DateComponents()
             dateComponents.hour = 9
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+            
+            notificationsCenter.removePendingNotificationRequests(withIdentifiers: ["daily-cta"])
             let request = UNNotificationRequest(identifier: "daily-cta", content: content, trigger: trigger)
             
             notificationsCenter.add(request) { error in

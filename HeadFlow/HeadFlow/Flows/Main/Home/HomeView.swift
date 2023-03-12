@@ -23,20 +23,7 @@ struct Home {
             }
             .toastDisplay(isPresented: $viewModel.isConfirmationMessagePresented, message: viewModel.confirmationMessage)
             .errorDisplay(error: $viewModel.apiError)
-            .alert("Notifications alert", isPresented: $viewModel.showNotificationsAlert, actions: {
-                Button {
-                    viewModel.showNotificationsAlert = false
-                } label: {
-                    Text(Texts.Home.cancelButtonLabel)
-                }
-                Button {
-                    viewModel.openSettings()
-                } label: {
-                    Text(Texts.Home.goToSettingsButtonLabel)
-                }
-            }, message: {
-                Text(viewModel.notificationsAlertMessage)
-            })
+            .customAlert(viewModel.notificationsAlert, isPresented: $viewModel.isNotificationsAlertPresented)
             .onAppear {
                 viewModel.setupNotifications()
             }

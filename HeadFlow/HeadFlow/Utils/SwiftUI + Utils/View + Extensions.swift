@@ -81,6 +81,18 @@ extension View {
             .zIndex(1)
         }
     }
+    
+    func customAlert(
+        _ alert: Alert,
+        isPresented: Binding<Bool>
+    ) -> some View {
+        
+        return ZStack(alignment: .center) {
+            self
+            CustomAlert(alert: alert, isPresented: isPresented)
+        }
+        .animation(.spring(), value: isPresented.wrappedValue)
+    }
 }
 
 
