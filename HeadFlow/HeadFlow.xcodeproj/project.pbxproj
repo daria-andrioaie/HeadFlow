@@ -50,6 +50,7 @@
 		B870BF5029BE4BAB00CC2921 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = B870BF4F29BE4BAB00CC2921 /* GoogleSignIn */; };
 		B870BF5229BE4BAB00CC2921 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B870BF5129BE4BAB00CC2921 /* GoogleSignInSwift */; };
 		B870BF5429BE4C9D00CC2921 /* Google-credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = B870BF5329BE4C9D00CC2921 /* Google-credentials.plist */; };
+		B88BB57029BF6E59006D7E72 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88BB56F29BF6E59006D7E72 /* MotionManager.swift */; };
 		B890AC1029A3C35600D30572 /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = B890AC0F29A3C35600D30572 /* PhoneNumberKit */; };
 		B890AC1229A3F7CF00D30572 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC1129A3F7CF00D30572 /* Errors.swift */; };
 		B890AC1429A3F85A00D30572 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC1329A3F85A00D30572 /* CustomTextField.swift */; };
@@ -59,6 +60,7 @@
 		B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC1E29A4009E00D30572 /* SMSValidationViewModel.swift */; };
 		B890AC2129A4031200D30572 /* Texts + PhoneNumberInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC2029A4031200D30572 /* Texts + PhoneNumberInput.swift */; };
 		B890AC2329A40E9600D30572 /* Collections + Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = B890AC2229A40E9600D30572 /* Collections + Utils.swift */; };
+		B8939CB629BFBB0E00EE2172 /* RobotHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8939CB529BFBB0E00EE2172 /* RobotHeadView.swift */; };
 		B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFAF299FD215005BA947 /* RegisterView.swift */; };
 		B8A6DFB2299FD24D005BA947 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFB1299FD24D005BA947 /* RegisterViewModel.swift */; };
 		B8A6DFB4299FD3B7005BA947 /* UINavigationController + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A6DFB3299FD3B7005BA947 /* UINavigationController + Extensions.swift */; };
@@ -125,6 +127,7 @@
 		B870BF4A29BDED7B00CC2921 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		B870BF4C29BE14B300CC2921 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		B870BF5329BE4C9D00CC2921 /* Google-credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Google-credentials.plist"; sourceTree = "<group>"; };
+		B88BB56F29BF6E59006D7E72 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
 		B890AC1129A3F7CF00D30572 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 		B890AC1329A3F85A00D30572 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B890AC1929A3FC4100D30572 /* DispatchQueue + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DispatchQueue + Extensions.swift"; sourceTree = "<group>"; };
@@ -132,6 +135,7 @@
 		B890AC1E29A4009E00D30572 /* SMSValidationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSValidationViewModel.swift; sourceTree = "<group>"; };
 		B890AC2029A4031200D30572 /* Texts + PhoneNumberInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + PhoneNumberInput.swift"; sourceTree = "<group>"; };
 		B890AC2229A40E9600D30572 /* Collections + Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Collections + Utils.swift"; sourceTree = "<group>"; };
+		B8939CB529BFBB0E00EE2172 /* RobotHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RobotHeadView.swift; sourceTree = "<group>"; };
 		B8A6DFAF299FD215005BA947 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		B8A6DFB1299FD24D005BA947 /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		B8A6DFB3299FD3B7005BA947 /* UINavigationController + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController + Extensions.swift"; sourceTree = "<group>"; };
@@ -177,6 +181,7 @@
 				B8009DEE29AA507500A4EC3B /* HomeView.swift */,
 				B8BB787029B52DD8001A4B71 /* HomeViewModel.swift */,
 				B8DA4C7229BD093900C6AD3B /* Texts + Home.swift */,
+				B8939CB529BFBB0E00EE2172 /* RobotHeadView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -281,6 +286,7 @@
 				B86793FB2997DB7B006BFE29 /* DependencyContainer.swift */,
 				B86793FD2997DD6C006BFE29 /* UserSession.swift */,
 				B8DA4C7429BD144300C6AD3B /* NotificationsService.swift */,
+				B88BB56F29BF6E59006D7E72 /* MotionManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -527,6 +533,7 @@
 				B8A6DFB4299FD3B7005BA947 /* UINavigationController + Extensions.swift in Sources */,
 				B8A6DFB2299FD24D005BA947 /* RegisterViewModel.swift in Sources */,
 				B86794012997E206006BFE29 /* UserDefaults + property wrapper.swift in Sources */,
+				B8939CB629BFBB0E00EE2172 /* RobotHeadView.swift in Sources */,
 				B8BB787129B52DD8001A4B71 /* HomeViewModel.swift in Sources */,
 				B890AC1C29A4004900D30572 /* SMSValidationView.swift in Sources */,
 				B890AC2129A4031200D30572 /* Texts + PhoneNumberInput.swift in Sources */,
@@ -540,6 +547,7 @@
 				B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */,
 				B8DA4C7329BD093900C6AD3B /* Texts + Home.swift in Sources */,
 				B890AC1429A3F85A00D30572 /* CustomTextField.swift in Sources */,
+				B88BB57029BF6E59006D7E72 /* MotionManager.swift in Sources */,
 				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
 				B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */,
 				B8DA4C7729BD198C00C6AD3B /* UIApplication + Extensions.swift in Sources */,
@@ -721,6 +729,7 @@
 				DEVELOPMENT_TEAM = 2CM47V2KMG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HeadFlow/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to the AirPods movement data.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
@@ -750,6 +759,7 @@
 				DEVELOPMENT_TEAM = 2CM47V2KMG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HeadFlow/Info.plist;
+				INFOPLIST_KEY_NSMotionUsageDescription = "We need access to the AirPods movement data.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIStatusBarStyle = "";

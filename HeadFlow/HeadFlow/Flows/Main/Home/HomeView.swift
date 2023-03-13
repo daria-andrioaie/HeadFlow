@@ -6,7 +6,8 @@
 //
 
 import SwiftUI
-
+import CoreMotion
+import SceneKit
 
 struct Home {
     enum NotificationsStatusType: String {
@@ -19,6 +20,7 @@ struct Home {
         var body: some View {
             VStack(spacing: 50) {
                 Text("Welcome to home screen")
+                RobotHead()
                 Buttons.FilledButton(title: "Logout", action: viewModel.logout)
             }
             .toastDisplay(isPresented: $viewModel.isConfirmationMessagePresented, message: viewModel.confirmationMessage)
@@ -30,6 +32,8 @@ struct Home {
         }
     }
 }
+
+
 
 #if DEBUG
 struct HomeView_Previews: PreviewProvider {

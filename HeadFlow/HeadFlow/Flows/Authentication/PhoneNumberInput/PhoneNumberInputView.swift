@@ -58,9 +58,6 @@ struct PhoneNumberInput {
                     .font(.Main.p1Regular)
                     .foregroundColor(.danubeBlue)
                 HStack(spacing: 15) {
-                    Image(.appleIcon)
-                        .resizable()
-                        .frame(width: 40, height: 40)
                     Image(.facebookIcon)
                         .resizable()
                         .frame(width: 50, height: 50)
