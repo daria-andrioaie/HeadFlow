@@ -98,7 +98,7 @@ extension SK3DViewController {
         ambientLightNode.light = ambientLight
         scene.rootNode.addChildNode(ambientLightNode)
 
-    
+
         // Adding a cube(face) to a scene
         let cube:SCNGeometry = SCNBox(width: 3, height: 3, length: 3, chamferRadius: 0.5)
         let eye:SCNGeometry = SCNSphere(radius: 0.3)
@@ -106,16 +106,16 @@ extension SK3DViewController {
         let rightEye = SCNNode(geometry: eye)
         leftEye.position = SCNVector3(x: 0.6, y: 0.6, z: 1.5)
         rightEye.position = SCNVector3(x: -0.6, y: 0.6, z: 1.5)
-        
+
         let nose:SCNGeometry = SCNSphere(radius: 0.3)
         let noseNode = SCNNode(geometry: nose)
         noseNode.position = SCNVector3(x: 0, y: 0, z: 1.5)
-        
+
         let mouth:SCNGeometry = SCNBox(width: 1.5, height: 0.2, length: 0.2, chamferRadius: 0.4)
         let mouthNode = SCNNode(geometry: mouth)
         mouthNode.position = SCNVector3(x: 0, y: -0.6, z: 1.5)
-        
-        
+
+
         cubeNode = SCNNode(geometry: cube)
         cubeNode.addChildNode(leftEye)
         cubeNode.addChildNode(rightEye)
