@@ -18,7 +18,7 @@ extension Buttons {
         var borderColor: Color = .danubeBlue
         var size: Size = .small
         var width: CGFloat = 100
-        var font: Font = .Main.bold(size: 18)
+        var font: Font = .Main.medium(size: 18)
         
         let action: () -> Void
         

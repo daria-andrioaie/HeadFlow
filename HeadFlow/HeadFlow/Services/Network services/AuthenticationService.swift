@@ -22,27 +22,13 @@ protocol AuthenticationServiceProtocol {
     func socialSignIn(socialToken: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
 }
 
-struct AuthenticationDTO: Decodable {
-    let user: User
-    let token: String?
-}
-
-struct BasicResponseDTO: Decodable {
-    let success: Bool
-    let message: String
-}
-
 class AuthenticationService: AuthenticationServiceProtocol {
-    enum PathType: String {
-        case local = "http://daria.local:3030/api/v1"
-        case hosted = "https://headflow.onrender.com/api/v1"
-    }
     
-    var path: PathType = .local
+    var path: Constants.ServerPathType = .local
     
     var notificationsService: NotificationsServiceProtocol
     
-    init(path: PathType, notificationsService: NotificationsServiceProtocol) {
+    init(path: Constants.ServerPathType, notificationsService: NotificationsServiceProtocol) {
         self.path = path
         self.notificationsService = notificationsService
     }
@@ -51,7 +37,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
         let parameters = ["username": username, "phoneNumber": phoneNumber]
         
         AF.request(path.rawValue + "/user", method: .post, parameters: parameters, encoder: .json)
-            .responseDecodable(of: AuthenticationDTO.self) { response in
+            .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                     
                 case .success(let authenticationResponse):
@@ -71,7 +57,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     func login(phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         let parameters = ["phoneNumber": phoneNumber]
         AF.request(path.rawValue + "/user/login", method: .post, parameters: parameters, encoder: .json)
-            .responseDecodable(of: AuthenticationDTO.self) { response in
+            .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                     
                 case .success(let authenticationResponse):
@@ -91,7 +77,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     func verifyOTP(_ otp: String, for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         let parameters = ["otp": otp, "phoneNumber": phoneNumber]
         AF.request(path.rawValue + "/otp/verify", method: .post, parameters: parameters, encoder: .json)
-            .responseDecodable(of: AuthenticationDTO.self) { response in
+            .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                     
                 case .success(let verificationResponse):
@@ -121,7 +107,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     func resendOTP(for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         let parameters = ["phoneNumber": phoneNumber]
         AF.request(path.rawValue + "/otp/resend", method: .post, parameters: parameters, encoder: .json)
-            .responseDecodable(of: BasicResponseDTO.self) { response in
+            .responseDecodable(of: BasicResponse.self) { response in
                 switch response.result {
                     
                 case .success(let basicResponse):
@@ -148,7 +134,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             
             AF.request(path.rawValue + "/user/logout", method: .post, headers: headers)
-                .responseDecodable(of: BasicResponseDTO.self) { response in
+                .responseDecodable(of: BasicResponse.self) { response in
                     switch response.result {
                         
                     case .success(let logoutResponse):
@@ -176,7 +162,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
         let parameters = ["socialToken": socialToken]
         
         AF.request(path.rawValue + "/user/social-sign-in", method: .post, parameters: parameters, encoder: .json)
-            .responseDecodable(of: AuthenticationDTO.self) { response in
+            .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                     
                 case .success(let authenticationResponse):

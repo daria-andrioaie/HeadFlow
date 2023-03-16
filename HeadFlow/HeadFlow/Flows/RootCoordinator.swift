@@ -36,6 +36,22 @@ class RootCoordinator: Coordinator {
         } else {
             showAuthenticationCoordinator()
         }
+        
+        //        Task(priority: .utility) {
+        //            await dependencyContainer.sessionService.isTokenValid(onRequestCompleted: { [weak self] result in
+        //                switch result {
+        //                case .success(let isTokenValid):
+        //                    if isTokenValid {
+        //                        self?.showMainCoordinator()
+        //                    } else {
+        //                        self?.showAuthenticationCoordinator()
+        //                    }
+        //
+        //                case .failure(let apiError):
+        //                    print(apiError.message)
+        //                }
+        //            })
+        //        }
     }
     
     func showAuthenticationCoordinator() {
@@ -54,5 +70,4 @@ class RootCoordinator: Coordinator {
         self.mainCoordinator = coordinator
         coordinator.start(connectionOptions: nil)
     }
-    
 }

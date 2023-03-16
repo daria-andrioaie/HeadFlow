@@ -8,13 +8,16 @@
 import Foundation
 
 class DependencyContainer {
-    //TODO: declare services
     let authenticationService: AuthenticationServiceProtocol
     let notificationsService: NotificationsServiceProtocol
+    let sessionService: SessionServiceProtocol
+    
+    let serverPath = Constants.SERVER_URL
     
     init() {
         notificationsService = NotificationsService()
-        authenticationService = AuthenticationService(path: .hosted, notificationsService: notificationsService)
+        authenticationService = AuthenticationService(path: serverPath, notificationsService: notificationsService)
+        sessionService = SessionService(path: serverPath)
     }
 }
 

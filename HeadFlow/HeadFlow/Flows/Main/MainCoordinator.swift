@@ -39,7 +39,31 @@ class MainCoordinator: Coordinator {
     }
     
     func showHomeScreen() {
-        let homeScreenVM = Home.ViewModel(authenticationService: dependencies.authenticationService, onLogout: onLogout)
+        let homeScreenVM = HomeViewModel { [weak self]  navigationType in
+            switch navigationType {
+            case .startStretchCoordinator:
+                self?.startStretchingCoordinator()
+            case .goToProfile:
+                self?.goToProfile()
+            }
+        }
         navigationController.pushHostingController(rootView: Home.ContentView(viewModel: homeScreenVM))
+    }
+    
+    func startStretchingCoordinator() {
+        let stretchExecutorVC = StretchExecutor.ViewController(dependencies: dependencies)
+        navigationController.pushViewController(stretchExecutorVC, animated: false)
+    }
+    
+    func goToProfile() {
+        let profileVM = Profile.ViewModel(authenticationService: dependencies.authenticationService) { [weak self] navigationType in
+            switch navigationType {
+            case .goBack:
+                self?.navigationController.popViewController(animated: true)
+            case .logout:
+                self?.onLogout()
+            }
+        }
+        navigationController.pushHostingController(rootView: Profile.ContentView(viewModel: profileVM), animated: true)
     }
 }
