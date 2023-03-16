@@ -101,13 +101,20 @@ const socialSignIn = async (socialToken) => {
 
 const logout = async (token) => {
   const decodedToken = jwt.verify(token, jwtKey);
-  let existingToken = await SessionModel.findOne({ token: token });
-  if (!existingToken) {
-    throw new Error("The token is invalid.");
-  }
-
   await SessionModel.deleteOne({ token: token });
+
   return "Logout successful.";
+};
+
+const checkToken = async (token) => {
+  const decodedToken = jwt.verify(token, jwtKey);
+
+  let existingToken = await SessionModel.findOne({ token: token });
+  if (existingToken) {
+    return { success: true, message: "Token is valid." }
+  } else {
+    return { success: false, message: "Token is invalid." }
+  }
 };
 
 module.exports = {
@@ -115,4 +122,5 @@ module.exports = {
   login,
   socialSignIn,
   logout,
+  checkToken
 };
