@@ -6,13 +6,22 @@
 //
 
 import Foundation
+import UIKit
 
 extension StretchExecutor {
     class ViewModel: ObservableObject {
+        @Published var areAripodsConnected: Bool = false
         var navigationAction: ((NavigationType) -> Void)?
         
         init() {
             
+        }
+        
+        func openSettings() {
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            UIApplication.shared.tryOpen(url: settingsUrl)
         }
     }
     

@@ -10,19 +10,23 @@ import CoreMotion
 import SwiftUI
 import UIKit
 
-class MotionManager: ObservableObject {
+class MotionManager: NSObject, ObservableObject {
     private var motionManager = CMHeadphoneMotionManager()
     @Published var text: String = ""
     @Published var motion: CMDeviceMotion?
+    @Published var airpodsAreDisconnected: Bool = true
 
-    init() {
+    override init() {
+        super.init()
+        startMotionUpdates()
+    }
+    
+    private func startMotionUpdates() {
+        motionManager.delegate = self
+        
         motionManager.startDeviceMotionUpdates(to: OperationQueue()) { [weak self] motion, error in
             guard let self = self, let motion = motion else { return }
-//
-//            DispatchQueue.main.async {
-//                self.motion = motion
-//            }
-
+            
             let attitude = motion.attitude
             let roll = self.degrees(attitude.roll)
             let pitch = self.degrees(attitude.pitch)
@@ -52,6 +56,7 @@ class MotionManager: ObservableObject {
                 self.motion = motion
             }
         }
+
     }
 
     required init(coder aDecoder: NSCoder) {
@@ -76,5 +81,19 @@ class MotionManager: ObservableObject {
 
     deinit {
         motionManager.stopDeviceMotionUpdates()
+    }
+}
+
+extension MotionManager: CMHeadphoneMotionManagerDelegate {
+    func headphoneMotionManagerDidConnect(_ manager: CMHeadphoneMotionManager) {
+        DispatchQueue.main.async { [weak self] in
+            self?.airpodsAreDisconnected = false
+        }
+    }
+    
+    func headphoneMotionManagerDidDisconnect(_ manager: CMHeadphoneMotionManager) {
+        DispatchQueue.main.async { [weak self] in
+            self?.airpodsAreDisconnected = true
+        }
     }
 }

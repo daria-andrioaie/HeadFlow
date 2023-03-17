@@ -84,12 +84,15 @@ extension View {
     
     func customAlert(
         _ alert: Alert,
-        isPresented: Binding<Bool>
+        isPresented: Binding<Bool>,
+        @ViewBuilder iconView: () -> some View,
+        @ViewBuilder cancelView: () -> some View,
+        @ViewBuilder actionView: () -> some View
     ) -> some View {
         
         return ZStack(alignment: .center) {
             self
-            CustomAlert(alert: alert, isPresented: isPresented)
+            CustomAlert(alert: alert, isPresented: isPresented, iconView: iconView, cancelView: cancelView, actionView: actionView)
         }
         .animation(.spring(), value: isPresented.wrappedValue)
     }

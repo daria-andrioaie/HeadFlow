@@ -13,12 +13,14 @@ enum HFImage: String {
     case mobility = "mobility-clipped"
     case posture = "posture-clipped"
     case sleep = "sleep-clipped"
+    case airpods = "airpods"
     
     //MARK: icons
     case chevronRight = "chevron-right"
     case chevronRightBold = "chevron-right-bold"
     case checkIcon = "check-icon-light"
     case userProfile = "user-profile"
+    case bell = "bell"
 
     //MARK: social icons
     case appleIcon = "apple-icon"

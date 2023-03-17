@@ -16,7 +16,36 @@ struct Home {
         
         var body: some View {
             mainContent
-            .customAlert(notificationsViewModel.notificationsAlert, isPresented: $notificationsViewModel.isNotificationsAlertPresented)
+            .customAlert(notificationsViewModel.notificationsAlert, isPresented: $notificationsViewModel.isNotificationsAlertPresented, iconView: {
+                Image(.bell)
+                    .renderingMode(.template)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(.apricot)
+                    .frame(width: 50)
+            }, cancelView: {
+                Button {
+                    notificationsViewModel.isNotificationsAlertPresented = false
+                } label: {
+                    Image(systemName: "x.circle")
+                        .renderingMode(.template)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 22)
+                        .foregroundColor(.oceanBlue.opacity(0.4))
+                        .padding(.leading, 6)
+                }
+
+            }, actionView: {
+                Button {
+                    notificationsViewModel.openSettings()
+                    notificationsViewModel.isNotificationsAlertPresented = false
+                } label: {
+                    Text("Go to settings")
+                        .foregroundColor(.oceanBlue)
+                        .font(.Main.regular(size: 20))
+                }
+            })
             .onAppear {
                 notificationsViewModel.setupNotifications()
             }
