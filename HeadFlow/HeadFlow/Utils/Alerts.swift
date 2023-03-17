@@ -11,6 +11,4 @@ import SwiftUI
 struct Alert {
     let title: String
     let message: String
-    let actionButtonMessage: String
-    let action: () -> Void
 }

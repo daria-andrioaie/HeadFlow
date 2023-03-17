@@ -67,7 +67,7 @@ extension SK3DViewController {
     
     func SceneSetUp() {
         let scnView = SCNView(frame: self.view.frame)
-        scnView.backgroundColor = UIColor.white
+        scnView.backgroundColor = UIColor.init(Color.feathers)
         scnView.allowsCameraControl = false
         scnView.showsStatistics = false
         view.addSubview(scnView)

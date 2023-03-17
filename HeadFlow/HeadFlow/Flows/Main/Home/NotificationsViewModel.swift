@@ -16,8 +16,8 @@ class NotificationsViewModel: ObservableObject {
     
     var notificationsAlert: Alert {
         notificationsStatus == .disabled ?
-        Alert.init(title: Texts.Home.notificationsAlertTitle, message: Texts.Home.enableNotificationsAlertMessage, actionButtonMessage: Texts.Home.goToSettingsButtonLabel, action: openSettings) :
-        Alert.init(title: Texts.Home.notificationsAlertTitle, message: Texts.Home.disableNotificationsAlertMessage, actionButtonMessage: Texts.Home.goToSettingsButtonLabel, action: openSettings)
+        Alert.init(title: Texts.Home.notificationsAlertTitle, message: Texts.Home.enableNotificationsAlertMessage) :
+        Alert.init(title: Texts.Home.notificationsAlertTitle, message: Texts.Home.disableNotificationsAlertMessage)
         
     }
     enum NotificationsStatusType: String {
@@ -25,10 +25,18 @@ class NotificationsViewModel: ObservableObject {
     }
     
     func openSettings() {
-        guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
-            return
+        if #available(iOS 16.0, *) {
+            guard let settingsUrl = URL(string: UIApplication.openNotificationSettingsURLString) else {
+                return
+            }
+            UIApplication.shared.tryOpen(url: settingsUrl)
+
+        } else {
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            UIApplication.shared.tryOpen(url: settingsUrl)
         }
-        UIApplication.shared.tryOpen(url: settingsUrl)
     }
     
     func setupNotifications() {
