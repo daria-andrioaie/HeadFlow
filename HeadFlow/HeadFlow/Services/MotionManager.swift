@@ -14,7 +14,7 @@ class MotionManager: NSObject, ObservableObject {
     private var motionManager = CMHeadphoneMotionManager()
     @Published var text: String = ""
     @Published var motion: CMDeviceMotion?
-    @Published var airpodsAreDisconnected: Bool = true
+    @Published var airpodsAreDisconnected: Bool = false
 
     override init() {
         super.init()

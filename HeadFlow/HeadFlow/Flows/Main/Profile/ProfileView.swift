@@ -22,6 +22,7 @@ struct Profile {
                     Buttons.BorderedButton(title: "Logout") {
                         viewModel.navigationAction(.logout)
                     }
+                    .padding(.bottom, 30)
                 }
                 .padding(.horizontal, 24)
             }
