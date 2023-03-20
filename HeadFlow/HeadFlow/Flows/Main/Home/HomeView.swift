@@ -87,6 +87,7 @@ struct Home {
                 }
                 .buttonStyle(.plain)
                 .padding(.trailing, 40)
+                .padding(.bottom, 30)
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
             .fillBackground()

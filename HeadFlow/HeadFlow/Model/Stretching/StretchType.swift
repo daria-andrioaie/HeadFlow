@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum StretchType {
+enum StretchType: CaseIterable {
     case tiltToRight, tiltToLeft
     case tiltForward, tiltBackwards
     case rotateToRight, rotateToLeft
@@ -33,6 +33,19 @@ enum StretchType {
             return 0
         case .fullRotationLeft:
             return 0
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .tiltToRight: return "Tilt head to right"
+        case .tiltToLeft: return "Tilt head to left"
+        case .tiltForward: return "Tilt head forward"
+        case .tiltBackwards: return "Tilt head backwards"
+        case .rotateToRight: return "Look to the right right"
+        case .rotateToLeft: return "Look to the left"
+        case .fullRotationRight: return "Full circle to right"
+        case .fullRotationLeft: return "Full circle to left"
         }
     }
 }
