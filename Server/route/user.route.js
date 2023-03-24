@@ -4,10 +4,10 @@ const userController = require("../controller/user.controller");
 
 const router = express.Router();
 
-router.post("/", userController.signUp);
+router.post("/signup", userController.signUp);
 router.post("/login", userController.login);
 router.post("/logout", userController.logout);
 router.post("/social-sign-in", userController.socialSignIn);
-router.post("/check-token", userController.checkToken);
+router.get("/", userController.getUser);
 
 module.exports = router;

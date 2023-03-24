@@ -6,6 +6,7 @@ const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const otpService = require("../service/otp.service");
+const authorizationService = require("../service/authorization.service");
 
 const signUp = async ({ username, phoneNumber }) => {
   if (typeof username === "undefined") {
@@ -95,26 +96,24 @@ const socialSignIn = async (socialToken) => {
     return { token: token, user: dbUser };
   } catch (err) {
     console.log(err);
-    const error = new Error("Error! Something went wrong.");
+    throw new Error("Error! Something went wrong.");
   }
+};
+
+const getUser = async (userId) => {
+  let existingUser = await UserModel.findOne({ _id: userId }); 
+  if(!existingUser) {
+    throw new Error("There is no user with the given user id.")
+  }
+
+  return existingUser;
 };
 
 const logout = async (token) => {
-  const decodedToken = jwt.verify(token, jwtKey);
-  await SessionModel.deleteOne({ token: token });
+  const userId = authorizationService.authorizeToken(token);
+  await SessionModel.deleteOne({ userId: userId });
 
   return "Logout successful.";
-};
-
-const checkToken = async (token) => {
-  const decodedToken = jwt.verify(token, jwtKey);
-
-  let existingToken = await SessionModel.findOne({ token: token });
-  if (existingToken) {
-    return { success: true, message: "Token is valid." }
-  } else {
-    return { success: false, message: "Token is invalid." }
-  }
 };
 
 module.exports = {
@@ -122,5 +121,5 @@ module.exports = {
   login,
   socialSignIn,
   logout,
-  checkToken
+  getUser,
 };
