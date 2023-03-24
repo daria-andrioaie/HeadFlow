@@ -92,6 +92,8 @@
 		B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */; };
 		B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */; };
 		B8EA843C299937F6009D83E7 /* UIWindow + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */; };
+		B8F3C7AF29CE4C580099CA6E /* StretchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3C7AE29CE4C580099CA6E /* StretchingService.swift */; };
+		B8F3C7B129CE4EDC0099CA6E /* StretchingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3C7B029CE4EDC0099CA6E /* StretchingSummary.swift */; };
 		B8F45E2D29C38EE400FAB812 /* StretchingExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E2C29C38EE400FAB812 /* StretchingExercise.swift */; };
 		B8F45E3029C38F1300FAB812 /* StretchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E2F29C38F1300FAB812 /* StretchType.swift */; };
 		B8F45E3829C394D300FAB812 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E3729C394D300FAB812 /* ProfileViewModel.swift */; };
@@ -181,6 +183,8 @@
 		B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputView.swift; sourceTree = "<group>"; };
 		B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputViewModel.swift; sourceTree = "<group>"; };
 		B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow + Extensions.swift"; sourceTree = "<group>"; };
+		B8F3C7AE29CE4C580099CA6E /* StretchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingService.swift; sourceTree = "<group>"; };
+		B8F3C7B029CE4EDC0099CA6E /* StretchingSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingSummary.swift; sourceTree = "<group>"; };
 		B8F45E2C29C38EE400FAB812 /* StretchingExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingExercise.swift; sourceTree = "<group>"; };
 		B8F45E2F29C38F1300FAB812 /* StretchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchType.swift; sourceTree = "<group>"; };
 		B8F45E3729C394D300FAB812 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
@@ -253,6 +257,7 @@
 			children = (
 				B82BA8B129B1390B00853304 /* AuthenticationService.swift */,
 				B80359B429C0EFED0059F578 /* SessionService.swift */,
+				B8F3C7AE29CE4C580099CA6E /* StretchingService.swift */,
 				B80359AF29C0ED410059F578 /* Responses */,
 			);
 			path = "Network services";
@@ -505,6 +510,7 @@
 			children = (
 				B8F45E2C29C38EE400FAB812 /* StretchingExercise.swift */,
 				B8F45E2F29C38F1300FAB812 /* StretchType.swift */,
+				B8F3C7B029CE4EDC0099CA6E /* StretchingSummary.swift */,
 			);
 			path = Stretching;
 			sourceTree = "<group>";
@@ -662,6 +668,7 @@
 				B8B7442329C8EA5F000DA599 /* StretchSummaryView.swift in Sources */,
 				B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */,
 				B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */,
+				B8F3C7B129CE4EDC0099CA6E /* StretchingSummary.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependencyContainer.swift in Sources */,
 				B8417AD929C3B27E0053FD35 /* Triangle.swift in Sources */,
 				B82BA8AD29B1367C00853304 /* Constants.swift in Sources */,
@@ -671,6 +678,7 @@
 				B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
 				B86297D129A1640B0059280B /* BorderedButton.swift in Sources */,
+				B8F3C7AF29CE4C580099CA6E /* StretchingService.swift in Sources */,
 				B86793FE2997DD6C006BFE29 /* UserSession.swift in Sources */,
 				B8A6DFBC29A0127C005BA947 /* OnboardingViewModel.swift in Sources */,
 				B8F45E3829C394D300FAB812 /* ProfileViewModel.swift in Sources */,

@@ -28,7 +28,7 @@ class SessionService: SessionServiceProtocol {
             
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             
-            AF.request(path.rawValue + "/user/check-token", method: .post, headers: headers)
+            AF.request(path.rawValue + "/user", method: .post, headers: headers)
                 .responseDecodable(of: BasicResponse.self) { response in
                     switch response.result {
                         

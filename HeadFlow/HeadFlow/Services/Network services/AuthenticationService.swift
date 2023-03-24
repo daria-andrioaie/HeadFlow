@@ -36,7 +36,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
     func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         let parameters = ["username": username, "phoneNumber": phoneNumber]
         
-        AF.request(path.rawValue + "/user", method: .post, parameters: parameters, encoder: .json)
+        AF.request(path.rawValue + "/user/signup", method: .post, parameters: parameters, encoder: .json)
             .responseDecodable(of: AuthenticationResponse.self) { response in
                 switch response.result {
                     

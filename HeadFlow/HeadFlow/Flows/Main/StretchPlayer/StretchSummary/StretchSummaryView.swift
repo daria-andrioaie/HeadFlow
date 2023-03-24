@@ -9,21 +9,10 @@ import SwiftUI
 
 struct StretchSummary {
     struct ContentView: View {
-        var rangeOfMotion: Double = 0
-        var totalDuration: Int = 0
+        let averageRangeOfMotion: Double
+        let totalDuration: Int
+        let stretchinService: StretchingServiceProtocol
         let finishAction: () -> Void
-        
-        init(completedStreches: [StretchingExercise], finishAction: @escaping () -> Void) {
-            self.finishAction = finishAction
-            
-            var sumOfRanges: Double = 0
-            for stretch in completedStreches {
-                sumOfRanges += stretch.achievedRangeOfMotion ?? 0
-                self.totalDuration += stretch.duration
-            }
-            
-            rangeOfMotion = sumOfRanges / Double(completedStreches.count)
-        }
         
         var body: some View {
             VStack {
@@ -41,6 +30,9 @@ struct StretchSummary {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .fillBackground()
+            .task {
+                await stretchinService.saveStretchSummary(summary: .init(averageRangeOfMotion: averageRangeOfMotion, duration: totalDuration), onRequestCompleted: { _ in })
+            }
         }
         
         var congratulationsMessage: some View {
@@ -85,7 +77,7 @@ struct StretchSummary {
                             .foregroundColor(.oceanBlue)
                             .font(.Main.medium(size: 18))
                             .opacity(0.6)
-                        Text("\(rangeOfMotion * 100)%")
+                        Text("\(averageRangeOfMotion * 100)%")
                             .foregroundColor(.oceanBlue)
                             .font(.Main.bold(size: 18))
                     }
@@ -119,6 +111,6 @@ struct StretchSummary {
 
 struct StretchSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        StretchSummary.ContentView(completedStreches: [], finishAction: { })
+        StretchSummary.ContentView(averageRangeOfMotion: 0.0, totalDuration: 45, stretchinService: MockStretchingService(), finishAction: { })
     }
 }
