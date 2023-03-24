@@ -22,8 +22,8 @@ struct StretchExecutor {
                     .font(.Main.regular(size: 24))
                     .padding(.bottom, 20)
                 
-                
-                RobotHead()
+                DrawingView(exercise: $viewModel.currentStretchingExecise)
+                    .padding(.horizontal, 100)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .fillBackground()

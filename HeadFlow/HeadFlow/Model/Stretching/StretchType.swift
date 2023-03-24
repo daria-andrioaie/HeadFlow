@@ -30,9 +30,9 @@ enum StretchType: CaseIterable {
             
         //TODO: figure out how to compute these to
         case .fullRotationRight:
-            return 0
+            return 10
         case .fullRotationLeft:
-            return 0
+            return 10
         }
     }
     

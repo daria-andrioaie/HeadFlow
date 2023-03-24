@@ -50,7 +50,7 @@ extension StretchExecutor {
         }
         
         private func showStretchingSummary() {
-            self.navigationController?.pushHostingController(rootView: StretchSummary.ContentView(finishAction: { [weak self] in
+            self.navigationController?.pushHostingController(rootView: StretchSummary.ContentView(completedStreches: stretchingSet, finishAction: { [weak self] in
                 self?.navigateToHomescreen()
             }))
         }
@@ -61,7 +61,7 @@ extension StretchExecutor {
         
         static func initStretchingSet() -> [StretchingExercise] {
             //TODO: save a global variable in the database and take it from there
-            let durationInSeconds = 2
+            let durationInSeconds = 3
             let stretchingSet = StretchType.allCases.map { stretchType in
                 return StretchingExercise(type: stretchType, duration: durationInSeconds)
             }

@@ -10,7 +10,7 @@ import Foundation
 struct StretchingExercise {
     let type: StretchType
     let duration: Int
-    var achievedRangeOfMotion: Int?
+    var achievedRangeOfMotion: Double?
 }
 
 extension StretchingExercise {
