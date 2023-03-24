@@ -36,24 +36,8 @@ class MotionManager: NSObject, ObservableObject {
             let ac = motion.userAcceleration
             let g = motion.gravity
 
-            DispatchQueue.main.async { [unowned self] in
-                var str = "Attitude:\n"
-                str += self.degreeText("Roll", roll)
-                str += self.degreeText("Pitch", pitch)
-                str += self.degreeText("Yaw", yaw)
-
-                str += "\nRotation Rate:\n"
-                str += self.xyzText(r.x, r.y, r.z)
-
-                str += "\nAcceleration:\n"
-                str += self.xyzText(ac.x, ac.y, ac.z)
-
-                str += "\nGravity:\n"
-                str += self.xyzText(g.x, g.y, g.z)
-
-                self.text = str
-                
-                self.motion = motion
+            DispatchQueue.main.async { [weak self] in
+                self?.motion = motion
             }
         }
 
