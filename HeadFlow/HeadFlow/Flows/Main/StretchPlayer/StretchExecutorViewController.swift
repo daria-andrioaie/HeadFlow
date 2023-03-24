@@ -50,7 +50,16 @@ extension StretchExecutor {
         }
         
         private func showStretchingSummary() {
-            self.navigationController?.pushHostingController(rootView: StretchSummary.ContentView(completedStreches: stretchingSet, finishAction: { [weak self] in
+            var sumOfRanges: Double = 0
+            var totalDuration: Int = 0
+            for stretch in stretchingSet {
+                sumOfRanges += stretch.achievedRangeOfMotion ?? 0
+                totalDuration += stretch.duration
+            }
+            
+            var rangeOfMotion = sumOfRanges / Double(stretchingSet.count)
+            
+            self.navigationController?.pushHostingController(rootView: StretchSummary.ContentView(averageRangeOfMotion: rangeOfMotion, totalDuration: totalDuration, stretchinService: dependencies.stretchingService, finishAction: { [weak self] in
                 self?.navigateToHomescreen()
             }))
         }

@@ -11,6 +11,7 @@ class DependencyContainer {
     let authenticationService: AuthenticationServiceProtocol
     let notificationsService: NotificationsServiceProtocol
     let sessionService: SessionServiceProtocol
+    let stretchingService: StretchingServiceProtocol
     
     let serverPath = Constants.SERVER_URL
     
@@ -18,12 +19,11 @@ class DependencyContainer {
         notificationsService = NotificationsService()
         authenticationService = AuthenticationService(path: serverPath, notificationsService: notificationsService)
         sessionService = SessionService(path: serverPath)
+        stretchingService = StretchingService(path: serverPath)
     }
 }
 
 class MockDependencyContainer: DependencyContainer {
     override init() {
-        //TODO: pass mock services in the init
-        super.init()
     }
 }
