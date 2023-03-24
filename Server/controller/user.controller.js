@@ -1,4 +1,6 @@
 const userService = require("../service/user.service");
+const authorizationService = require("../service/authorization.service");
+
 
 const signUp = async (req, res) => {
   try {
@@ -52,20 +54,12 @@ const logout = async (req, res) => {
   }
 };
 
-const checkToken = async (req, res) => {
+const getUser = async (req, res) => {
   const bearerHeader = req.headers['authorization'];
-  if(typeof bearerHeader === 'undefined') {
-    res.status(404).send({ success: false, message: "No token was provided." });
-  }
-
-  const token = bearerHeader.split(" ")[1];
-  if (!token) {
-    res.status(404).send({ success: false, message: "No token was provided." });
-  }
-
   try {
-    const { success, message }  = await userService.checkToken(token);
-    res.status(200).send({ success: success, message: message });
+    const userId = await authorizationService.authorizeToken(bearerHeader);
+    const user  = await userService.getUser(userId);
+    res.status(200).send({ success: true, user: user });
   } catch (error) {
     console.log(error.message);
     res.status(404).send({ success: false, message: error.message });
@@ -77,5 +71,5 @@ module.exports = {
   login,
   socialSignIn,
   logout,
-  checkToken,
+  getUser,
 };
