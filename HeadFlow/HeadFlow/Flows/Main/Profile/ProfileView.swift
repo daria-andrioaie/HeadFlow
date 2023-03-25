@@ -16,16 +16,52 @@ struct Profile {
                 viewModel.navigationAction(.goBack)
             }) {
                 VStack {
+                    stretchingHistoryCard
                     Spacer()
-                    Text("here you'll manage your profile")
-                    Spacer()
-                    Buttons.BorderedButton(title: "Logout") {
+                    Button {
                         viewModel.navigationAction(.logout)
+                    } label: {
+                        HStack {
+                            Image(.logoutIcon)
+                                .renderingMode(.template)
+                            Text("Logout")
+                                .font(.Main.medium(size: 18))
+                        }
+                        .foregroundColor(.danubeBlue)
                     }
-                    .padding(.bottom, 30)
+                    .buttonStyle(.plain)
                 }
-                .padding(.horizontal, 24)
+                .padding(.all, 24)
+
             }
+        }
+        
+        var stretchingHistoryCard: some View {
+            HStack {
+                VStack(alignment: .leading, spacing: 12) {
+                    Text("Stretching history")
+                        .foregroundColor(.diamond)
+                        .font(.Main.bold(size: 18))
+                    
+                    HStack(spacing: 10) {
+                        Text("Total sessions:")
+                            .foregroundColor(.diamond)
+                            .font(.Main.regular(size: 18))
+                        Text("\(viewModel.stretchingSessionsCount)")
+                            .foregroundColor(.diamond)
+                            .font(.Main.regular(size: 18))
+                            .activityIndicator(viewModel.isSessionsCountLoading, scale: 0.8, tint: .feathers)
+                    }
+                    
+                }
+                Spacer()
+                Buttons.FilledButton(title: Texts.Stretching.seeStretchingHistoryButtonLabel, rightIcon: .chevronRightBold, backgroundColor: .diamond, foregroundColor: .danubeBlue, size: .small, width: 125) {
+                    viewModel.navigationAction(.goToHistory)
+                }
+            }
+            .padding(.all, 30)
+            .frame(maxWidth: .infinity)
+            .background(Color.oceanBlue.opacity(0.9).cornerRadius(20))
         }
     }
 }
@@ -33,6 +69,6 @@ struct Profile {
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        Profile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), navigationAction: { _ in }))
+        Profile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), stretchingService: MockStretchingService(), navigationAction: { _ in }))
     }
 }

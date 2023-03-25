@@ -56,14 +56,24 @@ class MainCoordinator: Coordinator {
     }
     
     func goToProfile() {
-        let profileVM = Profile.ViewModel(authenticationService: dependencies.authenticationService) { [weak self] navigationType in
+        let profileVM = Profile.ViewModel(authenticationService: dependencies.authenticationService, stretchingService: dependencies.stretchingService) { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
+            case .goToHistory:
+                self?.goToStretchingHistory()
             case .logout:
                 self?.onLogout()
             }
         }
         navigationController.pushHostingController(rootView: Profile.ContentView(viewModel: profileVM), animated: true)
+    }
+    
+    func goToStretchingHistory() {
+        let stretchingHistoryVM = StretchingHistory.ViewModel(stretchingService: dependencies.stretchingService, onBack: { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        })
+
+        navigationController.pushHostingController(rootView: StretchingHistory.ContentView(viewModel: stretchingHistoryVM), animated: true)
     }
 }

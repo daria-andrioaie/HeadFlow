@@ -33,7 +33,7 @@ struct Register {
         
         var greetingView: some View {
             VStack(alignment: .leading, spacing: 8) {
-                Text(Texts.Register.getToKnowYouBale)
+                Text(Texts.Register.getToKnowYouLabel)
                     .font(.Main.bold(size: 26))
                     .foregroundColor(.danubeBlue)
                 Text(Texts.Register.nameQuestion)

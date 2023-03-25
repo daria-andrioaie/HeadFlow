@@ -32,7 +32,7 @@ extension View {
     }
     
     @ViewBuilder
-    func activityIndicator(_ isLoading: Bool, scale: CGFloat = 1.3, tint: Color = .oceanBlue) -> some View {
+    func activityIndicator(_ isLoading: Bool, scale: CGFloat = 1.3, tint: Color = .danubeBlue) -> some View {
         if isLoading {
             ActivityIndicator(tint: tint, scale: scale)
         } else {

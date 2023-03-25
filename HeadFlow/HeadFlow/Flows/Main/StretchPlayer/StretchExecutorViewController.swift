@@ -32,7 +32,7 @@ extension StretchExecutor {
                     self?.saveCurrentExercise()
                     self?.navigateToNextExercise()
                 }
-                
+            
             }
         }
         
@@ -57,11 +57,14 @@ extension StretchExecutor {
                 totalDuration += stretch.duration
             }
             
-            var rangeOfMotion = sumOfRanges / Double(stretchingSet.count)
+            let rangeOfMotion = sumOfRanges / Double(stretchingSet.count)
+            let summary = StretchSummary.Model(averageRangeOfMotion: rangeOfMotion, duration: totalDuration, date: Date.now.millisecondsSince1970)
             
-            self.navigationController?.pushHostingController(rootView: StretchSummary.ContentView(averageRangeOfMotion: rangeOfMotion, totalDuration: totalDuration, stretchinService: dependencies.stretchingService, finishAction: { [weak self] in
+            let viewModel = StretchSummary.ViewModel(summary: summary, stretchingService: dependencies.stretchingService, finishAction: { [weak self] in
                 self?.navigateToHomescreen()
-            }))
+            })
+            
+            self.navigationController?.pushHostingController(rootView: StretchSummary.ContentView(viewModel: viewModel))
         }
         
         private func navigateToHomescreen() {
@@ -70,11 +73,11 @@ extension StretchExecutor {
         
         static func initStretchingSet() -> [StretchingExercise] {
             //TODO: save a global variable in the database and take it from there
-            let durationInSeconds = 3
-            let stretchingSet = StretchType.allCases.map { stretchType in
-                return StretchingExercise(type: stretchType, duration: durationInSeconds)
-            }
-            
+            let durationInSeconds = 1
+//            let stretchingSet = StretchType.allCases.map { stretchType in
+//                return StretchingExercise(type: stretchType, duration: durationInSeconds)
+//            }
+            let stretchingSet = [StretchingExercise(type: .tiltToRight, duration: 2)]
             return stretchingSet
         }
         

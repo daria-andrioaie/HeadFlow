@@ -35,7 +35,7 @@ struct NavigationBar: View {
             Spacer()
         }
         .padding(.horizontal, 24)
-        .frame(height: 48)
+        .frame(height: 80)
     }
 }
 
@@ -43,6 +43,7 @@ struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             NavigationBar(title: "Daria is amazing", leftButtonAction: { })
+            Spacer()
         }
         
     }
