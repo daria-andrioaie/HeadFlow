@@ -6,13 +6,17 @@ const { OAuth2Client } = require("google-auth-library");
 const StretchModel = require("../model/stretch.model");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
-const saveStretchSummary = async (userId, averageRangeOfMotion, duration) => {
+const saveStretchSummary = async (userId, averageRangeOfMotion, duration, date) => {
   if (typeof averageRangeOfMotion === "undefined") {
     throw new Error("Range of motion not provided.");
   }
 
   if (typeof duration === "undefined") {
-    throw new Error("PDuration not provided.");
+    throw new Error("Duration not provided.");
+  }
+
+  if (typeof date === "undefined") {
+    throw new Error("Date not provided.");
   }
 
   if (averageRangeOfMotion > 1 || averageRangeOfMotion <= 0) {
@@ -23,7 +27,7 @@ const saveStretchSummary = async (userId, averageRangeOfMotion, duration) => {
     userId,
     averageRangeOfMotion,
     duration,
-    date: new Date(),
+    date: date,
   });
 
   const savedSummary = await stretchSummary.save();

@@ -39,7 +39,6 @@ extension SMSValidation {
                 await authenticationService.verifyOTP(inputCode, for: phoneNumber, onRequestCompleted: { [unowned self] result in
                     switch result {
                     case .success(_):
-                        // save token to session
                         self.navigationAction(.onSMSValidated)
                     case .failure(let error):
                         apiError = Errors.CustomError(error.message)

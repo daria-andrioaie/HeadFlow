@@ -9,30 +9,25 @@ import SwiftUI
 
 struct StretchSummary {
     struct ContentView: View {
-        let averageRangeOfMotion: Double
-        let totalDuration: Int
-        let stretchinService: StretchingServiceProtocol
-        let finishAction: () -> Void
+        @ObservedObject var viewModel: StretchSummary.ViewModel
+        @Namespace private var animation
+        private let animatedShapeId = "shapeId"
+        private let animatedTextId = "textId"
         
         var body: some View {
             VStack {
-                
                 congratulationsMessage
                     .padding(.top, 120)
                 
                 Spacer()
-                
                 stretchingSummaryView
-                
                 Spacer()
-                
-                backToHomeButton
+                savingView
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .fillBackground()
-            .task {
-                await stretchinService.saveStretchSummary(summary: .init(averageRangeOfMotion: averageRangeOfMotion, duration: totalDuration), onRequestCompleted: { _ in })
-            }
+            .onAppear(perform: viewModel.saveStretchingSummary)
+            .errorDisplay(error: $viewModel.apiError)
         }
         
         var congratulationsMessage: some View {
@@ -60,7 +55,7 @@ struct StretchSummary {
                             .font(.Main.medium(size: 18))
                             .opacity(0.6)
                         
-                        Text("\(totalDuration) sec")
+                        Text("\(viewModel.summary.duration.toHoursAndMinutesFormat()) min")
                             .foregroundColor(.oceanBlue)
                             .font(.Main.bold(size: 18))
                     }
@@ -77,7 +72,7 @@ struct StretchSummary {
                             .foregroundColor(.oceanBlue)
                             .font(.Main.medium(size: 18))
                             .opacity(0.6)
-                        Text("\(averageRangeOfMotion * 100)%")
+                        Text("\(viewModel.summary.averageRangeOfMotion.toPercentage())%")
                             .foregroundColor(.oceanBlue)
                             .font(.Main.bold(size: 18))
                     }
@@ -86,31 +81,96 @@ struct StretchSummary {
             .padding(.horizontal, 60)
         }
         
+        @ViewBuilder
+        var savingView: some View {
+            ZStack(alignment: .center) {
+                Color.clear
+                    .cornerRadius(15)
+                if viewModel.isSaving {
+                    savingIndicator
+                } else {
+                    backToHomeButton
+                }
+            }
+            .frame(width:250, height: 100)
+            .padding(.bottom, 150)
+        }
+        
         var backToHomeButton: some View {
             Button {
-                finishAction()
+                viewModel.finishAction()
             } label: {
-                VStack {
+                VStack(spacing: 20) {
                     Image(systemName: "house")
                         .resizable()
                         .scaledToFit()
                         .frame(height: 30)
+                        .frame(width: 70)
                         .foregroundColor(.danubeBlue)
+                        .matchedGeometryEffect(id: animatedShapeId, in: animation)
+
                     Text("Back to home")
-                        .frame(height: 30)
+                        .frame(width: 200, height: 30, alignment: .center)
                         .foregroundColor(.danubeBlue)
-                        .font(.Main.h2SemiBold)
+                        .font(.Main.semibold(size: 20))
+                        .matchedGeometryEffect(id: animatedTextId, in: animation)
+                }
+                .transaction { (tx) in
+                    tx.animation = .easeInOut
                 }
             }
             .buttonStyle(.plain)
-            .padding(.bottom, 150)
         }
+        
+        var savingIndicator: some View {
+            VStack(spacing: 20) {
+                Text("Saving your progress")
+                    .frame(width: 200, height: 30, alignment: .center)
+                    .foregroundColor(.danubeBlue)
+                    .font(.Main.semibold(size: 20))
+                    .matchedGeometryEffect(id: animatedTextId, in: animation)
+                
+                HStack {
+                    BouncingCircle(delay: 0)
+                    BouncingCircle(delay: 0.2)
+                    BouncingCircle(delay: 0.4)
+
+                }
+                    .frame(width: 70, alignment: .center)
+                    .foregroundColor(.danubeBlue)
+                    .matchedGeometryEffect(id: animatedShapeId, in: animation)
+            }
+            .transaction { (tx) in
+                tx.animation = .easeInOut
+            }
+        }
+    }
+    
+    struct BouncingCircle: View {
+        @State private var bouncing = true
+        var delay: CGFloat
+        
+        var body: some View {
+            Circle()
+                .fill(Color.danubeBlue)
+                .opacity(bouncing ? 0.5 : 1)
+                .animation(.default.delay(delay), value: bouncing)
+                .onAppear {
+                    animate()
+                }
+        }
+        
+        func animate() {
+            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
+                    bouncing.toggle()
+                }
+            }
     }
 }
 
 
 struct StretchSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        StretchSummary.ContentView(averageRangeOfMotion: 0.0, totalDuration: 45, stretchinService: MockStretchingService(), finishAction: { })
+        StretchSummary.ContentView(viewModel: .init(summary: .mock1, stretchingService: MockStretchingService(), finishAction: { }))
     }
 }
