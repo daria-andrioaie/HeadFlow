@@ -37,6 +37,6 @@ extension Int64 {
 
 extension Double {
     func toPercentage() -> String {
-        return String(format: "%.2f", self * 100)
+        return String(format: "%.0f", self * 100)
     }
 }

@@ -59,6 +59,7 @@ struct CustomAlert<IconView: View, CancelView: View, ActionView: View>: View {
     }
 }
 
+#if DEBUG
 struct CustomAlert_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
@@ -90,3 +91,4 @@ struct CustomAlert_Previews: PreviewProvider {
         }
     }
 }
+#endif

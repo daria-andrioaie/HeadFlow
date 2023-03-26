@@ -99,9 +99,10 @@ struct StretchExecutor {
     }
 }
 
-
+#if DEBUG
 struct StretchExecutorView_Previews: PreviewProvider {
     static var previews: some View {
         StretchExecutor.ContentView(viewModel: .init(stretchingExecise: .mock1))
     }
 }
+#endif

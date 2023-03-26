@@ -115,7 +115,7 @@ class MockStretchingService: StretchingServiceProtocol {
     
     func getAllStretchingSessionsForCurrentUser(onRequestCompleted: @escaping (Result<[StretchSummary.Model], Errors.APIError>) -> Void) async {
         DispatchQueue.main.asyncAfter(seconds: 1) {
-            onRequestCompleted(.success([.mock1, .mock2, .mock3, .mock4]))
+            onRequestCompleted(.success(StretchSummary.Model.mockedSet))
         }
     }
     
