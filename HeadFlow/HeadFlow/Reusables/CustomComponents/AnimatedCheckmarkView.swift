@@ -135,7 +135,7 @@ struct AnyShape: Shape {
     }
 }
 
-
+#if DEBUG
 struct AnimatedCheckmarkView_Previews: PreviewProvider {
     static var previews: some View {
         AnimatedCheckmarkView()
@@ -148,3 +148,4 @@ struct AnimatedCheckmarkView_Previews: PreviewProvider {
 //        AnimatedCheckmarkView(outerShape: AnyShape(RoundedRectangle(cornerRadius: 12)))
     }
 }
+#endif

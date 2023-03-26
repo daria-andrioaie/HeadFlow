@@ -89,6 +89,8 @@
 		B8AE100129C25FF200044B58 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE100029C25FF200044B58 /* DrawingView.swift */; };
 		B8B7442329C8EA5F000DA599 /* StretchSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B7442229C8EA5F000DA599 /* StretchSummaryView.swift */; };
 		B8BB787129B52DD8001A4B71 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB787029B52DD8001A4B71 /* HomeViewModel.swift */; };
+		B8CFB37529D05E490063271B /* PreviewProvider + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFB37429D05E490063271B /* PreviewProvider + Extensions.swift */; };
+		B8CFB37729D062850063271B /* SizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFB37629D062850063271B /* SizeReader.swift */; };
 		B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */; };
 		B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6E929A118F200A588A8 /* View + Extensions.swift */; };
 		B8D3E6F229A12ACA00A588A8 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */; };
@@ -102,6 +104,7 @@
 		B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */; };
 		B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */; };
 		B8EA843C299937F6009D83E7 /* UIWindow + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */; };
+		B8EE318329D040640050B0CE /* AnimatedChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EE318229D040640050B0CE /* AnimatedChartView.swift */; };
 		B8F3C7AF29CE4C580099CA6E /* StretchingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3C7AE29CE4C580099CA6E /* StretchingService.swift */; };
 		B8F3C7B129CE4EDC0099CA6E /* StretchingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3C7B029CE4EDC0099CA6E /* StretchingSummary.swift */; };
 		B8F45E2D29C38EE400FAB812 /* StretchingExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E2C29C38EE400FAB812 /* StretchingExercise.swift */; };
@@ -191,6 +194,8 @@
 		B8AE100029C25FF200044B58 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		B8B7442229C8EA5F000DA599 /* StretchSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchSummaryView.swift; sourceTree = "<group>"; };
 		B8BB787029B52DD8001A4B71 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B8CFB37429D05E490063271B /* PreviewProvider + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider + Extensions.swift"; sourceTree = "<group>"; };
+		B8CFB37629D062850063271B /* SizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeReader.swift; sourceTree = "<group>"; };
 		B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extensions.swift"; sourceTree = "<group>"; };
 		B8D3E6E929A118F200A588A8 /* View + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View + Extensions.swift"; sourceTree = "<group>"; };
 		B8D3E6F129A12ACA00A588A8 /* CarouselView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
@@ -203,6 +208,7 @@
 		B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputView.swift; sourceTree = "<group>"; };
 		B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputViewModel.swift; sourceTree = "<group>"; };
 		B8EA843B299937F6009D83E7 /* UIWindow + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow + Extensions.swift"; sourceTree = "<group>"; };
+		B8EE318229D040640050B0CE /* AnimatedChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedChartView.swift; sourceTree = "<group>"; };
 		B8F3C7AE29CE4C580099CA6E /* StretchingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingService.swift; sourceTree = "<group>"; };
 		B8F3C7B029CE4EDC0099CA6E /* StretchingSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingSummary.swift; sourceTree = "<group>"; };
 		B8F45E2C29C38EE400FAB812 /* StretchingExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingExercise.swift; sourceTree = "<group>"; };
@@ -259,6 +265,7 @@
 				B8009DF829AAB15700A4EC3B /* ActivityIndicator.swift */,
 				B82BA8B829B4DA5900853304 /* ToastDisplayView.swift */,
 				B870BF4C29BE14B300CC2921 /* CustomAlert.swift */,
+				B8EE318229D040640050B0CE /* AnimatedChartView.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -500,6 +507,8 @@
 				B8D3E6E929A118F200A588A8 /* View + Extensions.swift */,
 				B8D3E6F329A1368D00A588A8 /* Shape + Utils.swift */,
 				B86297DC29A260BE0059280B /* Image + Extensions.swift */,
+				B8CFB37429D05E490063271B /* PreviewProvider + Extensions.swift */,
+				B8CFB37629D062850063271B /* SizeReader.swift */,
 			);
 			path = "SwiftUI + Utils";
 			sourceTree = "<group>";
@@ -748,6 +757,7 @@
 				B8417AD429C3A2D00053FD35 /* StretchExecutorView.swift in Sources */,
 				B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */,
 				B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */,
+				B8EE318329D040640050B0CE /* AnimatedChartView.swift in Sources */,
 				B88FA55D29CF50D400B828EB /* StretchingSessionsCountResponse.swift in Sources */,
 				B8009DEC29AA4F7700A4EC3B /* MainCoordinator.swift in Sources */,
 				B8009DF629AAAF2600A4EC3B /* AnimatedCheckmarkView.swift in Sources */,
@@ -755,11 +765,13 @@
 				B86297D529A166890059280B /* ButtonStyles.swift in Sources */,
 				B8D3E6F429A1368D00A588A8 /* Shape + Utils.swift in Sources */,
 				B8D3E6F229A12ACA00A588A8 /* CarouselView.swift in Sources */,
+				B8CFB37729D062850063271B /* SizeReader.swift in Sources */,
 				B8A6DFBA29A0120E005BA947 /* OnboardingView.swift in Sources */,
 				B86793E42997C538006BFE29 /* SceneDelegate.swift in Sources */,
 				B80359B329C0EDB40059F578 /* AuthenticationResponse.swift in Sources */,
 				B870BF4D29BE14B300CC2921 /* CustomAlert.swift in Sources */,
 				B88FA56429CF864300B828EB /* Date + Extensions.swift in Sources */,
+				B8CFB37529D05E490063271B /* PreviewProvider + Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

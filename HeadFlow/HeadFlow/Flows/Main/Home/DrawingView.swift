@@ -59,8 +59,10 @@ struct DrawingView: View {
     }
 }
 
+#if DEBUG
 struct DrawingView_Previews: PreviewProvider {
     static var previews: some View {
         DrawingView(exercise: .constant(.mock1))
     }
 }
+#endif

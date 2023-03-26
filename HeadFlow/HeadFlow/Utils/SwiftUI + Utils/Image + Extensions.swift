@@ -20,6 +20,7 @@ enum HFImage: String {
     case chevronRightBold = "chevron-right-bold"
     case checkIcon = "check-icon-light"
     case userProfile = "user-profile"
+    case userProfileFilled = "user-profile-filled"
     case bell = "bell"
     case logoutIcon = "logout-icon"
 

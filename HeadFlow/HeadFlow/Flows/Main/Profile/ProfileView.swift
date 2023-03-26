@@ -66,9 +66,10 @@ struct Profile {
     }
 }
 
-
+#if DEBUG
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
         Profile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), stretchingService: MockStretchingService(), navigationAction: { _ in }))
     }
 }
+#endif

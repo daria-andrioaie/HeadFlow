@@ -168,9 +168,10 @@ struct StretchSummary {
     }
 }
 
-
+#if DEBUG
 struct StretchSummaryView_Previews: PreviewProvider {
     static var previews: some View {
         StretchSummary.ContentView(viewModel: .init(summary: .mock1, stretchingService: MockStretchingService(), finishAction: { }))
     }
 }
+#endif

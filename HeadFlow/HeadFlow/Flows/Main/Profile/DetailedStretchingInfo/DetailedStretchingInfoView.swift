@@ -22,9 +22,10 @@ struct DetailedStretchingInfo {
     }
 }
 
-
+#if DEBUG
 struct DetailedStretchingInfoView_Previews: PreviewProvider {
     static var previews: some View {
         DetailedStretchingInfo.ContentView(stretchingSession: .mock1)
     }
 }
+#endif

@@ -35,8 +35,10 @@ struct AuthenticationCompleteView: View {
     }
 }
 
+#if DEBUG
 struct AuthenticationCompleteView_Previews: PreviewProvider {
     static var previews: some View {
         AuthenticationCompleteView(afterAppear: { })
     }
 }
+#endif
