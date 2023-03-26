@@ -72,7 +72,7 @@ struct StretchingHistory {
                             .foregroundColor(.oceanBlue)
                             .font(.Main.regular(size: 18))
                             .opacity(0.5)
-                        Text("\(stretchingSession.duration.toHoursAndMinutesFormat()) min")
+                        Text("\(stretchingSession.duration.toMinutesAndSecondsFormat()) min")
                             .foregroundColor(.oceanBlue)
                             .font(.Main.bold(size: 18))
                             .padding(.bottom, 5)

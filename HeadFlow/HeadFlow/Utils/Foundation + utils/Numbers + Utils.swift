@@ -8,24 +8,23 @@
 import Foundation
 
 extension Int {
-    func toHoursAndMinutesFormat() -> String {
-        let hour: String
-        if (self / 3600) / 10 == 0 {
-            hour = "0\((self / 3600))"
-        }
-        else {
-            hour = "\((self / 3600))"
-        }
-        
-        let minute: String
+    func toMinutesAndSecondsFormat() -> String {
+        let minutes: String
         if ((self % 3600) / 60) / 10 == 0 {
-            minute = "0\((self % 3600) / 60)"
+            minutes = "0\((self % 3600) / 60)"
         }
         else {
-            minute = "\((self % 3600) / 60)"
+            minutes = "\((self % 3600) / 60)"
         }
         
-        return "\(hour):\(minute)"
+        let seconds: String
+        if ((self % 3600) % 60) / 10 == 0 {
+            seconds = "0\((self % 3600) % 60)"
+        } else {
+            seconds = "\((self % 3600) % 60)"
+        }
+        
+        return "\(minutes):\(seconds)"
     }
 }
 
