@@ -55,7 +55,7 @@ struct StretchSummary {
                             .font(.Main.medium(size: 18))
                             .opacity(0.6)
                         
-                        Text("\(viewModel.summary.duration.toHoursAndMinutesFormat()) min")
+                        Text("\(viewModel.summary.duration.toMinutesAndSecondsFormat()) min")
                             .foregroundColor(.oceanBlue)
                             .font(.Main.bold(size: 18))
                     }
