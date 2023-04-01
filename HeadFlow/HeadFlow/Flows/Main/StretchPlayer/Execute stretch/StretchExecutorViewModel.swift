@@ -10,9 +10,15 @@ import UIKit
 import SwiftUI
 
 extension StretchExecutor {
+    enum TimerStateType {
+        case running
+        case paused
+        case disabled
+    }
+    
     class ViewModel: ObservableObject {
         @Published var timeRemaining: Int
-        @Published var isTimerRunning: Bool = true
+        @Published var timerState: TimerStateType = .running
         
         var navigationAction: ((NavigationType) -> Void)?
         var currentStretchingExecise: StretchingExercise {
@@ -37,12 +43,25 @@ extension StretchExecutor {
         }
         
         func toggleTimer() {
-            isTimerRunning.toggle()
-            if isTimerRunning {
+            if timerState == .running {
+                timerState = .paused
+                timer.upstream.connect().cancel()
+
+            } else if timerState == .paused {
+                timerState = .running
                 timer = timer.upstream.autoconnect()
-            } else {
+            }
+        }
+        
+        func disableTimer() {
+            if timerState == .running {
                 timer.upstream.connect().cancel()
             }
+            timerState = .disabled
+        }
+        
+        func enableTimer() {
+            timerState = .paused
         }
     }
     

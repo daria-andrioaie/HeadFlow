@@ -310,6 +310,15 @@
 			name = Shapes;
 			sourceTree = "<group>";
 		};
+		B84EDD8529D8282D0033E475 /* Execute stretch */ = {
+			isa = PBXGroup;
+			children = (
+				B8417AD529C3A3B70053FD35 /* StretchExecutorViewModel.swift */,
+				B8417AD329C3A2D00053FD35 /* StretchExecutorView.swift */,
+			);
+			path = "Execute stretch";
+			sourceTree = "<group>";
+		};
 		B86297CD29A162CC0059280B /* Buttons */ = {
 			isa = PBXGroup;
 			children = (
@@ -570,11 +579,10 @@
 		B8F45E3529C393B400FAB812 /* StretchPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				B8B7442129C8EA4C000DA599 /* StretchSummary */,
-				B8417AD529C3A3B70053FD35 /* StretchExecutorViewModel.swift */,
-				B8417AD329C3A2D00053FD35 /* StretchExecutorView.swift */,
 				B8417AD029C3A2210053FD35 /* StretchExecutorViewController.swift */,
 				B88FA55A29CF4BCD00B828EB /* Texts + Stretching.swift */,
+				B8B7442129C8EA4C000DA599 /* StretchSummary */,
+				B84EDD8529D8282D0033E475 /* Execute stretch */,
 			);
 			path = StretchPlayer;
 			sourceTree = "<group>";
