@@ -53,6 +53,7 @@ struct CustomAlert<IconView: View, CancelView: View, ActionView: View>: View {
                 .font(.Main.medium(size: 20))
             
             Text(alert.message)
+                .multilineTextAlignment(.center)
                 .font(.Main.regular(size: 18))
                 .padding(.horizontal, 8)
         }

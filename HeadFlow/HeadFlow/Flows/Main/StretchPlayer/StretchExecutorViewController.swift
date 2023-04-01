@@ -73,11 +73,11 @@ extension StretchExecutor {
         
         static func initStretchingSet() -> [StretchingExercise] {
             //TODO: save a global variable in the database and take it from there
-            let durationInSeconds = 1
-//            let stretchingSet = StretchType.allCases.map { stretchType in
-//                return StretchingExercise(type: stretchType, duration: durationInSeconds)
-//            }
-            let stretchingSet = [StretchingExercise(type: .tiltToRight, duration: 2)]
+            let durationInSeconds = 5
+            let stretchingSet = StretchType.allCases.map { stretchType in
+                return StretchingExercise(type: stretchType, duration: durationInSeconds)
+            }
+//            let stretchingSet = [StretchingExercise(type: .tiltToRight, duration: 2)]
             return stretchingSet
         }
         

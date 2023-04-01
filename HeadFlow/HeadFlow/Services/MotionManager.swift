@@ -18,7 +18,14 @@ class MotionManager: NSObject, ObservableObject {
 
     override init() {
         super.init()
+        checkConnection()
         startMotionUpdates()
+    }
+    
+    private func checkConnection() {
+        if !motionManager.isDeviceMotionActive {
+            airpodsAreDisconnected = true
+        }
     }
     
     private func startMotionUpdates() {
