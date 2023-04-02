@@ -9,12 +9,13 @@ import SwiftUI
 
 struct StretchExecutor {
     struct ContentView: View {
-        @StateObject private var motionManager: MotionManager = MotionManager()
         @ObservedObject var viewModel: ViewModel
+        @ObservedObject var motionManager: MotionManager
         
         var body: some View {
             VStack {
                 headerView
+                    .padding(.top, 30)
                 .padding(.bottom, 60)
                 
                 Text("\(viewModel.currentStretchingExecise.type.title)")
@@ -32,7 +33,7 @@ struct StretchExecutor {
                     viewModel.timeRemaining -= 1
                 } else {
                     viewModel.timer.upstream.connect().cancel()
-                    viewModel.navigationAction?(.nextExercise)
+                    viewModel.navigationAction?(.nextExercise(currentExercise: viewModel.currentStretchingExecise))
                 }
             })
             .onChange(of: motionManager.airpodsAreDisconnected, perform: { newValue in
@@ -100,6 +101,7 @@ struct StretchExecutor {
             .buttonStyle(.plain)
             .foregroundColor(.red)
             .font(.Main.light(size: 18))
+            .contentShape(Rectangle())
         }
         
         private var airpodsIcon: some View {
@@ -124,7 +126,7 @@ struct StretchExecutor {
 #if DEBUG
 struct StretchExecutorView_Previews: PreviewProvider {
     static var previews: some View {
-        StretchExecutor.ContentView(viewModel: .init(stretchingExecise: .mock1))
+        StretchExecutor.ContentView(viewModel: .init(stretchingExecise: .init(type: .rotateToRight, duration: 5)), motionManager: MotionManager())
     }
 }
 #endif

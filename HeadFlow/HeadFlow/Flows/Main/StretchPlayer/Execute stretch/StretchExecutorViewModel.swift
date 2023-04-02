@@ -67,6 +67,6 @@ extension StretchExecutor {
     
     enum NavigationType {
         case cancelStretching
-        case nextExercise
+        case nextExercise(currentExercise: StretchingExercise)
     }
 }
