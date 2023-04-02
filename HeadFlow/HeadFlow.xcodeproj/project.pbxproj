@@ -22,10 +22,12 @@
 		B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B129B1390B00853304 /* AuthenticationService.swift */; };
 		B82BA8B529B3B42700853304 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B429B3B42700853304 /* User.swift */; };
 		B82BA8B929B4DA5900853304 /* ToastDisplayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B829B4DA5900853304 /* ToastDisplayView.swift */; };
-		B8417AD129C3A2210053FD35 /* StretchExecutorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8417AD029C3A2210053FD35 /* StretchExecutorViewController.swift */; };
+		B8417AD129C3A2210053FD35 /* StretchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8417AD029C3A2210053FD35 /* StretchCoordinator.swift */; };
 		B8417AD429C3A2D00053FD35 /* StretchExecutorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8417AD329C3A2D00053FD35 /* StretchExecutorView.swift */; };
 		B8417AD629C3A3B70053FD35 /* StretchExecutorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8417AD529C3A3B70053FD35 /* StretchExecutorViewModel.swift */; };
 		B8417AD929C3B27E0053FD35 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8417AD829C3B27E0053FD35 /* Triangle.swift */; };
+		B84EDD8829D8888E0033E475 /* TiltRightDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84EDD8729D8888E0033E475 /* TiltRightDrawingView.swift */; };
+		B84EDD8A29D8889B0033E475 /* TiltLeftDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84EDD8929D8889B0033E475 /* TiltLeftDrawingView.swift */; };
 		B86297CF29A163BC0059280B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297CE29A163BC0059280B /* Buttons.swift */; };
 		B86297D129A1640B0059280B /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D029A1640B0059280B /* BorderedButton.swift */; };
 		B86297D329A164130059280B /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D229A164130059280B /* FilledButton.swift */; };
@@ -129,10 +131,12 @@
 		B82BA8B129B1390B00853304 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		B82BA8B429B3B42700853304 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		B82BA8B829B4DA5900853304 /* ToastDisplayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastDisplayView.swift; sourceTree = "<group>"; };
-		B8417AD029C3A2210053FD35 /* StretchExecutorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchExecutorViewController.swift; sourceTree = "<group>"; };
+		B8417AD029C3A2210053FD35 /* StretchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchCoordinator.swift; sourceTree = "<group>"; };
 		B8417AD329C3A2D00053FD35 /* StretchExecutorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchExecutorView.swift; sourceTree = "<group>"; };
 		B8417AD529C3A3B70053FD35 /* StretchExecutorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchExecutorViewModel.swift; sourceTree = "<group>"; };
 		B8417AD829C3B27E0053FD35 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
+		B84EDD8729D8888E0033E475 /* TiltRightDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltRightDrawingView.swift; sourceTree = "<group>"; };
+		B84EDD8929D8889B0033E475 /* TiltLeftDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltLeftDrawingView.swift; sourceTree = "<group>"; };
 		B86297CE29A163BC0059280B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B86297D029A1640B0059280B /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B86297D229A164130059280B /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -243,7 +247,6 @@
 				B8DA4C7229BD093900C6AD3B /* Texts + Home.swift */,
 				B8939CB529BFBB0E00EE2172 /* RobotHeadView.swift */,
 				B8AE0FFE29C25B5000044B58 /* DrawingViewUIKit.swift */,
-				B8AE100029C25FF200044B58 /* DrawingView.swift */,
 				B8F45E3D29C396D000FAB812 /* NotificationsViewModel.swift */,
 			);
 			path = Home;
@@ -317,6 +320,16 @@
 				B8417AD329C3A2D00053FD35 /* StretchExecutorView.swift */,
 			);
 			path = "Execute stretch";
+			sourceTree = "<group>";
+		};
+		B84EDD8629D8886D0033E475 /* DrawingViews */ = {
+			isa = PBXGroup;
+			children = (
+				B8AE100029C25FF200044B58 /* DrawingView.swift */,
+				B84EDD8929D8889B0033E475 /* TiltLeftDrawingView.swift */,
+				B84EDD8729D8888E0033E475 /* TiltRightDrawingView.swift */,
+			);
+			path = DrawingViews;
 			sourceTree = "<group>";
 		};
 		B86297CD29A162CC0059280B /* Buttons */ = {
@@ -579,7 +592,8 @@
 		B8F45E3529C393B400FAB812 /* StretchPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				B8417AD029C3A2210053FD35 /* StretchExecutorViewController.swift */,
+				B84EDD8629D8886D0033E475 /* DrawingViews */,
+				B8417AD029C3A2210053FD35 /* StretchCoordinator.swift */,
 				B88FA55A29CF4BCD00B828EB /* Texts + Stretching.swift */,
 				B8B7442129C8EA4C000DA599 /* StretchSummary */,
 				B84EDD8529D8282D0033E475 /* Execute stretch */,
@@ -720,7 +734,7 @@
 				B88FA56629CF8CB800B828EB /* Numbers + Utils.swift in Sources */,
 				B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */,
 				B8DA4C7729BD198C00C6AD3B /* UIApplication + Extensions.swift in Sources */,
-				B8417AD129C3A2210053FD35 /* StretchExecutorViewController.swift in Sources */,
+				B8417AD129C3A2210053FD35 /* StretchCoordinator.swift in Sources */,
 				B890AC1A29A3FC4100D30572 /* Concurrency + Utils.swift in Sources */,
 				B890AC2329A40E9600D30572 /* Collections + Utils.swift in Sources */,
 				B86297DB29A25F490059280B /* CarouselItem.swift in Sources */,
@@ -731,6 +745,7 @@
 				B8009DEA29AA139600A4EC3B /* Texts + SMSValidation.swift in Sources */,
 				B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */,
 				B82BA8B529B3B42700853304 /* User.swift in Sources */,
+				B84EDD8A29D8889B0033E475 /* TiltLeftDrawingView.swift in Sources */,
 				B8B7442329C8EA5F000DA599 /* StretchSummaryView.swift in Sources */,
 				B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */,
 				B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */,
@@ -759,6 +774,7 @@
 				B8A6DFC229A0150D005BA947 /* ContainerWithNavigationBar.swift in Sources */,
 				B86297CF29A163BC0059280B /* Buttons.swift in Sources */,
 				B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */,
+				B84EDD8829D8888E0033E475 /* TiltRightDrawingView.swift in Sources */,
 				B8009DF429AA624400A4EC3B /* Texts + Register.swift in Sources */,
 				B86793E22997C538006BFE29 /* AppDelegate.swift in Sources */,
 				B8009DF229AA543B00A4EC3B /* AuthenticationCompleteView.swift in Sources */,

@@ -16,19 +16,19 @@ enum StretchType: CaseIterable {
     var totalRangeOfMotion: Int {
         switch self {
         case .tiltToRight:
-            return 47
+            return 45
         case .tiltToLeft:
-            return 47
+            return 45
         case .tiltForward:
-            return 70
+            return 45
         case .tiltBackwards:
-            return 23
+            return 45
         case .rotateToRight:
             return 60
         case .rotateToLeft:
             return 60
             
-        //TODO: figure out how to compute these to
+        //TODO: figure out how to compute these two
         case .fullRotationRight:
             return 10
         case .fullRotationLeft:
@@ -42,7 +42,7 @@ enum StretchType: CaseIterable {
         case .tiltToLeft: return "Tilt head to left"
         case .tiltForward: return "Tilt head forward"
         case .tiltBackwards: return "Tilt head backwards"
-        case .rotateToRight: return "Look to the right right"
+        case .rotateToRight: return "Look to the right"
         case .rotateToLeft: return "Look to the left"
         case .fullRotationRight: return "Full circle to right"
         case .fullRotationLeft: return "Full circle to left"

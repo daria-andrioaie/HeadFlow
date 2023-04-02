@@ -17,6 +17,7 @@ class MainCoordinator: Coordinator {
         navVC.navigationBar.isHidden = true
         return navVC
     }()
+    private var stretchingCoordinator: StretchCoordinator?
     
     var rootViewController: UIViewController? {
         navigationController
@@ -51,8 +52,11 @@ class MainCoordinator: Coordinator {
     }
     
     func startStretchingCoordinator() {
-        let stretchExecutorVC = StretchExecutor.ViewController(dependencies: dependencies)
-        navigationController.pushViewController(stretchExecutorVC, animated: false)
+        let coordinator = StretchCoordinator(window: window, dependencies: dependencies) { [weak self] in
+            self?.start(connectionOptions: nil)
+        }
+        self.stretchingCoordinator = coordinator
+        coordinator.start(connectionOptions: nil)
     }
     
     func goToProfile() {
