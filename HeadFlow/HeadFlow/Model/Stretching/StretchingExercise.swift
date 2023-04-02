@@ -11,8 +11,10 @@ struct StretchingExercise {
     let type: StretchType
     let duration: Int
     var achievedRangeOfMotion: Double?
-}
-
-extension StretchingExercise {
-    static let mock1: Self = .init(type: .tiltToRight, duration: 5)
+    
+    init(type: StretchType, duration: Int, achievedRangeOfMotion: Double? = nil) {
+        self.type = type
+        self.duration = duration
+        self.achievedRangeOfMotion = achievedRangeOfMotion
+    }
 }

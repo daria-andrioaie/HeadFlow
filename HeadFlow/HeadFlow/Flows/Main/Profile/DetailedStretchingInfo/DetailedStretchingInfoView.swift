@@ -11,6 +11,16 @@ struct DetailedStretchingInfo {
     struct ContentView: View {
         @StateObject private var viewModel = ViewModel()
         let stretchingSession: StretchSummary.Model
+        let exerciseRangeDict: [StretchType : Double]
+        
+        init(stretchingSession: StretchSummary.Model) {
+            self.stretchingSession = stretchingSession
+            exerciseRangeDict = stretchingSession.exerciseData.reduce([StretchType :  Double]() , { partialResult, exercise in
+                var partialResult = partialResult
+                partialResult[exercise.type] = exercise.achievedRangeOfMotion
+                return partialResult
+            })
+        }
         
         var body: some View {
             VStack(spacing: 20) {
@@ -18,13 +28,15 @@ struct DetailedStretchingInfo {
                     .padding(.bottom, 30)
                 titleView
                     .padding(.bottom, 30)
-                comparisonsView
+                leftRightComparisonsView
+                    .padding(.bottom, 50)
+                flexionExtensionComparisonView
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         
-        var comparisonsView: some View {
+        var leftRightComparisonsView: some View {
             VStack(spacing: 15) {
                 HStack {
                     Text("Left")
@@ -37,14 +49,46 @@ struct DetailedStretchingInfo {
                 
                 horizontalDivider
                 
-                tableRow(title: "Lateral tilt", firstValue: 0.35, secondValue: 0.33)
+                tableRow(title: "Lateral tilt",
+                         firstValue: exerciseRangeDict[.tiltToLeft] ?? 0,
+                         secondValue: exerciseRangeDict[.tiltToRight] ?? 0)
                 
-                tableRow(title: "Lateral rotation", firstValue: 0.54, secondValue: 0.58)
+                tableRow(title: "Lateral rotation",
+                         firstValue: exerciseRangeDict[.rotateToLeft] ?? 0,
+                         secondValue: exerciseRangeDict[.rotateToRight] ?? 0)
                 
-                tableRow(title: "Full rotation", firstValue: 0.81, secondValue: 0.79)
-
+                tableRow(title: "Full rotation",
+                         firstValue: exerciseRangeDict[.fullRotationLeft] ?? 0,
+                         secondValue: exerciseRangeDict[.fullRotationRight] ?? 0)
             }
             .overlay(verticalDivider, alignment: .center)
+            .padding(.horizontal, 40)
+        }
+        
+        @ViewBuilder
+        var flexionExtensionComparisonView: some View {
+            let forwardFlexionValue = exerciseRangeDict[.tiltForward] ?? 0
+            let backwardsExtensionValue = exerciseRangeDict[.tiltBackwards] ?? 0
+            
+            HStack {
+                VStack(spacing: 12) {
+                    Text("Forward flexion")
+                        .foregroundColor(.danubeBlue)
+                        .font(.Main.semibold(size: 16))
+                    Text("\(forwardFlexionValue.toPercentage())%")
+                        .foregroundColor(.oceanBlue)
+                        .font(.Main.light(size: 18))
+                }
+                Spacer()
+                VStack(spacing: 12) {
+                    Text("Backward extension")
+                        .foregroundColor(.danubeBlue)
+                        .font(.Main.semibold(size: 16))
+                    Text("\(backwardsExtensionValue.toPercentage())%")
+                        .foregroundColor(.oceanBlue)
+                        .font(.Main.light(size: 18))
+                }
+            }
             .padding(.horizontal, 40)
         }
         

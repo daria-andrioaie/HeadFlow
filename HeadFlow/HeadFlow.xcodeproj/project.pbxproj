@@ -28,6 +28,7 @@
 		B8417AD929C3B27E0053FD35 /* Triangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8417AD829C3B27E0053FD35 /* Triangle.swift */; };
 		B84EDD8829D8888E0033E475 /* TiltRightDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84EDD8729D8888E0033E475 /* TiltRightDrawingView.swift */; };
 		B84EDD8A29D8889B0033E475 /* TiltLeftDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84EDD8929D8889B0033E475 /* TiltLeftDrawingView.swift */; };
+		B84EDD8C29D9AE660033E475 /* StretchingExercise + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B84EDD8B29D9AE660033E475 /* StretchingExercise + Extensions.swift */; };
 		B86297CF29A163BC0059280B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297CE29A163BC0059280B /* Buttons.swift */; };
 		B86297D129A1640B0059280B /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D029A1640B0059280B /* BorderedButton.swift */; };
 		B86297D329A164130059280B /* FilledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86297D229A164130059280B /* FilledButton.swift */; };
@@ -137,6 +138,7 @@
 		B8417AD829C3B27E0053FD35 /* Triangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Triangle.swift; sourceTree = "<group>"; };
 		B84EDD8729D8888E0033E475 /* TiltRightDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltRightDrawingView.swift; sourceTree = "<group>"; };
 		B84EDD8929D8889B0033E475 /* TiltLeftDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltLeftDrawingView.swift; sourceTree = "<group>"; };
+		B84EDD8B29D9AE660033E475 /* StretchingExercise + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StretchingExercise + Extensions.swift"; sourceTree = "<group>"; };
 		B86297CE29A163BC0059280B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		B86297D029A1640B0059280B /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		B86297D229A164130059280B /* FilledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilledButton.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 			isa = PBXGroup;
 			children = (
 				B8F45E2C29C38EE400FAB812 /* StretchingExercise.swift */,
+				B84EDD8B29D9AE660033E475 /* StretchingExercise + Extensions.swift */,
 				B8F45E2F29C38F1300FAB812 /* StretchType.swift */,
 				B8F3C7B029CE4EDC0099CA6E /* StretchingSummary.swift */,
 			);
@@ -733,6 +736,7 @@
 				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
 				B88FA56629CF8CB800B828EB /* Numbers + Utils.swift in Sources */,
 				B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */,
+				B84EDD8C29D9AE660033E475 /* StretchingExercise + Extensions.swift in Sources */,
 				B8DA4C7729BD198C00C6AD3B /* UIApplication + Extensions.swift in Sources */,
 				B8417AD129C3A2210053FD35 /* StretchCoordinator.swift in Sources */,
 				B890AC1A29A3FC4100D30572 /* Concurrency + Utils.swift in Sources */,

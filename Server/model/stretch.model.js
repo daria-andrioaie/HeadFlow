@@ -15,6 +15,11 @@ const stretchSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    exerciseData: [{
+      exerciseType: String,
+      rangeOfMotion: Number,
+      duration: Number
+    }], 
     date: {
         type: Number,
         required: true,

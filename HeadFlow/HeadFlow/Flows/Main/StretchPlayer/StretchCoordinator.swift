@@ -80,7 +80,7 @@ class StretchCoordinator: Coordinator {
         }
         
         let rangeOfMotion = sumOfRanges / Double(stretchingSet.count)
-        let summary = StretchSummary.Model(averageRangeOfMotion: rangeOfMotion, duration: totalDuration, date: Date.now.millisecondsSince1970)
+        let summary = StretchSummary.Model(averageRangeOfMotion: rangeOfMotion, duration: totalDuration, exerciseData: stretchingSet, date: Date.now.millisecondsSince1970)
         
         let viewModel = StretchSummary.ViewModel(summary: summary, stretchingService: dependencies.stretchingService, finishAction: { [weak self] in
             self?.finishAction()
@@ -92,7 +92,9 @@ class StretchCoordinator: Coordinator {
     static func initStretchingSet() -> [StretchingExercise] {
         //TODO: save a global variable in the database and take it from there
         let durationInSeconds = 5
-        let stretchingSet = StretchType.allCases.map { stretchType in
+        let stretchingSet = StretchType.allCases.filter({
+            $0 != .unknown
+        }).map { stretchType in
             return StretchingExercise(type: stretchType, duration: durationInSeconds)
         }
 //            let stretchingSet = [StretchingExercise(type: .tiltToRight, duration: 2)]
