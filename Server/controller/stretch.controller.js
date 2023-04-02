@@ -6,8 +6,8 @@ const saveStretchSummary = async (req, res) => {
     const bearerHeader = req.headers['authorization'];
   try {
     const userId = await authorizationService.authorizeToken(bearerHeader);
-    const { averageRangeOfMotion, duration, date } = req.body;
-    const savedSummary = await stretchService.saveStretchSummary(userId, averageRangeOfMotion, duration, date);
+    const { averageRangeOfMotion, duration, exerciseData, date } = req.body;
+    const savedSummary = await stretchService.saveStretchSummary(userId, averageRangeOfMotion, duration, exerciseData, date);
     res.status(200).send({ success: true, message: "Saved successfully!" });
   } catch (error) {
     console.log(error.message);

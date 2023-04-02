@@ -48,6 +48,8 @@ struct DrawingView: View {
             Canvas { context, size in
                 
             }
+        case .unknown:
+            EmptyView()
         }
     }
 }
