@@ -24,7 +24,7 @@ struct StretchExecutor {
                     .padding(.bottom, 20)
                 
                 DrawingView(exercise: $viewModel.currentStretchingExecise, motionManager: motionManager, isPaused: viewModel.timerState != .running)
-                    .padding(.horizontal, 100)
+                    .padding(.all, 100)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .fillBackground()

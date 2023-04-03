@@ -91,13 +91,12 @@ class StretchCoordinator: Coordinator {
     
     static func initStretchingSet() -> [StretchingExercise] {
         //TODO: save a global variable in the database and take it from there
-        let durationInSeconds = 5
+        let durationInSeconds = 3
         let stretchingSet = StretchType.allCases.filter({
             $0 != .unknown
         }).map { stretchType in
             return StretchingExercise(type: stretchType, duration: durationInSeconds)
         }
-//            let stretchingSet = [StretchingExercise(type: .tiltToRight, duration: 2)]
         return stretchingSet
     }
 }
