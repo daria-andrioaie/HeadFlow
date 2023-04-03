@@ -25,21 +25,14 @@ struct DrawingView: View {
         case .tiltToLeft:
             TiltLeftDrawingView(exercise: $exercise, motionManager: motionManager, isPaused: isPaused)
         case .rotateToRight:
-            Canvas { context, size in
-                
-            }
+            RotateRightDrawingView(exercise: $exercise, motionManager: motionManager, isPaused: isPaused)
         case .rotateToLeft:
-            Canvas { context, size in
-                
-            }
+            RotateLeftDrawingView(exercise: $exercise, motionManager: motionManager, isPaused: isPaused)
         case .tiltForward:
-            Canvas { context, size in
-                
-            }
+            TiltForwardDrawingView(exercise: $exercise, motionManager: motionManager, isPaused: isPaused)
         case .tiltBackwards:
-            Canvas { context, size in
-                
-            }
+            TiltBackwardsDrawingView(exercise: $exercise, motionManager: motionManager, isPaused: isPaused)
+
         case .fullRotationRight:
             Canvas { context, size in
                 
