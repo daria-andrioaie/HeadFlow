@@ -10,7 +10,8 @@ import UIKit
 
 class RootCoordinator: Coordinator {
     private var authenticationCoordinator: AuthenticationCoordinator?
-    private var mainCoordinator: MainCoordinator?
+    private var patientMainCoordinator: PatientMainCoordinator?
+    private var therapistMainCoordinator: TherapistMainCoordinator?
     
     private let navigationController: UINavigationController
     private let window: UIWindow
@@ -32,7 +33,7 @@ class RootCoordinator: Coordinator {
     func start(connectionOptions: UIScene.ConnectionOptions?) {
         if Session.shared.isValid {
             print(Session.shared.accessToken)
-            showMainCoordinator()
+            showPatientMainCoordinator()
         } else {
             showAuthenticationCoordinator()
         }
@@ -55,19 +56,33 @@ class RootCoordinator: Coordinator {
     }
     
     func showAuthenticationCoordinator() {
-        let coordinator = AuthenticationCoordinator(window: window, dependencies: dependencyContainer) { [weak self] in
-            self?.showMainCoordinator()
+        let coordinator = AuthenticationCoordinator(window: window, dependencies: dependencyContainer) { [weak self] userType in
+            switch userType {
+            case .patient:
+                self?.showPatientMainCoordinator()
+            case .therapist:
+                self?.showTherapistMainCoordinator()
+            }
         }
         self.authenticationCoordinator = coordinator
         coordinator.start(connectionOptions: nil)
     }
     
-    func showMainCoordinator() {
-        let coordinator = MainCoordinator(window: window, dependencies: dependencyContainer) { [weak self] in
+    func showPatientMainCoordinator() {
+        let coordinator = PatientMainCoordinator(window: window, dependencies: dependencyContainer) { [weak self] in
             Session.shared.accessToken = nil
             self?.showAuthenticationCoordinator()
         }
-        self.mainCoordinator = coordinator
+        self.patientMainCoordinator = coordinator
+        coordinator.start(connectionOptions: nil)
+    }
+    
+    func showTherapistMainCoordinator() {
+        let coordinator = TherapistMainCoordinator(window: window, dependencies: dependencyContainer) { [weak self] in
+            Session.shared.accessToken = nil
+            self?.showAuthenticationCoordinator()
+        }
+        self.therapistMainCoordinator = coordinator
         coordinator.start(connectionOptions: nil)
     }
 }

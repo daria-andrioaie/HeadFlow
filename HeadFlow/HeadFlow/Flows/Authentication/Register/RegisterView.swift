@@ -19,9 +19,9 @@ struct Register {
                     greetingView
                         .padding(.top, 20)
                         .padding(.bottom, 60)
-                    nameInputField
+                    inputFields
                         .padding(.bottom, 30)
-
+                    
                     Spacer()
                     nextButton
                         .padding(.bottom, 20)
@@ -36,16 +36,68 @@ struct Register {
                 Text(Texts.Register.getToKnowYouLabel)
                     .font(.Main.bold(size: 26))
                     .foregroundColor(.danubeBlue)
-                Text(Texts.Register.nameQuestion)
-                    .font(.Main.regular(size: 18))
-                    .foregroundColor(.danubeBlue)
+                //                Text(Texts.Register.nameQuestion)
+                //                    .font(.Main.regular(size: 18))
+                //                    .foregroundColor(.danubeBlue)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         
-        var nameInputField: some View {
-            CustomTextField(inputText: $viewModel.nameInput, placeholder: Texts.Register.nameInputPlaceholder)
-                .font(.Main.light(size: 16))
+        var inputFields: some View {
+            VStack {
+                firstNameInputField
+                lastNameInputField
+                emailInputField
+                    .padding(.bottom, 40)
+                registerAsTherapistCheckbox
+            }
+        }
+        
+        var firstNameInputField: some View {
+            HStack {
+                Text("First name")
+                    .font(.Main.regular(size: 18))
+                    .foregroundColor(.danubeBlue)
+                Spacer()
+                CustomTextField(inputText: $viewModel.firstNameInput, placeholder: Texts.Register.firstNameInputPlaceholder)
+                    .font(.Main.light(size: 16))
+                    .frame(width: UIScreen.main.bounds.width * 2/3)
+            }
+        }
+        
+        var lastNameInputField: some View {
+            HStack {
+                Text("Last name")
+                    .font(.Main.regular(size: 18))
+                    .foregroundColor(.danubeBlue)
+                Spacer()
+                CustomTextField(inputText: $viewModel.lastNameInput, placeholder: Texts.Register.lastNameInputPlaceholder)
+                    .font(.Main.light(size: 16))
+                    .frame(width: UIScreen.main.bounds.width * 2/3)
+
+            }
+        }
+        
+        var emailInputField: some View {
+            HStack {
+                Text("Email")
+                    .font(.Main.regular(size: 18))
+                    .foregroundColor(.danubeBlue)
+                Spacer()
+                CustomTextField(inputText: $viewModel.emailInput, placeholder: Texts.Register.emailInputPlaceholder)
+                    .font(.Main.light(size: 16))
+                    .frame(width: UIScreen.main.bounds.width * 2/3)
+            }
+        }
+        
+        var registerAsTherapistCheckbox: some View {
+            HStack {
+                Text(Texts.Register.registerAsTherapist)
+                    .font(.Main.regular(size: 18))
+                    .foregroundColor(.danubeBlue)
+                Buttons.Checkbox(isChecked: viewModel.userTypeBinding)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         
         var nextButton: some View {

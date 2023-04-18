@@ -16,7 +16,7 @@ class AuthenticationCoordinator: Coordinator {
         navVC.navigationBar.isHidden = true
         return navVC
     }()
-    var onEndAuthenticationFlow: () -> Void
+    var onEndAuthenticationFlow: (UserType) -> Void
     
     var rootViewController: UIViewController? {
         navigationController
@@ -25,7 +25,7 @@ class AuthenticationCoordinator: Coordinator {
     
     init(window: UIWindow,
          dependencies: DependencyContainer,
-         onEndAuthenticationFlow: @escaping () -> Void) {
+         onEndAuthenticationFlow: @escaping (UserType) -> Void) {
         self.window = window
         self.dependencies = dependencies
         self.onEndAuthenticationFlow = onEndAuthenticationFlow
@@ -81,8 +81,8 @@ class AuthenticationCoordinator: Coordinator {
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
-            case .next(let name):
-                self?.showPhoneNumberInput(screenType: .signup(name))
+            case .next(let registrationInfo):
+                self?.showPhoneNumberInput(screenType: .signup(registrationInfo))
             }
         }
         navigationController.pushHostingController(rootView: Register.ContentView(viewModel: registerVM), animated: animated)
@@ -90,7 +90,10 @@ class AuthenticationCoordinator: Coordinator {
     
     func showAuthenticationCompleted(animated: Bool = false) {
         navigationController.pushHostingController(rootView: AuthenticationCompleteView(afterAppear: { [weak self] in
-            self?.onEndAuthenticationFlow()
+            guard let userType = Session.shared.currentUser?.type else {
+                return
+            }
+            self?.onEndAuthenticationFlow(userType)
         }))
     }
 }
