@@ -46,7 +46,7 @@ class NotificationsViewModel: ObservableObject {
             switch settings.authorizationStatus {
             case .notDetermined:
                 notificationsCenter.requestAuthorization(options: [.alert, .sound]) { granted, error in
-                    guard let currentUserId = Session.shared.currentUserID else {
+                    guard let currentUserId = Session.shared.currentUser?.id else {
                         return
                     }
                     
@@ -61,7 +61,7 @@ class NotificationsViewModel: ObservableObject {
                     }
                 }
             case .denied:
-                guard let currentUserId = Session.shared.currentUserID else {
+                guard let currentUserId = Session.shared.currentUser?.id else {
                     return
                 }
                 
@@ -83,7 +83,7 @@ class NotificationsViewModel: ObservableObject {
                     }
                 }
             case .authorized:
-                guard let currentUserId = Session.shared.currentUserID else {
+                guard let currentUserId = Session.shared.currentUser?.id else {
                     return
                 }
                 

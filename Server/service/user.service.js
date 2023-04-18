@@ -8,13 +8,25 @@ const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const otpService = require("../service/otp.service");
 const authorizationService = require("../service/authorization.service");
 
-const signUp = async ({ username, phoneNumber }) => {
-  if (typeof username === "undefined") {
-    throw new Error("Username not provided.");
+const signUp = async ({ firstName, lastName, email, phoneNumber, userType }) => {
+  if (typeof firstName === "undefined") {
+    throw new Error("First name not provided.");
+  }
+
+  if (typeof lastName === "undefined") {
+    throw new Error("Last name not provided.");
+  }
+
+  if (typeof email === "undefined") {
+    throw new Error("Email not provided.");
   }
 
   if (typeof phoneNumber === "undefined") {
     throw new Error("Phone number not provided.");
+  }
+  console.log(userType)
+  if (typeof userType === "undefined" || (userType !== "patient" && userType !== "therapist")) {
+    throw new Error("User type not provided or not valid.");
   }
 
   var existingUser = await UserModel.findOne({ phoneNumber: phoneNumber });
@@ -22,19 +34,26 @@ const signUp = async ({ username, phoneNumber }) => {
     throw new Error("An account already exists for the given phone number.");
   }
 
-  existingUser = await UserModel.findOne({ username: username });
+  existingUser = await UserModel.findOne({ email: email });
   if (existingUser) {
-    throw new Error("An account with the given username already exists.");
+    throw new Error("An account already exists for the given email.");
+  }
+
+  if(userType === "therapist" && firstName !== "Daria") {
+    throw new Error("Sorry! We couldn't validate your medical license.");
   }
 
   const user = new UserModel({
-    username,
+    firstName,
+    lastName,
+    email,
     phoneNumber,
+    userType: userType,
     status: "PENDING",
   });
 
   const savedUser = await user.save();
-  const otpResponse = await otpService.sendOTP(username, phoneNumber);
+  const otpResponse = await otpService.sendOTP(firstName, phoneNumber);
 
   return savedUser;
 };
@@ -50,7 +69,7 @@ const login = async ({ phoneNumber }) => {
   }
 
   const otpResponse = await otpService.sendOTP(
-    existingUser.username,
+    existingUser.firstName,
     existingUser.phoneNumber
   );
 
@@ -70,12 +89,16 @@ const socialSignIn = async (socialToken) => {
   const payload = ticket.getPayload();
   const userEmail = payload.email;
 
-  let existingUser = await UserModel.findOne({ username: userEmail });
+  let existingUser = await UserModel.findOne({ email: userEmail });
   var dbUser = undefined;
   if (!existingUser) {
     const user = new UserModel({
-      username: userEmail,
+      firstName: payload.given_name,
+      lastName: payload.family_name,
+      phoneNumber: payload.phoneNumber,
+      email: userEmail,
       status: "VERIFIED",
+      userType: "patient"
     });
 
     dbUser = await user.save();

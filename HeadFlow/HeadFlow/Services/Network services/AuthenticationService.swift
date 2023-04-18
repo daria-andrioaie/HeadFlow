@@ -12,7 +12,7 @@ import RealmSwift
 protocol AuthenticationServiceProtocol {
     var notificationsService: NotificationsServiceProtocol { get }
     
-    func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
+    func register(firstName: String, lastName: String, email: String, phoneNumber: String, userType: UserType, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
     func login(phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
 
@@ -33,8 +33,8 @@ class AuthenticationService: AuthenticationServiceProtocol {
         self.notificationsService = notificationsService
     }
     
-    func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
-        let parameters = ["username": username, "phoneNumber": phoneNumber]
+    func register(firstName: String, lastName: String, email: String, phoneNumber: String, userType: UserType, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
+        let parameters = ["firstName": firstName, "lastName": lastName, "email": email, "phoneNumber": phoneNumber, "userType": userType.rawValue]
         
         AF.request(path.rawValue + "/user/signup", method: .post, parameters: parameters, encoder: .json)
             .responseDecodable(of: AuthenticationResponse.self) { response in
@@ -83,7 +83,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
                 case .success(let verificationResponse):
                     if let token = verificationResponse.token {
                         let user = verificationResponse.user
-                        Session.shared.saveCurrentUser(userId: user.id, token: token)
+                        Session.shared.saveCurrentUser(user: user, token: token)
                         
                         self.notificationsService.saveNotificationsStatusOfUser(userId: user.id, notificationsStatusPresented: false)
                         
@@ -168,7 +168,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
                 case .success(let authenticationResponse):
                     if let token = authenticationResponse.token {
                         let user = authenticationResponse.user
-                        Session.shared.saveCurrentUser(userId: user.id, token: token)
+                        Session.shared.saveCurrentUser(user: user, token: token)
                         
                         self.notificationsService.saveNotificationsStatusOfUser(userId: user.id, notificationsStatusPresented: false)
                         
@@ -192,7 +192,7 @@ class AuthenticationService: AuthenticationServiceProtocol {
 class MockAuthenticationService: AuthenticationServiceProtocol {
     var notificationsService: NotificationsServiceProtocol = MockNotificationsService()
     
-    func register(username: String, phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
+    func register(firstName: String, lastName: String, email: String, phoneNumber: String, userType: UserType, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         
     }
     

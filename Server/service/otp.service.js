@@ -15,7 +15,7 @@ const courier = CourierClient({
   authorizationToken: process.env.COURIER_TOKEN,
 });
 
-const sendOTP = async (username, phoneNumber) => {
+const sendOTP = async (firstName, phoneNumber) => {
   const otp = otpGenerator.generate(4, {
     lowerCaseAlphabets: false,
     upperCaseAlphabets: false,
@@ -25,7 +25,7 @@ const sendOTP = async (username, phoneNumber) => {
   await addNewOTP(otp, 15, phoneNumber, "PENDING");
   await sendVerificationMessage(
     {
-      username,
+      firstName,
       otp,
     },
     phoneNumber
@@ -40,7 +40,7 @@ const reSendOTP = async (phoneNumber) => {
   await rejectPendingOTP(phoneNumber);
   const user = await UserModel.findOne({ phoneNumber: phoneNumber });
 
-  return await sendOTP(user.username, phoneNumber);
+  return await sendOTP(user.firstName, phoneNumber);
 };
 
 const verifyOTP = async (phoneNumber, otp) => {
@@ -98,7 +98,7 @@ const sendVerificationMessage = (params, phoneNumber) => {
       },
       content: {
         title: "HeadFlow Verification",
-        body: "Hi {{username}},\nYour verification code for HeadFlow is {{otp}}.",
+        body: "Hi {{firstName}},\nYour verification code for HeadFlow is {{otp}}.",
       },
       routing: {
         method: "single",

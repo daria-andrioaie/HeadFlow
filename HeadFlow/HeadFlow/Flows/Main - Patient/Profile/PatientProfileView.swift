@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct Profile {
+struct PatientProfile {
     struct ContentView: View {
         @ObservedObject var viewModel: ViewModel
         
@@ -67,9 +67,9 @@ struct Profile {
 }
 
 #if DEBUG
-struct SettingsView_Previews: PreviewProvider {
+struct PatientProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        Profile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), stretchingService: MockStretchingService(), navigationAction: { _ in }))
+        PatientProfile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), stretchingService: MockStretchingService(), navigationAction: { _ in }))
     }
 }
 #endif

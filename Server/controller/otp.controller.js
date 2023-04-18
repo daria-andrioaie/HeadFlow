@@ -2,8 +2,8 @@ const otpService = require("../service/otp.service");
 
 const sendOTP = async (req, res) => {
   try {
-    const { username, phoneNumber } = req.body;
-    const {success, message} = await otpService.sendOTP(username, phoneNumber);
+    const { firstName, phoneNumber } = req.body;
+    const {success, message} = await otpService.sendOTP(firstName, phoneNumber);
     res.status(200).send({ success, message });
   } catch (error) {
     console.log(error.message);

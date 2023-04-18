@@ -45,7 +45,7 @@ extension PhoneNumberInput {
         var greetingsLabel: String {
             switch screenType {
             case .login: return Texts.PhoneNumberInput.loginGreetingsLabel
-            case .signup(let name): return Texts.PhoneNumberInput.signupGreetingsLabel(name: name)
+            case .signup(let registrationInfo): return Texts.PhoneNumberInput.signupGreetingsLabel(name: registrationInfo.firstName)
             }
         }
         
@@ -72,8 +72,8 @@ extension PhoneNumberInput {
             //TODO: send sms code
             Task(priority: .userInitiated) {
                 switch screenType {
-                case .signup(let username):
-                    await authenticationService.register(username: username, phoneNumber: phoneNumber, onRequestCompleted: { [unowned self] result in
+                case .signup(let registrationInfo):
+                    await authenticationService.register(firstName: registrationInfo.firstName, lastName: registrationInfo.lastName, email: registrationInfo.email, phoneNumber: phoneNumber, userType: registrationInfo.userType, onRequestCompleted: { [unowned self] result in
                         switch result {
                         case .success(_):
                             self.navigationAction(.goToSMSValidation(self.phoneNumber))
@@ -157,6 +157,6 @@ extension PhoneNumberInput {
     
     enum ScreenType {
         case login
-        case signup(String)
+        case signup(RegistrationInfo)
     }
 }

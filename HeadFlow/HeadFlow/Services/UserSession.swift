@@ -14,8 +14,8 @@ class Session {
     @UserDefault(key: StorageKeys.accessToken, defaultValue: nil)
     var accessToken: String?
     
-    @UserDefault(key: StorageKeys.currentUserID, defaultValue: nil)
-    var currentUserID: String?
+    @UserDefault(key: StorageKeys.currentUser, defaultValue: nil)
+    var currentUser: User?
     
     @UserDefault(key: StorageKeys.notificationsEnabled, defaultValue: nil)
     var notificationsEnabled: Bool?
@@ -26,8 +26,8 @@ class Session {
         return accessToken?.isEmpty == false
     }
     
-    func saveCurrentUser(userId: String, token: String) {
-        currentUserID = userId
+    func saveCurrentUser(user: User, token: String) {
+        currentUser = user
         accessToken = token
     }
     
@@ -39,14 +39,14 @@ class Session {
     
     func removeSessionData() {
         accessToken = nil
-        currentUserID = nil
+        currentUser = nil
     }
 }
 
 fileprivate extension Session {
     struct StorageKeys {
         static let accessToken = "accessToken"
-        static let currentUserID = "currentUserID"
+        static let currentUser = "currentUser"
         static let notificationsEnabled = "notificationsEnabled"
     }
 }

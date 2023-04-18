@@ -10,7 +10,7 @@ import UIKit
 import SwiftUI
 import UserNotifications
 
-class MainCoordinator: Coordinator {
+class PatientMainCoordinator: Coordinator {
     private let window: UIWindow
     private var navigationController: UINavigationController = {
         let navVC = UINavigationController()
@@ -40,7 +40,7 @@ class MainCoordinator: Coordinator {
     }
     
     func showHomeScreen() {
-        let homeScreenVM = HomeViewModel { [weak self]  navigationType in
+        let homeScreenVM = PatientHome.ViewModel { [weak self]  navigationType in
             switch navigationType {
             case .startStretchCoordinator:
                 self?.startStretchingCoordinator()
@@ -48,7 +48,7 @@ class MainCoordinator: Coordinator {
                 self?.goToProfile()
             }
         }
-        navigationController.pushHostingController(rootView: Home.ContentView(viewModel: homeScreenVM))
+        navigationController.pushHostingController(rootView: PatientHome.ContentView(viewModel: homeScreenVM))
     }
     
     func startStretchingCoordinator() {
@@ -60,7 +60,7 @@ class MainCoordinator: Coordinator {
     }
     
     func goToProfile() {
-        let profileVM = Profile.ViewModel(authenticationService: dependencies.authenticationService, stretchingService: dependencies.stretchingService) { [weak self] navigationType in
+        let profileVM = PatientProfile.ViewModel(authenticationService: dependencies.authenticationService, stretchingService: dependencies.stretchingService) { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
@@ -70,7 +70,7 @@ class MainCoordinator: Coordinator {
                 self?.onLogout()
             }
         }
-        navigationController.pushHostingController(rootView: Profile.ContentView(viewModel: profileVM), animated: true)
+        navigationController.pushHostingController(rootView: PatientProfile.ContentView(viewModel: profileVM), animated: true)
     }
     
     func goToStretchingHistory() {

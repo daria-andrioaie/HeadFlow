@@ -7,17 +7,17 @@
 
 import Foundation
 
-    class HomeViewModel: ObservableObject {
+extension PatientHome {
+    class ViewModel: ObservableObject {
+        let navigationAction: (PatientHome.NavigationType) -> Void
         
-        let navigationAction: (Home.NavigationType) -> Void
-        
-        init(navigationAction: @escaping (Home.NavigationType) -> Void) {
+        init(navigationAction: @escaping (PatientHome.NavigationType) -> Void) {
             self.navigationAction = navigationAction
         }
-    
     }
+}
     
-extension Home {
+extension PatientHome {
     enum NavigationType {
         case startStretchCoordinator
         case goToProfile

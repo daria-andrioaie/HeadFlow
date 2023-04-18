@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		B8009DEA29AA139600A4EC3B /* Texts + SMSValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DE929AA139600A4EC3B /* Texts + SMSValidation.swift */; };
-		B8009DEC29AA4F7700A4EC3B /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DEB29AA4F7700A4EC3B /* MainCoordinator.swift */; };
-		B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DEE29AA507500A4EC3B /* HomeView.swift */; };
+		B8009DEC29AA4F7700A4EC3B /* PatientMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DEB29AA4F7700A4EC3B /* PatientMainCoordinator.swift */; };
+		B8009DEF29AA507500A4EC3B /* PatientHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DEE29AA507500A4EC3B /* PatientHomeView.swift */; };
 		B8009DF229AA543B00A4EC3B /* AuthenticationCompleteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF129AA543B00A4EC3B /* AuthenticationCompleteView.swift */; };
 		B8009DF429AA624400A4EC3B /* Texts + Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF329AA624400A4EC3B /* Texts + Register.swift */; };
 		B8009DF629AAAF2600A4EC3B /* AnimatedCheckmarkView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */; };
@@ -93,7 +93,7 @@
 		B8AE0FFF29C25B5000044B58 /* DrawingViewUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE0FFE29C25B5000044B58 /* DrawingViewUIKit.swift */; };
 		B8AE100129C25FF200044B58 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE100029C25FF200044B58 /* DrawingView.swift */; };
 		B8B7442329C8EA5F000DA599 /* StretchSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B7442229C8EA5F000DA599 /* StretchSummaryView.swift */; };
-		B8BB787129B52DD8001A4B71 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB787029B52DD8001A4B71 /* HomeViewModel.swift */; };
+		B8BB787129B52DD8001A4B71 /* PatientHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB787029B52DD8001A4B71 /* PatientHomeViewModel.swift */; };
 		B8CFB37529D05E490063271B /* PreviewProvider + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFB37429D05E490063271B /* PreviewProvider + Extensions.swift */; };
 		B8CFB37729D062850063271B /* SizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFB37629D062850063271B /* SizeReader.swift */; };
 		B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */; };
@@ -107,6 +107,13 @@
 		B8DE006E29B90A9C0099F374 /* NotificationsPermissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8DE006D29B90A9C0099F374 /* NotificationsPermissions.swift */; };
 		B8E42E5129DB42A100459A48 /* TiltForwardDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E42E5029DB42A100459A48 /* TiltForwardDrawingView.swift */; };
 		B8E42E5329DB452200459A48 /* TiltBackwardsDrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E42E5229DB452200459A48 /* TiltBackwardsDrawingView.swift */; };
+		B8E6837129EEEF2B00BAA32C /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6837029EEEF2B00BAA32C /* Enums.swift */; };
+		B8E6837329EF0A4F00BAA32C /* CheckBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6837229EF0A4F00BAA32C /* CheckBox.swift */; };
+		B8E6837629EF19A000BAA32C /* TherapistMainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6837529EF19A000BAA32C /* TherapistMainCoordinator.swift */; };
+		B8E6837929EF1B9C00BAA32C /* TherapistHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6837829EF1B9C00BAA32C /* TherapistHomeView.swift */; };
+		B8E6837B29EF1BFF00BAA32C /* TherapistHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6837A29EF1BFF00BAA32C /* TherapistHomeViewModel.swift */; };
+		B8E6837E29EF1D4F00BAA32C /* TherapistProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6837D29EF1D4F00BAA32C /* TherapistProfileView.swift */; };
+		B8E6838029EF1D9100BAA32C /* TherapistProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8E6837F29EF1D9100BAA32C /* TherapistProfileViewModel.swift */; };
 		B8EA843229990A1D009D83E7 /* AuthenticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */; };
 		B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */; };
 		B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */; };
@@ -116,15 +123,15 @@
 		B8F3C7B129CE4EDC0099CA6E /* StretchingSummary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F3C7B029CE4EDC0099CA6E /* StretchingSummary.swift */; };
 		B8F45E2D29C38EE400FAB812 /* StretchingExercise.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E2C29C38EE400FAB812 /* StretchingExercise.swift */; };
 		B8F45E3029C38F1300FAB812 /* StretchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E2F29C38F1300FAB812 /* StretchType.swift */; };
-		B8F45E3829C394D300FAB812 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E3729C394D300FAB812 /* ProfileViewModel.swift */; };
-		B8F45E3A29C394DF00FAB812 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E3929C394DF00FAB812 /* ProfileView.swift */; };
+		B8F45E3829C394D300FAB812 /* PatientProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E3729C394D300FAB812 /* PatientProfileViewModel.swift */; };
+		B8F45E3A29C394DF00FAB812 /* PatientProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E3929C394DF00FAB812 /* PatientProfileView.swift */; };
 		B8F45E3E29C396D000FAB812 /* NotificationsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F45E3D29C396D000FAB812 /* NotificationsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B8009DE929AA139600A4EC3B /* Texts + SMSValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + SMSValidation.swift"; sourceTree = "<group>"; };
-		B8009DEB29AA4F7700A4EC3B /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
-		B8009DEE29AA507500A4EC3B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		B8009DEB29AA4F7700A4EC3B /* PatientMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientMainCoordinator.swift; sourceTree = "<group>"; };
+		B8009DEE29AA507500A4EC3B /* PatientHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientHomeView.swift; sourceTree = "<group>"; };
 		B8009DF129AA543B00A4EC3B /* AuthenticationCompleteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCompleteView.swift; sourceTree = "<group>"; };
 		B8009DF329AA624400A4EC3B /* Texts + Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + Register.swift"; sourceTree = "<group>"; };
 		B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedCheckmarkView.swift; sourceTree = "<group>"; };
@@ -205,7 +212,7 @@
 		B8AE0FFE29C25B5000044B58 /* DrawingViewUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingViewUIKit.swift; sourceTree = "<group>"; };
 		B8AE100029C25FF200044B58 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		B8B7442229C8EA5F000DA599 /* StretchSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchSummaryView.swift; sourceTree = "<group>"; };
-		B8BB787029B52DD8001A4B71 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		B8BB787029B52DD8001A4B71 /* PatientHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientHomeViewModel.swift; sourceTree = "<group>"; };
 		B8CFB37429D05E490063271B /* PreviewProvider + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider + Extensions.swift"; sourceTree = "<group>"; };
 		B8CFB37629D062850063271B /* SizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeReader.swift; sourceTree = "<group>"; };
 		B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extensions.swift"; sourceTree = "<group>"; };
@@ -218,6 +225,13 @@
 		B8DE006D29B90A9C0099F374 /* NotificationsPermissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsPermissions.swift; sourceTree = "<group>"; };
 		B8E42E5029DB42A100459A48 /* TiltForwardDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltForwardDrawingView.swift; sourceTree = "<group>"; };
 		B8E42E5229DB452200459A48 /* TiltBackwardsDrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TiltBackwardsDrawingView.swift; sourceTree = "<group>"; };
+		B8E6837029EEEF2B00BAA32C /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		B8E6837229EF0A4F00BAA32C /* CheckBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckBox.swift; sourceTree = "<group>"; };
+		B8E6837529EF19A000BAA32C /* TherapistMainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistMainCoordinator.swift; sourceTree = "<group>"; };
+		B8E6837829EF1B9C00BAA32C /* TherapistHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistHomeView.swift; sourceTree = "<group>"; };
+		B8E6837A29EF1BFF00BAA32C /* TherapistHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistHomeViewModel.swift; sourceTree = "<group>"; };
+		B8E6837D29EF1D4F00BAA32C /* TherapistProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistProfileView.swift; sourceTree = "<group>"; };
+		B8E6837F29EF1D9100BAA32C /* TherapistProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistProfileViewModel.swift; sourceTree = "<group>"; };
 		B8EA843129990A1D009D83E7 /* AuthenticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationCoordinator.swift; sourceTree = "<group>"; };
 		B8EA8434299917D7009D83E7 /* PhoneNumberInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputView.swift; sourceTree = "<group>"; };
 		B8EA8436299917E2009D83E7 /* PhoneNumberInputViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberInputViewModel.swift; sourceTree = "<group>"; };
@@ -227,8 +241,8 @@
 		B8F3C7B029CE4EDC0099CA6E /* StretchingSummary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingSummary.swift; sourceTree = "<group>"; };
 		B8F45E2C29C38EE400FAB812 /* StretchingExercise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingExercise.swift; sourceTree = "<group>"; };
 		B8F45E2F29C38F1300FAB812 /* StretchType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchType.swift; sourceTree = "<group>"; };
-		B8F45E3729C394D300FAB812 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
-		B8F45E3929C394DF00FAB812 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		B8F45E3729C394D300FAB812 /* PatientProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientProfileViewModel.swift; sourceTree = "<group>"; };
+		B8F45E3929C394DF00FAB812 /* PatientProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientProfileView.swift; sourceTree = "<group>"; };
 		B8F45E3D29C396D000FAB812 /* NotificationsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -252,8 +266,8 @@
 		B8009DED29AA504400A4EC3B /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				B8009DEE29AA507500A4EC3B /* HomeView.swift */,
-				B8BB787029B52DD8001A4B71 /* HomeViewModel.swift */,
+				B8009DEE29AA507500A4EC3B /* PatientHomeView.swift */,
+				B8BB787029B52DD8001A4B71 /* PatientHomeViewModel.swift */,
 				B8DA4C7229BD093900C6AD3B /* Texts + Home.swift */,
 				B8939CB529BFBB0E00EE2172 /* RobotHeadView.swift */,
 				B8AE0FFE29C25B5000044B58 /* DrawingViewUIKit.swift */,
@@ -353,6 +367,7 @@
 				B86297D029A1640B0059280B /* BorderedButton.swift */,
 				B86297D229A164130059280B /* FilledButton.swift */,
 				B86297D429A166890059280B /* ButtonStyles.swift */,
+				B8E6837229EF0A4F00BAA32C /* CheckBox.swift */,
 			);
 			path = Buttons;
 			sourceTree = "<group>";
@@ -396,7 +411,8 @@
 			children = (
 				B86793F62997D841006BFE29 /* RootCoordinator.swift */,
 				B8EA842F299909DB009D83E7 /* Authentication */,
-				B8EA8430299909E4009D83E7 /* Main */,
+				B8E6837429EF195900BAA32C /* Main - Therapist */,
+				B8EA8430299909E4009D83E7 /* Main - Patient */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -471,6 +487,7 @@
 				B890AC2229A40E9600D30572 /* Collections + Utils.swift */,
 				B88FA56329CF864300B828EB /* Date + Extensions.swift */,
 				B88FA56529CF8CB800B828EB /* Numbers + Utils.swift */,
+				B8E6837029EEEF2B00BAA32C /* Enums.swift */,
 			);
 			path = "Foundation + utils";
 			sourceTree = "<group>";
@@ -549,6 +566,34 @@
 			path = "SwiftUI + Utils";
 			sourceTree = "<group>";
 		};
+		B8E6837429EF195900BAA32C /* Main - Therapist */ = {
+			isa = PBXGroup;
+			children = (
+				B8E6837529EF19A000BAA32C /* TherapistMainCoordinator.swift */,
+				B8E6837729EF1B8600BAA32C /* Home */,
+				B8E6837C29EF1CFE00BAA32C /* Profile */,
+			);
+			path = "Main - Therapist";
+			sourceTree = "<group>";
+		};
+		B8E6837729EF1B8600BAA32C /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B8E6837829EF1B9C00BAA32C /* TherapistHomeView.swift */,
+				B8E6837A29EF1BFF00BAA32C /* TherapistHomeViewModel.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B8E6837C29EF1CFE00BAA32C /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B8E6837D29EF1D4F00BAA32C /* TherapistProfileView.swift */,
+				B8E6837F29EF1D9100BAA32C /* TherapistProfileViewModel.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		B8EA842F299909DB009D83E7 /* Authentication */ = {
 			isa = PBXGroup;
 			children = (
@@ -562,15 +607,15 @@
 			path = Authentication;
 			sourceTree = "<group>";
 		};
-		B8EA8430299909E4009D83E7 /* Main */ = {
+		B8EA8430299909E4009D83E7 /* Main - Patient */ = {
 			isa = PBXGroup;
 			children = (
-				B8009DEB29AA4F7700A4EC3B /* MainCoordinator.swift */,
+				B8009DEB29AA4F7700A4EC3B /* PatientMainCoordinator.swift */,
 				B8009DED29AA504400A4EC3B /* Home */,
 				B8F45E3529C393B400FAB812 /* StretchPlayer */,
 				B8F45E3629C393D800FAB812 /* Profile */,
 			);
-			path = Main;
+			path = "Main - Patient";
 			sourceTree = "<group>";
 		};
 		B8EA8433299917C8009D83E7 /* PhoneNumberInput */ = {
@@ -619,10 +664,10 @@
 		B8F45E3629C393D800FAB812 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				B8F45E3929C394DF00FAB812 /* PatientProfileView.swift */,
+				B8F45E3729C394D300FAB812 /* PatientProfileViewModel.swift */,
 				B88FA56729CF9AE800B828EB /* DetailedStretchingInfo */,
 				B88FA55E29CF5ADD00B828EB /* StretchingHistory */,
-				B8F45E3729C394D300FAB812 /* ProfileViewModel.swift */,
-				B8F45E3929C394DF00FAB812 /* ProfileView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -721,12 +766,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8E6837629EF19A000BAA32C /* TherapistMainCoordinator.swift in Sources */,
 				B88FA55729CF0BD500B828EB /* StretchSummaryViewModel.swift in Sources */,
+				B8E6837329EF0A4F00BAA32C /* CheckBox.swift in Sources */,
 				B8A6DFB4299FD3B7005BA947 /* UINavigationController + Extensions.swift in Sources */,
 				B8A6DFB2299FD24D005BA947 /* RegisterViewModel.swift in Sources */,
 				B86794012997E206006BFE29 /* UserDefaults + property wrapper.swift in Sources */,
 				B8939CB629BFBB0E00EE2172 /* RobotHeadView.swift in Sources */,
-				B8BB787129B52DD8001A4B71 /* HomeViewModel.swift in Sources */,
+				B8BB787129B52DD8001A4B71 /* PatientHomeViewModel.swift in Sources */,
 				B890AC1C29A4004900D30572 /* SMSValidationView.swift in Sources */,
 				B88FA55529CF092B00B828EB /* StretchesResponse.swift in Sources */,
 				B8F45E2D29C38EE400FAB812 /* StretchingExercise.swift in Sources */,
@@ -746,9 +793,11 @@
 				B88BB57029BF6E59006D7E72 /* MotionManager.swift in Sources */,
 				B8417AD629C3A3B70053FD35 /* StretchExecutorViewModel.swift in Sources */,
 				B8F45E3E29C396D000FAB812 /* NotificationsViewModel.swift in Sources */,
+				B8E6837929EF1B9C00BAA32C /* TherapistHomeView.swift in Sources */,
 				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
 				B88FA56629CF8CB800B828EB /* Numbers + Utils.swift in Sources */,
-				B8009DEF29AA507500A4EC3B /* HomeView.swift in Sources */,
+				B8E6838029EF1D9100BAA32C /* TherapistProfileViewModel.swift in Sources */,
+				B8009DEF29AA507500A4EC3B /* PatientHomeView.swift in Sources */,
 				B84EDD8C29D9AE660033E475 /* StretchingExercise + Extensions.swift in Sources */,
 				B8DA4C7729BD198C00C6AD3B /* UIApplication + Extensions.swift in Sources */,
 				B8417AD129C3A2210053FD35 /* StretchCoordinator.swift in Sources */,
@@ -757,7 +806,7 @@
 				B86297DB29A25F490059280B /* CarouselItem.swift in Sources */,
 				B8009DF929AAB15700A4EC3B /* ActivityIndicator.swift in Sources */,
 				B80359B129C0ED540059F578 /* BasicResponse.swift in Sources */,
-				B8F45E3A29C394DF00FAB812 /* ProfileView.swift in Sources */,
+				B8F45E3A29C394DF00FAB812 /* PatientProfileView.swift in Sources */,
 				B8F45E3029C38F1300FAB812 /* StretchType.swift in Sources */,
 				B8009DEA29AA139600A4EC3B /* Texts + SMSValidation.swift in Sources */,
 				B8A6DFBF29A0149D005BA947 /* NavigationBar.swift in Sources */,
@@ -766,7 +815,9 @@
 				B8B7442329C8EA5F000DA599 /* StretchSummaryView.swift in Sources */,
 				B86297DD29A260BE0059280B /* Image + Extensions.swift in Sources */,
 				B8EA8437299917E2009D83E7 /* PhoneNumberInputViewModel.swift in Sources */,
+				B8E6837B29EF1BFF00BAA32C /* TherapistHomeViewModel.swift in Sources */,
 				B88FA55B29CF4BCD00B828EB /* Texts + Stretching.swift in Sources */,
+				B8E6837129EEEF2B00BAA32C /* Enums.swift in Sources */,
 				B8F3C7B129CE4EDC0099CA6E /* StretchingSummary.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependencyContainer.swift in Sources */,
 				B8417AD929C3B27E0053FD35 /* Triangle.swift in Sources */,
@@ -778,6 +829,7 @@
 				B88FA56929CF9B0C00B828EB /* DetailedStretchingInfoView.swift in Sources */,
 				B870BF4B29BDED7B00CC2921 /* Alerts.swift in Sources */,
 				B84A7CDC29DAA0E200082C02 /* RotateRightDrawingView.swift in Sources */,
+				B8E6837E29EF1D4F00BAA32C /* TherapistProfileView.swift in Sources */,
 				B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
 				B86297D129A1640B0059280B /* BorderedButton.swift in Sources */,
@@ -786,7 +838,7 @@
 				B8F3C7AF29CE4C580099CA6E /* StretchingService.swift in Sources */,
 				B86793FE2997DD6C006BFE29 /* UserSession.swift in Sources */,
 				B8A6DFBC29A0127C005BA947 /* OnboardingViewModel.swift in Sources */,
-				B8F45E3829C394D300FAB812 /* ProfileViewModel.swift in Sources */,
+				B8F45E3829C394D300FAB812 /* PatientProfileViewModel.swift in Sources */,
 				B8AE100129C25FF200044B58 /* DrawingView.swift in Sources */,
 				B8EA843C299937F6009D83E7 /* UIWindow + Extensions.swift in Sources */,
 				B86793FA2997D880006BFE29 /* Coordinator.swift in Sources */,
@@ -803,7 +855,7 @@
 				B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */,
 				B8EE318329D040640050B0CE /* AnimatedChartView.swift in Sources */,
 				B88FA55D29CF50D400B828EB /* StretchingSessionsCountResponse.swift in Sources */,
-				B8009DEC29AA4F7700A4EC3B /* MainCoordinator.swift in Sources */,
+				B8009DEC29AA4F7700A4EC3B /* PatientMainCoordinator.swift in Sources */,
 				B8009DF629AAAF2600A4EC3B /* AnimatedCheckmarkView.swift in Sources */,
 				B86297D729A25D4F0059280B /* Texts.swift in Sources */,
 				B86297D529A166890059280B /* ButtonStyles.swift in Sources */,

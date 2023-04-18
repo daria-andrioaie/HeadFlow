@@ -9,9 +9,9 @@ import SwiftUI
 import CoreMotion
 import SceneKit
 
-struct Home {    
+struct PatientHome {    
     struct ContentView: View {
-        @ObservedObject var viewModel: HomeViewModel
+        @ObservedObject var viewModel: ViewModel
         @StateObject var notificationsViewModel = NotificationsViewModel()
         
         var body: some View {
@@ -76,7 +76,6 @@ struct Home {
                 profileButton
             }
             .fillBackground()
-
         }
         
         var profileButton: some View {
@@ -103,9 +102,9 @@ struct Home {
 
 
 #if DEBUG
-struct HomeView_Previews: PreviewProvider {
+struct PatientHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        Home.ContentView(viewModel: HomeViewModel(navigationAction: { _ in }))
+        PatientHome.ContentView(viewModel: PatientHome.ViewModel(navigationAction: { _ in }))
     }
 }
 #endif

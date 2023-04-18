@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Profile {
+extension PatientProfile {
     class ViewModel: ObservableObject {
         @Published var apiError: Error?
         @Published var isConfirmationMessagePresented: Bool = false
