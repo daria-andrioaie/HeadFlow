@@ -21,6 +21,7 @@ enum HFImage: String {
     case checkIcon = "check-icon-light"
     case userProfile = "user-profile"
     case userProfileFilled = "user-profile-filled"
+    case userAddLight = "user-add-light"
     case bell = "bell"
     case logoutIcon = "logout-icon"
     case shareIcon = "share-icon"

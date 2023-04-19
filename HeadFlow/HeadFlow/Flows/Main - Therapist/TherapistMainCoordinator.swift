@@ -37,7 +37,7 @@ class TherapistMainCoordinator: Coordinator {
     }
     
     func showHomeScreen() {
-        let homeScreenVM = TherapistHome.ViewModel { [weak self]  navigationType in
+        let homeScreenVM = TherapistHome.ViewModel(therapistService: dependencies.therapistService) { [weak self]  navigationType in
             switch navigationType {
             case .goToProfile:
                 self?.goToProfile()

@@ -20,6 +20,7 @@ struct CustomTextField: View {
     var showKeyboardAutomatically: Bool = false
     
     var inputError: Error? = nil
+    var onCommit: (() -> Void)?
     
     var body: some View {
         VStack(alignment: .leading, spacing: 4)  {
@@ -29,7 +30,9 @@ struct CustomTextField: View {
                     .foregroundColor(.red)
                     .font(.Main.light(size: 12))
             }
-            TextField(placeholder ?? "", text: $inputText)
+            TextField(placeholder ?? "", text: $inputText, onCommit: {
+                onCommit?()
+            })
                 .keyboardType(keyboardType)
                 .textContentType(textContentType)
                 .accentColor(foregroundColor)

@@ -42,7 +42,3 @@ extension StretchingExercise: Hashable, Identifiable {
     
     var id: String { self.type.rawValue }
 }
-
-extension StretchingExercise {
-    static let mock1: Self = .init(type: .tiltToRight, duration: 5)
-}

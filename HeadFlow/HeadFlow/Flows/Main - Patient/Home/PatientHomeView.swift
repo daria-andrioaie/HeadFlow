@@ -54,6 +54,7 @@ struct PatientHome {
         
         var mainContent: some View {
             VStack(spacing: 50) {
+                Spacer()
                 Button {
                     viewModel.navigationAction(.startStretchCoordinator)
                 } label: {
@@ -70,31 +71,13 @@ struct PatientHome {
                     .frame(width: 140)
                 }
                 .buttonStyle(.plain)
+                Spacer()
+                Buttons.ProfileButton {
+                    viewModel.navigationAction(.goToProfile)
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .overlay(alignment: .bottom) {
-                profileButton
-            }
             .fillBackground()
-        }
-        
-        var profileButton: some View {
-            Button {
-                viewModel.navigationAction(.goToProfile)
-            } label: {
-                Image(.userProfileFilled)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 35)
-                    .padding(15)
-                    .background(Color.white)
-                    .clipShape(Circle())
-                    .shadow(color: .gray.opacity(0.3), radius: 20, x: 5, y: 5)
-            }
-            .buttonStyle(.plain)
-            .padding(.trailing, 40)
-            .padding(.bottom, 30)
-            .frame(maxWidth: .infinity, alignment: .trailing)
         }
     }
 }
