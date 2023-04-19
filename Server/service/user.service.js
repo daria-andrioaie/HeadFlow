@@ -24,7 +24,7 @@ const signUp = async ({ firstName, lastName, email, phoneNumber, userType }) => 
   if (typeof phoneNumber === "undefined") {
     throw new Error("Phone number not provided.");
   }
-  console.log(userType)
+
   if (typeof userType === "undefined" || (userType !== "patient" && userType !== "therapist")) {
     throw new Error("User type not provided or not valid.");
   }

@@ -31,9 +31,13 @@ class RootCoordinator: Coordinator {
     }
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
-        if Session.shared.isValid {
-            print(Session.shared.accessToken)
-            showPatientMainCoordinator()
+        if let currentUser = Session.shared.currentUser {
+            switch currentUser.type {
+            case .patient:
+                showPatientMainCoordinator()
+            case .therapist:
+                showTherapistMainCoordinator()
+            }
         } else {
             showAuthenticationCoordinator()
         }
