@@ -17,6 +17,7 @@
 		B80359B129C0ED540059F578 /* BasicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B029C0ED540059F578 /* BasicResponse.swift */; };
 		B80359B329C0EDB40059F578 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */; };
 		B80359B529C0EFED0059F578 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B429C0EFED0059F578 /* SessionService.swift */; };
+		B808FB8B29F19280001B6F69 /* Collaboration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808FB8A29F19280001B6F69 /* Collaboration.swift */; };
 		B82BA8AD29B1367C00853304 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8AC29B1367C00853304 /* Constants.swift */; };
 		B82BA8B029B138F500853304 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B82BA8AF29B138F500853304 /* Alamofire */; };
 		B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B129B1390B00853304 /* AuthenticationService.swift */; };
@@ -148,6 +149,7 @@
 		B80359B029C0ED540059F578 /* BasicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicResponse.swift; sourceTree = "<group>"; };
 		B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		B80359B429C0EFED0059F578 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		B808FB8A29F19280001B6F69 /* Collaboration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collaboration.swift; sourceTree = "<group>"; };
 		B82BA8AC29B1367C00853304 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B82BA8B129B1390B00853304 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		B82BA8B429B3B42700853304 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				B8F45E2E29C38F0200FAB812 /* Stretching */,
 				B82BA8B429B3B42700853304 /* User.swift */,
 				B8DE006D29B90A9C0099F374 /* NotificationsPermissions.swift */,
+				B808FB8A29F19280001B6F69 /* Collaboration.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -880,6 +883,7 @@
 				B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
 				B86297D129A1640B0059280B /* BorderedButton.swift in Sources */,
+				B808FB8B29F19280001B6F69 /* Collaboration.swift in Sources */,
 				B8E42E5329DB452200459A48 /* TiltBackwardsDrawingView.swift in Sources */,
 				B88FA56229CF5BE700B828EB /* StretchingHistoryViewModel.swift in Sources */,
 				B8F3C7AF29CE4C580099CA6E /* StretchingService.swift in Sources */,

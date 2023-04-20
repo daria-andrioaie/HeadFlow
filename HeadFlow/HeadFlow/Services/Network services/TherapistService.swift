@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 protocol TherapistServiceProtocol {
-    func getAllPatientsForCurrentTherapist(onRequestCompleted: @escaping (Result<[User], Errors.APIError>) -> Void) async
+    func getAllPatientsForCurrentTherapist(onRequestCompleted: @escaping (Result<[Collaboration], Errors.APIError>) -> Void) async
     func getPatientByEmailAddress(emailAddress: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
 }
 
@@ -20,22 +20,23 @@ class TherapistService: TherapistServiceProtocol {
         self.path = path
     }
 
-    func getAllPatientsForCurrentTherapist(onRequestCompleted: @escaping (Result<[User], Errors.APIError>) -> Void) async {
+    func getAllPatientsForCurrentTherapist(onRequestCompleted: @escaping (Result<[Collaboration], Errors.APIError>) -> Void) async {
         let sessionToken = Session.shared.accessToken
         if let sessionToken {
 
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             
-            AF.request(path.rawValue + "/collaborations/allPatients", method: .get, headers: headers)
-                .responseDecodable(of: Array<User>.self) { response in
+            AF.request(path.rawValue + "/collaborations/all", method: .get, headers: headers)
+                .responseDecodable(of: Array<Collaboration>.self) { response in
                     switch response.result {
                         
-                    case .success(let patients):
-                        onRequestCompleted(.success(patients))
+                    case .success(let collaborations):
+                        onRequestCompleted(.success(collaborations))
                         
                     case .failure(let error):
                         if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
                             onRequestCompleted(.failure(apiError))
+                            print(apiError.localizedDescription)
                         }
                         else {
                             onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error: " + error.localizedDescription)))
@@ -54,7 +55,7 @@ class TherapistService: TherapistServiceProtocol {
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             let parameters = ["emailAddress": emailAddress]
             
-            AF.request(path.rawValue + "/patients", method: .get, parameters: parameters, headers: headers)
+            AF.request(path.rawValue + "/patient/search", method: .post, parameters: parameters, encoder: .json, headers: headers)
                 .responseDecodable(of: User.self) { response in
                     switch response.result {
                         
@@ -79,7 +80,7 @@ class TherapistService: TherapistServiceProtocol {
 
 
 class MockTherapistService: TherapistServiceProtocol {
-    func getAllPatientsForCurrentTherapist(onRequestCompleted: @escaping (Result<[User], Errors.APIError>) -> Void) async {
+    func getAllPatientsForCurrentTherapist(onRequestCompleted: @escaping (Result<[Collaboration], Errors.APIError>) -> Void) async {
         onRequestCompleted(.success([]))
     }
     
