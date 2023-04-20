@@ -22,7 +22,7 @@ class DependencyContainer {
         authenticationService = AuthenticationService(path: serverPath, notificationsService: notificationsService)
         sessionService = SessionService(path: serverPath)
         stretchingService = StretchingService(path: serverPath)
-        therapistService = MockTherapistService()
+        therapistService = TherapistService(path: serverPath)
         motionManager = MotionManager()
     }
 }

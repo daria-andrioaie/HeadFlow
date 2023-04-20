@@ -8,13 +8,8 @@
 import SwiftUI
 
 extension TherapistHome {
-    enum PatientsType {
-        case active
-        case pending
-    }
-    
     struct ListOfPatientsView: View {
-        @State private var patientsTypeSelection: PatientsType = .active
+        @State private var collaborationStatusSelection: CollaborationStatus = .active
         @State private var isInvitationSheetShown: Bool = false
         @ObservedObject var viewModel: ViewModel
         
@@ -22,7 +17,7 @@ extension TherapistHome {
             VStack {
                 titleView
                 
-                if viewModel.patientsList.isEmpty {
+                if viewModel.collaborationsList.isEmpty {
                     noPatientsView
                 } else {
                     patientsTypeFilterView
@@ -63,11 +58,11 @@ extension TherapistHome {
         
         var patientsTypeFilterView: some View {
             HStack(spacing: 16) {
-                Buttons.PillButton(title: "Active", isSelected: patientsTypeSelection == .active) {
-                    patientsTypeSelection = .active
+                Buttons.PillButton(title: "Active", isSelected: collaborationStatusSelection == .active) {
+                    collaborationStatusSelection = .active
                 }
-                Buttons.PillButton(title: "Pending", isSelected: patientsTypeSelection == .pending) {
-                    patientsTypeSelection = .pending
+                Buttons.PillButton(title: "Pending", isSelected: collaborationStatusSelection == .pending) {
+                    collaborationStatusSelection = .pending
                 }
             }
         }
@@ -76,8 +71,8 @@ extension TherapistHome {
         var listForSelectedPatientType: some View {
             ScrollView {
                 LazyVStack(spacing: 20) {
-                    ForEach(viewModel.patientsList, id: \.id) { patient in
-                        patientCard(patient: patient)
+                    ForEach(viewModel.collaborationsList.filter { $0.status == collaborationStatusSelection }, id: \.self) { collaboration in
+                        patientCard(patient: collaboration.patient)
                     }
                 }
             }
