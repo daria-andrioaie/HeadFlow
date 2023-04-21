@@ -15,7 +15,8 @@ struct Constants {
 
 extension Constants {
     enum ServerPathType: String {
-        case local = "http://daria.local:3030/api/v1"
+//        case local = "http://daria.local:3030/api/v1"
+        case local = "http://localhost:3030/api/v1"
         case hosted = "https://headflow.onrender.com/api/v1"
     }
 }

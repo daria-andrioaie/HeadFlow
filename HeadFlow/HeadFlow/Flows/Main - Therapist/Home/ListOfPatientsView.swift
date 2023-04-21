@@ -3,13 +3,12 @@
 //  HeadFlow
 //
 //  Created by Daria Andrioaie on 19.04.2023.
-//
 
 import SwiftUI
 
 extension TherapistHome {
     struct ListOfPatientsView: View {
-        @State private var collaborationStatusSelection: CollaborationStatus = .active
+        
         @State private var isInvitationSheetShown: Bool = false
         @ObservedObject var viewModel: ViewModel
         
@@ -17,7 +16,7 @@ extension TherapistHome {
             VStack {
                 titleView
                 
-                if viewModel.collaborationsList.isEmpty {
+                if viewModel.collaborationsMap.isEmpty {
                     noPatientsView
                 } else {
                     patientsTypeFilterView
@@ -28,7 +27,10 @@ extension TherapistHome {
             .activityIndicator(viewModel.isLoading)
             .errorDisplay(error: $viewModel.apiError)
             .sheet(isPresented: $isInvitationSheetShown) {
-                SendInvitation.ContentView(viewModel: .init(therapistService: viewModel.therapistService))
+                SendInvitation.ContentView(viewModel: .init(therapistService: viewModel.therapistService, invitationPublisher: viewModel.invitationPublisher))
+            }
+            .onAppear {
+                viewModel.getCollaborationsList()
             }
         }
         
@@ -58,11 +60,11 @@ extension TherapistHome {
         
         var patientsTypeFilterView: some View {
             HStack(spacing: 16) {
-                Buttons.PillButton(title: "Active", isSelected: collaborationStatusSelection == .active) {
-                    collaborationStatusSelection = .active
+                Buttons.PillButton(title: "Active", isSelected: viewModel.selectedCollaborationStatus == .active) {
+                    viewModel.selectedCollaborationStatus = .active
                 }
-                Buttons.PillButton(title: "Pending", isSelected: collaborationStatusSelection == .pending) {
-                    collaborationStatusSelection = .pending
+                Buttons.PillButton(title: "Pending", isSelected: viewModel.selectedCollaborationStatus == .pending) {
+                    viewModel.selectedCollaborationStatus = .pending
                 }
             }
         }
@@ -71,7 +73,7 @@ extension TherapistHome {
         var listForSelectedPatientType: some View {
             ScrollView {
                 LazyVStack(spacing: 20) {
-                    ForEach(viewModel.collaborationsList.filter { $0.status == collaborationStatusSelection }, id: \.self) { collaboration in
+                    ForEach(viewModel.collaborationsForSelectedStatus, id: \.self) { collaboration in
                         patientCard(patient: collaboration.patient)
                     }
                 }

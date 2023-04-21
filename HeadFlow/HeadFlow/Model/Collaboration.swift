@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CollaborationStatus: String {
+enum CollaborationStatus: String, CaseIterable {
     case pending, active
 }
 
