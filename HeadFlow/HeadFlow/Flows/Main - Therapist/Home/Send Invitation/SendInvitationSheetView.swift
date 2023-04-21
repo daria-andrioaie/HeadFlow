@@ -14,12 +14,22 @@ struct SendInvitation {
         
         var body: some View {
             VStack(spacing: 30) {
+                titleView
                 SearchField(text: $inputEmail, placeholder: "Enter your patient's email address") {
                     viewModel.searchPatient(with: inputEmail)
                 }
                 resultView
             }
             .padding(30)
+        }
+        
+        var titleView: some View {
+            HStack {
+                Text("Send an invitation")
+                    .font(.Main.semibold(size: 24))
+                    .foregroundColor(.danubeBlue)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
         
         @ViewBuilder
@@ -45,24 +55,10 @@ struct SendInvitation {
                     .background(RoundedRectangle(cornerRadius: 30)
                         .foregroundColor(.diamond))
                     
-                    Spacer()
-                    Button {
-                        // send invitation
-                    } label: {
-                        VStack {
-                            Image(systemName: "paperplane.fill")
-                                .resizable()
-                                .renderingMode(.template)
-                                .foregroundColor(.oceanBlue)
-                                .aspectRatio(contentMode: .fit)
-                                .frame(width: 20)
-                            Text("Send invitation")
-                                .foregroundColor(.oceanBlue.opacity(0.6))
-                                .font(.Main.regular(size: 16))
-                        }
-                    }
-                    .buttonStyle(.plain)
-                    .padding(.trailing, 24)
+                    
+                    invitationStatusView
+                        .frame(width: 0.4 * proxy.size.width)
+
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 120)
@@ -94,6 +90,61 @@ struct SendInvitation {
             }
         }
         
+        @ViewBuilder
+        var invitationStatusView: some View {
+            switch viewModel.invitationStatus {
+            case .none:
+                sendInvitationView
+            case .sending:
+                sendingInvitationView
+            case .sent:
+                sentInvitationView
+            }
+        }
+        
+        var sendInvitationView: some View {
+            Button {
+                viewModel.sendInvitation()
+            } label: {
+                VStack(spacing: 10) {
+                    Image(systemName: "paperplane.fill")
+                        .resizable()
+                        .renderingMode(.template)
+                        .foregroundColor(.oceanBlue)
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 20)
+                    Text("Send invitation")
+                        .foregroundColor(.oceanBlue.opacity(0.6))
+                        .font(.Main.regular(size: 16))
+                }
+            }
+            .buttonStyle(.plain)
+        }
+        
+        var sendingInvitationView: some View {
+            VStack(spacing: 10) {
+                ActivityIndicator(tint: .danubeBlue)
+                    .frame(width: 20)
+                Text("Sending")
+                    .foregroundColor(.oceanBlue.opacity(0.6))
+                    .font(.Main.regular(size: 16))
+            }
+        }
+        
+        var sentInvitationView: some View {
+            VStack(spacing: 10) {
+                Image(systemName: "checkmark")
+                    .resizable()
+                    .renderingMode(.template)
+                    .foregroundColor(.oceanBlue)
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20)
+                Text("Sent!")
+                    .foregroundColor(.oceanBlue.opacity(0.6))
+                    .font(.Main.regular(size: 16))
+            }
+        }
+        
         func profileImageView(imageURL: URL?) -> some View {
             Image(systemName: "person.fill")
                 .resizable()
@@ -106,7 +157,7 @@ struct SendInvitation {
         }
         
         var noResultsView: some View {
-            Text("We couldn't find any patient with the given email address. Please check the spelling.")
+            Text(viewModel.failureMessage ?? "")
                 .font(.Main.regular(size: 18))
                 .foregroundColor(.oceanBlue)
                 .multilineTextAlignment(.center)
@@ -117,6 +168,6 @@ struct SendInvitation {
 
 struct SendInvitationSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        SendInvitation.ContentView(viewModel: .init(therapistService: MockTherapistService()))
+        SendInvitation.ContentView(viewModel: .init(therapistService: MockTherapistService(), invitationPublisher: .init()))
     }
 }

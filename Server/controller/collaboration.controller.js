@@ -31,7 +31,7 @@ const sendInvitation = async (req, res) => {
         therapistId,
         req.body.patientId
       );
-      res.status(200).send({success: true, collaboration: collaboration});
+      res.status(200).send(collaboration);
     } else {
       throw new Error("There is no therapist with the given id.");
     }
