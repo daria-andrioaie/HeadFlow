@@ -40,7 +40,7 @@ class PatientMainCoordinator: Coordinator {
     }
     
     func showHomeScreen() {
-        let homeScreenVM = PatientHome.ViewModel { [weak self]  navigationType in
+        let homeScreenVM = PatientHome.ViewModel(patientService: dependencies.patientService) { [weak self]  navigationType in
             switch navigationType {
             case .startStretchCoordinator:
                 self?.startStretchingCoordinator()
@@ -66,6 +66,10 @@ class PatientMainCoordinator: Coordinator {
                 self?.navigationController.popViewController(animated: true)
             case .goToHistory:
                 self?.goToStretchingHistory()
+            case .goToTherapistCollaboration:
+                self?.goToTherapistCollaboration()
+            case .goToEditProfile:
+                self?.goToEditProfile()
             case .logout:
                 self?.onLogout()
             }
@@ -80,4 +84,21 @@ class PatientMainCoordinator: Coordinator {
 
         navigationController.pushHostingController(rootView: StretchingHistory.ContentView(viewModel: stretchingHistoryVM), animated: true)
     }
+    
+    func goToTherapistCollaboration() {
+        let therapistCollaborationVM = TherapistCollaboration.ViewModel(patientService: dependencies.patientService, onBack: { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        })
+
+        navigationController.pushHostingController(rootView: TherapistCollaboration.ContentView(viewModel: therapistCollaborationVM), animated: true)
+    }
+    
+    func goToEditProfile() {
+        let editProfileVM = EditProfile.ViewModel(onBack: { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        })
+
+        navigationController.pushHostingController(rootView: EditProfile.ContentView(viewModel: editProfileVM), animated: true)
+    }
+
 }

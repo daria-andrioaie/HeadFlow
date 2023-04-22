@@ -27,7 +27,7 @@ class TherapistService: TherapistServiceProtocol {
 
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             
-            AF.request(path.rawValue + "/collaborations/all", method: .get, headers: headers)
+            AF.request(path.rawValue + "/therapist/allCollaborations", method: .get, headers: headers)
                 .responseDecodable(of: Array<Collaboration>.self) { response in
                     switch response.result {
                         
@@ -56,7 +56,7 @@ class TherapistService: TherapistServiceProtocol {
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             let parameters = ["emailAddress": emailAddress]
             
-            AF.request(path.rawValue + "/patient/search", method: .post, parameters: parameters, encoder: .json, headers: headers)
+            AF.request(path.rawValue + "/therapist/searchPatient", method: .post, parameters: parameters, encoder: .json, headers: headers)
                 .responseDecodable(of: User.self) { response in
                     switch response.result {
                         
@@ -85,7 +85,7 @@ class TherapistService: TherapistServiceProtocol {
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             let parameters = ["patientId": patientId]
             
-            AF.request(path.rawValue + "/collaborations/sendInvitation", method: .post, parameters: parameters, encoder: .json, headers: headers)
+            AF.request(path.rawValue + "/therapist/sendInvitation", method: .post, parameters: parameters, encoder: .json, headers: headers)
                 .responseDecodable(of: Collaboration.self) { response in
                     switch response.result {
                         
@@ -120,6 +120,6 @@ class MockTherapistService: TherapistServiceProtocol {
     }
     
     func sendInvitation(patientId: String, onRequestCompleted: @escaping (Result<Collaboration, Errors.APIError>) -> Void) async {
-        onRequestCompleted(.success(.init(patient: .mockPatient1, status: .pending)))
+        onRequestCompleted(.success(.init(therapist: .mockPatient1, patient: .mockPatient1, status: .pending)))
     }
 }

@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const collaborationSchema = new mongoose.Schema(
   {
-    therapistId: {
-        type: String,
+    therapist: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
         required: true,
         trim: true,
     },

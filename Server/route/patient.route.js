@@ -3,7 +3,6 @@ const express = require("express");
 const patientController = require("../controller/patient.controller");
 
 const router = express.Router();
-
-router.post("/search", patientController.searchPatient);
+router.get("/getTherapist", patientController.getTherapist);
 
 module.exports = router;

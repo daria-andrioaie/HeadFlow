@@ -27,7 +27,7 @@ extension TherapistHome {
             .activityIndicator(viewModel.isLoading)
             .errorDisplay(error: $viewModel.apiError)
             .sheet(isPresented: $isInvitationSheetShown) {
-                SendInvitation.ContentView(viewModel: .init(therapistService: viewModel.therapistService, invitationPublisher: viewModel.invitationPublisher))
+                SendInvitation.ContentView(viewModel: .init(therapistService: viewModel.therapistService))
             }
             .onAppear {
                 viewModel.getCollaborationsList()

@@ -16,7 +16,7 @@ struct TherapistHome {
                 Spacer()
                 TherapistHome.ListOfPatientsView(viewModel: viewModel)
                 Spacer()
-                Buttons.ProfileButton {
+                Buttons.ProfileButton(hasNotification: false) {
                     viewModel.navigationAction(.goToProfile)
                 }
             }

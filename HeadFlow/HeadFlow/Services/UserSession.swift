@@ -20,6 +20,9 @@ class Session {
     @UserDefault(key: StorageKeys.notificationsEnabled, defaultValue: nil)
     var notificationsEnabled: Bool?
     
+    @UserDefault(key: StorageKeys.notificationFromTherapist, defaultValue: false)
+    var hasNotificationFromTherapist: Bool
+    
     static let shared: Session = Session()
     
     var isValid: Bool {
@@ -40,6 +43,7 @@ class Session {
     func removeSessionData() {
         accessToken = nil
         currentUser = nil
+        hasNotificationFromTherapist = false
     }
 }
 
@@ -48,5 +52,6 @@ fileprivate extension Session {
         static let accessToken = "accessToken"
         static let currentUser = "currentUser"
         static let notificationsEnabled = "notificationsEnabled"
+        static let notificationFromTherapist = "notificationFromTherapist"
     }
 }

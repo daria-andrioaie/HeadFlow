@@ -12,17 +12,19 @@ enum CollaborationStatus: String, CaseIterable {
 }
 
 struct Collaboration {
+    let therapist: User
     let patient: User
     let status: CollaborationStatus
 }
 
 extension Collaboration: Decodable {
     enum CodingKeys: String, CodingKey {
-        case patient, status
+        case therapist, patient, status
     }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
+        therapist = try container.decode(User.self, forKey: .therapist)
         patient = try container.decode(User.self, forKey: .patient)
 
         let statusAsString = try container.decode(String.self, forKey: .status)

@@ -12,24 +12,16 @@ struct TherapistProfile {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            ContainerWithNavigationBar(title: "Profile", leftButtonAction: {
+            ContainerWithNavigationBar(title: Texts.GeneralProfile.profileNavbarTitle, leftButtonAction: {
                 viewModel.navigationAction(.goBack)
             }) {
                 VStack {
                     Spacer()
-                    Button {
-                        viewModel.navigationAction(.logout)
-                    } label: {
-                        HStack {
-                            Image(.logoutIcon)
-                                .renderingMode(.template)
-                            Text("Logout")
-                                .font(.Main.medium(size: 18))
-                        }
-                        .foregroundColor(.danubeBlue)
+                    Buttons.LogoutButton {
+                        viewModel.logout()
                     }
-                    .buttonStyle(.plain)
                 }
+                .toastDisplay(isPresented: $viewModel.isConfirmationMessagePresented, message: viewModel.confirmationMessage)
                 .padding(.all, 24)
             }
         }

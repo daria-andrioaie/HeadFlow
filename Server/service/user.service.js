@@ -6,7 +6,6 @@ const { OAuth2Client } = require("google-auth-library");
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 const otpService = require("../service/otp.service");
-const authorizationService = require("../service/authorization.service");
 
 const signUp = async ({ firstName, lastName, email, phoneNumber, userType }) => {
   if (typeof firstName === "undefined") {
@@ -132,8 +131,7 @@ const getUser = async (userId) => {
   return existingUser;
 };
 
-const logout = async (token) => {
-  const userId = authorizationService.authorizeToken(token);
+const logout = async (userId) => {
   await SessionModel.deleteOne({ userId: userId });
 
   return "Logout successful.";
