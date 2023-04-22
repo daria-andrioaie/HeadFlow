@@ -23,11 +23,9 @@ extension SendInvitation {
         private var sendInvitationTask: Task<Void, Error>?
 
         let therapistService: TherapistServiceProtocol
-        let invitationPublisher: PassthroughSubject<Void, Never>
         
-        init(therapistService: TherapistServiceProtocol, invitationPublisher: PassthroughSubject<Void, Never>) {
+        init(therapistService: TherapistServiceProtocol) {
             self.therapistService = therapistService
-            self.invitationPublisher = invitationPublisher
         }
         
         func searchPatient(with emailAddress: String) {
@@ -73,7 +71,6 @@ extension SendInvitation {
                     case .success(_):
                         DispatchQueue.main.async {
                             self?.invitationStatus = .sent
-                            self?.invitationPublisher.send()
                         }
                     case .failure(let apiError):
                         print(apiError.localizedDescription)

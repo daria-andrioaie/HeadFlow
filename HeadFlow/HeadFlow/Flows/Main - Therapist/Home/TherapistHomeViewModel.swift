@@ -15,12 +15,10 @@ extension TherapistHome {
         @Published var apiError: Error?
         @Published var collaborationsMap: [CollaborationStatus: [Collaboration]]
         
-        let invitationPublisher = PassthroughSubject<Void, Never>()
         let therapistService: TherapistServiceProtocol
         let navigationAction: (TherapistHome.NavigationType) -> Void
         
         private var getCollaborationsListTask: Task<Void, Error>?
-        private var cancellables = Set<AnyCancellable>()
         
         var collaborationsForSelectedStatus: [Collaboration] {
             collaborationsMap[selectedCollaborationStatus] ?? []
@@ -35,15 +33,6 @@ extension TherapistHome {
             )
         }
         
-        private func configureCancellables() {
-            // for some reason, this is not working
-            invitationPublisher
-                .receive(on: DispatchQueue.main)
-                .sink { [weak self] in
-                self?.getCollaborationsList()
-            }.store(in: &cancellables)
-        }
-        
         func getCollaborationsList() {
             getCollaborationsListTask?.cancel()
             isLoading = true
@@ -52,6 +41,7 @@ extension TherapistHome {
                     switch result {
                     case .success(let collaborationsResponse):
                         DispatchQueue.main.async {
+                            self?.collaborationsMap.removeAll()
                             CollaborationStatus.allCases.forEach { collabStatus in
                                 self?.collaborationsMap[collabStatus] = collaborationsResponse.filter { $0.status == collabStatus }
                             }

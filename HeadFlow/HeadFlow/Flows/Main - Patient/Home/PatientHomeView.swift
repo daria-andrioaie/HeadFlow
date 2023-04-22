@@ -72,7 +72,7 @@ struct PatientHome {
                 }
                 .buttonStyle(.plain)
                 Spacer()
-                Buttons.ProfileButton {
+                Buttons.ProfileButton(hasNotification: viewModel.hasNotificationFromTherapist) {
                     viewModel.navigationAction(.goToProfile)
                 }
             }
@@ -82,12 +82,10 @@ struct PatientHome {
     }
 }
 
-
-
 #if DEBUG
 struct PatientHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        PatientHome.ContentView(viewModel: PatientHome.ViewModel(navigationAction: { _ in }))
+        PatientHome.ContentView(viewModel: PatientHome.ViewModel(patientService: MockPatientService(), navigationAction: { _ in }))
     }
 }
 #endif

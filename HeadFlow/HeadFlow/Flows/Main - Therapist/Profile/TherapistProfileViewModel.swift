@@ -15,14 +15,11 @@ extension TherapistProfile {
 
         let authenticationService: AuthenticationServiceProtocol
         let navigationAction: (ProfileNavigationType) -> Void
-
-
+        
         init(authenticationService: AuthenticationServiceProtocol, navigationAction: @escaping (ProfileNavigationType) -> Void) {
             self.authenticationService = authenticationService
             self.navigationAction = navigationAction
-            
         }
-        
         
         func logout() {
             Task(priority: .userInitiated) { @MainActor in

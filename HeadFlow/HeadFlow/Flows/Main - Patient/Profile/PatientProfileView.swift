@@ -12,39 +12,36 @@ struct PatientProfile {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            ContainerWithNavigationBar(title: "Profile", leftButtonAction: {
+            ContainerWithNavigationBar(title: Texts.GeneralProfile.profileNavbarTitle, leftButtonAction: {
                 viewModel.navigationAction(.goBack)
             }) {
-                VStack {
+                VStack(spacing: 20) {
                     stretchingHistoryCard
-                    Spacer()
-                    Button {
-                        viewModel.navigationAction(.logout)
-                    } label: {
-                        HStack {
-                            Image(.logoutIcon)
-                                .renderingMode(.template)
-                            Text("Logout")
-                                .font(.Main.medium(size: 18))
-                        }
-                        .foregroundColor(.danubeBlue)
+                    MenuItemView(item: .therapistCollaboration, hasNotification: viewModel.hasNotificationFromTherapist) {
+                        viewModel.navigationAction(.goToTherapistCollaboration)
                     }
-                    .buttonStyle(.plain)
+                    MenuItemView(item: .editProfile) {
+                        viewModel.navigationAction(.goToEditProfile)
+                    }
+                    Spacer()
+                    Buttons.LogoutButton {
+                        viewModel.logout()
+                    }
                 }
-                .padding(.all, 24)
-
+                .padding(.horizontal, 24)
+                .toastDisplay(isPresented: $viewModel.isConfirmationMessagePresented, message: viewModel.confirmationMessage)
             }
         }
         
         var stretchingHistoryCard: some View {
             HStack {
                 VStack(alignment: .leading, spacing: 12) {
-                    Text("Stretching history")
+                    Text(Texts.Stretching.stretchingHistoryLabel)
                         .foregroundColor(.diamond)
                         .font(.Main.bold(size: 18))
                     
                     HStack(spacing: 10) {
-                        Text("Total sessions:")
+                        Text(Texts.Stretching.totalSessionsLabel)
                             .foregroundColor(.diamond)
                             .font(.Main.regular(size: 18))
                         Text("\(viewModel.stretchingSessionsCount)")
@@ -52,7 +49,6 @@ struct PatientProfile {
                             .font(.Main.regular(size: 18))
                             .activityIndicator(viewModel.isSessionsCountLoading, scale: 0.8, tint: .feathers)
                     }
-                    
                 }
                 Spacer()
                 Buttons.FilledButton(title: Texts.Stretching.seeStretchingHistoryButtonLabel, rightIcon: .chevronRightBold, backgroundColor: .diamond, foregroundColor: .danubeBlue, size: .small, width: 125) {

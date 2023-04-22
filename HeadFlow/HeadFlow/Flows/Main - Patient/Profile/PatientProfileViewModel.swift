@@ -13,6 +13,10 @@ extension PatientProfile {
         @Published var isConfirmationMessagePresented: Bool = false
         @Published var isSessionsCountLoading: Bool = true
         
+        var hasNotificationFromTherapist: Bool {
+            Session.shared.hasNotificationFromTherapist
+        }
+        
         var confirmationMessage: String = ""
         var stretchingSessionsCount: Int = 0
 
@@ -74,5 +78,7 @@ extension PatientProfile {
         case goBack
         case logout
         case goToHistory
+        case goToTherapistCollaboration
+        case goToEditProfile
     }
 }
