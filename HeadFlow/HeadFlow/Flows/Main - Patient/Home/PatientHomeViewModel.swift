@@ -29,7 +29,7 @@ extension PatientHome {
             getNotificationFromTherapistTask?.cancel()
             
             getNotificationFromTherapistTask = Task(priority: .high, operation: { @MainActor in
-                await patientService.getTherapistForCurrentPatient(onRequestCompleted: { [weak self] result in
+                await patientService.getCollaborationOfCurrentPatient(onRequestCompleted: { [weak self] result in
                     switch result {
                     case .success(let collaboration):
                         if collaboration.status == .pending {

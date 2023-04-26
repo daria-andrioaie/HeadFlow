@@ -63,7 +63,9 @@ extension PatientProfile {
                             self?.navigationAction(.logout)
                         }
                     case .failure(let error):
-                        self?.apiError = Errors.CustomError(error.message)
+                        DispatchQueue.main.async {
+                            self?.apiError = Errors.CustomError(error.message)
+                        }
                     }
                 }
             }

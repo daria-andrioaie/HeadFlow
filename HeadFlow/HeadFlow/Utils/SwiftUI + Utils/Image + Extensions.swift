@@ -26,6 +26,8 @@ enum HFImage: String {
     case stethoscope = "stethoscope-light"
     case logoutIcon = "logout-icon"
     case shareIcon = "share-icon"
+    case checkmarkIcon = "checkmark-round-light"
+    case closeIcon = "close-round-light"
 
     //MARK: social icons
     case appleIcon = "apple-icon"

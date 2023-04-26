@@ -11,7 +11,7 @@ import SwiftUI
 extension Buttons {
     struct BorderedButton: View {
         let title: String
-        
+        var rightIcon: HFImage? = nil
         var isEnabled: Bool = true
         var backgroundColor: Color  = .feathers
         var foregroundColor: Color = .danubeBlue
@@ -26,9 +26,16 @@ extension Buttons {
             Button {
                 action()
             } label: {
-                Text(title)
-                    .foregroundColor(foregroundColor)
-                    .font(font)
+                HStack {
+                    Text(title)
+                        .foregroundColor(foregroundColor)
+                        .font(font)
+                    if let rightIcon {
+                        Image(rightIcon)
+                            .renderingMode(.template)
+                            .foregroundColor(foregroundColor)
+                    }
+                }
             }
             .buttonStyle(ButtonStyles.Bordered(isEnabled: isEnabled, fillColor: backgroundColor, borderColor: borderColor, size: size, width: width))
             .disabled(!isEnabled)

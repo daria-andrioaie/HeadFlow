@@ -32,6 +32,7 @@ class RootCoordinator: Coordinator {
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
         if let currentUser = Session.shared.currentUser {
+            print(Session.shared.accessToken)
             switch currentUser.type {
             case .patient:
                 showPatientMainCoordinator()

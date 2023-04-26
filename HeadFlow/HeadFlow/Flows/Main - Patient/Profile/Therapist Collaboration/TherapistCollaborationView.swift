@@ -14,8 +14,8 @@ struct TherapistCollaboration {
         var body: some View {
             ContainerWithNavigationBar(title: "Your therapist", leftButtonAction: viewModel.onBack) {
                 VStack(spacing: 30) {
-                    if let therapist = viewModel.collaboration?.therapist {
-                        therapistCard(therapist)
+                    if let collaboration = viewModel.collaboration {
+                        collaborationView(collaboration: collaboration)
                     } else {
                         noResultsView
                     }
@@ -28,64 +28,105 @@ struct TherapistCollaboration {
             }
         }
         
-        func therapistCard(_ therapist: User) -> some View {
-            GeometryReader { proxy in
-                HStack {
-                    therapistInfoView(therapist: therapist)
-                    .frame(width: 0.6 * proxy.size.width)
-                    .frame(maxHeight: .infinity)
-                    .background(RoundedRectangle(cornerRadius: 30)
-                        .foregroundColor(.diamond))
-                    
-                    
-                    collaborationStatusView
-                        .frame(width: 0.4 * proxy.size.width)
-
+        @ViewBuilder
+        func collaborationView(collaboration: Collaboration) -> some View {
+            if viewModel.presentSuccessAnimation {
+                AnimatedCheckmarkView(animationDuration: 2) {
+                    viewModel.presentSuccessAnimation = false
                 }
-                .frame(maxWidth: .infinity)
-                .frame(height: 120)
-                .roundedBorder(.danubeBlue, cornerRadius: 30, lineWidth: 1)
-                .background(Color.white.cornerRadius(30))
+            } else if collaboration.status == .pending {
+                pendingCollaborationView(collaboration: collaboration)
+            } else {
+                activeCollaborationView(collaboration: collaboration)
+            }
+        }
+        
+        func pendingCollaborationView(collaboration: Collaboration) -> some View {
+            VStack(spacing: 30) {
+                Text("You have a pending invitation from")
+                    .foregroundColor(.oceanBlue)
+                    .font(.Main.medium(size: 18))
+                
+                therapistInfoView(therapist: collaboration.therapist)
+                    .padding(.bottom, 40)
+                
+                respondToInvitationButtons
+                Spacer()
+            }
+        }
+        
+        func activeCollaborationView(collaboration: Collaboration) -> some View {
+            VStack(spacing: 30) {
+                therapistInfoView(therapist: collaboration.therapist)
+                    .padding(.bottom, 20)
+                
+                interruptCollaborationButton
+                Spacer()
             }
         }
         
         func therapistInfoView(therapist: User) -> some View {
-            HStack {
+            VStack {
                 profileImageView(imageURL: therapist.profilePicture)
                 
                 VStack(spacing: 16) {
                     Text("\(therapist.firstName) \(therapist.lastName)")
                         .foregroundColor(.oceanBlue)
                         .font(.Main.regular(size: 18))
+                    
                     if let phoneNumber = therapist.phoneNumber {
                         HStack {
                             Image(systemName: "phone")
                                 .renderingMode(.template)
                             Text(phoneNumber)
                                 .font(.Main.regular(size: 16))
-
+                            
                         }
                         .foregroundColor(.oceanBlue.opacity(0.6))
                     }
+                    
+                    HStack {
+                        Image(systemName: "envelope")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 15)
+                        Text(therapist.email)
+                            .font(.Main.regular(size: 16))
+                        
+                    }
+                    .foregroundColor(.oceanBlue.opacity(0.6))
                 }
             }
         }
         
-        var collaborationStatusView: some View {
-            Text("pending invitation")
-                .foregroundColor(.oceanBlue.opacity(0.6))
-                .font(.Main.regular(size: 16))
-        }
-    
         func profileImageView(imageURL: URL?) -> some View {
             Image(systemName: "person.fill")
                 .resizable()
                 .renderingMode(.template)
                 .scaledToFit()
-                .frame(width: 30)
+                .frame(width: 100)
                 .foregroundColor(.gray.opacity(0.3))
-                .padding(10)
-                .background(Color.white.roundedCorners(radius: 20))
+                .padding(50)
+                .background(Color.white.clipShape(Circle()))
+        }
+        
+        var respondToInvitationButtons: some View {
+            HStack(spacing: 30) {
+                Buttons.BorderedButton(title: "Decline", rightIcon: .closeIcon, width: 130) {
+                    viewModel.declineInvitation()
+                }
+                
+                Buttons.FilledButton(title: "Accept", rightIcon: .checkmarkIcon, width: 130) {
+                    viewModel.acceptInvitation()
+                }
+            }
+        }
+        
+        var interruptCollaborationButton: some View {
+            Buttons.BorderedButton(title: "Interrupt collaboration", rightIcon: .closeIcon, width: 245) {
+                viewModel.interruptCollaboration()
+            }
         }
         
         var noResultsView: some View {
