@@ -1,6 +1,6 @@
 const CollaborationModel = require("../model/collaboration.model");
 const UserModel = require("../model/user.model");
-
+const StretchModel = require("../model/stretch.model");
 
 const allCollaborations = async(therapistId) => {
         const collaborations = await CollaborationModel.find({ therapist: therapistId }).populate(['patient', 'therapist']); 
@@ -38,7 +38,7 @@ const searchPatient = async(therapistId, patientEmailAddress) => {
     if(!collaborationWithPatient) {
       return patient;
     } else if( collaborationWithPatient.therapist !== therapistId ) {
-      throw new Error("patient is in another collaboration")
+      throw new Error("no patient")
     } else if(collaborationWithPatient.status === 'pending') {
       throw new Error("pending collaboration")
     } else if(collaborationWithPatient.status === 'active') {
@@ -48,10 +48,20 @@ const searchPatient = async(therapistId, patientEmailAddress) => {
     }
 }
 
+const getPatientSessionsHistory = async(therapistId, patientId) => {
+  let collaborationWithPatient = await CollaborationModel.findOne({ patient: patientId, therapist: therapistId });
+
+  if(!collaborationWithPatient || collaborationWithPatient.status !== "active") {
+    throw new Error("The therapist does not have access to the data of the given patient.")
+  }
+  return StretchModel.find( { userId: patientId });
+}
+
 
 module.exports = {
     allCollaborations,
     sendInvitation,
-    searchPatient
+    searchPatient,
+    getPatientSessionsHistory
   };
   
