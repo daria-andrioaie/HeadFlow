@@ -18,7 +18,8 @@ extension TherapistCollaboration {
         let onBack: () -> Void
         
         private var getTherapistTask: Task<Void, Never>?
-        private var acceptInvitationTask: Task<Void, Never>?
+        private var respondToInvitationTask: Task<Void, Never>?
+        private var interruptCollaborationTask: Task<Void, Never>?
 
         init(patientService: PatientServiceProtocol, onBack: @escaping () -> Void) {
             self.patientService = patientService
@@ -28,20 +29,28 @@ extension TherapistCollaboration {
         }
         
         @MainActor
-        func acceptInvitation() {
+        func respondToInvitation(isAccepted: Bool) {
             guard let collaboration else {
                 return
             }
             
-            acceptInvitationTask?.cancel()
+            respondToInvitationTask?.cancel()
             isLoading = true
 
-            acceptInvitationTask = Task(priority: .userInitiated, operation: {
-                await patientService.acceptInvitation(collaboration: collaboration, onRequestCompleted: { [weak self] result in
+            respondToInvitationTask = Task(priority: .userInitiated, operation: {
+                await patientService.respondToInvitation(collaboration: collaboration, isAccepted: isAccepted, onRequestCompleted: { [weak self] result in
                     switch result {
                     case .success(let collaboration):
-                        self?.presentSuccessAnimation = true
-                        self?.collaboration = collaboration
+                        switch collaboration.status {
+                        case .active:
+                            self?.presentSuccessAnimation = true
+                            self?.collaboration = collaboration
+                        case .declined:
+                            self?.collaboration = nil
+                            self?.failureMessage = "You declined the invitation."
+                        default:
+                            break
+                        }
                         Session.shared.hasNotificationFromTherapist = false
                     case .failure(let apiError):
                         print(apiError.localizedDescription)
@@ -49,15 +58,26 @@ extension TherapistCollaboration {
                     self?.isLoading = false
                 })
             })
-
-        }
-        
-        func declineInvitation() {
-            Session.shared.hasNotificationFromTherapist = false
         }
         
         func interruptCollaboration() {
+            isLoading = true
+            interruptCollaborationTask?.cancel()
             
+            interruptCollaborationTask = Task(priority: .userInitiated, operation: { @MainActor in
+                await patientService.interruptCollaboration(onRequestCompleted: { [weak self] result in
+                    switch result {
+                    case .success(let collaboration):
+                        self?.collaboration = nil
+                        self?.failureMessage = "You interrupted you collaboration with therapist \(collaboration.therapist.firstName) \(collaboration.therapist.lastName)."
+
+                    case .failure(let apiError):
+                        print(apiError.localizedDescription)
+                    }
+                    
+                    self?.isLoading = false
+                })
+            })
         }
         
         private func getTherapist() {

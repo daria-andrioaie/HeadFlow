@@ -17,7 +17,7 @@ struct TherapistCollaboration {
                     if let collaboration = viewModel.collaboration {
                         collaborationView(collaboration: collaboration)
                     } else {
-                        noResultsView
+                        noCollaborationView
                     }
                 }
                 .padding(24)
@@ -114,11 +114,11 @@ struct TherapistCollaboration {
         var respondToInvitationButtons: some View {
             HStack(spacing: 30) {
                 Buttons.BorderedButton(title: "Decline", rightIcon: .closeIcon, width: 130) {
-                    viewModel.declineInvitation()
+                    viewModel.respondToInvitation(isAccepted: false)
                 }
                 
                 Buttons.FilledButton(title: "Accept", rightIcon: .checkmarkIcon, width: 130) {
-                    viewModel.acceptInvitation()
+                    viewModel.respondToInvitation(isAccepted: true)
                 }
             }
         }
@@ -129,7 +129,7 @@ struct TherapistCollaboration {
             }
         }
         
-        var noResultsView: some View {
+        var noCollaborationView: some View {
             Text(viewModel.failureMessage ?? "")
                 .font(.Main.regular(size: 18))
                 .foregroundColor(.oceanBlue)

@@ -33,9 +33,12 @@ const searchPatient = async(therapistId, patientEmailAddress) => {
       throw new Error("no patient")
     }
 
-    let collaborationWithPatient = await CollaborationModel.findOne({therapist: therapistId, patient: patient._id});
+    let collaborationWithPatient = await CollaborationModel.findOne({ patient: patient._id});
+
     if(!collaborationWithPatient) {
       return patient;
+    } else if( collaborationWithPatient.therapist !== therapistId ) {
+      throw new Error("patient is in another collaboration")
     } else if(collaborationWithPatient.status === 'pending') {
       throw new Error("pending collaboration")
     } else if(collaborationWithPatient.status === 'active') {
