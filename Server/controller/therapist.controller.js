@@ -86,8 +86,36 @@ const searchPatient = async (req, res) => {
   }
 };
 
+const getPatientSessionsHistory = async (req, res) => {
+  const bearerHeader = req.headers["authorization"];
+  try {
+    const therapistId = await authorizationService.authorizeToken(bearerHeader);
+    const patientId = req.body.patientId;
+
+    if(typeof patientId === undefined) {
+      throw new Error("Patient id was not provided.");
+    }
+
+    let therapist = await userService.getUser(therapistId);
+    console.log(therapist);
+    if (therapist.userType == "therapist") {
+      const history = await therapistService.getPatientSessionsHistory(
+        therapistId,
+        patientId
+      )
+      res.status(200).send({ success: true, history: history });
+    } else {
+      throw new Error("There is no therapist with the given id.");
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).send({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   allCollaborations,
   sendInvitation,
-  searchPatient
+  searchPatient,
+  getPatientSessionsHistory
 };

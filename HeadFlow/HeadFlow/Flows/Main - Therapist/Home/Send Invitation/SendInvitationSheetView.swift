@@ -13,8 +13,7 @@ struct SendInvitation {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            Self._printChanges()
-            return VStack(spacing: 30) {
+            VStack(spacing: 30) {
                 titleView
                 SearchField(text: $inputEmail, placeholder: "Enter your patient's email address") {
                     viewModel.searchPatient(with: inputEmail)
@@ -41,8 +40,6 @@ struct SendInvitation {
                     Spacer()
                 } else if viewModel.failureMessage != nil {
                     noResultsView
-                } else {
-                    Text("idk what happened")
                 }
             }
             .activityIndicator(viewModel.isLoading)
