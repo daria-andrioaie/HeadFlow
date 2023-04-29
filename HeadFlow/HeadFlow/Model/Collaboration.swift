@@ -8,7 +8,7 @@
 import Foundation
 
 enum CollaborationStatus: String, CaseIterable {
-    case pending, active
+    case pending, active, declined
 }
 
 struct Collaboration {
