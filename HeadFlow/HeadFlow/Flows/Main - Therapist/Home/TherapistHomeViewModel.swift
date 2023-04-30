@@ -68,5 +68,6 @@ extension TherapistHome {
 extension TherapistHome {
     enum NavigationType {
         case goToProfile
+        case goToPatientCoaching(User)
     }
 }

@@ -18,6 +18,9 @@
 		B80359B329C0EDB40059F578 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */; };
 		B80359B529C0EFED0059F578 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B429C0EFED0059F578 /* SessionService.swift */; };
 		B808FB8B29F19280001B6F69 /* Collaboration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808FB8A29F19280001B6F69 /* Collaboration.swift */; };
+		B81980C829FE5E0200F97ED0 /* PatientCoachingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */; };
+		B81980CB29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980CA29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift */; };
+		B81980CD29FE6FA600F97ED0 /* NavigationBar + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980CC29FE6FA600F97ED0 /* NavigationBar + Extensions.swift */; };
 		B82BA8AD29B1367C00853304 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8AC29B1367C00853304 /* Constants.swift */; };
 		B82BA8B029B138F500853304 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B82BA8AF29B138F500853304 /* Alamofire */; };
 		B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B129B1390B00853304 /* AuthenticationService.swift */; };
@@ -159,6 +162,9 @@
 		B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		B80359B429C0EFED0059F578 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		B808FB8A29F19280001B6F69 /* Collaboration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collaboration.swift; sourceTree = "<group>"; };
+		B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCoachingView.swift; sourceTree = "<group>"; };
+		B81980CA29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCoachingViewModel.swift; sourceTree = "<group>"; };
+		B81980CC29FE6FA600F97ED0 /* NavigationBar + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar + Extensions.swift"; sourceTree = "<group>"; };
 		B82BA8AC29B1367C00853304 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B82BA8B129B1390B00853304 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		B82BA8B429B3B42700853304 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -346,6 +352,15 @@
 				B88FA55C29CF50D400B828EB /* StretchingSessionsCountResponse.swift */,
 			);
 			path = Responses;
+			sourceTree = "<group>";
+		};
+		B81980C929FE5E0700F97ED0 /* Patient Coaching */ = {
+			isa = PBXGroup;
+			children = (
+				B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */,
+				B81980CA29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift */,
+			);
+			path = "Patient Coaching";
 			sourceTree = "<group>";
 		};
 		B82BA8A629B1332E00853304 /* Network services */ = {
@@ -624,6 +639,7 @@
 			children = (
 				B8A6DFBE29A0149D005BA947 /* NavigationBar.swift */,
 				B8A6DFC129A0150D005BA947 /* ContainerWithNavigationBar.swift */,
+				B81980CC29FE6FA600F97ED0 /* NavigationBar + Extensions.swift */,
 			);
 			path = NavigationBar;
 			sourceTree = "<group>";
@@ -656,6 +672,7 @@
 				B8E6837529EF19A000BAA32C /* TherapistMainCoordinator.swift */,
 				B8E6837729EF1B8600BAA32C /* Home */,
 				B8E6837C29EF1CFE00BAA32C /* Profile */,
+				B81980C929FE5E0700F97ED0 /* Patient Coaching */,
 			);
 			path = "Main - Therapist";
 			sourceTree = "<group>";
@@ -871,6 +888,7 @@
 				B890AC2129A4031200D30572 /* Texts + PhoneNumberInput.swift in Sources */,
 				B8E42E5129DB42A100459A48 /* TiltForwardDrawingView.swift in Sources */,
 				B86793F72997D841006BFE29 /* RootCoordinator.swift in Sources */,
+				B81980C829FE5E0200F97ED0 /* PatientCoachingView.swift in Sources */,
 				B890AC1229A3F7CF00D30572 /* Errors.swift in Sources */,
 				B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */,
 				B86297D929A25D690059280B /* Texts + Onboarding.swift in Sources */,
@@ -884,6 +902,7 @@
 				B88849C329F3FAFD007707FA /* MenuItemView.swift in Sources */,
 				B858E69029F044EA00B180F2 /* SearchField.swift in Sources */,
 				B88BB57029BF6E59006D7E72 /* MotionManager.swift in Sources */,
+				B81980CD29FE6FA600F97ED0 /* NavigationBar + Extensions.swift in Sources */,
 				B8417AD629C3A3B70053FD35 /* StretchExecutorViewModel.swift in Sources */,
 				B8F45E3E29C396D000FAB812 /* NotificationsViewModel.swift in Sources */,
 				B8E6837929EF1B9C00BAA32C /* TherapistHomeView.swift in Sources */,
@@ -913,6 +932,7 @@
 				B8E6837B29EF1BFF00BAA32C /* TherapistHomeViewModel.swift in Sources */,
 				B88FA55B29CF4BCD00B828EB /* Texts + Stretching.swift in Sources */,
 				B8E6837129EEEF2B00BAA32C /* Enums.swift in Sources */,
+				B81980CB29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift in Sources */,
 				B8F3C7B129CE4EDC0099CA6E /* StretchingSummary.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependencyContainer.swift in Sources */,
 				B8417AD929C3B27E0053FD35 /* Triangle.swift in Sources */,

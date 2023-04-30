@@ -7,9 +7,11 @@
 
 import SwiftUI
 
-struct NavigationBar: View {
+struct NavigationBar<RightView: View>: View {
     let title: String?
     let leftButtonAction: () -> Void
+    
+    @ViewBuilder var rightView: RightView
     
     var body: some View {
         HStack {
@@ -33,6 +35,7 @@ struct NavigationBar: View {
                     .foregroundColor(.danubeBlue)
             }
             Spacer()
+            rightView
         }
         .padding(.horizontal, 24)
         .frame(height: 80)
@@ -41,9 +44,15 @@ struct NavigationBar: View {
 
 struct NavigationBar_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
+        VStack(spacing: 20) {
             NavigationBar(title: "Daria is amazing", leftButtonAction: { })
+            NavigationBar(leftButtonAction: { })
+            NavigationBar(title: "Hi", leftButtonAction: { }, rightView: {
+                Image(systemName: "info.circle")
+                    .foregroundColor(.danubeBlue)
+            })
             Spacer()
+
         }
         
     }
