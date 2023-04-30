@@ -41,9 +41,18 @@ class TherapistMainCoordinator: Coordinator {
             switch navigationType {
             case .goToProfile:
                 self?.goToProfile()
+            case .goToPatientCoaching(let patient):
+                self?.goToPatientCoaching(patient: patient)
             }
         }
         navigationController.pushHostingController(rootView: TherapistHome.ContentView(viewModel: homeScreenVM))
+    }
+    
+    func goToPatientCoaching(patient: User) {
+        let patientCoachingVM = PatientCoaching.ViewModel(therapistService: dependencies.therapistService, patient: patient) { [weak self] in
+            self?.navigationController.popViewController(animated: true)
+        }
+        navigationController.pushHostingController(rootView: PatientCoaching.ContentView(viewModel: patientCoachingVM), animated: true)
     }
     
     func goToProfile() {

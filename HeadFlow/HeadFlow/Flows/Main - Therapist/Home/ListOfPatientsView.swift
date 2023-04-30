@@ -74,7 +74,7 @@ extension TherapistHome {
             ScrollView {
                 LazyVStack(spacing: 20) {
                     ForEach(viewModel.collaborationsForSelectedStatus, id: \.self) { collaboration in
-                        patientCard(patient: collaboration.patient)
+                        patientCard(collaboration: collaboration)
                     }
                 }
             }
@@ -92,15 +92,24 @@ extension TherapistHome {
             .buttonStyle(.plain)
         }
         
-        func patientCard(patient: User) -> some View {
-            HStack {
-                Text(patient.firstName)
-                Text(patient.lastName)
+        @ViewBuilder
+        func patientCard(collaboration: Collaboration) -> some View {
+            let patient = collaboration.patient
+            Button {
+                if collaboration.status == .active {
+                    viewModel.navigationAction(.goToPatientCoaching(patient))
+                }
+            } label: {
+                HStack {
+                    Text(patient.firstName)
+                    Text(patient.lastName)
+                }
+                .frame(maxWidth: .infinity)
+                .frame(height: 150)
+                .roundedBorder(.danubeBlue, cornerRadius: 30, lineWidth: 1)
+                .background(Color.white.cornerRadius(30))
             }
-            .frame(maxWidth: .infinity)
-            .frame(height: 150)
-            .roundedBorder(.danubeBlue, cornerRadius: 30, lineWidth: 1)
-            .background(Color.white.cornerRadius(30))
+            .buttonStyle(.plain)
         }
     }
 }
