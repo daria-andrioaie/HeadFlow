@@ -52,7 +52,7 @@ struct PatientProfile {
                 }
                 Spacer()
                 Buttons.FilledButton(title: Texts.Stretching.seeStretchingHistoryButtonLabel, rightIcon: .chevronRightBold, backgroundColor: .diamond, foregroundColor: .danubeBlue, size: .small, width: 125) {
-                    viewModel.navigationAction(.goToHistory)
+                    viewModel.navigationAction(.goToHistory(viewModel.stretchingHistory))
                 }
             }
             .padding(.all, 30)

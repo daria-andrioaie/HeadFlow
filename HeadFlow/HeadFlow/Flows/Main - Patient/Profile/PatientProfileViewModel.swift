@@ -12,14 +12,18 @@ extension PatientProfile {
         @Published var apiError: Error?
         @Published var isConfirmationMessagePresented: Bool = false
         @Published var isSessionsCountLoading: Bool = true
+        @Published var stretchingHistory: [StretchSummary.Model] = []
         
+        var confirmationMessage: String = ""
+        
+        var stretchingSessionsCount: Int {
+            stretchingHistory.count
+        }
+
         var hasNotificationFromTherapist: Bool {
             Session.shared.hasNotificationFromTherapist
         }
         
-        var confirmationMessage: String = ""
-        var stretchingSessionsCount: Int = 0
-
         let authenticationService: AuthenticationServiceProtocol
         let stretchingService: StretchingServiceProtocol
         let navigationAction: (ProfileNavigationType) -> Void
@@ -41,7 +45,7 @@ extension PatientProfile {
                 await stretchingService.getAllStretchingSessionsForCurrentUser { [weak self] result in
                     switch result {
                     case .success(let stretchingSessionsResponse):
-                        self?.stretchingSessionsCount = stretchingSessionsResponse.count
+                        self?.stretchingHistory = stretchingSessionsResponse
                         self?.isSessionsCountLoading = false
                         
                     case .failure(let error):
@@ -79,7 +83,7 @@ extension PatientProfile {
     enum ProfileNavigationType {
         case goBack
         case logout
-        case goToHistory
+        case goToHistory([StretchSummary.Model])
         case goToTherapistCollaboration
         case goToEditProfile
     }

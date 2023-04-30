@@ -64,8 +64,8 @@ class PatientMainCoordinator: Coordinator {
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
-            case .goToHistory:
-                self?.goToStretchingHistory()
+            case .goToHistory(let stretchingHistory):
+                self?.goToStretchingHistory(stretchingHistory: stretchingHistory)
             case .goToTherapistCollaboration:
                 self?.goToTherapistCollaboration()
             case .goToEditProfile:
@@ -77,8 +77,8 @@ class PatientMainCoordinator: Coordinator {
         navigationController.pushHostingController(rootView: PatientProfile.ContentView(viewModel: profileVM), animated: true)
     }
     
-    func goToStretchingHistory() {
-        let stretchingHistoryVM = StretchingHistory.ViewModel(stretchingService: dependencies.stretchingService, onBack: { [weak self] in
+    func goToStretchingHistory(stretchingHistory: [StretchSummary.Model]) {
+        let stretchingHistoryVM = StretchingHistory.ViewModel(stretchingHistory: stretchingHistory, onBack: { [weak self] in
             self?.navigationController.popViewController(animated: true)
         })
 
