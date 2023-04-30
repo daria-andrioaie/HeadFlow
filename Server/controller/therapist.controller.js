@@ -97,13 +97,13 @@ const getPatientSessionsHistory = async (req, res) => {
     }
 
     let therapist = await userService.getUser(therapistId);
-    console.log(therapist);
+
     if (therapist.userType == "therapist") {
-      const history = await therapistService.getPatientSessionsHistory(
+      const allSessions = await therapistService.getPatientSessionsHistory(
         therapistId,
         patientId
       )
-      res.status(200).send({ success: true, history: history });
+      res.status(200).send({ success: true, stretches: allSessions });
     } else {
       throw new Error("There is no therapist with the given id.");
     }

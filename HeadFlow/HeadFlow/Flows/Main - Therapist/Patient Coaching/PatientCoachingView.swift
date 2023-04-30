@@ -14,23 +14,25 @@ struct PatientCoaching {
         
         var body: some View {
             VStack {
-                NavigationBar(title: viewModel.patientName, leftButtonAction: viewModel.onBack) {
+                NavigationBar(title: viewModel.patientName, leftButtonAction: { viewModel.navigationAction(.goBack) } ) {
                     patientInfoButton
                 }
                 mainContent
-                
             }
             .fillBackground()
         }
         
         var mainContent: some View {
             ZStack {
-                VStack {
-                    Text("Here you will manage your patient \(viewModel.patient.firstName) \(viewModel.patient.lastName)")
+                VStack(spacing: 30) {
+                    patientHistoryCardView
+                    Text("Here you will coach your patient \(viewModel.patient.firstName) \(viewModel.patient.lastName)")
+                    Spacer()
                 }
                 .padding(.horizontal, 24)
                 if isPatientInfoCardPresented {
                     patientInfoCardView
+                        .zIndex(1)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -96,8 +98,6 @@ struct PatientCoaching {
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, 30)
             .transition(.scale(scale: 0.1, anchor: .topTrailing))
-//            .scaleEffect(isPatientInfoCardPresented ? 1 : 0.01, anchor: .topTrailing)
-//            .animation(.easeIn, value: isPatientInfoCardPresented)
         }
         
         func profileImageView(imageURL: URL?) -> some View {
@@ -110,13 +110,39 @@ struct PatientCoaching {
                 .padding(30)
                 .background(Color.white.clipShape(Circle()))
         }
+        
+        var patientHistoryCardView: some View {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text(Texts.Stretching.currentRangeOfMotionLabel)
+                        .foregroundColor(.diamond)
+                        .font(.Main.regular(size: 16))
+                    
+                    HStack(alignment: .bottom, spacing: 4) {
+                        Text("\(viewModel.lastRangeOfMotion.toPercentage())")
+                            .font(.Main.bold(size: 24))
+                        Text("%")
+                            .font(.Main.bold(size: 28))
+                    }
+                    .foregroundColor(.diamond)
+                    .activityIndicator(viewModel.isLoadingHistory, scale: 0.8, tint: .feathers)
+                }
+                Spacer()
+                Buttons.FilledButton(title: Texts.Stretching.seeProgressButtonLabel, rightIcon: .chevronRightBold, backgroundColor: .diamond, foregroundColor: .danubeBlue, size: .small, width: 155, font: .Main.semibold(size: 16)) {
+                    viewModel.navigationAction(.goToHistory(viewModel.stretchingHistory))
+                }
+            }
+            .padding(EdgeInsets(top: 30, leading: 24, bottom: 30, trailing: 24))
+            .frame(maxWidth: .infinity)
+            .background(Color.oceanBlue.opacity(0.9).cornerRadius(20))
+        }
     }
 }
 
 #if DEBUG
 struct PatientCoachingView_Previews: PreviewProvider {
     static var previews: some View {
-        PatientCoaching.ContentView(viewModel: .init(therapistService: MockTherapistService(), patient: .mockPatient1, onBack: { }))
+        PatientCoaching.ContentView(viewModel: .init(therapistService: MockTherapistService(), patient: .mockPatient1, navigationAction: { _ in }))
     }
 }
 #endif

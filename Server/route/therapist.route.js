@@ -7,6 +7,6 @@ const router = express.Router();
 router.get("/allCollaborations", therapistController.allCollaborations);
 router.post("/sendInvitation", therapistController.sendInvitation);
 router.post("/searchPatient", therapistController.searchPatient);
-router.post("/patientSessionsHistory", therapistController.getPatientSessionsHistory);
+router.post("/allSessions", therapistController.getPatientSessionsHistory);
 
 module.exports = router;

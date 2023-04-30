@@ -13,18 +13,19 @@ extension TherapistHome {
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
-            VStack {
+            VStack(spacing: 30) {
                 titleView
                 
                 if viewModel.collaborationsMap.isEmpty {
                     noPatientsView
+                        .activityIndicator(viewModel.isLoading)
                 } else {
                     patientsTypeFilterView
                     listForSelectedPatientType
+                        .activityIndicator(viewModel.isLoading)
                 }
             }
             .padding(.horizontal, 24)
-            .activityIndicator(viewModel.isLoading)
             .errorDisplay(error: $viewModel.apiError)
             .sheet(isPresented: $isInvitationSheetShown) {
                 SendInvitation.ContentView(viewModel: .init(therapistService: viewModel.therapistService))
@@ -44,7 +45,6 @@ extension TherapistHome {
             }
             .padding(.horizontal, 20)
             .frame(maxWidth: .infinity, alignment: .leading)
-
         }
         
         var noPatientsView: some View {

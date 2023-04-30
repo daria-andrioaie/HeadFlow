@@ -13,7 +13,6 @@ struct TherapistHome {
 
         var body: some View {
             VStack(spacing: 50) {
-                Spacer()
                 TherapistHome.ListOfPatientsView(viewModel: viewModel)
                 Spacer()
                 Buttons.ProfileButton(hasNotification: false) {

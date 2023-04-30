@@ -21,6 +21,7 @@
 		B81980C829FE5E0200F97ED0 /* PatientCoachingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */; };
 		B81980CB29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980CA29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift */; };
 		B81980CD29FE6FA600F97ED0 /* NavigationBar + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980CC29FE6FA600F97ED0 /* NavigationBar + Extensions.swift */; };
+		B81980CF29FE8D5000F97ED0 /* StretchingSessionsVerticalList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980CE29FE8D5000F97ED0 /* StretchingSessionsVerticalList.swift */; };
 		B82BA8AD29B1367C00853304 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8AC29B1367C00853304 /* Constants.swift */; };
 		B82BA8B029B138F500853304 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = B82BA8AF29B138F500853304 /* Alamofire */; };
 		B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BA8B129B1390B00853304 /* AuthenticationService.swift */; };
@@ -165,6 +166,7 @@
 		B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCoachingView.swift; sourceTree = "<group>"; };
 		B81980CA29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCoachingViewModel.swift; sourceTree = "<group>"; };
 		B81980CC29FE6FA600F97ED0 /* NavigationBar + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar + Extensions.swift"; sourceTree = "<group>"; };
+		B81980CE29FE8D5000F97ED0 /* StretchingSessionsVerticalList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingSessionsVerticalList.swift; sourceTree = "<group>"; };
 		B82BA8AC29B1367C00853304 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		B82BA8B129B1390B00853304 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		B82BA8B429B3B42700853304 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				B8EE318229D040640050B0CE /* AnimatedChartView.swift */,
 				B858E68F29F044EA00B180F2 /* SearchField.swift */,
 				B88849C229F3FAFD007707FA /* MenuItemView.swift */,
+				B81980CE29FE8D5000F97ED0 /* StretchingSessionsVerticalList.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -948,6 +951,7 @@
 				B8E6837E29EF1D4F00BAA32C /* TherapistProfileView.swift in Sources */,
 				B890AC1F29A4009E00D30572 /* SMSValidationViewModel.swift in Sources */,
 				B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */,
+				B81980CF29FE8D5000F97ED0 /* StretchingSessionsVerticalList.swift in Sources */,
 				B86297D129A1640B0059280B /* BorderedButton.swift in Sources */,
 				B808FB8B29F19280001B6F69 /* Collaboration.swift in Sources */,
 				B88849BB29F3ECEA007707FA /* TherapistCollaborationViewModel.swift in Sources */,
