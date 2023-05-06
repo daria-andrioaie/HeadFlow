@@ -26,15 +26,14 @@ struct PatientCoaching {
             ZStack {
                 VStack(spacing: 30) {
                     patientHistoryCardView
-                    Text("Here you will coach your patient \(viewModel.patient.firstName) \(viewModel.patient.lastName)")
-                    Spacer()
+                    PatientCoaching.DraggableGridOfExercises(viewModel: viewModel)
                 }
-                .padding(.horizontal, 24)
                 if isPatientInfoCardPresented {
                     patientInfoCardView
                         .zIndex(1)
                 }
             }
+            .padding(.horizontal, 24)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
         
@@ -96,7 +95,6 @@ struct PatientCoaching {
                 .roundedCorners([.bottomLeft, .bottomRight, .topLeft], radius: 20)
                 .shadow(radius: 8, x: 10, y: 10))
             .frame(maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, 30)
             .transition(.scale(scale: 0.1, anchor: .topTrailing))
         }
         
@@ -132,7 +130,7 @@ struct PatientCoaching {
                     viewModel.navigationAction(.goToHistory(viewModel.stretchingHistory))
                 }
             }
-            .padding(EdgeInsets(top: 30, leading: 24, bottom: 30, trailing: 24))
+            .padding(EdgeInsets(top: 20, leading: 24, bottom: 20, trailing: 24))
             .frame(maxWidth: .infinity)
             .background(Color.oceanBlue.opacity(0.9).cornerRadius(20))
         }

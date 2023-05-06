@@ -16,6 +16,14 @@ enum HFImage: String {
     case airpods = "airpods"
     case shoudler_shrug = "shoulder-shrugging"
     
+    // stretching exercises
+    case tiltLeft = "tilt-left"
+    case tiltRight = "tilt-right"
+    case tiltForward = "tilt-forward"
+    case tiltBackwards = "tilt-backwards"
+    case rotateLeft = "rotate-left"
+    case rotateRIght = "rotate-right"
+    
     //MARK: icons
     case chevronRight = "chevron-right"
     case chevronRightBold = "chevron-right-bold"

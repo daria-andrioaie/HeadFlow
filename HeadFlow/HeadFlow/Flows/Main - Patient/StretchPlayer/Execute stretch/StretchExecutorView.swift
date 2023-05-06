@@ -18,7 +18,7 @@ struct StretchExecutor {
                     .padding(.top, 30)
                 .padding(.bottom, 60)
                 
-                Text("\(viewModel.currentStretchingExecise.type.title)")
+                Text("\(viewModel.currentStretchingExecise.type.prompt)")
                     .foregroundColor(.oceanBlue)
                     .font(.Main.regular(size: 24))
                     .padding(.bottom, 20)
