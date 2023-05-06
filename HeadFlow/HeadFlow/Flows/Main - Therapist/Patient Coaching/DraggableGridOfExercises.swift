@@ -6,9 +6,24 @@
 //
 
 import SwiftUI
+import SwiftUIReorderableForEach
+
 extension PatientCoaching {
     struct DraggableGridOfExercises: View {
         @ObservedObject var viewModel: ViewModel
+        @State private var exercises: [StretchType]
+        @State private var offsets: [CGSize]
+        
+        init(viewModel: ViewModel) {
+            self.viewModel = viewModel
+            let exercises: [StretchType] = [.rotateToLeft,
+                                            .tiltForward,
+                                            .tiltBackwards,
+                                            .tiltToRight,
+                                            .rotateToRight]
+            self.exercises = exercises
+            offsets = [CGSize](repeating: .zero, count: exercises.count)
+        }
 
         var body: some View {
             VStack(alignment: .leading, spacing: 20) {
@@ -16,14 +31,34 @@ extension PatientCoaching {
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.oceanBlue)
                     .font(.Main.semibold(size: 22))
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     VStack(spacing: 15) {
-                        ExerciseCard(exerciseType: .rotateToLeft)
-                        ExerciseCard(exerciseType: .tiltForward)
-                        ExerciseCard(exerciseType: .tiltBackwards)
-                        ExerciseCard(exerciseType: .tiltToRight)
+                        ReorderableForEach($exercises, allowReordering: .constant(false)) { exercise, isDragged in
+                            let indexOfExercise = exercises.firstIndex(of: exercise)!
+                            
+                            ExerciseCard(exerciseType: exercise, offset: $offsets[indexOfExercise], onDelete: {
+                                print("removed exercise at \(indexOfExercise)")
+                                exercises.remove(at: indexOfExercise)
+                            })
+                                .overlay(cardOverlay(isDragged: isDragged))
+                                .onAppear {
+                                    print(offsets[indexOfExercise])
+                                }
+                        }
                     }
+                    .padding(.bottom, 30)
                 }
+            }
+        }
+        
+        @ViewBuilder
+        func cardOverlay(isDragged: Bool) -> some View {
+            if isDragged {
+                Color.white
+                    .opacity(0.7)
+                    .cornerRadius(15)
+            } else {
+                Color.clear
             }
         }
     }
@@ -37,6 +72,7 @@ struct DraggableGridOfExercises_Previews: PreviewProvider {
                                                                   patient: .mockPatient1,
                                                                   navigationAction: { _ in })
         )
+        .padding(.horizontal, 24)
     }
 }
 #endif

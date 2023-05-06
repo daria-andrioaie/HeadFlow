@@ -120,6 +120,8 @@
 		B8B7442329C8EA5F000DA599 /* StretchSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B7442229C8EA5F000DA599 /* StretchSummaryView.swift */; };
 		B8BB787129B52DD8001A4B71 /* PatientHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB787029B52DD8001A4B71 /* PatientHomeViewModel.swift */; };
 		B8CA6BD62A06502500E90FCE /* WheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA6BD52A06502500E90FCE /* WheelPicker.swift */; };
+		B8CA6BDA2A0687E200E90FCE /* SwiftUIReorderableForEach in Frameworks */ = {isa = PBXBuildFile; productRef = B8CA6BD92A0687E200E90FCE /* SwiftUIReorderableForEach */; };
+		B8CA6BDC2A06938400E90FCE /* SwipeGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA6BDB2A06938400E90FCE /* SwipeGesture.swift */; };
 		B8CFB37529D05E490063271B /* PreviewProvider + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFB37429D05E490063271B /* PreviewProvider + Extensions.swift */; };
 		B8CFB37729D062850063271B /* SizeReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CFB37629D062850063271B /* SizeReader.swift */; };
 		B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */; };
@@ -265,6 +267,7 @@
 		B8B7442229C8EA5F000DA599 /* StretchSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchSummaryView.swift; sourceTree = "<group>"; };
 		B8BB787029B52DD8001A4B71 /* PatientHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientHomeViewModel.swift; sourceTree = "<group>"; };
 		B8CA6BD52A06502500E90FCE /* WheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPicker.swift; sourceTree = "<group>"; };
+		B8CA6BDB2A06938400E90FCE /* SwipeGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGesture.swift; sourceTree = "<group>"; };
 		B8CFB37429D05E490063271B /* PreviewProvider + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider + Extensions.swift"; sourceTree = "<group>"; };
 		B8CFB37629D062850063271B /* SizeReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeReader.swift; sourceTree = "<group>"; };
 		B8D3E6E729A0CF1400A588A8 /* Color + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extensions.swift"; sourceTree = "<group>"; };
@@ -309,6 +312,7 @@
 				B870BF5229BE4BAB00CC2921 /* GoogleSignInSwift in Frameworks */,
 				B890AC1029A3C35600D30572 /* PhoneNumberKit in Frameworks */,
 				B890AC1729A3FBFB00D30572 /* Introspect in Frameworks */,
+				B8CA6BDA2A0687E200E90FCE /* SwiftUIReorderableForEach in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,6 +646,7 @@
 				B8009DF729AAB13600A4EC3B /* CustomComponents */,
 				B86297CD29A162CC0059280B /* Buttons */,
 				B8A6DFC029A014EF005BA947 /* NavigationBar */,
+				B8CA6BDD2A06939300E90FCE /* Gestures */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -663,6 +668,14 @@
 				B88FA55629CF0BD500B828EB /* StretchSummaryViewModel.swift */,
 			);
 			path = StretchSummary;
+			sourceTree = "<group>";
+		};
+		B8CA6BDD2A06939300E90FCE /* Gestures */ = {
+			isa = PBXGroup;
+			children = (
+				B8CA6BDB2A06938400E90FCE /* SwipeGesture.swift */,
+			);
+			path = Gestures;
 			sourceTree = "<group>";
 		};
 		B8D3E6E629A0CEF000A588A8 /* SwiftUI + Utils */ = {
@@ -813,6 +826,7 @@
 				B8DE006B29B90A3C0099F374 /* RealmSwift */,
 				B870BF4F29BE4BAB00CC2921 /* GoogleSignIn */,
 				B870BF5129BE4BAB00CC2921 /* GoogleSignInSwift */,
+				B8CA6BD92A0687E200E90FCE /* SwiftUIReorderableForEach */,
 			);
 			productName = HeadFlow;
 			productReference = B86793DE2997C538006BFE29 /* HeadFlow.app */;
@@ -848,6 +862,7 @@
 				B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				B8DE006A29B90A3C0099F374 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				B870BF4E29BE4BAB00CC2921 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				B8CA6BD82A0687E200E90FCE /* XCRemoteSwiftPackageReference "swiftui-reorderable-foreach" */,
 			);
 			productRefGroup = B86793DF2997C538006BFE29 /* Products */;
 			projectDirPath = "";
@@ -900,6 +915,7 @@
 				B890AC2129A4031200D30572 /* Texts + PhoneNumberInput.swift in Sources */,
 				B8E42E5129DB42A100459A48 /* TiltForwardDrawingView.swift in Sources */,
 				B86793F72997D841006BFE29 /* RootCoordinator.swift in Sources */,
+				B8CA6BDC2A06938400E90FCE /* SwipeGesture.swift in Sources */,
 				B81980C829FE5E0200F97ED0 /* PatientCoachingView.swift in Sources */,
 				B890AC1229A3F7CF00D30572 /* Errors.swift in Sources */,
 				B8A6DFB0299FD215005BA947 /* RegisterView.swift in Sources */,
@@ -1259,6 +1275,14 @@
 				minimumVersion = 0.2.3;
 			};
 		};
+		B8CA6BD82A0687E200E90FCE /* XCRemoteSwiftPackageReference "swiftui-reorderable-foreach" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/globulus/swiftui-reorderable-foreach";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		B8DE006A29B90A3C0099F374 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
@@ -1294,6 +1318,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B890AC1529A3FBFB00D30572 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		B8CA6BD92A0687E200E90FCE /* SwiftUIReorderableForEach */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B8CA6BD82A0687E200E90FCE /* XCRemoteSwiftPackageReference "swiftui-reorderable-foreach" */;
+			productName = SwiftUIReorderableForEach;
 		};
 		B8DE006B29B90A3C0099F374 /* RealmSwift */ = {
 			isa = XCSwiftPackageProductDependency;
