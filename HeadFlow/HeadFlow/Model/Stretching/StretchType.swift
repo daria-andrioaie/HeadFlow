@@ -40,7 +40,7 @@ enum StretchType: String, CaseIterable {
         }
     }
     
-    var title: String {
+    var prompt: String {
         switch self {
         case .tiltToRight: return "Tilt head to right"
         case .tiltToLeft: return "Tilt head to left"
@@ -51,6 +51,34 @@ enum StretchType: String, CaseIterable {
         case .fullRotationRight: return "Full circle to right"
         case .fullRotationLeft: return "Full circle to left"
         case .unknown: return "unknown"
+        }
+    }
+    
+    var title: String {
+        switch self {
+        case .tiltToRight: return "Right lateral flexion"
+        case .tiltToLeft: return "Left lateral flexion"
+        case .tiltForward: return "Forward flexion"
+        case .tiltBackwards: return "Backwards extension"
+        case .rotateToRight: return "Right axial rotation"
+        case .rotateToLeft: return "Left axial rotation"
+        case .fullRotationRight: return "Counter-clockwise rotation"
+        case .fullRotationLeft: return "Clockwise rotation"
+        case .unknown: return "unknown"
+        }
+    }
+    
+    var image: HFImage {
+        switch self {
+        case .tiltToRight: return .tiltLeft
+        case .tiltToLeft: return .tiltRight
+        case .tiltForward: return .tiltForward
+        case .tiltBackwards: return .tiltBackwards
+        case .rotateToRight: return .rotateRIght
+        case .rotateToLeft: return .rotateLeft
+        case .fullRotationRight: return .rotateRIght
+        case .fullRotationLeft: return .rotateLeft
+        case .unknown: return .tiltLeft
         }
     }
 }
