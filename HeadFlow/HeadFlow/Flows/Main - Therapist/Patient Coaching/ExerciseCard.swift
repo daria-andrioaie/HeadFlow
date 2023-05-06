@@ -9,16 +9,23 @@ import SwiftUI
 
 struct ExerciseCard: View {
     @State private var isExpanded: Bool = false
-    
-    let exerciseType: StretchType
     @State private var durationIndex = 0
     @State private var range: Double = 0.0
     @State private var rotationDegree = -90.0
-    let items: [PickerItem] = (0...30).map { PickerItem(value: $0)}
+    @State private var alertIsShowing = false
+    
+    let exerciseType: StretchType
+    @Binding var offset: CGSize
+    let onDelete: () -> Void
+    
+    private let items: [PickerItem] = (0...30).map { PickerItem(value: $0)}
     
     var body: some View {
         VStack {
             summaryView
+                .swipeLeftGesture(offset: $offset, canSwipe: !isExpanded) {
+                    onDelete()
+                }
                 .zIndex(1)
             
             if isExpanded {
@@ -31,29 +38,30 @@ struct ExerciseCard: View {
     }
     
     var summaryView: some View {
-        HStack(alignment: .top, spacing: 15) {
-            exerciseImageView
-            
-            VStack(alignment: .leading, spacing: 15) {
-                Text(exerciseType.title)
-                    .font(.Main.medium(size: 20))
-                    .foregroundColor(.oceanBlue)
-                exerciseParameters
-            }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            
-            Button {
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    isExpanded.toggle()
+//        Button {
+//            withAnimation(.easeInOut(duration: 0.2)) {
+//                isExpanded.toggle()
+//            }
+//        } label: {
+            HStack(alignment: .top, spacing: 15) {
+                exerciseImageView
+                
+                VStack(alignment: .leading, spacing: 15) {
+                    Text(exerciseType.title)
+                        .font(.Main.medium(size: 20))
+                        .foregroundColor(.oceanBlue)
+                    exerciseParameters
                 }
-            } label: {
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                
                 Image(systemName: "chevron.down")
                     .opacity(0.5)
                     .rotationEffect(.degrees(isExpanded ? 180 : 0))
             }
-            .buttonStyle(.plain)
-        }
-        .frame(height: 100)
+            .contentShape(Rectangle())
+            .frame(height: 100)
+//        }
+//        .buttonStyle(.plain)
     }
     
     var settingsView: some View {
@@ -61,7 +69,7 @@ struct ExerciseCard: View {
             rangeSliderView
             durationWheelPickerView
         }
-        .transition(.opacity.combined(with: .move(edge: .top)))
+        .transition(.opacity.combined(with: .scale))
     }
     
     var rangeSliderView: some View {
@@ -125,16 +133,24 @@ struct ExerciseCard: View {
 }
 
 struct ExerciseCard_Previews: PreviewProvider {
-    static var previews: some View {
-        ScrollView {
-            VStack {
-                ExerciseCard(exerciseType: .rotateToLeft)
-                ExerciseCard(exerciseType: .tiltForward)
-                ExerciseCard(exerciseType: .tiltBackwards)
-                ExerciseCard(exerciseType: .tiltToRight)
+    struct StatefulListOfExercises: View {
+        @State private var offset: CGSize = .zero
+        
+        var body: some View {
+            ScrollView {
+                VStack {
+                    ExerciseCard(exerciseType: .rotateToLeft, offset: $offset, onDelete: { })
+                    ExerciseCard(exerciseType: .tiltForward, offset: $offset, onDelete: { })
+                    ExerciseCard(exerciseType: .tiltBackwards, offset: $offset, onDelete: { })
+                    ExerciseCard(exerciseType: .tiltToRight, offset: $offset, onDelete: { })
 
+                }
+                .padding(.horizontal, 30)
             }
-            .padding(.horizontal, 30)
         }
+    }
+    
+    static var previews: some View {
+        StatefulListOfExercises()
     }
 }
