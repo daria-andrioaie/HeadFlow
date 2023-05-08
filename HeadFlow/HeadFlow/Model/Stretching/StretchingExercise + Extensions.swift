@@ -12,6 +12,8 @@ extension StretchingExercise: Codable {
         case type = "exerciseType"
         case achievedRangeOfMotion = "rangeOfMotion"
         case duration
+        case goalDegrees
+        case maximumDegrees
     }
     
     init(from decoder: Decoder) throws {
@@ -20,6 +22,8 @@ extension StretchingExercise: Codable {
         
         achievedRangeOfMotion = try container.decode(Double.self, forKey: .achievedRangeOfMotion)
         duration = try container.decode(Int.self, forKey: .duration)
+        goalDegrees = try container.decode(Int.self, forKey: .goalDegrees)
+        maximumDegrees = try container.decode(Int.self, forKey: .maximumDegrees)
     }
     
     func encode(to encoder: Encoder) throws {
@@ -28,6 +32,8 @@ extension StretchingExercise: Codable {
         try container.encode(type.rawValue, forKey: .type)
         try container.encode(achievedRangeOfMotion ?? 0, forKey: .achievedRangeOfMotion)
         try container.encode(duration, forKey: .duration)
+        try container.encode(goalDegrees, forKey: .goalDegrees)
+        try container.encode(maximumDegrees, forKey: .maximumDegrees)
     }
 }
 

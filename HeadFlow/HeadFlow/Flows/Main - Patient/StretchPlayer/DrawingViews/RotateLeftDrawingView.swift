@@ -50,7 +50,7 @@ struct RotateLeftDrawingView: View {
     
     private func updateStretchingProgress(for motion: CMDeviceMotion?) {
         if let yaw = motion?.attitude.yaw {
-            var currentYaw = motionManager.degrees(yaw) / Double(exercise.type.totalRangeOfMotion)
+            var currentYaw = motionManager.degrees(yaw) / Double(exercise.type.maximumDegrees)
             
             print("Degrees: \(motionManager.degrees(yaw))\n\n\n")
         

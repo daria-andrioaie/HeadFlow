@@ -14,7 +14,8 @@ enum StretchType: String, CaseIterable {
     case fullRotationRight, fullRotationLeft
     case unknown
     
-    var totalRangeOfMotion: Int {
+    /// !!! to be used only for mocking purposes !!!
+    var maximumDegrees: Int {
         switch self {
         case .tiltToRight:
             return 45

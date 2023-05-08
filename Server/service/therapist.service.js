@@ -1,6 +1,6 @@
 const CollaborationModel = require("../model/collaboration.model");
 const UserModel = require("../model/user.model");
-const StretchModel = require("../model/stretch.model");
+const StretchingSessionSummaryModel = require("../model/stretchingSessionSummary.model");
 
 const allCollaborations = async(therapistId) => {
         const collaborations = await CollaborationModel.find({ therapist: therapistId }).populate(['patient', 'therapist']); 
@@ -54,7 +54,7 @@ const getPatientSessionsHistory = async(therapistId, patientId) => {
   if(!collaborationWithPatient || collaborationWithPatient.status !== "active") {
     throw new Error("The therapist does not have access to the data of the given patient.")
   }
-  return StretchModel.find( { userId: patientId });
+  return StretchingSessionSummaryModel.find( { userId: patientId });
 }
 
 

@@ -126,7 +126,7 @@ struct StretchExecutor {
 #if DEBUG
 struct StretchExecutorView_Previews: PreviewProvider {
     static var previews: some View {
-        StretchExecutor.ContentView(viewModel: .init(stretchingExecise: .init(type: .rotateToRight, duration: 5)), motionManager: MotionManager())
+        StretchExecutor.ContentView(viewModel: .init(stretchingExecise: .init(type: .rotateToRight, duration: 5, goalDegrees: StretchType.rotateToRight.maximumDegrees, maximumDegrees: StretchType.rotateToRight.maximumDegrees)), motionManager: MotionManager())
     }
 }
 #endif

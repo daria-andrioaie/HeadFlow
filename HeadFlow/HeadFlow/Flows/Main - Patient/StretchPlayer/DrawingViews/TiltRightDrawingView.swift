@@ -53,7 +53,7 @@ extension DrawingView {
         
         private func updateStretchingProgress(for motion: CMDeviceMotion?) {
                 if let roll = motion?.attitude.roll {
-                    let currentRoll = motionManager.degrees(roll) / Double(exercise.type.totalRangeOfMotion)
+                    let currentRoll = motionManager.degrees(roll) / Double(exercise.type.maximumDegrees)
                     
                     print("Roll in degrees: \(motionManager.degrees(roll))")
                     print("Current roll as percentage: \(currentRoll)\n\n\n")
