@@ -49,7 +49,7 @@ struct TiltForwardDrawingView: View {
     
     private func updateStretchingProgress(for motion: CMDeviceMotion?) {
             if let pitch = motion?.attitude.pitch {
-                var currentPitch = motionManager.degrees(pitch) / Double(exercise.type.totalRangeOfMotion)
+                var currentPitch = motionManager.degrees(pitch) / Double(exercise.type.maximumDegrees)
                 
                 print("Degrees: \(motionManager.degrees(pitch))\n\n\n")
             

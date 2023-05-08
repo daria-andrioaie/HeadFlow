@@ -74,12 +74,12 @@ struct ExerciseCard: View {
     
     var rangeSliderView: some View {
         HStack {
-            Slider(value: $range, in: 0...Double(exerciseType.totalRangeOfMotion), step: 1) {
+            Slider(value: $range, in: 0...Double(exerciseType.maximumDegrees), step: 1) {
                 Text("range")
             } minimumValueLabel: {
                 Text("0")
             } maximumValueLabel: {
-                Text("\(exerciseType.totalRangeOfMotion)°")
+                Text("\(exerciseType.maximumDegrees)°")
             }
             .introspectSlider { uiSlider in
                 uiSlider.thumbTintColor = UIColor(Color.oceanBlue.opacity(0.7))

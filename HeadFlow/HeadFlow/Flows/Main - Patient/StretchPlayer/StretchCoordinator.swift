@@ -26,7 +26,6 @@ class StretchCoordinator: Coordinator {
     
     private var stretchingSet: [StretchingExercise]
     private var currentExerciseIndex: Int
-
     
     init(window: UIWindow,
          dependencies: DependencyContainer,
@@ -91,11 +90,11 @@ class StretchCoordinator: Coordinator {
     
     static func initStretchingSet() -> [StretchingExercise] {
         //TODO: save a global variable in the database and take it from there
-        let durationInSeconds = 3
+        let durationInSeconds = 1
         let stretchingSet = StretchType.allCases.filter({
             $0 != .unknown
         }).map { stretchType in
-            return StretchingExercise(type: stretchType, duration: durationInSeconds)
+            return StretchingExercise(type: stretchType, duration: durationInSeconds, goalDegrees: stretchType.maximumDegrees, maximumDegrees: stretchType.maximumDegrees)
         }
         return stretchingSet
     }

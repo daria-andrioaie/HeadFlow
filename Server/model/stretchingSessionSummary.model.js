@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const stretchSchema = new mongoose.Schema(
+const stretchingSessionSummarySchema = new mongoose.Schema(
   {
     userId: {
       type: String,
@@ -18,6 +18,8 @@ const stretchSchema = new mongoose.Schema(
     exerciseData: [{
       exerciseType: String,
       rangeOfMotion: Number,
+      goalDegrees: Number,
+      maximumDegrees: Number,
       duration: Number
     }], 
     date: {
@@ -30,4 +32,4 @@ const stretchSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("stretch", stretchSchema);
+module.exports = mongoose.model("stretchingSessionSummary", stretchingSessionSummarySchema);

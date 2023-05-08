@@ -1,10 +1,4 @@
-const UserModel = require("../model/user.model");
-const SessionModel = require("../model/session.model");
-const jwt = require("jsonwebtoken");
-const jwtKey = process.env.JWT_SECRET;
-const { OAuth2Client } = require("google-auth-library");
-const StretchModel = require("../model/stretch.model");
-const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const StretchingSessionSummaryModel = require("../model/stretchingSessionSummary.model");
 
 const saveStretchSummary = async (userId, averageRangeOfMotion, duration, exerciseData, date) => {
   if (typeof averageRangeOfMotion === "undefined") {
@@ -46,7 +40,7 @@ const saveStretchSummary = async (userId, averageRangeOfMotion, duration, exerci
     throw new Error("The field duration does do coincide with the sum of durations of each exercise.");
   }
 
-  const stretchSummary = new StretchModel({
+  const stretchSummary = new StretchingSessionSummaryModel({
     userId,
     averageRangeOfMotion,
     duration,
@@ -60,7 +54,7 @@ const saveStretchSummary = async (userId, averageRangeOfMotion, duration, exerci
 };
 
 const getAllForUser = async (userId) => {
-  return StretchModel.find({ userId: userId });
+  return StretchingSessionSummaryModel.find({ userId: userId });
 };
 
 module.exports = {

@@ -32,7 +32,6 @@ class RootCoordinator: Coordinator {
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
         if let currentUser = Session.shared.currentUser {
-            print(Session.shared.accessToken)
             switch currentUser.type {
             case .patient:
                 showPatientMainCoordinator()
@@ -42,51 +41,35 @@ class RootCoordinator: Coordinator {
         } else {
             showAuthenticationCoordinator()
         }
-        
-        //        Task(priority: .utility) {
-        //            await dependencyContainer.sessionService.isTokenValid(onRequestCompleted: { [weak self] result in
-        //                switch result {
-        //                case .success(let isTokenValid):
-        //                    if isTokenValid {
-        //                        self?.showMainCoordinator()
-        //                    } else {
-        //                        self?.showAuthenticationCoordinator()
-        //                    }
-        //
-        //                case .failure(let apiError):
-        //                    print(apiError.message)
-        //                }
-        //            })
-        //        }
     }
     
     func showAuthenticationCoordinator() {
-        let coordinator = AuthenticationCoordinator(window: window, dependencies: dependencyContainer) { [weak self] userType in
+        let coordinator = AuthenticationCoordinator(window: window, dependencies: dependencyContainer, onEndAuthenticationFlow: { [weak self] userType in
             switch userType {
             case .patient:
                 self?.showPatientMainCoordinator()
             case .therapist:
                 self?.showTherapistMainCoordinator()
             }
-        }
+        })
         self.authenticationCoordinator = coordinator
         coordinator.start(connectionOptions: nil)
     }
     
     func showPatientMainCoordinator() {
-        let coordinator = PatientMainCoordinator(window: window, dependencies: dependencyContainer) { [weak self] in
+        let coordinator = PatientMainCoordinator(window: window, dependencies: dependencyContainer, onLogout: { [weak self] in
             Session.shared.close()
             self?.showAuthenticationCoordinator()
-        }
+        })
         self.patientMainCoordinator = coordinator
         coordinator.start(connectionOptions: nil)
     }
     
     func showTherapistMainCoordinator() {
-        let coordinator = TherapistMainCoordinator(window: window, dependencies: dependencyContainer) { [weak self] in
+        let coordinator = TherapistMainCoordinator(window: window, dependencies: dependencyContainer, onLogout: { [weak self] in
             Session.shared.close()
             self?.showAuthenticationCoordinator()
-        }
+        })
         self.therapistMainCoordinator = coordinator
         coordinator.start(connectionOptions: nil)
     }

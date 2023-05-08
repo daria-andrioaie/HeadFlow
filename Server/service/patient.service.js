@@ -1,4 +1,3 @@
-const UserModel = require("../model/user.model");
 const CollaborationModel = require("../model/collaboration.model");
 
 const getCollaboration = async(patientId) => {

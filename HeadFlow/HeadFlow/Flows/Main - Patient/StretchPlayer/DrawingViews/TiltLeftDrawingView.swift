@@ -50,7 +50,7 @@ struct TiltLeftDrawingView: View {
     
     private func updateStretchingProgress(for motion: CMDeviceMotion?) {
             if let roll = motion?.attitude.roll {
-                var currentRoll = motionManager.degrees(roll) / Double(exercise.type.totalRangeOfMotion)
+                var currentRoll = motionManager.degrees(roll) / Double(exercise.type.maximumDegrees)
                 
                 print("Degrees: \(motionManager.degrees(roll))\n\n\n")
             

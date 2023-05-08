@@ -38,7 +38,6 @@ class MotionManager: NSObject, ObservableObject {
             let roll = self.degrees(attitude.roll)
             let pitch = self.degrees(attitude.pitch)
             let yaw = self.degrees(attitude.yaw)
-            print("Pitch in degrees: \(pitch)")
 
             let r = motion.rotationRate
             let ac = motion.userAcceleration
