@@ -1,4 +1,5 @@
 const StretchingSessionSummaryModel = require("../model/stretchingSessionSummary.model");
+const PlannedStretchingSessionModel = require("../model/plannedStretchingSession.model");
 
 const saveStretchSummary = async (userId, averageRangeOfMotion, duration, exerciseData, date) => {
   if (typeof averageRangeOfMotion === "undefined") {
@@ -57,7 +58,33 @@ const getAllForUser = async (userId) => {
   return StretchingSessionSummaryModel.find({ userId: userId });
 };
 
+const getPlannedStretchingSessionOfPatient = async (userId) => {
+  let session = await PlannedStretchingSessionModel.findOne({ userId: userId });
+
+  if(!session) {
+    const plannedSession = new PlannedStretchingSessionModel({
+      userId,
+      exerciseData: [{ exerciseType: "tiltToRight", goalDegrees: 45, maximumDegrees: 45, duration: 5 },
+      { exerciseType: "tiltToLeft", goalDegrees: 45, maximumDegrees: 45, duration: 5 },
+      { exerciseType: "tiltForward", goalDegrees: 45, maximumDegrees: 45, duration: 5 },
+      { exerciseType: "tiltBackwards", goalDegrees: 45, maximumDegrees: 45, duration: 5 },
+      { exerciseType: "rotateToRight", goalDegrees: 60, maximumDegrees: 60, duration: 5 },
+      { exerciseType: "rotateToLeft", goalDegrees: 60, maximumDegrees: 60, duration: 5 },
+      { exerciseType: "fullRotationRight", goalDegrees: 10, maximumDegrees: 10, duration: 5 },
+      { exerciseType: "fullRotationLeft", goalDegrees: 10, maximumDegrees: 10, duration: 5 }
+    ]
+    });
+  
+    const savedSession = await plannedSession.save();
+  
+    return savedSession.exerciseData;
+  }
+
+  return session.exerciseData
+};
+
 module.exports = {
   saveStretchSummary,
   getAllForUser,
+  getPlannedStretchingSessionOfPatient
 };

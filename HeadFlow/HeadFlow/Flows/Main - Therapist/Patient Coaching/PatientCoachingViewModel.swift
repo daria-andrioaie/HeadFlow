@@ -10,6 +10,7 @@ import SwiftUI
 
 extension PatientCoaching {
     class ViewModel: ObservableObject {
+        @Published var plannedSession: [StretchingExercise] = []
         @Published var stretchingHistory: [StretchSummary.Model] = []
         @Published var isLoadingHistory: Bool = false
         
@@ -18,6 +19,7 @@ extension PatientCoaching {
         let navigationAction: (PatientCoachingNavigationType) -> Void
 
         private var getStretchingHistoryTask: Task<Void, Never>?
+        private var getPlannedStretchingSessionTask: Task<Void, Never>?
         
         var patientName: String {
             patient.firstName + " " + patient.lastName
@@ -35,6 +37,7 @@ extension PatientCoaching {
             self.navigationAction = navigationAction
             
             getStretchingHistory()
+            getPlannedStretchingSession()
         }
         
         func getStretchingHistory() {
@@ -46,6 +49,19 @@ extension PatientCoaching {
                     case .success(let stretchingSessionsResponse):
                         self?.stretchingHistory = stretchingSessionsResponse
                         self?.isLoadingHistory = false
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                })
+            }
+        }
+        
+        func getPlannedStretchingSession() {
+            getPlannedStretchingSessionTask = Task(priority: .userInitiated) { @MainActor in
+                await therapistService.getPlannedStretchingSessionForPatient(patientId: patient.id, onRequestCompleted: { [weak self] result in
+                    switch result {
+                    case .success(let plannedSession):
+                        self?.plannedSession = plannedSession
                     case .failure(let error):
                         print(error.localizedDescription)
                     }

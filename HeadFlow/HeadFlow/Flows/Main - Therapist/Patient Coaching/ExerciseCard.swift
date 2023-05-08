@@ -9,12 +9,10 @@ import SwiftUI
 
 struct ExerciseCard: View {
     @State private var isExpanded: Bool = false
-    @State private var durationIndex = 0
-    @State private var range: Double = 0.0
     @State private var rotationDegree = -90.0
     @State private var alertIsShowing = false
     
-    let exerciseType: StretchType
+    @Binding var exercise: StretchingExercise
     @Binding var offset: CGSize
     let onDelete: () -> Void
     
@@ -23,9 +21,9 @@ struct ExerciseCard: View {
     var body: some View {
         VStack {
             summaryView
-                .swipeLeftGesture(offset: $offset, canSwipe: !isExpanded) {
-                    onDelete()
-                }
+//                .swipeLeftGesture(offset: $offset, canSwipe: !isExpanded) {
+//                    onDelete()
+//                }
                 .zIndex(1)
             
             if isExpanded {
@@ -38,16 +36,16 @@ struct ExerciseCard: View {
     }
     
     var summaryView: some View {
-//        Button {
-//            withAnimation(.easeInOut(duration: 0.2)) {
-//                isExpanded.toggle()
-//            }
-//        } label: {
+        Button {
+            withAnimation(.easeInOut(duration: 0.2)) {
+                isExpanded.toggle()
+            }
+        } label: {
             HStack(alignment: .top, spacing: 15) {
                 exerciseImageView
                 
                 VStack(alignment: .leading, spacing: 15) {
-                    Text(exerciseType.title)
+                    Text(exercise.type.title)
                         .font(.Main.medium(size: 20))
                         .foregroundColor(.oceanBlue)
                     exerciseParameters
@@ -60,8 +58,8 @@ struct ExerciseCard: View {
             }
             .contentShape(Rectangle())
             .frame(height: 100)
-//        }
-//        .buttonStyle(.plain)
+        }
+        .buttonStyle(.plain)
     }
     
     var settingsView: some View {
@@ -74,12 +72,16 @@ struct ExerciseCard: View {
     
     var rangeSliderView: some View {
         HStack {
-            Slider(value: $range, in: 0...Double(exerciseType.maximumDegrees), step: 1) {
+            Slider(value: .init(get: {
+                return Double(exercise.goalDegrees)
+            }, set: { newValue in
+                exercise.goalDegrees = Int(newValue)
+            }), in: 0...Double(exercise.maximumDegrees), step: 1) {
                 Text("range")
             } minimumValueLabel: {
                 Text("0")
             } maximumValueLabel: {
-                Text("\(exerciseType.maximumDegrees)°")
+                Text("\(exercise.maximumDegrees)°")
             }
             .introspectSlider { uiSlider in
                 uiSlider.thumbTintColor = UIColor(Color.oceanBlue.opacity(0.7))
@@ -91,7 +93,11 @@ struct ExerciseCard: View {
     
     var durationWheelPickerView: some View {
         ZStack(alignment: .bottom) {
-            WheelPicker(chosenIndex: $durationIndex, rotationDegree: $rotationDegree, items: items, circleSize: 300)
+            WheelPicker(chosenIndex: .init(get: {
+                items.firstIndex(where: { $0.value == exercise.duration }) ?? 0
+            }, set: { newIndex in
+                exercise.duration = items[newIndex].value
+            }), items: items, circleSize: 300)
                 .frame(height: 80, alignment: .top)
                 .clipped()
             Text("duration")
@@ -101,7 +107,7 @@ struct ExerciseCard: View {
     }
     
     var exerciseImageView: some View {
-        Image(exerciseType.image)
+        Image(exercise.type.image)
             .resizable()
             .scaledToFit()
             .frame(width: 50)
@@ -118,13 +124,13 @@ struct ExerciseCard: View {
                     .scaledToFit()
                     .frame(width: 15)
                     .foregroundColor(.oceanBlue.opacity(0.5))
-                Text("\(items[durationIndex].value) sec")
+                Text("\(exercise.duration) sec")
                     .foregroundColor(.oceanBlue)
                     .font(.Main.regular(size: 18))
                     .opacity(0.5)
             }
             
-            Text("max \(range.formatted())°")
+            Text("max \(exercise.goalDegrees.formatted())°")
                 .foregroundColor(.oceanBlue)
                 .font(.Main.regular(size: 18))
                 .opacity(0.5)
@@ -139,11 +145,7 @@ struct ExerciseCard_Previews: PreviewProvider {
         var body: some View {
             ScrollView {
                 VStack {
-                    ExerciseCard(exerciseType: .rotateToLeft, offset: $offset, onDelete: { })
-                    ExerciseCard(exerciseType: .tiltForward, offset: $offset, onDelete: { })
-                    ExerciseCard(exerciseType: .tiltBackwards, offset: $offset, onDelete: { })
-                    ExerciseCard(exerciseType: .tiltToRight, offset: $offset, onDelete: { })
-
+                    ExerciseCard(exercise: .constant(.mock1), offset: $offset, onDelete: { })
                 }
                 .padding(.horizontal, 30)
             }

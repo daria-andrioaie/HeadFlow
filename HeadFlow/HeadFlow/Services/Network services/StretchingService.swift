@@ -59,7 +59,7 @@ class StretchingService: StretchingServiceProtocol {
             let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
             
             AF.request(path.rawValue + "/stretching/allSessions", method: .get, headers: headers)
-                .responseDecodable(of: StretchesResponse.self) { response in
+                .responseDecodable(of: StretchingHistoryResponse.self) { response in
                     switch response.result {
                         
                     case .success(let stretchesResponse):

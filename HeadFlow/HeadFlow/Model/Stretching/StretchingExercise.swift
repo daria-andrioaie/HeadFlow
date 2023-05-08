@@ -9,9 +9,9 @@ import Foundation
 
 struct StretchingExercise {
     let type: StretchType
-    let goalDegrees: Int
+    var goalDegrees: Int
     let maximumDegrees: Int
-    let duration: Int
+    var duration: Int
     var achievedRangeOfMotion: Double?
     
     init(type: StretchType, duration: Int, goalDegrees: Int, maximumDegrees: Int, achievedRangeOfMotion: Double? = nil) {

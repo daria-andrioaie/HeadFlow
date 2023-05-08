@@ -11,18 +11,11 @@ import SwiftUIReorderableForEach
 extension PatientCoaching {
     struct DraggableGridOfExercises: View {
         @ObservedObject var viewModel: ViewModel
-        @State private var exercises: [StretchType]
         @State private var offsets: [CGSize]
         
         init(viewModel: ViewModel) {
             self.viewModel = viewModel
-            let exercises: [StretchType] = [.rotateToLeft,
-                                            .tiltForward,
-                                            .tiltBackwards,
-                                            .tiltToRight,
-                                            .rotateToRight]
-            self.exercises = exercises
-            offsets = [CGSize](repeating: .zero, count: exercises.count)
+            offsets = [CGSize](repeating: .zero, count: 8)
         }
 
         var body: some View {
@@ -33,12 +26,12 @@ extension PatientCoaching {
                     .font(.Main.semibold(size: 22))
                 ScrollView(showsIndicators: false) {
                     VStack(spacing: 15) {
-                        ReorderableForEach($exercises, allowReordering: .constant(false)) { exercise, isDragged in
-                            let indexOfExercise = exercises.firstIndex(of: exercise)!
+                        ReorderableForEach($viewModel.plannedSession, allowReordering: .constant(false)) { exercise, isDragged in
+                            let indexOfExercise = viewModel.plannedSession.firstIndex(of: exercise)!
                             
-                            ExerciseCard(exerciseType: exercise, offset: $offsets[indexOfExercise], onDelete: {
+                            ExerciseCard(exercise: $viewModel.plannedSession[indexOfExercise], offset: $offsets[indexOfExercise], onDelete: {
                                 print("removed exercise at \(indexOfExercise)")
-                                exercises.remove(at: indexOfExercise)
+                                viewModel.plannedSession.remove(at: indexOfExercise)
                             })
                                 .overlay(cardOverlay(isDragged: isDragged))
                                 .onAppear {

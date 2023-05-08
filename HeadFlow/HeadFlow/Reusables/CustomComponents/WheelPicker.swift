@@ -17,13 +17,23 @@ enum SwipeDirection {
 }
 
 struct WheelPicker: View {
-    @State private var radius: Double = 150
-    @State private var swipeDirection = SwipeDirection.left
     @Binding var chosenIndex: Int
-    @Binding var rotationDegree: Double
+    
+    @State private var rotationDegree: Double
+    @State private var radius: Double
+    @State private var swipeDirection: SwipeDirection
     
     let items: [PickerItem]
     let circleSize: Double
+    
+    init(chosenIndex: Binding<Int>, items: [PickerItem], circleSize: Double) {
+        self.rotationDegree = -90.0 - Double(chosenIndex.wrappedValue) * Double(360 / items.count)
+        self.radius = 150
+        self.swipeDirection = .left
+        self._chosenIndex = chosenIndex
+        self.items = items
+        self.circleSize = circleSize
+    }
     
     var body: some View {
         ZStack {
@@ -70,7 +80,6 @@ struct WheelPicker: View {
                 chosenIndex = chosenIndex == items.count - 1 ? 0 : chosenIndex + 1
             case .right:
                 rotationDegree += Double(360 / items.count)
-                
                 chosenIndex = chosenIndex == 0 ? items.count - 1 : chosenIndex - 1
             }
         }
@@ -87,7 +96,7 @@ struct WheelPicker_Previews: PreviewProvider {
         
         var body: some View {
             ZStack(alignment: .bottom) {
-                WheelPicker(chosenIndex: $index, rotationDegree: $degree, items: items, circleSize: 400)
+                WheelPicker(chosenIndex: $index, items: items, circleSize: 400)
                     .frame(height: 150, alignment: .top)
                     .clipped()
                 Text("duration")
