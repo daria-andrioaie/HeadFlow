@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StretchesResponse: Decodable {
+struct StretchingHistoryResponse: Decodable {
     let success: Bool
     let stretches: [StretchSummary.Model]
 }

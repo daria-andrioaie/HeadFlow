@@ -20,7 +20,7 @@ extension StretchingExercise: Codable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         type = StretchType(rawValue: try container.decode(String.self, forKey: .type)) ?? .unknown
         
-        achievedRangeOfMotion = try container.decode(Double.self, forKey: .achievedRangeOfMotion)
+        achievedRangeOfMotion = try container.decodeIfPresent(Double.self, forKey: .achievedRangeOfMotion)
         duration = try container.decode(Int.self, forKey: .duration)
         goalDegrees = try container.decode(Int.self, forKey: .goalDegrees)
         maximumDegrees = try container.decode(Int.self, forKey: .maximumDegrees)

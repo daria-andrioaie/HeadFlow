@@ -1,6 +1,8 @@
 const CollaborationModel = require("../model/collaboration.model");
 const UserModel = require("../model/user.model");
 const StretchingSessionSummaryModel = require("../model/stretchingSessionSummary.model");
+const PlannedStretchingSessionModel = require("../model/plannedStretchingSession.model");
+const stretchService = require("../service/stretch.service");
 
 const allCollaborations = async(therapistId) => {
         const collaborations = await CollaborationModel.find({ therapist: therapistId }).populate(['patient', 'therapist']); 
@@ -57,11 +59,20 @@ const getPatientSessionsHistory = async(therapistId, patientId) => {
   return StretchingSessionSummaryModel.find( { userId: patientId });
 }
 
+const getPlannedStretchingSessionOfPatient = async(therapistId, patientId) => {
+  let collaborationWithPatient = await CollaborationModel.findOne({ patient: patientId, therapist: therapistId });
+
+  if(!collaborationWithPatient || collaborationWithPatient.status !== "active") {
+    throw new Error("The therapist does not have access to the data of the given patient.")
+  }
+  return await stretchService.getPlannedStretchingSessionOfPatient(patientId);
+}
 
 module.exports = {
     allCollaborations,
     sendInvitation,
     searchPatient,
-    getPatientSessionsHistory
+    getPatientSessionsHistory,
+    getPlannedStretchingSessionOfPatient
   };
   

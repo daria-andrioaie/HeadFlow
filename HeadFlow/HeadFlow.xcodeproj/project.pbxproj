@@ -76,6 +76,7 @@
 		B870BF5029BE4BAB00CC2921 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = B870BF4F29BE4BAB00CC2921 /* GoogleSignIn */; };
 		B870BF5229BE4BAB00CC2921 /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B870BF5129BE4BAB00CC2921 /* GoogleSignInSwift */; };
 		B870BF5429BE4C9D00CC2921 /* Google-credentials.plist in Resources */ = {isa = PBXBuildFile; fileRef = B870BF5329BE4C9D00CC2921 /* Google-credentials.plist */; };
+		B8737F7C2A09747C007812AA /* PlannedStretchingSessionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8737F7B2A09747C007812AA /* PlannedStretchingSessionResponse.swift */; };
 		B882AF302A0576D400DEDCAB /* ExerciseCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B882AF2F2A0576D400DEDCAB /* ExerciseCard.swift */; };
 		B882AF322A05772C00DEDCAB /* DraggableGridOfExercises.swift in Sources */ = {isa = PBXBuildFile; fileRef = B882AF312A05772C00DEDCAB /* DraggableGridOfExercises.swift */; };
 		B88849B829F3ECAD007707FA /* TherapistCollaborationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88849B729F3ECAD007707FA /* TherapistCollaborationView.swift */; };
@@ -88,7 +89,7 @@
 		B88849C829F3FE85007707FA /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88849C729F3FE85007707FA /* EditProfileView.swift */; };
 		B88849CA29F3FFA9007707FA /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88849C929F3FFA9007707FA /* EditProfileViewModel.swift */; };
 		B88BB57029BF6E59006D7E72 /* MotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88BB56F29BF6E59006D7E72 /* MotionManager.swift */; };
-		B88FA55529CF092B00B828EB /* StretchesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FA55429CF092B00B828EB /* StretchesResponse.swift */; };
+		B88FA55529CF092B00B828EB /* StretchingHistoryResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FA55429CF092B00B828EB /* StretchingHistoryResponse.swift */; };
 		B88FA55729CF0BD500B828EB /* StretchSummaryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FA55629CF0BD500B828EB /* StretchSummaryViewModel.swift */; };
 		B88FA55B29CF4BCD00B828EB /* Texts + Stretching.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FA55A29CF4BCD00B828EB /* Texts + Stretching.swift */; };
 		B88FA55D29CF50D400B828EB /* StretchingSessionsCountResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B88FA55C29CF50D400B828EB /* StretchingSessionsCountResponse.swift */; };
@@ -225,6 +226,7 @@
 		B870BF4A29BDED7B00CC2921 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		B870BF4C29BE14B300CC2921 /* CustomAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlert.swift; sourceTree = "<group>"; };
 		B870BF5329BE4C9D00CC2921 /* Google-credentials.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Google-credentials.plist"; sourceTree = "<group>"; };
+		B8737F7B2A09747C007812AA /* PlannedStretchingSessionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedStretchingSessionResponse.swift; sourceTree = "<group>"; };
 		B882AF2F2A0576D400DEDCAB /* ExerciseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseCard.swift; sourceTree = "<group>"; };
 		B882AF312A05772C00DEDCAB /* DraggableGridOfExercises.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggableGridOfExercises.swift; sourceTree = "<group>"; };
 		B88849B729F3ECAD007707FA /* TherapistCollaborationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TherapistCollaborationView.swift; sourceTree = "<group>"; };
@@ -237,7 +239,7 @@
 		B88849C729F3FE85007707FA /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		B88849C929F3FFA9007707FA /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
 		B88BB56F29BF6E59006D7E72 /* MotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MotionManager.swift; sourceTree = "<group>"; };
-		B88FA55429CF092B00B828EB /* StretchesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchesResponse.swift; sourceTree = "<group>"; };
+		B88FA55429CF092B00B828EB /* StretchingHistoryResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingHistoryResponse.swift; sourceTree = "<group>"; };
 		B88FA55629CF0BD500B828EB /* StretchSummaryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchSummaryViewModel.swift; sourceTree = "<group>"; };
 		B88FA55A29CF4BCD00B828EB /* Texts + Stretching.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Texts + Stretching.swift"; sourceTree = "<group>"; };
 		B88FA55C29CF50D400B828EB /* StretchingSessionsCountResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchingSessionsCountResponse.swift; sourceTree = "<group>"; };
@@ -360,9 +362,10 @@
 		B80359AF29C0ED410059F578 /* Responses */ = {
 			isa = PBXGroup;
 			children = (
+				B8737F7B2A09747C007812AA /* PlannedStretchingSessionResponse.swift */,
 				B80359B029C0ED540059F578 /* BasicResponse.swift */,
 				B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */,
-				B88FA55429CF092B00B828EB /* StretchesResponse.swift */,
+				B88FA55429CF092B00B828EB /* StretchingHistoryResponse.swift */,
 				B88FA55C29CF50D400B828EB /* StretchingSessionsCountResponse.swift */,
 			);
 			path = Responses;
@@ -910,7 +913,7 @@
 				B858E68529F027E700B180F2 /* TherapistService.swift in Sources */,
 				B8BB787129B52DD8001A4B71 /* PatientHomeViewModel.swift in Sources */,
 				B890AC1C29A4004900D30572 /* SMSValidationView.swift in Sources */,
-				B88FA55529CF092B00B828EB /* StretchesResponse.swift in Sources */,
+				B88FA55529CF092B00B828EB /* StretchingHistoryResponse.swift in Sources */,
 				B8F45E2D29C38EE400FAB812 /* StretchingExercise.swift in Sources */,
 				B890AC2129A4031200D30572 /* Texts + PhoneNumberInput.swift in Sources */,
 				B8E42E5129DB42A100459A48 /* TiltForwardDrawingView.swift in Sources */,
@@ -923,6 +926,7 @@
 				B8DA4C7529BD144300C6AD3B /* NotificationsService.swift in Sources */,
 				B80359B529C0EFED0059F578 /* SessionService.swift in Sources */,
 				B82BA8B929B4DA5900853304 /* ToastDisplayView.swift in Sources */,
+				B8737F7C2A09747C007812AA /* PlannedStretchingSessionResponse.swift in Sources */,
 				B86297D329A164130059280B /* FilledButton.swift in Sources */,
 				B82BA8B229B1390B00853304 /* AuthenticationService.swift in Sources */,
 				B8DA4C7329BD093900C6AD3B /* Texts + Home.swift in Sources */,
