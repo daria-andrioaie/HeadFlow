@@ -43,7 +43,6 @@ extension Buttons {
     }
 }
 
-
 struct ProfileButton_Previews: PreviewProvider {
     static var previews: some View {
         Buttons.ProfileButton(hasNotification: true, navigationAction: {})

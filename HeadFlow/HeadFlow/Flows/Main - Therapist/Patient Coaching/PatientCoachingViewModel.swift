@@ -11,8 +11,10 @@ import SwiftUI
 extension PatientCoaching {
     class ViewModel: ObservableObject {
         @Published var plannedSession: [StretchingExercise] = []
+        @Published var copyOfPlannedSession: [StretchingExercise] = []
         @Published var stretchingHistory: [StretchSummary.Model] = []
         @Published var isLoadingHistory: Bool = false
+        @Published var isSavingPlan: Bool = false
         
         let therapistService: TherapistServiceProtocol
         let patient: User
@@ -40,7 +42,22 @@ extension PatientCoaching {
             getPlannedStretchingSession()
         }
         
-        func getStretchingHistory() {
+        func savePlannedSession() {
+            isSavingPlan = true
+            Task(priority: .userInitiated) { @MainActor in
+                await therapistService.savePlanForPatient(patientId: patient.id, exerciseData: copyOfPlannedSession, onRequestCompleted: { [weak self] result in
+                    switch result {
+                    case .success(let plannedSession):
+                        self?.plannedSession = plannedSession
+                        self?.isSavingPlan = false
+                    case .failure(let error):
+                        print(error.localizedDescription)
+                    }
+                })
+            }
+        }
+        
+        private func getStretchingHistory() {
             isLoadingHistory = true
             
             getStretchingHistoryTask = Task(priority: .userInitiated) { @MainActor in
@@ -56,12 +73,13 @@ extension PatientCoaching {
             }
         }
         
-        func getPlannedStretchingSession() {
+        private func getPlannedStretchingSession() {
             getPlannedStretchingSessionTask = Task(priority: .userInitiated) { @MainActor in
                 await therapistService.getPlannedStretchingSessionForPatient(patientId: patient.id, onRequestCompleted: { [weak self] result in
                     switch result {
                     case .success(let plannedSession):
                         self?.plannedSession = plannedSession
+                        self?.copyOfPlannedSession = plannedSession
                     case .failure(let error):
                         print(error.localizedDescription)
                     }

@@ -15,6 +15,7 @@ extension PreviewDevice {
     static let iPhone14Pro = PreviewDevice(rawValue: "iPhone 14 Pro")
     static let iPhone13Max = PreviewDevice(rawValue: "iPhone 13 Pro Max")
     static let iPhone8Plus = PreviewDevice(rawValue: "iPhone 8 Plus")
+    static let iPhone7Plus = PreviewDevice(rawValue: "iPhone 7 Plus")
 }
 
 extension PreviewDevice: Identifiable {

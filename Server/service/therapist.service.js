@@ -68,11 +68,26 @@ const getPlannedStretchingSessionOfPatient = async(therapistId, patientId) => {
   return await stretchService.getPlannedStretchingSessionOfPatient(patientId);
 }
 
+const savePlannedSessionForPatient = async(therapistId, patientId, exerciseData) => {
+  let collaborationWithPatient = await CollaborationModel.findOne({ patient: patientId, therapist: therapistId });
+
+  if(!collaborationWithPatient || collaborationWithPatient.status !== "active") {
+    throw new Error("The therapist does not have access to the data of the given patient.")
+  }
+  let savedSession = await PlannedStretchingSessionModel.findOneAndUpdate(
+    { userId: patientId },
+    { exerciseData: exerciseData },
+    { new: true}
+    );
+  return savedSession.exerciseData
+}
+
 module.exports = {
     allCollaborations,
     sendInvitation,
     searchPatient,
     getPatientSessionsHistory,
-    getPlannedStretchingSessionOfPatient
+    getPlannedStretchingSessionOfPatient,
+    savePlannedSessionForPatient
   };
   

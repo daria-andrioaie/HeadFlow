@@ -14,6 +14,7 @@ protocol TherapistServiceProtocol {
     func sendInvitation(patientId: String, onRequestCompleted: @escaping (Result<Collaboration, Errors.APIError>) -> Void) async
     func getAllStretchingSessionsForPatient(patientId: String, onRequestCompleted: @escaping (Result<[StretchSummary.Model], Errors.APIError>) -> Void) async
     func getPlannedStretchingSessionForPatient(patientId: String, onRequestCompleted: @escaping (Result<[StretchingExercise], Errors.APIError>) -> Void) async
+    func savePlanForPatient(patientId: String, exerciseData: [StretchingExercise], onRequestCompleted: @escaping (Result<[StretchingExercise], Errors.APIError>) -> Void) async
 }
 
 class TherapistService: TherapistServiceProtocol {
@@ -164,6 +165,34 @@ class TherapistService: TherapistServiceProtocol {
             onRequestCompleted(.failure(Errors.APIError(message: "No token in user defaults.")))
         }
     }
+    
+    func savePlanForPatient(patientId: String, exerciseData: [StretchingExercise], onRequestCompleted: @escaping (Result<[StretchingExercise], Errors.APIError>) -> Void) async {
+        let sessionToken = Session.shared.accessToken
+        if let sessionToken {
+
+            let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
+            let plannedSession = PlannedSession(patientId: patientId, exerciseData: exerciseData)
+            
+            AF.request(path.rawValue + "/therapist/saveSession", method: .post, parameters: plannedSession, encoder: .json, headers: headers)
+                .responseDecodable(of: PlannedStretchingSessionResponse.self) { response in
+                    switch response.result {
+                        
+                    case .success(let stretchesResponse):
+                        onRequestCompleted(.success(stretchesResponse.plannedSession))
+                        
+                    case .failure(let error):
+                        if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
+                            onRequestCompleted(.failure(apiError))
+                        }
+                        else {
+                            onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error: " + error.localizedDescription)))
+                        }
+                    }
+                }
+        } else {
+            onRequestCompleted(.failure(Errors.APIError(message: "No token in user defaults.")))
+        }
+    }
 }
 
 
@@ -189,8 +218,13 @@ class MockTherapistService: TherapistServiceProtocol {
     
     func getPlannedStretchingSessionForPatient(patientId: String, onRequestCompleted: @escaping (Result<[StretchingExercise], Errors.APIError>) -> Void) async {
         DispatchQueue.main.asyncAfter(seconds: 2) {
-            onRequestCompleted(.success([StretchingExercise.mock1]))
+            onRequestCompleted(.success([StretchingExercise.mock1, StretchingExercise.mock2, StretchingExercise.mock3]))
         }
     }
 
+    func savePlanForPatient(patientId: String, exerciseData: [StretchingExercise], onRequestCompleted: @escaping (Result<[StretchingExercise], Errors.APIError>) -> Void) async {
+        DispatchQueue.main.asyncAfter(seconds: 2) {
+            onRequestCompleted(.success(exerciseData))
+        }
+    }
 }

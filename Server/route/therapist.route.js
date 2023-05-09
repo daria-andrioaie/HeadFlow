@@ -9,5 +9,6 @@ router.post("/sendInvitation", therapistController.sendInvitation);
 router.post("/searchPatient", therapistController.searchPatient);
 router.post("/allSessions", therapistController.getPatientSessionsHistory);
 router.post("/plannedSession", therapistController.getPlannedStretchingSessionOfPatient);
+router.post("/saveSession", therapistController.savePlannedSessionForPatient);
 
 module.exports = router;

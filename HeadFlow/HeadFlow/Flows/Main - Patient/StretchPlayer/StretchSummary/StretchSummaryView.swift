@@ -129,16 +129,17 @@ struct StretchSummary {
                     .foregroundColor(.danubeBlue)
                     .font(.Main.semibold(size: 20))
                     .matchedGeometryEffect(id: animatedTextId, in: animation)
-                
-                HStack {
-                    BouncingCircle(delay: 0)
-                    BouncingCircle(delay: 0.2)
-                    BouncingCircle(delay: 0.4)
-
-                }
-                    .frame(width: 70, alignment: .center)
-                    .foregroundColor(.danubeBlue)
+                ScalingDots()
                     .matchedGeometryEffect(id: animatedShapeId, in: animation)
+                
+//                HStack {
+//                    BouncingCircle(delay: 0)
+//                    BouncingCircle(delay: 0.2)
+//                    BouncingCircle(delay: 0.4)
+//                }
+//                    .frame(width: 70, alignment: .center)
+//                    .foregroundColor(.danubeBlue)
+//                    .matchedGeometryEffect(id: animatedShapeId, in: animation)
             }
             .transaction { (tx) in
                 tx.animation = .easeInOut
