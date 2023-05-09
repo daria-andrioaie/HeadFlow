@@ -13,17 +13,14 @@ struct ExerciseCard: View {
     @State private var alertIsShowing = false
     
     @Binding var exercise: StretchingExercise
-    @Binding var offset: CGSize
-    let onDelete: () -> Void
+    let isEditing: Bool
+    var onDelete: (() -> Void)? = nil
     
     private let items: [PickerItem] = (0...30).map { PickerItem(value: $0)}
     
     var body: some View {
         VStack {
             summaryView
-//                .swipeLeftGesture(offset: $offset, canSwipe: !isExpanded) {
-//                    onDelete()
-//                }
                 .zIndex(1)
             
             if isExpanded {
@@ -37,8 +34,10 @@ struct ExerciseCard: View {
     
     var summaryView: some View {
         Button {
-            withAnimation(.easeInOut(duration: 0.2)) {
-                isExpanded.toggle()
+            if isEditing {
+                withAnimation(.easeInOut(duration: 0.2)) {
+                    isExpanded.toggle()
+                }
             }
         } label: {
             HStack(alignment: .top, spacing: 15) {
@@ -52,9 +51,23 @@ struct ExerciseCard: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 
-                Image(systemName: "chevron.down")
-                    .opacity(0.5)
-                    .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                if isEditing {
+                    VStack {
+                        Image(systemName: "chevron.down")
+                            .opacity(0.5)
+                            .rotationEffect(.degrees(isExpanded ? 180 : 0))
+                        
+                        Button {
+                            onDelete?()
+                        } label: {
+                            Image(systemName: "trash")
+                                .renderingMode(.template)
+                                .foregroundColor(.red)
+                        }
+                        .padding(.top, 20)
+                        .buttonStyle(.plain)
+                    }
+                }
             }
             .contentShape(Rectangle())
             .frame(height: 100)
@@ -139,20 +152,12 @@ struct ExerciseCard: View {
 }
 
 struct ExerciseCard_Previews: PreviewProvider {
-    struct StatefulListOfExercises: View {
-        @State private var offset: CGSize = .zero
-        
-        var body: some View {
-            ScrollView {
-                VStack {
-                    ExerciseCard(exercise: .constant(.mock1), offset: $offset, onDelete: { })
-                }
-                .padding(.horizontal, 30)
-            }
-        }
-    }
-    
     static var previews: some View {
-        StatefulListOfExercises()
+        ScrollView {
+            VStack {
+                ExerciseCard(exercise: .constant(.mock1), isEditing: false)
+            }
+            .padding(.horizontal, 30)
+        }
     }
 }

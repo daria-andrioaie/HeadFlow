@@ -12,6 +12,7 @@ extension PatientCoaching {
     struct DraggableGridOfExercises: View {
         @ObservedObject var viewModel: ViewModel
         @State private var offsets: [CGSize]
+        @State private var isEditing: Bool = false
         
         init(viewModel: ViewModel) {
             self.viewModel = viewModel
@@ -20,27 +21,98 @@ extension PatientCoaching {
 
         var body: some View {
             VStack(alignment: .leading, spacing: 20) {
+                headerView
+                if viewModel.isSavingPlan {
+                    loadingSavingView
+                } else {
+                    planningView
+                }
+            }
+        }
+        
+        var headerView: some View {
+            HStack {
                 Text("Tailor your patient's session")
                     .multilineTextAlignment(.leading)
                     .foregroundColor(.oceanBlue)
                     .font(.Main.semibold(size: 22))
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: 15) {
-                        ReorderableForEach($viewModel.plannedSession, allowReordering: .constant(false)) { exercise, isDragged in
-                            let indexOfExercise = viewModel.plannedSession.firstIndex(of: exercise)!
+                Spacer()
+                if isEditing {
+                    HStack {
+                        Button {
+                            isEditing = false
+                            viewModel.savePlannedSession()
+                        } label: {
+                            Image(systemName: "checkmark.circle.fill")
+                                .renderingMode(.template)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25)
+                        }
+                        .buttonStyle(.plain)
+                        
+                        Button {
+                            isEditing = false
+                            viewModel.copyOfPlannedSession = viewModel.plannedSession
+                        } label: {
+                            Image(systemName: "xmark")
+                                .renderingMode(.template)
+                        }
+                        .buttonStyle(.plain)
+                    }
+                    .foregroundColor(.danubeBlue)
+
+                } else {
+                    Button {
+                        isEditing = true
+                    } label: {
+                        Image(systemName: "pencil")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 20)
+                            .foregroundColor(.danubeBlue)
+                    }
+                }
+            }
+        }
+        
+        var loadingSavingView: some View {
+            VStack(spacing: 20) {
+                Text("saving plan")
+                    .foregroundColor(.danubeBlue)
+                    .font(.Main.regular(size: 20))
+                ScalingDots()
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        }
+        
+        var planningView: some View {
+            ScrollView(showsIndicators: false) {
+                VStack(spacing: 15) {
+                    if isEditing {
+                        ReorderableForEach($viewModel.copyOfPlannedSession, allowReordering: $isEditing) { exercise, isDragged in
+                            let indexOfExercise = viewModel.copyOfPlannedSession.firstIndex(of: exercise)!
                             
-                            ExerciseCard(exercise: $viewModel.plannedSession[indexOfExercise], offset: $offsets[indexOfExercise], onDelete: {
+                            ExerciseCard(exercise: $viewModel.copyOfPlannedSession[indexOfExercise], isEditing: isEditing, onDelete: {
                                 print("removed exercise at \(indexOfExercise)")
-                                viewModel.plannedSession.remove(at: indexOfExercise)
+                                withAnimation {
+                                    viewModel.copyOfPlannedSession.remove(at: indexOfExercise)
+                                }
                             })
                                 .overlay(cardOverlay(isDragged: isDragged))
-                                .onAppear {
-                                    print(offsets[indexOfExercise])
-                                }
+   
+                        }
+                    } else {
+                        ReorderableForEach($viewModel.plannedSession, allowReordering: $isEditing) { exercise, isDragged in
+                            let indexOfExercise = viewModel.plannedSession.firstIndex(of: exercise)!
+                            
+                            ExerciseCard(exercise: $viewModel.plannedSession[indexOfExercise], isEditing: isEditing)
+                                .overlay(cardOverlay(isDragged: isDragged))
                         }
                     }
-                    .padding(.bottom, 30)
                 }
+                .padding(.bottom, 30)
             }
         }
         
@@ -66,6 +138,7 @@ struct DraggableGridOfExercises_Previews: PreviewProvider {
                                                                   navigationAction: { _ in })
         )
         .padding(.horizontal, 24)
+        .previewDevice(.iPhone7Plus)
     }
 }
 #endif

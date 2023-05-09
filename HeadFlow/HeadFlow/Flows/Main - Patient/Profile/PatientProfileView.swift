@@ -29,6 +29,7 @@ struct PatientProfile {
                     }
                 }
                 .padding(.horizontal, 24)
+                .padding(.bottom, 24)
                 .toastDisplay(isPresented: $viewModel.isConfirmationMessagePresented, message: viewModel.confirmationMessage)
             }
         }

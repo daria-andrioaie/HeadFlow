@@ -140,10 +140,34 @@ const getPlannedStretchingSessionOfPatient = async (req, res) => {
   }
 };
 
+const savePlannedSessionForPatient = async (req, res) => {
+  const bearerHeader = req.headers["authorization"];
+  try {
+    const therapistId = await authorizationService.authorizeToken(bearerHeader);
+    const { patientId, exerciseData } = req.body;
+    if(typeof patientId === undefined) {
+      throw new Error("Patient id was not provided.");
+    }
+
+    let therapist = await userService.getUser(therapistId);
+
+    if (therapist.userType == "therapist") {
+      const savedSession = await therapistService.savePlannedSessionForPatient(therapistId, patientId, exerciseData);
+      res.status(200).send({ success: true, plannedSession: savedSession });
+    } else {
+      throw new Error("There is no therapist with the given id.");
+    }
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).send({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   allCollaborations,
   sendInvitation,
   searchPatient,
   getPatientSessionsHistory,
-  getPlannedStretchingSessionOfPatient
+  getPlannedStretchingSessionOfPatient,
+  savePlannedSessionForPatient
 };
