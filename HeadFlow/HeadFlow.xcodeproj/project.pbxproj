@@ -122,6 +122,8 @@
 		B8AE100129C25FF200044B58 /* DrawingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8AE100029C25FF200044B58 /* DrawingView.swift */; };
 		B8B7442329C8EA5F000DA599 /* StretchSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B7442229C8EA5F000DA599 /* StretchSummaryView.swift */; };
 		B8BB787129B52DD8001A4B71 /* PatientHomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB787029B52DD8001A4B71 /* PatientHomeViewModel.swift */; };
+		B8C6AE402A0C1A3B00B38A34 /* CountdownScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6AE3F2A0C1A3B00B38A34 /* CountdownScreenView.swift */; };
+		B8C6AE422A0C1A5600B38A34 /* CountdownScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8C6AE412A0C1A5600B38A34 /* CountdownScreenViewModel.swift */; };
 		B8CA6BD62A06502500E90FCE /* WheelPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA6BD52A06502500E90FCE /* WheelPicker.swift */; };
 		B8CA6BDA2A0687E200E90FCE /* SwiftUIReorderableForEach in Frameworks */ = {isa = PBXBuildFile; productRef = B8CA6BD92A0687E200E90FCE /* SwiftUIReorderableForEach */; };
 		B8CA6BDC2A06938400E90FCE /* SwipeGesture.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CA6BDB2A06938400E90FCE /* SwipeGesture.swift */; };
@@ -272,6 +274,8 @@
 		B8AE100029C25FF200044B58 /* DrawingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingView.swift; sourceTree = "<group>"; };
 		B8B7442229C8EA5F000DA599 /* StretchSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StretchSummaryView.swift; sourceTree = "<group>"; };
 		B8BB787029B52DD8001A4B71 /* PatientHomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientHomeViewModel.swift; sourceTree = "<group>"; };
+		B8C6AE3F2A0C1A3B00B38A34 /* CountdownScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownScreenView.swift; sourceTree = "<group>"; };
+		B8C6AE412A0C1A5600B38A34 /* CountdownScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountdownScreenViewModel.swift; sourceTree = "<group>"; };
 		B8CA6BD52A06502500E90FCE /* WheelPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WheelPicker.swift; sourceTree = "<group>"; };
 		B8CA6BDB2A06938400E90FCE /* SwipeGesture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeGesture.swift; sourceTree = "<group>"; };
 		B8CFB37429D05E490063271B /* PreviewProvider + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PreviewProvider + Extensions.swift"; sourceTree = "<group>"; };
@@ -686,6 +690,22 @@
 			path = StretchSummary;
 			sourceTree = "<group>";
 		};
+		B8C6AE3D2A0C19D100B38A34 /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		B8C6AE3E2A0C1A1500B38A34 /* CountdownScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B8C6AE3F2A0C1A3B00B38A34 /* CountdownScreenView.swift */,
+				B8C6AE412A0C1A5600B38A34 /* CountdownScreenViewModel.swift */,
+			);
+			path = CountdownScreen;
+			sourceTree = "<group>";
+		};
 		B8CA6BDD2A06939300E90FCE /* Gestures */ = {
 			isa = PBXGroup;
 			children = (
@@ -797,6 +817,8 @@
 		B8F45E3529C393B400FAB812 /* StretchPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				B8C6AE3E2A0C1A1500B38A34 /* CountdownScreen */,
+				B8C6AE3D2A0C19D100B38A34 /* New Group */,
 				B84EDD8629D8886D0033E475 /* DrawingViews */,
 				B8417AD029C3A2210053FD35 /* StretchCoordinator.swift */,
 				B88FA55A29CF4BCD00B828EB /* Texts + Stretching.swift */,
@@ -993,6 +1015,7 @@
 				B88FA56B29CF9B5000B828EB /* DetailedStretchingInfoViewModel.swift in Sources */,
 				B88FA56929CF9B0C00B828EB /* DetailedStretchingInfoView.swift in Sources */,
 				B870BF4B29BDED7B00CC2921 /* Alerts.swift in Sources */,
+				B8C6AE402A0C1A3B00B38A34 /* CountdownScreenView.swift in Sources */,
 				B88849C129F3F2A5007707FA /* Texts + Profile.swift in Sources */,
 				B84A7CDC29DAA0E200082C02 /* RotateRightDrawingView.swift in Sources */,
 				B8E6837E29EF1D4F00BAA32C /* TherapistProfileView.swift in Sources */,
@@ -1009,6 +1032,7 @@
 				B8A6DFBC29A0127C005BA947 /* OnboardingViewModel.swift in Sources */,
 				B8F45E3829C394D300FAB812 /* PatientProfileViewModel.swift in Sources */,
 				B8AE100129C25FF200044B58 /* DrawingView.swift in Sources */,
+				B8C6AE422A0C1A5600B38A34 /* CountdownScreenViewModel.swift in Sources */,
 				B8EA843C299937F6009D83E7 /* UIWindow + Extensions.swift in Sources */,
 				B86793FA2997D880006BFE29 /* Coordinator.swift in Sources */,
 				B88849C529F3FCDE007707FA /* LogoutButton.swift in Sources */,

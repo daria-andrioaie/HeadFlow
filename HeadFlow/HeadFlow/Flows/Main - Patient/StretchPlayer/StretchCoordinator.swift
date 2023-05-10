@@ -24,7 +24,8 @@ class StretchCoordinator: Coordinator {
     let dependencies: DependencyContainer
     let finishAction: () -> Void
     
-    private var stretchingSet: [StretchingExercise]
+    private var isLoadingSession: Bool = true
+    private var stretchingSet: [StretchingExercise] = []
     private var currentExerciseIndex: Int
     
     init(window: UIWindow,
@@ -33,18 +34,22 @@ class StretchCoordinator: Coordinator {
         self.window = window
         self.dependencies = dependencies
         self.finishAction = finishAction
-        self.stretchingSet = Self.initStretchingSet()
         currentExerciseIndex = 0
     }
     
     func start(connectionOptions: UIScene.ConnectionOptions?) {
         window.transitionViewController(navigationController)
-        showExerciseForCurrentIndex()
+        showLoadingScreenScreen()
     }
     
-    func showCountdownScreen() {
-        
+    func showLoadingScreenScreen() {
+        let countdownScreenVM = CountdownScreen.ViewModel(stretchingService: dependencies.stretchingService) { [weak self] stretchingSession in
+            self?.stretchingSet = stretchingSession
+            self?.showExerciseForCurrentIndex()
+        }
+        self.navigationController.pushHostingController(rootView: CountdownScreen.ContentView(viewModel: countdownScreenVM), animated: true)
     }
+
     
     func showExerciseForCurrentIndex() {
         if let currentExercise = stretchingSet[safe: currentExerciseIndex] {
@@ -87,15 +92,15 @@ class StretchCoordinator: Coordinator {
         
         self.navigationController.pushHostingController(rootView: StretchSummary.ContentView(viewModel: viewModel))
     }
-    
-    static func initStretchingSet() -> [StretchingExercise] {
-        //TODO: save a global variable in the database and take it from there
-        let durationInSeconds = 1
-        let stretchingSet = StretchType.allCases.filter({
-            $0 != .unknown
-        }).map { stretchType in
-            return StretchingExercise(type: stretchType, duration: durationInSeconds, goalDegrees: stretchType.maximumDegrees, maximumDegrees: stretchType.maximumDegrees)
-        }
-        return stretchingSet
-    }
+
+//    static func initStretchingSet() -> [StretchingExercise] {
+//        //TODO: save a global variable in the database and take it from there
+//        let durationInSeconds = 1
+//        let stretchingSet = StretchType.allCases.filter({
+//            $0 != .unknown
+//        }).map { stretchType in
+//            return StretchingExercise(type: stretchType, duration: durationInSeconds, goalDegrees: stretchType.maximumDegrees, maximumDegrees: stretchType.maximumDegrees)
+//        }
+//        return stretchingSet
+//    }
 }

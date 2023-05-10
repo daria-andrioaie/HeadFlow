@@ -38,7 +38,7 @@ extension PatientCoaching {
                     .font(.Main.semibold(size: 22))
                 Spacer()
                 if isEditing {
-                    HStack {
+                    HStack(spacing: 20) {
                         Button {
                             isEditing = false
                             viewModel.savePlannedSession()
