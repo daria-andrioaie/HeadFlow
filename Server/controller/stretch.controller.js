@@ -40,8 +40,22 @@ try {
 }
 };
 
+const getPlannedSession = async (req, res) => {
+  const bearerHeader = req.headers['authorization'];
+try {
+  const userId = await authorizationService.authorizeToken(bearerHeader);
+  const plannedSession = await stretchService.getPlannedStretchingSessionOfPatient(userId);
+
+  res.status(200).send({ success: true, plannedSession: plannedSession });
+} catch (error) {
+  console.log(error.message);
+  res.status(404).send({ success: false, message: error.message });
+}
+};
+
 module.exports = {
   saveStretchSummary,
   getAllForUser,
   getSessionsCountForUser,
+  getPlannedSession
 };
