@@ -27,11 +27,15 @@ extension StretchExecutor {
                 timer = timer.upstream.autoconnect()
             }
         }
+        let exerciseIndex: Int
+        let totalNumberOfExercises: Int
         
         var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
         
-        init(stretchingExecise: StretchingExercise) {
+        init(stretchingExecise: StretchingExercise, exerciseIndex: Int, totalNumberOfExercises: Int) {
             currentStretchingExecise = stretchingExecise
+            self.exerciseIndex = exerciseIndex
+            self.totalNumberOfExercises = totalNumberOfExercises
             timeRemaining = currentStretchingExecise.duration
         }
         
