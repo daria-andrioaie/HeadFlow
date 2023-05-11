@@ -690,13 +690,6 @@
 			path = StretchSummary;
 			sourceTree = "<group>";
 		};
-		B8C6AE3D2A0C19D100B38A34 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		B8C6AE3E2A0C1A1500B38A34 /* CountdownScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -818,7 +811,6 @@
 			isa = PBXGroup;
 			children = (
 				B8C6AE3E2A0C1A1500B38A34 /* CountdownScreen */,
-				B8C6AE3D2A0C19D100B38A34 /* New Group */,
 				B84EDD8629D8886D0033E475 /* DrawingViews */,
 				B8417AD029C3A2210053FD35 /* StretchCoordinator.swift */,
 				B88FA55A29CF4BCD00B828EB /* Texts + Stretching.swift */,

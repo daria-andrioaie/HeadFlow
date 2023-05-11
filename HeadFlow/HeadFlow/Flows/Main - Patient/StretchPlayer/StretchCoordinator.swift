@@ -53,7 +53,7 @@ class StretchCoordinator: Coordinator {
     
     func showExerciseForCurrentIndex() {
         if let currentExercise = stretchingSet[safe: currentExerciseIndex] {
-            let currentExerciseVM = StretchExecutor.ViewModel(stretchingExecise: currentExercise)
+            let currentExerciseVM = StretchExecutor.ViewModel(stretchingExecise: currentExercise, exerciseIndex: currentExerciseIndex + 1, totalNumberOfExercises: stretchingSet.count)
             
             currentExerciseVM.navigationAction = { [weak self] navigationType in
                 switch navigationType {

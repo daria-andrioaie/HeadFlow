@@ -25,6 +25,8 @@ struct StretchExecutor {
                 
                 DrawingView(exercise: $viewModel.currentStretchingExecise, motionManager: motionManager, isPaused: viewModel.timerState != .running)
                     .padding(.all, 100)
+                
+                TimelineView(currentExerciseIndex: viewModel.exerciseIndex, totalCount: viewModel.totalNumberOfExercises)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .fillBackground()
@@ -121,12 +123,43 @@ struct StretchExecutor {
             }
         }
     }
+    
+    struct TimelineView: View {
+        let currentExerciseIndex: Int
+        let totalCount: Int
+        
+        var body: some View {
+            VStack(spacing: 20) {
+                HStack(spacing: 0) {
+                    ForEach(0 ..< totalCount - 1) { index in
+                        Circle()
+                            .fill(Color.danubeBlue)
+                            .opacity(index < currentExerciseIndex ? 0.7 : 0.2)
+                            .frame(width: 10)
+                        Rectangle()
+                            .frame(height: 2.5)
+                            .foregroundColor(.danubeBlue)
+                            .opacity(index < currentExerciseIndex - 1 ? 0.7 : 0.2)
+                    }
+                    Circle()
+                        .fill(Color.danubeBlue)
+                        .opacity(currentExerciseIndex == totalCount ? 0.7 : 0.2)
+                        .frame(width: 10)
+                }
+                
+                Text("\(currentExerciseIndex)/\(totalCount)")
+                    .foregroundColor(.danubeBlue)
+                    .font(.Main.semibold(size: 20))
+            }
+            .padding(.horizontal, 46)
+        }
+    }
 }
 
 #if DEBUG
 struct StretchExecutorView_Previews: PreviewProvider {
     static var previews: some View {
-        StretchExecutor.ContentView(viewModel: .init(stretchingExecise: .init(type: .rotateToRight, duration: 5, goalDegrees: StretchType.rotateToRight.maximumDegrees, maximumDegrees: StretchType.rotateToRight.maximumDegrees)), motionManager: MotionManager())
+        StretchExecutor.ContentView(viewModel: .init(stretchingExecise: .init(type: .rotateToRight, duration: 5, goalDegrees: StretchType.rotateToRight.maximumDegrees, maximumDegrees: StretchType.rotateToRight.maximumDegrees), exerciseIndex: 3, totalNumberOfExercises: 8), motionManager: MotionManager())
     }
 }
 #endif
