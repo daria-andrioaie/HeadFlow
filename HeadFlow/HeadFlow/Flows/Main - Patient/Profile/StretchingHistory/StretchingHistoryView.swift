@@ -13,7 +13,7 @@ struct StretchingHistory {
         
         var body: some View {
             ContainerWithNavigationBar(title: "Stretching history", leftButtonAction: viewModel.onBack) {
-                StretchingSessionsVerticalList(stretchingSessions: viewModel.stretchingHistory)
+                StretchingSessionsVerticalList(patient: viewModel.patient, stretchingSessions: viewModel.stretchingHistory)
             }
         }
     }
@@ -23,7 +23,7 @@ struct StretchingHistory {
 struct StretchingHistoryView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(previewDevices) {
-            StretchingHistory.ContentView(viewModel: .init(stretchingHistory: StretchSummary.Model.mockedSet, onBack: {}))
+            StretchingHistory.ContentView(viewModel: .init(patient: .mockPatient1, stretchingHistory: StretchSummary.Model.mockedSet, onBack: {}))
                 .previewDevice($0)
                 .previewDisplayName($0.rawValue)
         }

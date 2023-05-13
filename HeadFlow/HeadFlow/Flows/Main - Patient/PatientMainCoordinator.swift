@@ -78,11 +78,13 @@ class PatientMainCoordinator: Coordinator {
     }
     
     func goToStretchingHistory(stretchingHistory: [StretchSummary.Model]) {
-        let stretchingHistoryVM = StretchingHistory.ViewModel(stretchingHistory: stretchingHistory, onBack: { [weak self] in
-            self?.navigationController.popViewController(animated: true)
-        })
+        if let patient = Session.shared.currentUser {
+            let stretchingHistoryVM = StretchingHistory.ViewModel(patient: patient, stretchingHistory: stretchingHistory, onBack: { [weak self] in
+                self?.navigationController.popViewController(animated: true)
+            })
 
-        navigationController.pushHostingController(rootView: StretchingHistory.ContentView(viewModel: stretchingHistoryVM), animated: true)
+            navigationController.pushHostingController(rootView: StretchingHistory.ContentView(viewModel: stretchingHistoryVM), animated: true)
+        }
     }
     
     func goToTherapistCollaboration() {

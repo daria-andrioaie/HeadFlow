@@ -9,10 +9,12 @@ import SwiftUI
 
 extension DetailedStretchingInfo {
     struct PDFSummaryView: View {
+        let patient: User
         let stretchingSession: StretchSummary.Model
         let exerciseRangeDict: [StretchType : Double]
         
-        init(stretchingSession: StretchSummary.Model) {
+        init(patient: User, stretchingSession: StretchSummary.Model) {
+            self.patient = patient
             self.stretchingSession = stretchingSession
             exerciseRangeDict = stretchingSession.exerciseData.reduce([StretchType :  Double]() , { partialResult, exercise in
                 var partialResult = partialResult
@@ -44,7 +46,7 @@ extension DetailedStretchingInfo {
                         .font(.Main.regular(size: 16))
                         .opacity(0.8)
                     
-                    Text("\(stretchingSession.duration.toMinutesAndSecondsFormat()) min")
+                    Text(stretchingSession.duration.toMinutesAndSecondsFormat())
                         .foregroundColor(.oceanBlue)
                         .font(.Main.regular(size: 16))
                         .opacity(0.5)
@@ -52,13 +54,10 @@ extension DetailedStretchingInfo {
                 
                 Spacer()
                 
-                if let currentUser = Session.shared.currentUser {
-                    Text(currentUser.firstName + " " + currentUser.lastName)
-                        .foregroundColor(.oceanBlue)
-                        .font(.Main.regular(size: 16))
-                        .opacity(0.8)
-                }
-                
+                Text(patient.firstName + " " + patient.lastName)
+                    .foregroundColor(.oceanBlue)
+                    .font(.Main.regular(size: 16))
+                    .opacity(0.8)
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 30)
@@ -73,7 +72,7 @@ extension DetailedStretchingInfo {
                     .multilineTextAlignment(.center)
                     .foregroundColor(.oceanBlue)
                     .font(.Main.medium(size: 18))
-
+                
                 HStack(alignment: .bottom, spacing: 4) {
                     Text("\(stretchingSession.averageRangeOfMotion.toPercentage())")
                         .font(.Main.bold(size: 28))
@@ -184,6 +183,6 @@ extension DetailedStretchingInfo {
 
 struct PDFStretchingSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedStretchingInfo.PDFSummaryView(stretchingSession: .mock1)
+        DetailedStretchingInfo.PDFSummaryView(patient: .mockPatient1, stretchingSession: .mock1)
     }
 }

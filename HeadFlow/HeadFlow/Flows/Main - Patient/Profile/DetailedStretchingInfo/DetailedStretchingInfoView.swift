@@ -10,10 +10,12 @@ import SwiftUI
 struct DetailedStretchingInfo {
     struct ContentView: View {
         @StateObject private var viewModel = ViewModel()
+        let patient: User
         let stretchingSession: StretchSummary.Model
         let exerciseRangeDict: [StretchType : Double]
         
-        init(stretchingSession: StretchSummary.Model) {
+        init(patient: User, stretchingSession: StretchSummary.Model) {
+            self.patient = patient
             self.stretchingSession = stretchingSession
             exerciseRangeDict = stretchingSession.exerciseData.reduce([StretchType :  Double]() , { partialResult, exercise in
                 var partialResult = partialResult
@@ -123,17 +125,28 @@ struct DetailedStretchingInfo {
         }
         
         var titleView: some View {
-            VStack(spacing: 0) {
-                Text("Progress over perfection 💪🏼")
-                    .foregroundColor(.oceanBlue)
-                    .font(.Main.medium(size: 22))
-                    .padding(.bottom, 20)
+            let userType = Session.shared.currentUser?.type ?? .patient
+            
+            return VStack(spacing: 0) {
+                if userType == .patient {
+                    Text("Progress over perfection 💪🏼")
+                        .foregroundColor(.oceanBlue)
+                        .font(.Main.medium(size: 22))
+                        .padding(.bottom, 20)
+                }
                 
-                Text("In this session, you achieved an average range of motion of ")
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.gray)
-                    .font(.Main.p1Medium)
-                
+                if userType == .patient {
+                    Text("In this session, you achieved an average range of motion of ")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.gray)
+                        .font(.Main.p1Medium)
+                } else {
+                    let patientName = patient.firstName + " " + patient.lastName
+                    Text("In this session, \(patientName) achieved an average range of motion of ")
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.gray)
+                        .font(.Main.p1Medium)
+                }
                 
                 HStack(alignment: .bottom, spacing: 4) {
                     Text("\(stretchingSession.averageRangeOfMotion.toPercentage())")
@@ -156,7 +169,7 @@ struct DetailedStretchingInfo {
                             .font(.Main.regular(size: 16))
                             .opacity(0.8)
                         
-                        Text("\(stretchingSession.duration.toMinutesAndSecondsFormat()) min")
+                        Text(stretchingSession.duration.toMinutesAndSecondsFormat())
                             .foregroundColor(.oceanBlue)
                             .font(.Main.regular(size: 16))
                             .opacity(0.5)
@@ -176,46 +189,12 @@ struct DetailedStretchingInfo {
         
         @available(iOS 16.0, *)
         var shareButtonView: some View {
-            ShareLink(item: pdfRendering()) {
+            ShareLink(item: viewModel.pdfRendering(patient: patient, stretchingSession: stretchingSession)) {
                 Image(.shareIcon)
                     .renderingMode(.template)
                     .foregroundColor(.oceanBlue.opacity(0.6))
             }
             .buttonStyle(.plain)
-        }
-        
-        @MainActor
-        func pdfRendering() -> URL {
-            if #available(iOS 16.0, *) {
-                let renderer = ImageRenderer(content:
-                    DetailedStretchingInfo.PDFSummaryView(stretchingSession: stretchingSession)
-                )
-                let patientName = Session.shared.currentUser?.firstName ?? ""
-                let date = stretchingSession.date.toCalendarDate(.numeric).replacing("/", with: "-")
-                let path = "summary-" + patientName + "-" + date + ".pdf"
-        
-                let url = URL.documentsDirectory.appending(path: path)
-                
-                renderer.render { size, context in
-                    var box = CGRect(origin: .zero, size: size)
-//                    var box = CGRect(origin: .zero, size: CGSize(width: 595, height: 842))
-                    
-                    guard let pdf = CGContext(url as CFURL, mediaBox: &box, nil) else {
-                        return
-                    }
-                    
-                    pdf.beginPDFPage(nil)
-                    
-                    context(pdf)
-                    
-                    pdf.endPage()
-                    pdf.closePDF()
-                }
-                
-                return url
-            } else {
-                return URL(string: "https://www.google.com/")!
-            }
         }
         
         var grabberView: some View {
@@ -231,7 +210,7 @@ struct DetailedStretchingInfo {
 struct DetailedStretchingInfoView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(previewDevices) {
-            DetailedStretchingInfo.ContentView(stretchingSession: .mock1)
+            DetailedStretchingInfo.ContentView(patient: .mockPatient1, stretchingSession: .mock1)
                 .previewDevice($0)
                 .previewDisplayName($0.rawValue)
         }

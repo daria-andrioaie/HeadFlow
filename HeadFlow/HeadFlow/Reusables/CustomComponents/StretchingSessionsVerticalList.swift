@@ -11,6 +11,7 @@ import SwiftUI
 struct StretchingSessionsVerticalList: View {
     @State private var selectedSession: StretchSummary.Model? = nil
 
+    let patient: User
     let stretchingSessions: [StretchSummary.Model]
     
     var body: some View {
@@ -37,7 +38,7 @@ struct StretchingSessionsVerticalList: View {
                 }
             }
             .sheet(item: $selectedSession) { session in
-                DetailedStretchingInfo.ContentView(stretchingSession: session)
+                DetailedStretchingInfo.ContentView(patient: patient, stretchingSession: session)
             }
         }
     }
@@ -72,7 +73,7 @@ struct StretchingSessionsVerticalList: View {
                         .foregroundColor(.oceanBlue)
                         .font(.Main.regular(size: 18))
                         .opacity(0.5)
-                    Text("\(stretchingSession.duration.toMinutesAndSecondsFormat()) min")
+                    Text(stretchingSession.duration.toMinutesAndSecondsFormat())
                         .foregroundColor(.oceanBlue)
                         .font(.Main.bold(size: 18))
                         .padding(.bottom, 5)
@@ -111,7 +112,7 @@ struct StretchingSessionsVerticalList: View {
 #if DEBUG
 struct StretchingSessionsVerticalList_Previews: PreviewProvider {
     static var previews: some View {
-        StretchingSessionsVerticalList(stretchingSessions: [])
+        StretchingSessionsVerticalList(patient: .mockPatient1, stretchingSessions: [])
     }
 }
 #endif

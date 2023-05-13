@@ -9,10 +9,12 @@ import Foundation
 
 extension StretchingHistory {
     class ViewModel: ObservableObject {
+        let patient: User
         let stretchingHistory: [StretchSummary.Model]
         let onBack: () -> Void
         
-        init(stretchingHistory: [StretchSummary.Model], onBack: @escaping () -> Void) {
+        init(patient: User, stretchingHistory: [StretchSummary.Model], onBack: @escaping () -> Void) {
+            self.patient = patient
             self.stretchingHistory = stretchingHistory
             self.onBack = onBack
         }
