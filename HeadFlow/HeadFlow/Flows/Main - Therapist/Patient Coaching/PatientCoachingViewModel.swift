@@ -94,6 +94,6 @@ extension PatientCoaching {
     
     enum PatientCoachingNavigationType {
         case goBack
-        case goToHistory([StretchSummary.Model])
+        case goToHistory(User, [StretchSummary.Model])
     }
 }

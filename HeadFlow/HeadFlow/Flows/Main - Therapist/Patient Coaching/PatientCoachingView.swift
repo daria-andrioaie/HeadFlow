@@ -127,7 +127,7 @@ struct PatientCoaching {
                 }
                 Spacer()
                 Buttons.FilledButton(title: Texts.Stretching.seeProgressButtonLabel, rightIcon: .chevronRightBold, backgroundColor: .diamond, foregroundColor: .danubeBlue, size: .small, width: 155, font: .Main.semibold(size: 16)) {
-                    viewModel.navigationAction(.goToHistory(viewModel.stretchingHistory))
+                    viewModel.navigationAction(.goToHistory(viewModel.patient, viewModel.stretchingHistory))
                 }
             }
             .padding(EdgeInsets(top: 20, leading: 24, bottom: 20, trailing: 24))

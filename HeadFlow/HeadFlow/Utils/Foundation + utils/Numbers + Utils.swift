@@ -10,21 +10,24 @@ import Foundation
 extension Int {
     func toMinutesAndSecondsFormat() -> String {
         let minutes: String
-        if ((self % 3600) / 60) / 10 == 0 {
-            minutes = "0\((self % 3600) / 60)"
-        }
-        else {
+        
+        if (self % 3600) / 60 != 0 {
             minutes = "\((self % 3600) / 60)"
-        }
-        
-        let seconds: String
-        if ((self % 3600) % 60) / 10 == 0 {
-            seconds = "0\((self % 3600) % 60)"
         } else {
-            seconds = "\((self % 3600) % 60)"
+            minutes = "0"
         }
         
-        return "\(minutes):\(seconds)"
+        let seconds = "\((self % 3600) % 60)"
+        
+        var finalString: String
+        if minutes != "0" {
+            finalString = "\(minutes) min"
+            finalString.append("\(seconds) sec")
+        } else {
+            finalString = "\(seconds) sec"
+        }
+        
+        return finalString
     }
 }
 
