@@ -52,6 +52,7 @@ extension CountdownScreen {
                     if (self?.timeRemaining ?? 0) > 0 {
                         self?.timeRemaining -= 1
                     } else {
+                        self?.timer.connect().cancel()
                         self?.onCountdownFinished(self?.plannedSession ?? [])
                     }
                 }
