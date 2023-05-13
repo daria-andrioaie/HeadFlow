@@ -162,10 +162,11 @@ struct DetailedStretchingInfo {
                             .opacity(0.5)
                     }
                     
-                    
                     Spacer()
                     
-                    shareButtonView
+                    if #available(iOS 16.0, *) {
+                        shareButtonView
+                    }
                 }
                 .padding(.horizontal, 24)
                 .padding(.bottom, 30)
@@ -173,15 +174,48 @@ struct DetailedStretchingInfo {
             .background(Color.feathers.cornerRadius(25))
         }
         
+        @available(iOS 16.0, *)
         var shareButtonView: some View {
-            Button {
-                // export as pdf and share
-            } label: {
+            ShareLink(item: pdfRendering()) {
                 Image(.shareIcon)
                     .renderingMode(.template)
                     .foregroundColor(.oceanBlue.opacity(0.6))
             }
             .buttonStyle(.plain)
+        }
+        
+        @MainActor
+        func pdfRendering() -> URL {
+            if #available(iOS 16.0, *) {
+                let renderer = ImageRenderer(content:
+                    DetailedStretchingInfo.PDFSummaryView(stretchingSession: stretchingSession)
+                )
+                let patientName = Session.shared.currentUser?.firstName ?? ""
+                let date = stretchingSession.date.toCalendarDate(.numeric).replacing("/", with: "-")
+                let path = "summary-" + patientName + "-" + date + ".pdf"
+        
+                let url = URL.documentsDirectory.appending(path: path)
+                
+                renderer.render { size, context in
+                    var box = CGRect(origin: .zero, size: size)
+//                    var box = CGRect(origin: .zero, size: CGSize(width: 595, height: 842))
+                    
+                    guard let pdf = CGContext(url as CFURL, mediaBox: &box, nil) else {
+                        return
+                    }
+                    
+                    pdf.beginPDFPage(nil)
+                    
+                    context(pdf)
+                    
+                    pdf.endPage()
+                    pdf.closePDF()
+                }
+                
+                return url
+            } else {
+                return URL(string: "https://www.google.com/")!
+            }
         }
         
         var grabberView: some View {

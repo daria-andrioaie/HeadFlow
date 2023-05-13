@@ -29,8 +29,8 @@ extension Int {
 }
 
 extension Int64 {
-    func toCalendarDate() -> String {
-        return Date(milliseconds: self).formatted(date: .abbreviated, time: .omitted)
+    func toCalendarDate(_ formatStyle: Date.FormatStyle.DateStyle = .abbreviated) -> String {
+        return Date(milliseconds: self).formatted(date: formatStyle, time: .omitted)
     }
 }
 

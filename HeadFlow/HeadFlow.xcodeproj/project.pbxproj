@@ -18,6 +18,7 @@
 		B80359B329C0EDB40059F578 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */; };
 		B80359B529C0EFED0059F578 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B429C0EFED0059F578 /* SessionService.swift */; };
 		B808FB8B29F19280001B6F69 /* Collaboration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808FB8A29F19280001B6F69 /* Collaboration.swift */; };
+		B81772182A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81772172A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift */; };
 		B81980C829FE5E0200F97ED0 /* PatientCoachingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */; };
 		B81980CB29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980CA29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift */; };
 		B81980CD29FE6FA600F97ED0 /* NavigationBar + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980CC29FE6FA600F97ED0 /* NavigationBar + Extensions.swift */; };
@@ -173,6 +174,7 @@
 		B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		B80359B429C0EFED0059F578 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		B808FB8A29F19280001B6F69 /* Collaboration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collaboration.swift; sourceTree = "<group>"; };
+		B81772172A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFStretchingSummaryView.swift; sourceTree = "<group>"; };
 		B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCoachingView.swift; sourceTree = "<group>"; };
 		B81980CA29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCoachingViewModel.swift; sourceTree = "<group>"; };
 		B81980CC29FE6FA600F97ED0 /* NavigationBar + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NavigationBar + Extensions.swift"; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 			children = (
 				B88FA56829CF9B0C00B828EB /* DetailedStretchingInfoView.swift */,
 				B88FA56A29CF9B5000B828EB /* DetailedStretchingInfoViewModel.swift */,
+				B81772172A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift */,
 			);
 			path = DetailedStretchingInfo;
 			sourceTree = "<group>";
@@ -998,6 +1001,7 @@
 				B81980CB29FE5E7D00F97ED0 /* PatientCoachingViewModel.swift in Sources */,
 				B8F3C7B129CE4EDC0099CA6E /* StretchingSummary.swift in Sources */,
 				B8CA6BD62A06502500E90FCE /* WheelPicker.swift in Sources */,
+				B81772182A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependencyContainer.swift in Sources */,
 				B8417AD929C3B27E0053FD35 /* Triangle.swift in Sources */,
 				B82BA8AD29B1367C00853304 /* Constants.swift in Sources */,
