@@ -14,7 +14,8 @@ enum HFImage: String {
     case posture = "posture-clipped"
     case sleep = "sleep-clipped"
     case airpods = "airpods"
-    case shoudler_shrug = "shoulder-shrugging"
+    case shoudlerShrug = "shoulder-shrugging"
+    case placeholderImage = "placeholder-image"
     
     // stretching exercises
     case tiltLeft = "tilt-left"

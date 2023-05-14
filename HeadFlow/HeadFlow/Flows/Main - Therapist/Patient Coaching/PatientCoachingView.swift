@@ -57,8 +57,9 @@ struct PatientCoaching {
         var patientInfoCardView: some View {
             let patient = viewModel.patient
             
-            VStack {
+            VStack(spacing: 6) {
                 profileImageView(imageURL: patient.profilePicture)
+                    .padding(.bottom, 20)
                 
                 VStack(spacing: 16) {
                     Text("\(patient.firstName) \(patient.lastName)")
@@ -99,14 +100,9 @@ struct PatientCoaching {
         }
         
         func profileImageView(imageURL: URL?) -> some View {
-            Image(systemName: "person.fill")
-                .resizable()
-                .renderingMode(.template)
-                .scaledToFit()
-                .frame(width: 70)
-                .foregroundColor(.gray.opacity(0.3))
-                .padding(30)
-                .background(Color.white.clipShape(Circle()))
+            HFAsyncImage(url: imageURL, placeholderImage: .placeholderImage)
+            .frame(width: 100, height: 100)
+            .clipShape(Circle())
         }
         
         var patientHistoryCardView: some View {

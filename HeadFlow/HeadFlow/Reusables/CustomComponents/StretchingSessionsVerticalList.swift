@@ -96,7 +96,7 @@ struct StretchingSessionsVerticalList: View {
     
     var emptyHistoryView: some View {
         VStack(spacing: 25) {
-            Image(.shoudler_shrug)
+            Image(.shoudlerShrug)
                 .resizable()
                 .scaledToFit()
                 .frame(height: 150)
