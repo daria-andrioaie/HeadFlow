@@ -17,6 +17,8 @@
 		B80359B129C0ED540059F578 /* BasicResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B029C0ED540059F578 /* BasicResponse.swift */; };
 		B80359B329C0EDB40059F578 /* AuthenticationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */; };
 		B80359B529C0EFED0059F578 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80359B429C0EFED0059F578 /* SessionService.swift */; };
+		B808ACF52A116A2B00855AF5 /* HFAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808ACF42A116A2B00855AF5 /* HFAsyncImage.swift */; };
+		B808ACF82A116AD200855AF5 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B808ACF72A116AD200855AF5 /* Kingfisher */; };
 		B808FB8B29F19280001B6F69 /* Collaboration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B808FB8A29F19280001B6F69 /* Collaboration.swift */; };
 		B81772182A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81772172A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift */; };
 		B81980C829FE5E0200F97ED0 /* PatientCoachingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */; };
@@ -173,6 +175,7 @@
 		B80359B029C0ED540059F578 /* BasicResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicResponse.swift; sourceTree = "<group>"; };
 		B80359B229C0EDB40059F578 /* AuthenticationResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationResponse.swift; sourceTree = "<group>"; };
 		B80359B429C0EFED0059F578 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		B808ACF42A116A2B00855AF5 /* HFAsyncImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HFAsyncImage.swift; sourceTree = "<group>"; };
 		B808FB8A29F19280001B6F69 /* Collaboration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collaboration.swift; sourceTree = "<group>"; };
 		B81772172A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFStretchingSummaryView.swift; sourceTree = "<group>"; };
 		B81980C729FE5E0200F97ED0 /* PatientCoachingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientCoachingView.swift; sourceTree = "<group>"; };
@@ -322,6 +325,7 @@
 				B8DE006C29B90A3C0099F374 /* RealmSwift in Frameworks */,
 				B82BA8B029B138F500853304 /* Alamofire in Frameworks */,
 				B870BF5229BE4BAB00CC2921 /* GoogleSignInSwift in Frameworks */,
+				B808ACF82A116AD200855AF5 /* Kingfisher in Frameworks */,
 				B890AC1029A3C35600D30572 /* PhoneNumberKit in Frameworks */,
 				B890AC1729A3FBFB00D30572 /* Introspect in Frameworks */,
 				B8CA6BDA2A0687E200E90FCE /* SwiftUIReorderableForEach in Frameworks */,
@@ -365,6 +369,7 @@
 				B88849C229F3FAFD007707FA /* MenuItemView.swift */,
 				B81980CE29FE8D5000F97ED0 /* StretchingSessionsVerticalList.swift */,
 				B8CA6BD52A06502500E90FCE /* WheelPicker.swift */,
+				B808ACF42A116A2B00855AF5 /* HFAsyncImage.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -861,6 +866,7 @@
 				B870BF4F29BE4BAB00CC2921 /* GoogleSignIn */,
 				B870BF5129BE4BAB00CC2921 /* GoogleSignInSwift */,
 				B8CA6BD92A0687E200E90FCE /* SwiftUIReorderableForEach */,
+				B808ACF72A116AD200855AF5 /* Kingfisher */,
 			);
 			productName = HeadFlow;
 			productReference = B86793DE2997C538006BFE29 /* HeadFlow.app */;
@@ -897,6 +903,7 @@
 				B8DE006A29B90A3C0099F374 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				B870BF4E29BE4BAB00CC2921 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				B8CA6BD82A0687E200E90FCE /* XCRemoteSwiftPackageReference "swiftui-reorderable-foreach" */,
+				B808ACF62A116AD200855AF5 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = B86793DF2997C538006BFE29 /* Products */;
 			projectDirPath = "";
@@ -1025,6 +1032,7 @@
 				B88FA56229CF5BE700B828EB /* StretchingHistoryViewModel.swift in Sources */,
 				B8F3C7AF29CE4C580099CA6E /* StretchingService.swift in Sources */,
 				B86793FE2997DD6C006BFE29 /* UserSession.swift in Sources */,
+				B808ACF52A116A2B00855AF5 /* HFAsyncImage.swift in Sources */,
 				B8A6DFBC29A0127C005BA947 /* OnboardingViewModel.swift in Sources */,
 				B8F45E3829C394D300FAB812 /* PatientProfileViewModel.swift in Sources */,
 				B8AE100129C25FF200044B58 /* DrawingView.swift in Sources */,
@@ -1283,6 +1291,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		B808ACF62A116AD200855AF5 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -1334,6 +1350,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B808ACF72A116AD200855AF5 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B808ACF62A116AD200855AF5 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		B82BA8AF29B138F500853304 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B82BA8AE29B138F500853304 /* XCRemoteSwiftPackageReference "Alamofire" */;
