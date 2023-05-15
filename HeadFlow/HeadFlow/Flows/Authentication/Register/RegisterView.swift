@@ -44,7 +44,7 @@ struct Register {
         }
         
         var inputFields: some View {
-            VStack {
+            VStack(spacing: 16) {
                 firstNameInputField
                 lastNameInputField
                 emailInputField
@@ -54,39 +54,36 @@ struct Register {
         }
         
         var firstNameInputField: some View {
-            HStack {
+            VStack(alignment: .leading, spacing: 6) {
                 Text("First name")
                     .font(.Main.regular(size: 18))
-                    .foregroundColor(.danubeBlue)
-                Spacer()
+                    .foregroundColor(.danubeBlue.opacity(0.8))
+                
                 CustomTextField(inputText: $viewModel.firstNameInput, placeholder: Texts.Register.firstNameInputPlaceholder)
                     .font(.Main.light(size: 16))
-                    .frame(width: UIScreen.main.bounds.width * 2/3)
+                    .frame(maxWidth: .infinity)
             }
         }
         
         var lastNameInputField: some View {
-            HStack {
+            VStack(alignment: .leading, spacing: 6) {
                 Text("Last name")
                     .font(.Main.regular(size: 18))
-                    .foregroundColor(.danubeBlue)
-                Spacer()
+                    .foregroundColor(.danubeBlue.opacity(0.8))
                 CustomTextField(inputText: $viewModel.lastNameInput, placeholder: Texts.Register.lastNameInputPlaceholder)
                     .font(.Main.light(size: 16))
-                    .frame(width: UIScreen.main.bounds.width * 2/3)
-
+                    .frame(maxWidth: .infinity)
             }
         }
         
         var emailInputField: some View {
-            HStack {
+            VStack(alignment: .leading, spacing: 6) {
                 Text("Email")
                     .font(.Main.regular(size: 18))
-                    .foregroundColor(.danubeBlue)
-                Spacer()
+                    .foregroundColor(.danubeBlue.opacity(0.8))
                 CustomTextField(inputText: $viewModel.emailInput, placeholder: Texts.Register.emailInputPlaceholder)
                     .font(.Main.light(size: 16))
-                    .frame(width: UIScreen.main.bounds.width * 2/3)
+                    .frame(maxWidth: .infinity)
             }
         }
         

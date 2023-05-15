@@ -138,14 +138,34 @@ const logout = async (userId) => {
   return "Logout successful.";
 };
 
+const editProfile = async (userId, firstName, lastName, email) => {
+  if (typeof firstName === "undefined") {
+    throw new Error("First name not provided.");
+  }
+
+  if (typeof lastName === "undefined") {
+    throw new Error("Last name not provided.");
+  }
+
+  if (typeof email === "undefined") {
+    throw new Error("Email not provided.");
+  }
+
+  var userWithSameEmail = await UserModel.findOne({ email: email });
+  if (userWithSameEmail && userWithSameEmail._id != userId) {
+    throw new Error("The email address is unavailable.");
+  }
+
+  const updatedUser = await UserModel.findOneAndUpdate( { _id: userId }, { firstName: firstName, lastName: lastName, email: email }, { new: true});
+
+  return updatedUser;
+};
+
 module.exports = {
   signUp,
   login,
   socialSignIn,
   logout,
   getUser,
+  editProfile
 };
-
-
-
-

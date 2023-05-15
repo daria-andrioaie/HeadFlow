@@ -57,10 +57,24 @@ const getUser = async (req, res) => {
   }
 };
 
+const editProfile = async (req, res) => {
+  const bearerHeader = req.headers['authorization'];
+  try {
+    const userId = await authorizationService.authorizeToken(bearerHeader);
+    const { firstName, lastName, email } = req.body;
+    const user  = await userService.editProfile(userId, firstName, lastName, email);
+    res.status(200).send({ success: true, user: user });
+  } catch (error) {
+    console.log(error.message);
+    res.status(404).send({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   signUp,
   login,
   socialSignIn,
   logout,
   getUser,
+  editProfile
 };

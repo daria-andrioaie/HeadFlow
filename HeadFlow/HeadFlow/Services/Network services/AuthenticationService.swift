@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import RealmSwift
+import UIKit
 
 protocol AuthenticationServiceProtocol {
     var notificationsService: NotificationsServiceProtocol { get }
@@ -15,6 +16,7 @@ protocol AuthenticationServiceProtocol {
     func register(firstName: String, lastName: String, email: String, phoneNumber: String, userType: UserType, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
     func login(phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
+    func updateProfile(firstName: String, lastName: String, email: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
 
     func verifyOTP(_ otp: String, for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
     func resendOTP(for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
@@ -128,6 +130,37 @@ class AuthenticationService: AuthenticationServiceProtocol {
             }
     }
     
+    func updateProfile(firstName: String, lastName: String, email: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
+        
+        let sessionToken = Session.shared.accessToken
+        if let sessionToken {
+            let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
+            
+            let parameters = ["firstName" : firstName,
+                              "lastName": lastName,
+                              "email": email]
+            
+            AF.request(path.rawValue + "/user/editProfile", method: .post, parameters: parameters, encoder: .json, headers: headers)
+                .responseDecodable(of: AuthenticationResponse.self) { response in
+                    switch response.result {
+                        
+                    case .success(let authenticationResponse):
+                        onRequestCompleted(.success(authenticationResponse.user))
+                        
+                    case .failure(let error):
+                        if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
+                            onRequestCompleted(.failure(apiError))
+                        }
+                        else {
+                            onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error: " + error.localizedDescription)))
+                        }
+                    }
+                }
+        } else {
+            onRequestCompleted(.failure(Errors.APIError(message: "No token in user defaults.")))
+        }
+    }
+    
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         let sessionToken = Session.shared.accessToken
         if let sessionToken {
@@ -209,6 +242,10 @@ class MockAuthenticationService: AuthenticationServiceProtocol {
     }
     
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
+        
+    }
+    
+    func updateProfile(firstName: String, lastName: String, email: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         
     }
     

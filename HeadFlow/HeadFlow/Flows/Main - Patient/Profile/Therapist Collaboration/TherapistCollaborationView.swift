@@ -68,6 +68,7 @@ struct TherapistCollaboration {
         func therapistInfoView(therapist: User) -> some View {
             VStack {
                 profileImageView(imageURL: therapist.profilePicture)
+                    .padding(.bottom, 30)
                 
                 VStack(spacing: 16) {
                     Text("\(therapist.firstName) \(therapist.lastName)")
@@ -101,14 +102,9 @@ struct TherapistCollaboration {
         }
         
         func profileImageView(imageURL: URL?) -> some View {
-            Image(systemName: "person.fill")
-                .resizable()
-                .renderingMode(.template)
-                .scaledToFit()
-                .frame(width: 100)
-                .foregroundColor(.gray.opacity(0.3))
-                .padding(50)
-                .background(Color.white.clipShape(Circle()))
+            HFAsyncImage(url: imageURL, placeholderImage: .placeholderImage)
+                .frame(width: 160, height: 160)
+                .clipShape(Circle())
         }
         
         var respondToInvitationButtons: some View {

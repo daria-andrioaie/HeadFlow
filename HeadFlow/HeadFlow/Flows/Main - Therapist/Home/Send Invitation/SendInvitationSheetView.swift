@@ -50,14 +50,14 @@ struct SendInvitation {
             GeometryReader { proxy in
                 HStack {
                     patientInfoView(patient: patient)
-                    .frame(width: 0.6 * proxy.size.width)
+                    .frame(width: 0.65 * proxy.size.width)
                     .frame(maxHeight: .infinity)
                     .background(RoundedRectangle(cornerRadius: 30)
                         .foregroundColor(.diamond))
                     
                     
                     invitationStatusView
-                        .frame(width: 0.4 * proxy.size.width)
+                        .frame(width: 0.35 * proxy.size.width)
 
                 }
                 .frame(maxWidth: .infinity)
@@ -146,14 +146,9 @@ struct SendInvitation {
         }
         
         func profileImageView(imageURL: URL?) -> some View {
-            Image(systemName: "person.fill")
-                .resizable()
-                .renderingMode(.template)
-                .scaledToFit()
-                .frame(width: 30)
-                .foregroundColor(.gray.opacity(0.3))
-                .padding(10)
-                .background(Color.white.roundedCorners(radius: 20))
+            HFAsyncImage(url: imageURL, placeholderImage: .placeholderImage)
+            .frame(width: 60, height: 60)
+            .clipShape(Circle())
         }
         
         var noResultsView: some View {
@@ -165,9 +160,10 @@ struct SendInvitation {
     }
 }
 
-
+#if DEBUG
 struct SendInvitationSheetView_Previews: PreviewProvider {
     static var previews: some View {
         SendInvitation.ContentView(viewModel: .init(therapistService: MockTherapistService()))
     }
 }
+#endif
