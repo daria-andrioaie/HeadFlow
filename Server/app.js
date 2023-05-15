@@ -51,8 +51,6 @@ app.use("/api/v1/stretching", stretchesRoute);
 app.use("/api/v1/patient", patientsRoute);
 app.use("/api/v1/therapist", therapistRoute);
 
-
-
 app.use('/healthcheck', healthcheckRoute);
 
 module.exports = app;

@@ -17,6 +17,7 @@ protocol AuthenticationServiceProtocol {
     func login(phoneNumber: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
     func updateProfile(firstName: String, lastName: String, email: String, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
+    func updateProfilePicture(_ profilePicture: UIImage, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async
 
     func verifyOTP(_ otp: String, for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
     func resendOTP(for phoneNumber: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async
@@ -161,6 +162,40 @@ class AuthenticationService: AuthenticationServiceProtocol {
         }
     }
     
+    func updateProfilePicture(_ profilePicture: UIImage, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
+        let sessionToken = Session.shared.accessToken
+        if let sessionToken {
+            let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
+            
+            guard let imageData = profilePicture.jpegData(compressionQuality: 0.85) else {
+                onRequestCompleted(.failure(.init(message: "Couldn't compress image.")))
+                return
+            }
+            
+            AF.upload(multipartFormData: { multipartFormData in
+                multipartFormData.append(imageData, withName: "profileImage", fileName: "\(sessionToken).jpeg", mimeType: "image/jpeg")
+            }, to: path.rawValue + "/user/editProfilePicture", method: .put, headers: headers)
+                .responseDecodable(of: AuthenticationResponse.self) { response in
+                    switch response.result {
+                        
+                    case .success(let authenticationResponse):
+                        onRequestCompleted(.success(authenticationResponse.user))
+                        
+                    case .failure(let error):
+                        if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
+                            onRequestCompleted(.failure(apiError))
+                        }
+                        else {
+                            onRequestCompleted(.failure(Errors.APIError(message: "Unexpected error: " + error.localizedDescription)))
+                        }
+                    }
+                }
+        } else {
+            onRequestCompleted(.failure(Errors.APIError(message: "No token in user defaults.")))
+        }
+    }
+
+    
     func logout(onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
         let sessionToken = Session.shared.accessToken
         if let sessionToken {
@@ -250,6 +285,10 @@ class MockAuthenticationService: AuthenticationServiceProtocol {
     }
     
     func socialSignIn(socialToken: String, onRequestCompleted: @escaping (Result<String, Errors.APIError>) -> Void) async {
+        
+    }
+    
+    func updateProfilePicture(_ profilePicture: UIImage, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         
     }
 }

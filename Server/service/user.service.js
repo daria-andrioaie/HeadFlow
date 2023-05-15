@@ -161,11 +161,24 @@ const editProfile = async (userId, firstName, lastName, email) => {
   return updatedUser;
 };
 
+const editProfilePicture = async (userId, pictureURL) => {
+  const updatedUser = await UserModel.findOneAndUpdate(
+    { _id: userId },
+    { profilePicture: pictureURL },
+    { new: true });
+
+  if (!updatedUser) {
+    throw new Error('There is no user with the given id.');
+  }  
+  return updatedUser;
+};
+
 module.exports = {
   signUp,
   login,
   socialSignIn,
   logout,
   getUser,
-  editProfile
+  editProfile,
+  editProfilePicture
 };

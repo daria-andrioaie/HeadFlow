@@ -28,6 +28,9 @@ struct EditProfile {
             .sheet(isPresented: $viewModel.isImagePickerShown) {
                 ImagePickerView(image: $viewModel.newProfileImage)
             }
+            .onChange(of: viewModel.newProfileImage) { _ in
+                viewModel.uploadImage()
+            }
             .toastDisplay(isPresented: $viewModel.isConfirmationMessagePresented, message: viewModel.confirmationMessage)
         }
         
