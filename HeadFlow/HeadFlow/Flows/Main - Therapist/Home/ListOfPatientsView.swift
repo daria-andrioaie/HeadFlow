@@ -101,8 +101,7 @@ extension TherapistHome {
                 }
             } label: {
                 HStack {
-                    Text(patient.firstName)
-                    Text(patient.lastName)
+                    Text(patient.firstName + " " + patient.lastName)
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: 150)

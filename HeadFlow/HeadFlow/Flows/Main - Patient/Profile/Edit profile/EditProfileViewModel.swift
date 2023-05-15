@@ -48,6 +48,22 @@ extension EditProfile {
             }
         }
         
+        func uploadImage() {
+            Task(priority: .userInitiated) { @MainActor in
+                guard let newProfileImage else {
+                    return
+                }
+                await authenticationService.updateProfilePicture(newProfileImage) { [weak self] result in
+                    switch result {
+                    case .success(let user):
+                        Session.shared.saveCurrentUser(user: user, token: Session.shared.accessToken!)
+                    case .failure(let error):
+                        self?.apiError = Errors.CustomError(error.message)
+                    }
+                }
+            }
+        }
+        
         private func populateInputFields() {
             if let user = Session.shared.currentUser {
                 firstName = user.firstName
