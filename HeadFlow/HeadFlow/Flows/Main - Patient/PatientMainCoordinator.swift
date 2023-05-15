@@ -96,7 +96,7 @@ class PatientMainCoordinator: Coordinator {
     }
     
     func goToEditProfile() {
-        let editProfileVM = EditProfile.ViewModel(onBack: { [weak self] in
+        let editProfileVM = EditProfile.ViewModel(authenticationService: dependencies.authenticationService, onBack: { [weak self] in
             self?.navigationController.popViewController(animated: true)
         })
 

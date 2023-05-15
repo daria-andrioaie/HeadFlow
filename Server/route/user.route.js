@@ -8,6 +8,7 @@ router.post("/signup", userController.signUp);
 router.post("/login", userController.login);
 router.post("/logout", userController.logout);
 router.post("/social-sign-in", userController.socialSignIn);
+router.post("/editProfile", userController.editProfile);
 router.get("/", userController.getUser);
 
 module.exports = router;

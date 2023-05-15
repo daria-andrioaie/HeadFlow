@@ -22,5 +22,6 @@ extension Texts {
         static let profileNavbarTitle = NSLocalizedString("profile_navbar_title", value: "Profile", comment: "")
         static let editProfileMenuLabel = NSLocalizedString("edit_profile_menu_label", value: "Edit profile", comment: "")
         static let logoutButtonLabel = NSLocalizedString("logout_button_label", value: "Logout", comment: "")
+        static let saveButtonLabel = NSLocalizedString("save_button_label", value: "Save", comment: "")
     }
 }
