@@ -73,8 +73,5 @@ extension EditProfile {
                 phoneNumber = user.phoneNumber ?? ""
             }
         }
-    
-        deinit {
-        }
     }
 }
