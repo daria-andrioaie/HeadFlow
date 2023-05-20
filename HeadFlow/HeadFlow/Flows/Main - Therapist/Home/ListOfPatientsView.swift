@@ -49,7 +49,7 @@ extension TherapistHome {
         
         var noPatientsView: some View {
             VStack {
-                // draw arrow here towards the sendInvitationButtonView
+                //TODO: draw arrow here towards the sendInvitationButtonView
                 Text("You have no patients yet. Try sending an invitation.")
                     .font(.Main.regular(size: 18))
                     .foregroundColor(.oceanBlue)
@@ -100,22 +100,49 @@ extension TherapistHome {
                     viewModel.navigationAction(.goToPatientCoaching(patient))
                 }
             } label: {
-                HStack {
-                    Text(patient.firstName + " " + patient.lastName)
+                HStack(spacing: 20) {
+                    profileImageView(imageURL: patient.profilePicture)
+                    
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("\(patient.firstName) \(patient.lastName)")
+                            .foregroundColor(.oceanBlue)
+                            .font(.Main.semibold(size: 24))
+                        if let phoneNumber = patient.phoneNumber {
+                            HStack {
+                                Image(systemName: "phone")
+                                    .renderingMode(.template)
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 20)
+                                Text(phoneNumber)
+                                    .font(.Main.regular(size: 18))
+                            }
+                            .foregroundColor(.oceanBlue.opacity(0.6))
+                        }
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                .padding(.horizontal, 24)
                 .frame(maxWidth: .infinity)
                 .frame(height: 150)
                 .roundedBorder(.danubeBlue, cornerRadius: 30, lineWidth: 1)
-                .background(Color.white.cornerRadius(30))
+                .background(Color.white.cornerRadius(12))
             }
             .buttonStyle(.plain)
+        }
+        
+        func profileImageView(imageURL: URL?) -> some View {
+            HFAsyncImage(url: imageURL, placeholderImage: .profileImagePlaceholder)
+            .frame(width: 90, height: 90)
+            .clipShape(Circle())
         }
     }
 }
 
-
+#if DEBUG
 struct ListOfPatientsView_Previews: PreviewProvider {
     static var previews: some View {
         TherapistHome.ListOfPatientsView(viewModel: .init(therapistService: MockTherapistService(), navigationAction: { _ in }))
     }
 }
+#endif
