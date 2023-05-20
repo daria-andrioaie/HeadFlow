@@ -29,7 +29,7 @@ struct AnimatedChartView: View {
         }
         .chartYScale(domain: 0...100)
         .onAppear {
-            withAnimation(.spring(dampingFraction: 0.5)) {
+            withAnimation(.spring(dampingFraction: 0.6)) {
                 animateAppearance = true
             }
         }
@@ -41,6 +41,7 @@ struct AnimatedChartView: View {
 struct AnimatedChart_Previews: PreviewProvider {
     static var previews: some View {
         AnimatedChartView(stretchingHistory: StretchSummary.Model.mockedSet)
+            .frame(height: 400)
     }
 }
 #endif

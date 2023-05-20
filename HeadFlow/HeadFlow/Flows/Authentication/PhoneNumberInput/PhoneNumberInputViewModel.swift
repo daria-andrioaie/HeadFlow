@@ -100,22 +100,19 @@ extension PhoneNumberInput {
             guard let presentationController = presentationController else { return }
             let signInConfiguration = GIDConfiguration(clientID: Constants.GOOGLE_CLIENT_ID, serverClientID: Constants.GOOGLE_SERVER_CLIENT_ID)
             GIDSignIn.sharedInstance.configuration = signInConfiguration
-            
             GIDSignIn.sharedInstance.signIn(withPresenting: presentationController) { [weak self] signInResult, error in
                 guard error == nil else {
-                    self?.apiError = Errors.CustomError(error.debugDescription)
+                    print(Errors.CustomError(error.debugDescription))
                     return
                 }
                 guard let result = signInResult else {
                     self?.apiError = Errors.CustomError("There was an error while signing in with Google. Please try again later.")
                     return
                 }
-                
                 guard let idToken = result.user.idToken?.tokenString else {
                     self?.apiError = Errors.CustomError("There was an error while signing in with Google. Please try again later.")
                     return
                 }
-
                 self?.sendSocialSignInToken(idToken)
             }
         }
