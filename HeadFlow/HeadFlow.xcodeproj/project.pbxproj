@@ -74,6 +74,12 @@
 		B867943D29982EFD006BFE29 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942B29982EFD006BFE29 /* Lato-Bold.ttf */; };
 		B867943E29982EFD006BFE29 /* Lato-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B867942C29982EFD006BFE29 /* Lato-Light.ttf */; };
 		B8679440299832B4006BFE29 /* Font + Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B867943F299832B4006BFE29 /* Font + Extensions.swift */; };
+		B8699C5A2A27E65100143B90 /* FeedbackInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8699C592A27E65100143B90 /* FeedbackInputView.swift */; };
+		B8699C5C2A27E68A00143B90 /* FeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8699C5B2A27E68A00143B90 /* FeedbackView.swift */; };
+		B8699C5E2A27E6F500143B90 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8699C5D2A27E6F500143B90 /* FeedbackViewModel.swift */; };
+		B8699C622A27E87200143B90 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8699C612A27E87200143B90 /* TextView.swift */; };
+		B8699C642A27E8A100143B90 /* TextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8699C632A27E8A100143B90 /* TextViewModel.swift */; };
+		B8699C662A27E8DF00143B90 /* PlaceholderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8699C652A27E8DF00143B90 /* PlaceholderTextView.swift */; };
 		B86A6D852A0AC5160017C34F /* PlannedSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86A6D842A0AC5160017C34F /* PlannedSession.swift */; };
 		B86A6D882A0AC8830017C34F /* ScalingDots.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86A6D872A0AC8830017C34F /* ScalingDots.swift */; };
 		B870BF4B29BDED7B00CC2921 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = B870BF4A29BDED7B00CC2921 /* Alerts.swift */; };
@@ -235,6 +241,12 @@
 		B867942B29982EFD006BFE29 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		B867942C29982EFD006BFE29 /* Lato-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Light.ttf"; sourceTree = "<group>"; };
 		B867943F299832B4006BFE29 /* Font + Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font + Extensions.swift"; sourceTree = "<group>"; };
+		B8699C592A27E65100143B90 /* FeedbackInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackInputView.swift; sourceTree = "<group>"; };
+		B8699C5B2A27E68A00143B90 /* FeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackView.swift; sourceTree = "<group>"; };
+		B8699C5D2A27E6F500143B90 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
+		B8699C612A27E87200143B90 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		B8699C632A27E8A100143B90 /* TextViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextViewModel.swift; sourceTree = "<group>"; };
+		B8699C652A27E8DF00143B90 /* PlaceholderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderTextView.swift; sourceTree = "<group>"; };
 		B86A6D842A0AC5160017C34F /* PlannedSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlannedSession.swift; sourceTree = "<group>"; };
 		B86A6D872A0AC8830017C34F /* ScalingDots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScalingDots.swift; sourceTree = "<group>"; };
 		B870BF4A29BDED7B00CC2921 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
@@ -585,6 +597,34 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
+		B8699C582A27E63900143B90 /* Feedback */ = {
+			isa = PBXGroup;
+			children = (
+				B8699C592A27E65100143B90 /* FeedbackInputView.swift */,
+				B8699C5B2A27E68A00143B90 /* FeedbackView.swift */,
+				B8699C5D2A27E6F500143B90 /* FeedbackViewModel.swift */,
+			);
+			path = Feedback;
+			sourceTree = "<group>";
+		};
+		B8699C5F2A27E85C00143B90 /* UIKit components */ = {
+			isa = PBXGroup;
+			children = (
+				B8699C602A27E86700143B90 /* TextView */,
+			);
+			path = "UIKit components";
+			sourceTree = "<group>";
+		};
+		B8699C602A27E86700143B90 /* TextView */ = {
+			isa = PBXGroup;
+			children = (
+				B8699C612A27E87200143B90 /* TextView.swift */,
+				B8699C632A27E8A100143B90 /* TextViewModel.swift */,
+				B8699C652A27E8DF00143B90 /* PlaceholderTextView.swift */,
+			);
+			path = TextView;
+			sourceTree = "<group>";
+		};
 		B86A6D862A0AC86A0017C34F /* Animations */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +663,7 @@
 		B88FA56729CF9AE800B828EB /* DetailedStretchingInfo */ = {
 			isa = PBXGroup;
 			children = (
+				B8699C582A27E63900143B90 /* Feedback */,
 				B88FA56829CF9B0C00B828EB /* DetailedStretchingInfoView.swift */,
 				B88FA56A29CF9B5000B828EB /* DetailedStretchingInfoViewModel.swift */,
 				B81772172A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift */,
@@ -677,6 +718,7 @@
 		B8A6DFBD29A01483005BA947 /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
+				B8699C5F2A27E85C00143B90 /* UIKit components */,
 				B86A6D862A0AC86A0017C34F /* Animations */,
 				B8417AD729C3B26D0053FD35 /* Shapes */,
 				B8009DF729AAB13600A4EC3B /* CustomComponents */,
@@ -990,6 +1032,7 @@
 				B8E6837929EF1B9C00BAA32C /* TherapistHomeView.swift in Sources */,
 				B88849B829F3ECAD007707FA /* TherapistCollaborationView.swift in Sources */,
 				B8D3E6E829A0CF1400A588A8 /* Color + Extensions.swift in Sources */,
+				B8699C5C2A27E68A00143B90 /* FeedbackView.swift in Sources */,
 				B88FA56629CF8CB800B828EB /* Numbers + Utils.swift in Sources */,
 				B8E6838029EF1D9100BAA32C /* TherapistProfileViewModel.swift in Sources */,
 				B8009DEF29AA507500A4EC3B /* PatientHomeView.swift in Sources */,
@@ -1019,6 +1062,7 @@
 				B8F3C7B129CE4EDC0099CA6E /* StretchingSummary.swift in Sources */,
 				B8CA6BD62A06502500E90FCE /* WheelPicker.swift in Sources */,
 				B81772182A0FC6D400DBBF34 /* PDFStretchingSummaryView.swift in Sources */,
+				B8699C5A2A27E65100143B90 /* FeedbackInputView.swift in Sources */,
 				B86793FC2997DB7B006BFE29 /* DependencyContainer.swift in Sources */,
 				B8417AD929C3B27E0053FD35 /* Triangle.swift in Sources */,
 				B82BA8AD29B1367C00853304 /* Constants.swift in Sources */,
@@ -1058,6 +1102,7 @@
 				B88849C829F3FE85007707FA /* EditProfileView.swift in Sources */,
 				B84EDD8829D8888E0033E475 /* TiltRightDrawingView.swift in Sources */,
 				B8009DF429AA624400A4EC3B /* Texts + Register.swift in Sources */,
+				B8699C642A27E8A100143B90 /* TextViewModel.swift in Sources */,
 				B86793E22997C538006BFE29 /* AppDelegate.swift in Sources */,
 				B858E68C29F033A200B180F2 /* PillButton.swift in Sources */,
 				B8009DF229AA543B00A4EC3B /* AuthenticationCompleteView.swift in Sources */,
@@ -1065,6 +1110,7 @@
 				B8EA8435299917D7009D83E7 /* PhoneNumberInputView.swift in Sources */,
 				B8D3E6EA29A118F200A588A8 /* View + Extensions.swift in Sources */,
 				B88849CA29F3FFA9007707FA /* EditProfileViewModel.swift in Sources */,
+				B8699C662A27E8DF00143B90 /* PlaceholderTextView.swift in Sources */,
 				B858E68329F027A800B180F2 /* ListOfPatientsView.swift in Sources */,
 				B8EE318329D040640050B0CE /* AnimatedChartView.swift in Sources */,
 				B88FA55D29CF50D400B828EB /* StretchingSessionsCountResponse.swift in Sources */,
@@ -1074,11 +1120,13 @@
 				B86297D729A25D4F0059280B /* Texts.swift in Sources */,
 				B86297D529A166890059280B /* ButtonStyles.swift in Sources */,
 				B8D3E6F429A1368D00A588A8 /* Shape + Utils.swift in Sources */,
+				B8699C5E2A27E6F500143B90 /* FeedbackViewModel.swift in Sources */,
 				B8D3E6F229A12ACA00A588A8 /* CarouselView.swift in Sources */,
 				B88849BD29F3ED61007707FA /* PatientService.swift in Sources */,
 				B8CFB37729D062850063271B /* SizeReader.swift in Sources */,
 				B882AF322A05772C00DEDCAB /* DraggableGridOfExercises.swift in Sources */,
 				B8A6DFBA29A0120E005BA947 /* OnboardingView.swift in Sources */,
+				B8699C622A27E87200143B90 /* TextView.swift in Sources */,
 				B86793E42997C538006BFE29 /* SceneDelegate.swift in Sources */,
 				B80359B329C0EDB40059F578 /* AuthenticationResponse.swift in Sources */,
 				B88D68262A1292BD00D03C52 /* ImagePicker.swift in Sources */,

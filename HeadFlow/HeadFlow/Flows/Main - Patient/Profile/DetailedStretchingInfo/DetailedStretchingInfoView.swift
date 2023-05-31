@@ -30,10 +30,17 @@ struct DetailedStretchingInfo {
                     .padding(.bottom, 30)
                 titleView
                     .padding(.bottom, 30)
-                leftRightComparisonsView
-                    .padding(.bottom, 50)
-                flexionExtensionComparisonView
-                Spacer()
+                ScrollView(showsIndicators: false) {
+                    VStack {
+                        leftRightComparisonsView
+                            .padding(.bottom, 50)
+                        flexionExtensionComparisonView
+                            .padding(.bottom, 40)
+
+                        Feedback.ContentView(patient: patient)
+                    }
+                    .padding(.bottom, 24)
+                }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }

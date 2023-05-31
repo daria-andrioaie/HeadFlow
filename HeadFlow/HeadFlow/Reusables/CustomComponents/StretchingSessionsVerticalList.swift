@@ -86,7 +86,7 @@ struct StretchingSessionsVerticalList: View {
                         .foregroundColor(.oceanBlue)
                         .font(.Main.bold(size: 18))
                 }
-                .padding(EdgeInsets(top: 25, leading: 0, bottom: 25, trailing: 45))
+                .padding(EdgeInsets(top: 25, leading: 0, bottom: 25, trailing: 65))
             }
             .frame(maxWidth: .infinity)
             .roundedBorder(.danubeBlue, cornerRadius: 30, lineWidth: 1)
