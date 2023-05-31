@@ -12,7 +12,6 @@ import UIKit
 
 class MotionManager: NSObject, ObservableObject {
     private var motionManager = CMHeadphoneMotionManager()
-    @Published var text: String = ""
     @Published var motion: CMDeviceMotion?
     @Published var airpodsAreDisconnected: Bool = false
 
@@ -31,28 +30,26 @@ class MotionManager: NSObject, ObservableObject {
     private func startMotionUpdates() {
         motionManager.delegate = self
         
-        motionManager.startDeviceMotionUpdates(to: OperationQueue()) { [weak self] motion, error in
-            guard let self = self, let motion = motion else { return }
-            
-            let attitude = motion.attitude
-            let roll = self.degrees(attitude.roll)
-            let pitch = self.degrees(attitude.pitch)
-            let yaw = self.degrees(attitude.yaw)
-
-            let r = motion.rotationRate
-            let ac = motion.userAcceleration
-            let g = motion.gravity
+        motionManager.startDeviceMotionUpdates(to: OperationQueue()) {
+            [weak self] motion, error in
+            guard let self = self, let motion = motion else {
+                return
+            }
 
             DispatchQueue.main.async { [weak self] in
                 self?.motion = motion
             }
         }
-
     }
+    
+    deinit {
+        motionManager.stopDeviceMotionUpdates()
+    }
+    
 
     required init(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
-        }
+    }
 
 
     func degreeText(_ label: String, _ num: Double) -> String {
@@ -68,10 +65,14 @@ class MotionManager: NSObject, ObservableObject {
         return str
     }
 
-    func degrees(_ radians: Double) -> Double { return 180 / .pi * radians }
+    func degrees(_ radians: Double) -> Double {
+        return 180 / .pi * radians
+    }
 
-    deinit {
-        motionManager.stopDeviceMotionUpdates()
+    func quaternionToEuler(quat: CMQuaternion) {
+        let myRoll = self.degrees(atan2(2*(quat.y*quat.w - quat.x*quat.z), 1 - 2*quat.y*quat.y - 2*quat.z*quat.z)) ;
+        let myPitch = self.degrees(atan2(2*(quat.x*quat.w + quat.y*quat.z), 1 - 2*quat.x*quat.x - 2*quat.z*quat.z));
+        let myYaw = self.degrees(asin(2*quat.x*quat.y + 2*quat.w*quat.z));
     }
 }
 

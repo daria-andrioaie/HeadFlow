@@ -113,6 +113,7 @@ class NotificationsViewModel: ObservableObject {
         content.title = "Ready for a new day?"
         content.body = "Start with some movement!"
         content.sound = .default
+        content.badge = 1
         
         var dateComponents = DateComponents()
         dateComponents.hour = 9

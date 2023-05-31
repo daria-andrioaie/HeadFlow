@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ExerciseCard: View {
+struct CustomizableExerciseCard: View {
     @State private var isExpanded: Bool = false
     @State private var rotationDegree = -90.0
     @State private var alertIsShowing = false
@@ -151,11 +151,11 @@ struct ExerciseCard: View {
     }
 }
 
-struct ExerciseCard_Previews: PreviewProvider {
+struct CustomizableExerciseCard_Previews: PreviewProvider {
     static var previews: some View {
         ScrollView {
             VStack {
-                ExerciseCard(exercise: .constant(.mock1), isEditing: false)
+                CustomizableExerciseCard(exercise: .constant(.mock1), isEditing: false)
             }
             .padding(.horizontal, 30)
         }

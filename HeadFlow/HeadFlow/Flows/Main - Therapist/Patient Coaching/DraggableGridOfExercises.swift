@@ -12,13 +12,14 @@ extension PatientCoaching {
     struct DraggableGridOfExercises: View {
         @ObservedObject var viewModel: ViewModel
         @State private var offsets: [CGSize]
+        @State private var isAddBottomSheetPresented: Bool = false
         @State private var isEditing: Bool = false
         
         init(viewModel: ViewModel) {
             self.viewModel = viewModel
             offsets = [CGSize](repeating: .zero, count: 8)
         }
-
+        
         var body: some View {
             VStack(alignment: .leading, spacing: 20) {
                 headerView
@@ -27,6 +28,12 @@ extension PatientCoaching {
                 } else {
                     planningView
                 }
+            }
+            .overlay(editingActionsFloatingButtons,
+                     alignment: .bottom)
+            .sheet(isPresented: $isAddBottomSheetPresented) {
+                PatientCoaching.AddExercisesList(viewModel: viewModel,
+                                                 isPresented: $isAddBottomSheetPresented)
             }
         }
         
@@ -38,30 +45,17 @@ extension PatientCoaching {
                     .font(.Main.semibold(size: 22))
                 Spacer()
                 if isEditing {
-                    HStack(spacing: 20) {
-                        Button {
-                            isEditing = false
-                            viewModel.savePlannedSession()
-                        } label: {
-                            Image(systemName: "checkmark.circle.fill")
-                                .renderingMode(.template)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 25)
-                        }
-                        .buttonStyle(.plain)
-                        
-                        Button {
-                            isEditing = false
-                            viewModel.copyOfPlannedSession = viewModel.plannedSession
-                        } label: {
-                            Image(systemName: "xmark")
-                                .renderingMode(.template)
-                        }
-                        .buttonStyle(.plain)
+                    Button {
+                        isAddBottomSheetPresented = true
+                    } label: {
+                        Image(systemName: "plus.circle")
+                            .renderingMode(.template)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 25)
+                            .foregroundColor(.danubeBlue)
                     }
-                    .foregroundColor(.danubeBlue)
-
+                    .buttonStyle(.plain)
                 } else {
                     Button {
                         isEditing = true
@@ -74,6 +68,26 @@ extension PatientCoaching {
                             .foregroundColor(.danubeBlue)
                     }
                 }
+            }
+        }
+        
+        @ViewBuilder
+        var editingActionsFloatingButtons: some View {
+            if isEditing {
+                HStack(spacing: 20) {
+                    Buttons.BorderedButton(title: "Cancel", rightIcon: .closeIcon, backgroundColor: .feathers, foregroundColor: .danubeBlue, size: .small, width: 125) {
+                        isEditing = false
+                        viewModel.copyOfPlannedSession = viewModel.plannedSession
+                    }
+                    Buttons.FilledButton(title: "Save",
+                                         rightIcon: .checkmarkIcon,
+                                         size: .small,
+                                         width: 105) {
+                        isEditing = false
+                        viewModel.savePlannedSession()
+                    }
+                }
+                .padding(.bottom, 24)
             }
         }
         
@@ -94,20 +108,20 @@ extension PatientCoaching {
                         ReorderableForEach($viewModel.copyOfPlannedSession, allowReordering: $isEditing) { exercise, isDragged in
                             let indexOfExercise = viewModel.copyOfPlannedSession.firstIndex(of: exercise)!
                             
-                            ExerciseCard(exercise: $viewModel.copyOfPlannedSession[indexOfExercise], isEditing: isEditing, onDelete: {
+                            CustomizableExerciseCard(exercise: $viewModel.copyOfPlannedSession[indexOfExercise], isEditing: isEditing, onDelete: {
                                 print("removed exercise at \(indexOfExercise)")
                                 withAnimation {
                                     viewModel.copyOfPlannedSession.remove(at: indexOfExercise)
                                 }
                             })
-                                .overlay(cardOverlay(isDragged: isDragged))
-   
+                            .overlay(cardOverlay(isDragged: isDragged))
+                            
                         }
                     } else {
                         ReorderableForEach($viewModel.plannedSession, allowReordering: $isEditing) { exercise, isDragged in
                             let indexOfExercise = viewModel.plannedSession.firstIndex(of: exercise)!
                             
-                            ExerciseCard(exercise: $viewModel.plannedSession[indexOfExercise], isEditing: isEditing)
+                            CustomizableExerciseCard(exercise: $viewModel.plannedSession[indexOfExercise], isEditing: isEditing)
                                 .overlay(cardOverlay(isDragged: isDragged))
                         }
                     }
@@ -134,10 +148,11 @@ struct DraggableGridOfExercises_Previews: PreviewProvider {
     static var previews: some View {
         PatientCoaching.DraggableGridOfExercises(
             viewModel: .init(therapistService: MockTherapistService(),
-                                                                  patient: .mockPatient1,
-                                                                  navigationAction: { _ in })
+                             patient: .mockPatient1,
+                             navigationAction: { _ in })
         )
         .padding(.horizontal, 24)
+        .fillBackground()
         .previewDevice(.iPhone7Plus)
     }
 }

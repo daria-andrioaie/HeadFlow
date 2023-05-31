@@ -97,7 +97,7 @@ struct WheelPicker_Previews: PreviewProvider {
         var body: some View {
             ZStack(alignment: .bottom) {
                 WheelPicker(chosenIndex: $index, items: items, circleSize: 400)
-                    .frame(height: 150, alignment: .top)
+                    .frame(height: 100, alignment: .top)
                     .clipped()
                 Text("duration")
                     .font(.Main.medium(size: 20))

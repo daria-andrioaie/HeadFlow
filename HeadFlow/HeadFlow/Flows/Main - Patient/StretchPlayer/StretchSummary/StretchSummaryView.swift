@@ -78,7 +78,7 @@ struct StretchSummary {
                     }
                 }
             }
-            .padding(.horizontal, 60)
+            .padding(.horizontal, 40)
         }
         
         @ViewBuilder
@@ -131,41 +131,12 @@ struct StretchSummary {
                     .matchedGeometryEffect(id: animatedTextId, in: animation)
                 ScalingDots()
                     .matchedGeometryEffect(id: animatedShapeId, in: animation)
-                
-//                HStack {
-//                    BouncingCircle(delay: 0)
-//                    BouncingCircle(delay: 0.2)
-//                    BouncingCircle(delay: 0.4)
-//                }
-//                    .frame(width: 70, alignment: .center)
-//                    .foregroundColor(.danubeBlue)
-//                    .matchedGeometryEffect(id: animatedShapeId, in: animation)
+    
             }
             .transaction { (tx) in
                 tx.animation = .easeInOut
             }
         }
-    }
-    
-    struct BouncingCircle: View {
-        @State private var bouncing = true
-        var delay: CGFloat
-        
-        var body: some View {
-            Circle()
-                .fill(Color.danubeBlue)
-                .opacity(bouncing ? 0.5 : 1)
-                .animation(.default.delay(delay), value: bouncing)
-                .onAppear {
-                    animate()
-                }
-        }
-        
-        func animate() {
-            Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { timer in
-                    bouncing.toggle()
-                }
-            }
     }
 }
 
@@ -173,6 +144,7 @@ struct StretchSummary {
 struct StretchSummaryView_Previews: PreviewProvider {
     static var previews: some View {
         StretchSummary.ContentView(viewModel: .init(summary: .mock1, stretchingService: MockStretchingService(), finishAction: { }))
+            .previewDevice(.iPhone13)
     }
 }
 #endif
