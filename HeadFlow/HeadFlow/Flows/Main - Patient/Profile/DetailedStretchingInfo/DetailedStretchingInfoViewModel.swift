@@ -10,6 +10,7 @@ import SwiftUI
 
 extension DetailedStretchingInfo {
     class ViewModel: ObservableObject {
+        
         @MainActor
         func pdfRendering(patient: User, stretchingSession: StretchSummary.Model) -> URL {
             if #available(iOS 16.0, *) {

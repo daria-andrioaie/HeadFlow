@@ -11,6 +11,7 @@ import SwiftUI
 extension PreviewDevice {
     static let iPhoneSE_3rd = PreviewDevice(rawValue: "iPhone SE (3rd generation)")
     static let iPhoneSE_1st = PreviewDevice(rawValue: "iPhone SE (1st generation)")
+    static let iPhone11 = PreviewDevice(rawValue: "iPhone 11")
     static let iPhone13 = PreviewDevice(rawValue: "iPhone 13")
     static let iPhone14Pro = PreviewDevice(rawValue: "iPhone 14 Pro")
     static let iPhone13Max = PreviewDevice(rawValue: "iPhone 13 Pro Max")
@@ -24,6 +25,6 @@ extension PreviewDevice: Identifiable {
 
 extension PreviewProvider {
     static var previewDevices: [PreviewDevice] {
-        [.iPhone14Pro, .iPhoneSE_3rd]
+        [.iPhone11, .iPhone14Pro]
     }
 }
