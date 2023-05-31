@@ -23,7 +23,7 @@ struct AnimatedChartView: View {
                     .foregroundStyle(Color.oceanBlue)
                 
                 AreaMark(x: .value("Date", Date(milliseconds: stretchingSession.date), unit: .hour), y: .value("Range", animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0))
-                    .interpolationMethod(.catmullRom)
+                    .interpolationMethod(InterpolationMethod.catmullRom)
                     .foregroundStyle(Color.danubeBlue.opacity(0.1))
             }
         }

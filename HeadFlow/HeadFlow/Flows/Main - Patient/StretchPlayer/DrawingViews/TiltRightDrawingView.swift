@@ -32,7 +32,6 @@ extension DrawingView {
         }
         
         private func drawProgress(context: inout GraphicsContext, size: CGSize) {
-
                 var path = Path()
                 
                 path.addLines(line.points.map({ point in
@@ -48,15 +47,12 @@ extension DrawingView {
                 context.fill(.init(roundedRect: .init(x: currentPosition * size.width - 12, y: size.height / 2 - 12, width: 24, height: 24), cornerRadius: 15), with: .color(line.color))
 
                 context.stroke(path, with: .color(line.color), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round))
-            
+        
         }
         
         private func updateStretchingProgress(for motion: CMDeviceMotion?) {
-                if let roll = motion?.attitude.roll {
+            if let roll = motion?.attitude.roll {
                     let currentRoll = motionManager.degrees(roll) / Double(exercise.type.maximumDegrees)
-                    
-                    print("Roll in degrees: \(motionManager.degrees(roll))")
-                    print("Current roll as percentage: \(currentRoll)\n\n\n")
                 
                     guard currentRoll > 0 && currentRoll <= 1 else {
                         return

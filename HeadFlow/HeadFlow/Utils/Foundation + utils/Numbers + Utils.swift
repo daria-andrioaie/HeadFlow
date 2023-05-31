@@ -22,7 +22,7 @@ extension Int {
         var finalString: String
         if minutes != "0" {
             finalString = "\(minutes) min"
-            finalString.append("\(seconds) sec")
+            finalString.append(" \(seconds) sec")
         } else {
             finalString = "\(seconds) sec"
         }
