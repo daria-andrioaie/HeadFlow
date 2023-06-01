@@ -9,19 +9,15 @@ import SwiftUI
 
 struct DetailedStretchingInfo {
     struct ContentView: View {
-        @StateObject private var viewModel = ViewModel()
-        let patient: User
-        let stretchingSession: StretchSummary.Model
-        let exerciseRangeDict: [StretchType : Double]
+        @StateObject private var viewModel: ViewModel
+
         
-        init(patient: User, stretchingSession: StretchSummary.Model) {
-            self.patient = patient
-            self.stretchingSession = stretchingSession
-            exerciseRangeDict = stretchingSession.exerciseData.reduce([StretchType :  Double]() , { partialResult, exercise in
-                var partialResult = partialResult
-                partialResult[exercise.type] = exercise.achievedRangeOfMotion
-                return partialResult
-            })
+        init(patient: User,
+             stretchingSession: StretchSummary.Model,
+             feedbackService: FeedbackServiceProtocol) {
+            self._viewModel = StateObject(wrappedValue: .init(patient: patient,
+                                                              stretchingSession: stretchingSession,
+                                                              feedbackService: feedbackService))
         }
         
         var body: some View {
@@ -37,7 +33,8 @@ struct DetailedStretchingInfo {
                         flexionExtensionComparisonView
                             .padding(.bottom, 40)
 
-                        Feedback.ContentView(patient: patient)
+                        Feedback.ContentView(sessionId: viewModel.stretchingSession.id,
+                                             feedbackService: viewModel.feedbackService)
                     }
                     .padding(.bottom, 24)
                 }
@@ -59,16 +56,16 @@ struct DetailedStretchingInfo {
                 horizontalDivider
                 
                 tableRow(title: "Lateral tilt",
-                         firstValue: exerciseRangeDict[.tiltToLeft] ?? 0,
-                         secondValue: exerciseRangeDict[.tiltToRight] ?? 0)
+                         firstValue: viewModel.exerciseRangeDict[.tiltToLeft] ?? 0,
+                         secondValue: viewModel.exerciseRangeDict[.tiltToRight] ?? 0)
                 
                 tableRow(title: "Lateral rotation",
-                         firstValue: exerciseRangeDict[.rotateToLeft] ?? 0,
-                         secondValue: exerciseRangeDict[.rotateToRight] ?? 0)
+                         firstValue: viewModel.exerciseRangeDict[.rotateToLeft] ?? 0,
+                         secondValue: viewModel.exerciseRangeDict[.rotateToRight] ?? 0)
                 
                 tableRow(title: "Full rotation",
-                         firstValue: exerciseRangeDict[.fullRotationLeft] ?? 0,
-                         secondValue: exerciseRangeDict[.fullRotationRight] ?? 0)
+                         firstValue: viewModel.exerciseRangeDict[.fullRotationLeft] ?? 0,
+                         secondValue: viewModel.exerciseRangeDict[.fullRotationRight] ?? 0)
             }
             .overlay(verticalDivider, alignment: .center)
             .padding(.horizontal, 40)
@@ -76,8 +73,8 @@ struct DetailedStretchingInfo {
         
         @ViewBuilder
         var flexionExtensionComparisonView: some View {
-            let forwardFlexionValue = exerciseRangeDict[.tiltForward] ?? 0
-            let backwardsExtensionValue = exerciseRangeDict[.tiltBackwards] ?? 0
+            let forwardFlexionValue = viewModel.exerciseRangeDict[.tiltForward] ?? 0
+            let backwardsExtensionValue = viewModel.exerciseRangeDict[.tiltBackwards] ?? 0
             
             HStack {
                 VStack(spacing: 12) {
@@ -148,7 +145,7 @@ struct DetailedStretchingInfo {
                         .foregroundColor(.gray)
                         .font(.Main.p1Medium)
                 } else {
-                    let patientName = patient.firstName + " " + patient.lastName
+                    let patientName = viewModel.patient.firstName + " " + viewModel.patient.lastName
                     Text("In this session, \(patientName) achieved an average range of motion of ")
                         .multilineTextAlignment(.center)
                         .foregroundColor(.gray)
@@ -156,7 +153,7 @@ struct DetailedStretchingInfo {
                 }
                 
                 HStack(alignment: .bottom, spacing: 4) {
-                    Text("\(stretchingSession.averageRangeOfMotion.toPercentage())")
+                    Text("\(viewModel.stretchingSession.averageRangeOfMotion.toPercentage())")
                         .font(.Main.bold(size: 28))
                     Text("%")
                         .font(.Main.bold(size: 34))
@@ -171,12 +168,12 @@ struct DetailedStretchingInfo {
                 grabberView
                 HStack {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("\(stretchingSession.date.toCalendarDate())")
+                        Text("\(viewModel.stretchingSession.date.toCalendarDate())")
                             .foregroundColor(.oceanBlue)
                             .font(.Main.regular(size: 16))
                             .opacity(0.8)
                         
-                        Text(stretchingSession.duration.toMinutesAndSecondsFormat())
+                        Text(viewModel.stretchingSession.duration.toMinutesAndSecondsFormat())
                             .foregroundColor(.oceanBlue)
                             .font(.Main.regular(size: 16))
                             .opacity(0.5)
@@ -196,7 +193,7 @@ struct DetailedStretchingInfo {
         
         @available(iOS 16.0, *)
         var shareButtonView: some View {
-            ShareLink(item: viewModel.pdfRendering(patient: patient, stretchingSession: stretchingSession)) {
+            ShareLink(item: viewModel.pdfRendering()) {
                 Image(.shareIcon)
                     .renderingMode(.template)
                     .foregroundColor(.oceanBlue.opacity(0.6))
@@ -217,7 +214,9 @@ struct DetailedStretchingInfo {
 struct DetailedStretchingInfoView_Previews: PreviewProvider {
     static var previews: some View {
         ForEach(previewDevices) {
-            DetailedStretchingInfo.ContentView(patient: .mockPatient1, stretchingSession: .mock1)
+            DetailedStretchingInfo.ContentView(patient: .mockPatient1,
+                                               stretchingSession: .mock1,
+                                               feedbackService: MockFeedbackService())
                 .previewDevice($0)
                 .previewDisplayName($0.rawValue)
         }

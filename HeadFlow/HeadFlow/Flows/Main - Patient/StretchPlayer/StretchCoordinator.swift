@@ -84,7 +84,8 @@ class StretchCoordinator: Coordinator {
         }
         
         let rangeOfMotion = sumOfRanges / Double(stretchingSet.count)
-        let summary = StretchSummary.Model(averageRangeOfMotion: rangeOfMotion, duration: totalDuration, exerciseData: stretchingSet, date: Date.now.millisecondsSince1970)
+        let date = Date.now.millisecondsSince1970
+        let summary = StretchSummary.Model(id: "\(date)", averageRangeOfMotion: rangeOfMotion, duration: totalDuration, exerciseData: stretchingSet, date: date)
         
         let viewModel = StretchSummary.ViewModel(summary: summary, stretchingService: dependencies.stretchingService, finishAction: { [weak self] in
             self?.finishAction()

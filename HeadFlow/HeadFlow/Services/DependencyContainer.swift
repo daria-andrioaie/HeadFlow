@@ -14,6 +14,7 @@ class DependencyContainer {
     let stretchingService: StretchingServiceProtocol
     let therapistService: TherapistServiceProtocol
     let patientService: PatientServiceProtocol
+    let feedbackService: FeedbackServiceProtocol
     let motionManager: MotionManager
     
     let serverPath = Constants.SERVER_URL
@@ -25,6 +26,7 @@ class DependencyContainer {
         stretchingService = StretchingService(path: serverPath)
         therapistService = TherapistService(path: serverPath)
         patientService = PatientService(path: serverPath)
+        feedbackService = FeedbackService(path: serverPath)
         motionManager = MotionManager()
     }
 }

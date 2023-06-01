@@ -10,19 +10,20 @@ import SwiftUI
 
 struct ScalingDots: View {
     @State private var shouldAnimate = false
+    var circleWidth: CGFloat = 20
     
     var body: some View {
         HStack {
             Circle()
-                .frame(width: 20, height: 20)
+                .frame(width: circleWidth, height: circleWidth)
                 .scaleEffect(shouldAnimate ? 1.0 : 0.5)
                 .animation(Animation.easeInOut(duration: 0.5).repeatForever(), value: shouldAnimate)
             Circle()
-                .frame(width: 20, height: 20)
+                .frame(width: circleWidth, height: circleWidth)
                 .scaleEffect(shouldAnimate ? 1.0 : 0.5)
                 .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.3), value: shouldAnimate)
             Circle()
-                .frame(width: 20, height: 20)
+                .frame(width: circleWidth, height: circleWidth)
                 .scaleEffect(shouldAnimate ? 1.0 : 0.5)
                 .animation(Animation.easeInOut(duration: 0.5).repeatForever().delay(0.6), value: shouldAnimate)
         }
