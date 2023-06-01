@@ -77,7 +77,8 @@ struct FeedbackInputView_Previews: PreviewProvider {
         ForEach(previewDevices) {
             VStack(spacing: 0) {
                 Color.black.opacity(0.7)
-                Feedback.InputView(viewModel: .init())
+                Feedback.InputView(viewModel: .init(sessionId: "random",
+                                                    feedbackService: MockFeedbackService()))
             }
             .edgesIgnoringSafeArea(.all)
             .previewDevice($0)

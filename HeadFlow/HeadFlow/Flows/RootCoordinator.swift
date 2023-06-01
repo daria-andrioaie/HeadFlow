@@ -57,6 +57,8 @@ class RootCoordinator: Coordinator {
     }
     
     func showPatientMainCoordinator() {
+        print(Session.shared.accessToken)
+
         let coordinator = PatientMainCoordinator(window: window, dependencies: dependencyContainer, onLogout: { [weak self] in
             Session.shared.close()
             self?.showAuthenticationCoordinator()
@@ -66,6 +68,8 @@ class RootCoordinator: Coordinator {
     }
     
     func showTherapistMainCoordinator() {
+        print(Session.shared.accessToken)
+
         let coordinator = TherapistMainCoordinator(window: window, dependencies: dependencyContainer, onLogout: { [weak self] in
             Session.shared.close()
             self?.showAuthenticationCoordinator()

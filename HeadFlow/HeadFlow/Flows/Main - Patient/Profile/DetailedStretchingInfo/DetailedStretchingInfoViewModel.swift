@@ -10,9 +10,24 @@ import SwiftUI
 
 extension DetailedStretchingInfo {
     class ViewModel: ObservableObject {
+        let patient: User
+        let stretchingSession: StretchSummary.Model
+        let exerciseRangeDict: [StretchType : Double]
+        let feedbackService: FeedbackServiceProtocol
+        
+        init(patient: User, stretchingSession: StretchSummary.Model, feedbackService: FeedbackServiceProtocol) {
+            self.patient = patient
+            self.stretchingSession = stretchingSession
+            exerciseRangeDict = stretchingSession.exerciseData.reduce([StretchType :  Double]() , { partialResult, exercise in
+                var partialResult = partialResult
+                partialResult[exercise.type] = exercise.achievedRangeOfMotion
+                return partialResult
+            })
+            self.feedbackService = feedbackService
+        }
         
         @MainActor
-        func pdfRendering(patient: User, stretchingSession: StretchSummary.Model) -> URL {
+        func pdfRendering() -> URL {
             if #available(iOS 16.0, *) {
                 let renderer = ImageRenderer(content:
                     DetailedStretchingInfo.PDFSummaryView(patient: patient,

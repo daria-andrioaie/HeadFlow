@@ -36,7 +36,7 @@ const otpRoute = require("./route/otp.route");
 const stretchesRoute = require("./route/stretches.route");
 const patientsRoute = require("./route/patient.route");
 const therapistRoute = require("./route/therapist.route");
-
+const feedbackRoute = require("./route/feedback.route");
 
 const healthcheckRoute = require('./route/healthchecker.route')
 
@@ -50,6 +50,7 @@ app.use("/api/v1/otp", otpRoute);
 app.use("/api/v1/stretching", stretchesRoute);
 app.use("/api/v1/patient", patientsRoute);
 app.use("/api/v1/therapist", therapistRoute);
+app.use("/api/v1/feedback", feedbackRoute);
 
 app.use('/healthcheck', healthcheckRoute);
 

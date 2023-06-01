@@ -61,7 +61,10 @@ class TherapistMainCoordinator: Coordinator {
     }
     
     func goToStretchingHistory(patient: User, stretchingHistory: [StretchSummary.Model]) {
-        let stretchingHistoryVM = StretchingHistory.ViewModel(patient: patient, stretchingHistory: stretchingHistory, onBack: { [weak self] in
+        let stretchingHistoryVM = StretchingHistory.ViewModel(patient: patient,
+                                                              stretchingHistory: stretchingHistory,
+                                                              feedbackService: dependencies.feedbackService,
+                                                              onBack: { [weak self] in
             self?.navigationController.popViewController(animated: true)
         })
 

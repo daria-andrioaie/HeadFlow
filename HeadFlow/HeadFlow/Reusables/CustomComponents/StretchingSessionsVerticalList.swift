@@ -13,6 +13,7 @@ struct StretchingSessionsVerticalList: View {
 
     let patient: User
     let stretchingSessions: [StretchSummary.Model]
+    let feedbackService: FeedbackServiceProtocol
     
     var body: some View {
         if stretchingSessions.isEmpty {
@@ -38,7 +39,9 @@ struct StretchingSessionsVerticalList: View {
                 }
             }
             .sheet(item: $selectedSession) { session in
-                DetailedStretchingInfo.ContentView(patient: patient, stretchingSession: session)
+                DetailedStretchingInfo.ContentView(patient: patient,
+                                                   stretchingSession: session,
+                feedbackService: feedbackService)
             }
         }
     }
@@ -112,7 +115,9 @@ struct StretchingSessionsVerticalList: View {
 #if DEBUG
 struct StretchingSessionsVerticalList_Previews: PreviewProvider {
     static var previews: some View {
-        StretchingSessionsVerticalList(patient: .mockPatient1, stretchingSessions: [])
+        StretchingSessionsVerticalList(patient: .mockPatient1,
+                                       stretchingSessions: [],
+                                       feedbackService: MockFeedbackService())
     }
 }
 #endif

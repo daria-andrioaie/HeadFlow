@@ -30,7 +30,9 @@ extension PatientProfile {
 
         private var getStretchingHistoryTask: Task<Void, Never>?
 
-        init(authenticationService: AuthenticationServiceProtocol, stretchingService: StretchingServiceProtocol, navigationAction: @escaping (ProfileNavigationType) -> Void) {
+        init(authenticationService: AuthenticationServiceProtocol,
+             stretchingService: StretchingServiceProtocol,
+             navigationAction: @escaping (ProfileNavigationType) -> Void) {
             self.authenticationService = authenticationService
             self.stretchingService = stretchingService
             self.navigationAction = navigationAction

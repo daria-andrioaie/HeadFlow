@@ -66,7 +66,9 @@ struct PatientProfile {
 #if DEBUG
 struct PatientProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        PatientProfile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), stretchingService: MockStretchingService(), navigationAction: { _ in }))
+        PatientProfile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(),
+                                                    stretchingService: MockStretchingService(),
+                                                    navigationAction: { _ in }))
     }
 }
 #endif

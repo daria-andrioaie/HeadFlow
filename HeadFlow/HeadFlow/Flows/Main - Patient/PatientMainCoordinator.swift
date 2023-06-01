@@ -60,7 +60,8 @@ class PatientMainCoordinator: Coordinator {
     }
     
     func goToProfile() {
-        let profileVM = PatientProfile.ViewModel(authenticationService: dependencies.authenticationService, stretchingService: dependencies.stretchingService) { [weak self] navigationType in
+        let profileVM = PatientProfile.ViewModel(authenticationService: dependencies.authenticationService,
+                                                 stretchingService: dependencies.stretchingService) { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
@@ -79,7 +80,10 @@ class PatientMainCoordinator: Coordinator {
     
     func goToStretchingHistory(stretchingHistory: [StretchSummary.Model]) {
         if let patient = Session.shared.currentUser {
-            let stretchingHistoryVM = StretchingHistory.ViewModel(patient: patient, stretchingHistory: stretchingHistory, onBack: { [weak self] in
+            let stretchingHistoryVM = StretchingHistory.ViewModel(patient: patient,
+                                                                  stretchingHistory: stretchingHistory,
+                                                                  feedbackService: dependencies.feedbackService,
+                                                                  onBack: { [weak self] in
                 self?.navigationController.popViewController(animated: true)
             })
 
