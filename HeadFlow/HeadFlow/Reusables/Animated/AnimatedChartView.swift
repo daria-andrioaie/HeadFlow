@@ -16,14 +16,29 @@ struct AnimatedChartView: View {
     var body: some View {
         Chart {
             ForEach(stretchingHistory.sorted(by: {$0.date < $1.date})) { stretchingSession in
-                LineMark(x: .value("Date", Date(milliseconds: stretchingSession.date), unit: .hour), y: .value("Range", animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0))
+                LineMark(
+                    x: .value("Date",
+                              Date(milliseconds: stretchingSession.date), unit: .hour),
+                    y: .value("Range",
+                              animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0)
+                )
                     .foregroundStyle(Color.danubeBlue.gradient)
                     .interpolationMethod(.catmullRom)
-                PointMark(x: .value("Date", Date(milliseconds: stretchingSession.date), unit: .hour), y: .value("Range", animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0))
+                PointMark(
+                    x: .value("Date",
+                              Date(milliseconds: stretchingSession.date), unit: .hour),
+                    y: .value("Range",
+                              animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0)
+                )
                     .foregroundStyle(Color.oceanBlue)
                 
-                AreaMark(x: .value("Date", Date(milliseconds: stretchingSession.date), unit: .hour), y: .value("Range", animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0))
-                    .interpolationMethod(InterpolationMethod.catmullRom)
+                AreaMark(
+                    x: .value("Date",
+                              Date(milliseconds: stretchingSession.date), unit: .hour),
+                    y: .value("Range",
+                              animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0)
+                )
+                    .interpolationMethod(.catmullRom)
                     .foregroundStyle(Color.danubeBlue.opacity(0.1))
             }
         }

@@ -35,6 +35,8 @@ class MotionManager: NSObject, ObservableObject {
             guard let self = self, let motion = motion else {
                 return
             }
+            
+            print(self.xyzText(motion.attitude.roll, motion.attitude.pitch, motion.attitude.yaw))
 
             DispatchQueue.main.async { [weak self] in
                 self?.motion = motion
@@ -59,9 +61,9 @@ class MotionManager: NSObject, ObservableObject {
     func xyzText(_ x: Double, _ y: Double, _ z: Double) -> String {
         // Absolute value just makes it look nicer
         var str = ""
-        str += String(format: "X: %.1f\n", abs(x))
-        str += String(format: "Y: %.1f\n", abs(y))
-        str += String(format: "Z: %.1f\n", abs(z))
+        str += String(format: "X: %.1f\n", abs(degrees(x)))
+        str += String(format: "Y: %.1f\n", abs(degrees(y)))
+        str += String(format: "Z: %.1f\n", abs(degrees(z)))
         return str
     }
 

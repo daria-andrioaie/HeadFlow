@@ -21,12 +21,7 @@ extension StretchExecutor {
         @Published var timerState: TimerStateType = .running
         
         var navigationAction: ((NavigationType) -> Void)?
-        var currentStretchingExecise: StretchingExercise {
-            didSet {
-                timeRemaining = currentStretchingExecise.duration
-                timer = timer.upstream.autoconnect()
-            }
-        }
+        var currentStretchingExecise: StretchingExercise
         let exerciseIndex: Int
         let totalNumberOfExercises: Int
         
@@ -66,6 +61,10 @@ extension StretchExecutor {
         
         func enableTimer() {
             timerState = .paused
+        }
+        
+        deinit {
+            timer.upstream.connect().cancel()
         }
     }
     

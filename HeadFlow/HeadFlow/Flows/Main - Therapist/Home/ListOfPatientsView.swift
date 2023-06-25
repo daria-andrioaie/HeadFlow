@@ -2,7 +2,7 @@
 //  ListOfPatientsView.swift
 //  HeadFlow
 //
-//  Created by Daria Andrioaie on 19.04.2023.
+//  Created by Daria Andrioaie on 19.04.2023
 
 import SwiftUI
 
