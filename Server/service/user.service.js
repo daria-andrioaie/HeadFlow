@@ -88,6 +88,7 @@ const socialSignIn = async (socialToken) => {
 
   const payload = ticket.getPayload();
   const userEmail = payload.email;
+  console.log(payload);
 
   let existingUser = await UserModel.findOne({ email: userEmail });
   var dbUser = undefined;
@@ -97,6 +98,7 @@ const socialSignIn = async (socialToken) => {
       lastName: payload.family_name,
       phoneNumber: payload.phoneNumber,
       email: userEmail,
+      profilePicture: payload.picture,
       status: "VERIFIED",
       userType: "patient"
     });

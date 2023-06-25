@@ -58,9 +58,9 @@ struct PhoneNumberInput {
                     .font(.Main.p1Regular)
                     .foregroundColor(.danubeBlue)
                 HStack(spacing: 15) {
-                    Image(.facebookIcon)
-                        .resizable()
-                        .frame(width: 50, height: 50)
+//                    Image(.facebookIcon)
+//                        .resizable()
+//                        .frame(width: 50, height: 50)
                     Button {
                         viewModel.signupWithGoogle()
                     } label: {
