@@ -45,8 +45,8 @@ extension User: Codable {
         self.firstName = try container.decode(String.self, forKey: .firstName)
         self.lastName = try container.decode(String.self, forKey: .lastName)
         self.email = try container.decode(String.self, forKey: .email)
-        self.phoneNumber = try container.decode(String.self, forKey: .phoneNumber)
-        self.profilePicture = try container.decodeIfPresent(URL.self, forKey: .profilePicture)
+        self.phoneNumber = try? container.decode(String.self, forKey: .phoneNumber)
+        self.profilePicture = try? container.decode(URL.self, forKey: .profilePicture)
         
         let typeAsString = try container.decode(String.self, forKey: .type)
         type = UserType(rawValue: typeAsString) ?? .patient
