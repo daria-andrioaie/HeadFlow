@@ -14,7 +14,6 @@ struct TherapistHome {
         var body: some View {
             VStack(spacing: 50) {
                 TherapistHome.ListOfPatientsView(viewModel: viewModel)
-                Spacer()
                 Buttons.ProfileButton(hasNotification: false) {
                     viewModel.navigationAction(.goToProfile)
                 }

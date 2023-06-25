@@ -199,6 +199,8 @@ class TherapistService: TherapistServiceProtocol {
 class MockTherapistService: TherapistServiceProtocol {
     func getAllPatientsForCurrentTherapist(onRequestCompleted: @escaping (Result<[Collaboration], Errors.APIError>) -> Void) async {
         onRequestCompleted(.success([.init(therapist: .mockTherapist1, patient: .mockPatient1, status: .active),
+                                     .init(therapist: .mockTherapist1, patient: .mockPatient2, status: .active),
+                                     .init(therapist: .mockTherapist1, patient: .mockPatient1, status: .active),
                                      .init(therapist: .mockTherapist1, patient: .mockPatient2, status: .active)]))
     }
     

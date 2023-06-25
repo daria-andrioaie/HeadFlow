@@ -383,12 +383,10 @@
 		B8009DF729AAB13600A4EC3B /* CustomComponents */ = {
 			isa = PBXGroup;
 			children = (
-				B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */,
 				B890AC1329A3F85A00D30572 /* CustomTextField.swift */,
 				B8009DF829AAB15700A4EC3B /* ActivityIndicator.swift */,
 				B82BA8B829B4DA5900853304 /* ToastDisplayView.swift */,
 				B870BF4C29BE14B300CC2921 /* CustomAlert.swift */,
-				B8EE318229D040640050B0CE /* AnimatedChartView.swift */,
 				B858E68F29F044EA00B180F2 /* SearchField.swift */,
 				B88849C229F3FAFD007707FA /* MenuItemView.swift */,
 				B81980CE29FE8D5000F97ED0 /* StretchingSessionsVerticalList.swift */,
@@ -634,12 +632,14 @@
 			path = TextView;
 			sourceTree = "<group>";
 		};
-		B86A6D862A0AC86A0017C34F /* Animations */ = {
+		B86A6D862A0AC86A0017C34F /* Animated */ = {
 			isa = PBXGroup;
 			children = (
+				B8009DF529AAAF2600A4EC3B /* AnimatedCheckmarkView.swift */,
+				B8EE318229D040640050B0CE /* AnimatedChartView.swift */,
 				B86A6D872A0AC8830017C34F /* ScalingDots.swift */,
 			);
-			path = Animations;
+			path = Animated;
 			sourceTree = "<group>";
 		};
 		B88849B929F3ECB1007707FA /* Therapist Collaboration */ = {
@@ -728,7 +728,7 @@
 			isa = PBXGroup;
 			children = (
 				B8699C5F2A27E85C00143B90 /* UIKit components */,
-				B86A6D862A0AC86A0017C34F /* Animations */,
+				B86A6D862A0AC86A0017C34F /* Animated */,
 				B8417AD729C3B26D0053FD35 /* Shapes */,
 				B8009DF729AAB13600A4EC3B /* CustomComponents */,
 				B86297CD29A162CC0059280B /* Buttons */,
