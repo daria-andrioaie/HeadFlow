@@ -23,7 +23,7 @@ struct EditProfile {
                 }
                 .padding(.all, 24)
                 .activityIndicator(viewModel.isLoading)
-                .errorDisplay(error: $viewModel.apiError)
+//                .errorDisplay(error: $viewModel.apiError)
             }
             .sheet(isPresented: $viewModel.isImagePickerShown) {
                 ImagePickerView(image: $viewModel.newProfileImage)
@@ -43,7 +43,7 @@ struct EditProfile {
                         .frame(width: 160, height: 160)
                         .clipShape(Circle())
                 } else {
-                    HFAsyncImage(url: viewModel.currentProfileImage, placeholderImage: .placeholderImage)
+                    HFAsyncImage(url: viewModel.currentProfileImage, placeholderImage: .profileImagePlaceholder)
                         .frame(width: 160, height: 160)
                         .clipShape(Circle())
                 }

@@ -10,28 +10,32 @@ extension TherapistHome {
     struct ListOfPatientsView: View {
         
         @State private var isInvitationSheetShown: Bool = false
+        @State private var isInvitationSent: Bool = false
         @ObservedObject var viewModel: ViewModel
         
         var body: some View {
             VStack(spacing: 30) {
                 titleView
-                
-                if viewModel.collaborationsMap.isEmpty {
-                    noPatientsView
-                        .activityIndicator(viewModel.isLoading)
-                } else {
-                    patientsTypeFilterView
-                    listForSelectedPatientType
-                        .activityIndicator(viewModel.isLoading)
-                }
+                patientsList
+                    .activityIndicator(viewModel.isLoading)
             }
             .padding(.horizontal, 24)
             .errorDisplay(error: $viewModel.apiError)
             .sheet(isPresented: $isInvitationSheetShown) {
-                SendInvitation.ContentView(viewModel: .init(therapistService: viewModel.therapistService))
+                SendInvitation.ContentView(viewModel:
+                        .init(therapistService: viewModel.therapistService,
+                              onSendInvitation: {
+                    isInvitationSent = true
+                }))
             }
             .onAppear {
                 viewModel.getCollaborationsList()
+            }
+            .onChange(of: isInvitationSheetShown) { newValue in
+                if !newValue && isInvitationSent {
+                    viewModel.getCollaborationsList()
+                    isInvitationSent = false
+                }
             }
         }
         
@@ -43,14 +47,26 @@ extension TherapistHome {
                 Spacer()
                 sendInvitationButtonView
             }
-            .padding(.horizontal, 20)
             .frame(maxWidth: .infinity, alignment: .leading)
         }
         
+        @ViewBuilder
+        var patientsList: some View {
+            if viewModel.isDataSourceEmpty {
+                noPatientsView
+            } else {
+                patientsTypeFilterView
+                listForSelectedPatientType
+            }
+        }
+        
         var noPatientsView: some View {
-            VStack {
-                //TODO: draw arrow here towards the sendInvitationButtonView
-                Text("You have no patients yet. Try sending an invitation.")
+            VStack(spacing: 25) {
+                Image(.shoudlerShrug)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(height: 150)
+                Text("You have no patients yet.\n Try sending an invitation.")
                     .font(.Main.regular(size: 18))
                     .foregroundColor(.oceanBlue)
                     .multilineTextAlignment(.center)
@@ -71,6 +87,13 @@ extension TherapistHome {
         
         @ViewBuilder
         var listForSelectedPatientType: some View {
+            if viewModel.collaborationsForSelectedStatus.isEmpty {
+                Text(viewModel.noPatientsMessage)
+                        .font(.Main.regular(size: 18))
+                        .foregroundColor(.oceanBlue)
+                        .multilineTextAlignment(.center)
+                        .frame(maxHeight: .infinity, alignment: .center)
+            }
             ScrollView {
                 LazyVStack(spacing: 20) {
                     ForEach(viewModel.collaborationsForSelectedStatus, id: \.self) { collaboration in

@@ -88,8 +88,6 @@ const socialSignIn = async (socialToken) => {
 
   const payload = ticket.getPayload();
   const userEmail = payload.email;
-  console.log(payload);
-
   let existingUser = await UserModel.findOne({ email: userEmail });
   var dbUser = undefined;
   if (!existingUser) {

@@ -11,7 +11,7 @@ router.post("/login", userController.login);
 router.post("/logout", userController.logout);
 router.post("/social-sign-in", userController.socialSignIn);
 router.post("/editProfile", userController.editProfile);
-router.put("/editProfilePicture", upload.single('profileImage'), userController.editProfilePicture);
+router.post("/editProfilePicture", upload.single('profileImage'), userController.editProfilePicture);
 router.get("/", userController.getUser);
 
 module.exports = router;

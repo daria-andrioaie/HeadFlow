@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SwiftUI
 import UserNotifications
+import Combine
 
 class PatientMainCoordinator: Coordinator {
     private let window: UIWindow
@@ -24,13 +25,14 @@ class PatientMainCoordinator: Coordinator {
     }
     
     let dependencies: DependencyContainer
+    let hasNotificationFromTherapistSubject: CurrentValueSubject<Bool, Never>
     var onLogout: () -> Void
-
     
     init(window: UIWindow,
          dependencies: DependencyContainer, onLogout: @escaping () -> Void) {
         self.window = window
         self.dependencies = dependencies
+        self.hasNotificationFromTherapistSubject = .init(false)
         self.onLogout = onLogout
     }
     
@@ -40,7 +42,8 @@ class PatientMainCoordinator: Coordinator {
     }
     
     func showHomeScreen() {
-        let homeScreenVM = PatientHome.ViewModel(patientService: dependencies.patientService) { [weak self]  navigationType in
+        let homeScreenVM = PatientHome.ViewModel(patientService: dependencies.patientService,
+        hasNotificationFromTherapistSubject: hasNotificationFromTherapistSubject) { [weak self]  navigationType in
             switch navigationType {
             case .startStretchCoordinator:
                 self?.startStretchingCoordinator()
@@ -60,8 +63,10 @@ class PatientMainCoordinator: Coordinator {
     }
     
     func goToProfile() {
-        let profileVM = PatientProfile.ViewModel(authenticationService: dependencies.authenticationService,
-                                                 stretchingService: dependencies.stretchingService) { [weak self] navigationType in
+        let profileVM = PatientProfile.ViewModel(
+            authenticationService: dependencies.authenticationService,
+            stretchingService: dependencies.stretchingService,
+            hasNotificationFromTherapistSubject: hasNotificationFromTherapistSubject) { [weak self] navigationType in
             switch navigationType {
             case .goBack:
                 self?.navigationController.popViewController(animated: true)
@@ -92,7 +97,10 @@ class PatientMainCoordinator: Coordinator {
     }
     
     func goToTherapistCollaboration() {
-        let therapistCollaborationVM = TherapistCollaboration.ViewModel(patientService: dependencies.patientService, onBack: { [weak self] in
+        let therapistCollaborationVM = TherapistCollaboration.ViewModel(
+            patientService: dependencies.patientService,
+            hasNotificationFromTherapistSubject: hasNotificationFromTherapistSubject,
+            onBack: { [weak self] in
             self?.navigationController.popViewController(animated: true)
         })
 

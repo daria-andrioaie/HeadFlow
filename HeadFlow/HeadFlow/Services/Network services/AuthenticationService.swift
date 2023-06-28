@@ -165,15 +165,20 @@ class AuthenticationService: AuthenticationServiceProtocol {
     func updateProfilePicture(_ profilePicture: UIImage, onRequestCompleted: @escaping (Result<User, Errors.APIError>) -> Void) async {
         let sessionToken = Session.shared.accessToken
         if let sessionToken {
-            let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)"]
+            let headers: HTTPHeaders = ["Authorization": "Bearer \(sessionToken)", "Content-Type": "image/png"]
             
             guard let imageData = profilePicture.jpegData(compressionQuality: 0.85) else {
                 onRequestCompleted(.failure(.init(message: "Couldn't compress image.")))
                 return
             }
             
+//            guard let imageData = profilePicture.pngData() else {
+//                onRequestCompleted(.failure(.init(message: "Couldn't compress image.")))
+//                return
+//            }
+            
             AF.upload(multipartFormData: { multipartFormData in
-                multipartFormData.append(imageData, withName: "profileImage", fileName: "\(sessionToken).jpeg", mimeType: "image/jpeg")
+                multipartFormData.append(imageData, withName: "profileImage", fileName: "\(sessionToken).png", mimeType: "image/png")
             }, to: path.rawValue + "/user/editProfilePicture", method: .put, headers: headers)
                 .responseDecodable(of: AuthenticationResponse.self) { response in
                     switch response.result {
@@ -182,6 +187,9 @@ class AuthenticationService: AuthenticationServiceProtocol {
                         onRequestCompleted(.success(authenticationResponse.user))
                         
                     case .failure(let error):
+                        if let data = response.data {
+                            print(String(data: data, encoding: .utf8))
+                        }
                         if let data = response.data, let apiError = try? JSONDecoder().decode(Errors.APIError.self, from: data) {
                             onRequestCompleted(.failure(apiError))
                         }

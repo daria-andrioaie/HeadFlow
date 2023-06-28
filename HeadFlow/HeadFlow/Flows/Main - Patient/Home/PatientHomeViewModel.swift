@@ -6,23 +6,37 @@
 //
 
 import Foundation
+import Combine
 
 extension PatientHome {
     class ViewModel: ObservableObject {
+        @Published var hasNotificationFromTherapist: Bool = false
+
         let navigationAction: (PatientHome.NavigationType) -> Void
         let patientService: PatientServiceProtocol
-        
-        var hasNotificationFromTherapist: Bool {
-            Session.shared.hasNotificationFromTherapist
-        }
+        let hasNotificationFromTherapistSubject: CurrentValueSubject<Bool, Never>
+        var cancellables: [AnyCancellable] = []
         
         private var getNotificationFromTherapistTask: Task<Void, Never>?
         
-        init(patientService: PatientServiceProtocol, navigationAction: @escaping (PatientHome.NavigationType) -> Void) {
+        init(patientService: PatientServiceProtocol,
+             hasNotificationFromTherapistSubject: CurrentValueSubject<Bool, Never>,
+             navigationAction: @escaping (PatientHome.NavigationType) -> Void) {
             self.patientService = patientService
+            self.hasNotificationFromTherapistSubject = hasNotificationFromTherapistSubject
             self.navigationAction = navigationAction
             
+            configureCancellables()
             getNotificationFromTherapist()
+        }
+        
+        private func configureCancellables() {
+            hasNotificationFromTherapistSubject
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] value in
+                    self?.hasNotificationFromTherapist = value
+                }
+                .store(in: &cancellables)
         }
         
         private func getNotificationFromTherapist() {
@@ -33,8 +47,7 @@ extension PatientHome {
                     switch result {
                     case .success(let collaboration):
                         if collaboration.status == .pending {
-                            Session.shared.hasNotificationFromTherapist = true
-                            self?.objectWillChange.send()
+                            self?.hasNotificationFromTherapistSubject.send(true)
                         }
                     case .failure(let apiError):
                         if apiError.code != 200 {

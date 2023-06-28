@@ -85,7 +85,10 @@ struct PatientHome {
 #if DEBUG
 struct PatientHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        PatientHome.ContentView(viewModel: PatientHome.ViewModel(patientService: MockPatientService(), navigationAction: { _ in }))
+        PatientHome.ContentView(viewModel: PatientHome.ViewModel(
+            patientService: MockPatientService(),
+            hasNotificationFromTherapistSubject: .init(false),
+            navigationAction: { _ in }))
     }
 }
 #endif

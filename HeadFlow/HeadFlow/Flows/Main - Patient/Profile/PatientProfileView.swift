@@ -58,6 +58,7 @@ struct PatientProfile {
             }
             .padding(.all, 30)
             .frame(maxWidth: .infinity)
+            .frame(height: 90)
             .background(Color.oceanBlue.opacity(0.9).cornerRadius(20))
         }
     }
@@ -68,6 +69,7 @@ struct PatientProfileView_Previews: PreviewProvider {
     static var previews: some View {
         PatientProfile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(),
                                                     stretchingService: MockStretchingService(),
+                                                    hasNotificationFromTherapistSubject: .init(false),
                                                     navigationAction: { _ in }))
     }
 }
