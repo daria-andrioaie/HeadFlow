@@ -146,7 +146,7 @@ struct SendInvitation {
         }
         
         func profileImageView(imageURL: URL?) -> some View {
-            HFAsyncImage(url: imageURL, placeholderImage: .placeholderImage)
+            HFAsyncImage(url: imageURL, placeholderImage: .profileImagePlaceholder)
             .frame(width: 60, height: 60)
             .clipShape(Circle())
         }
@@ -163,7 +163,10 @@ struct SendInvitation {
 #if DEBUG
 struct SendInvitationSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        SendInvitation.ContentView(viewModel: .init(therapistService: MockTherapistService()))
+        SendInvitation.ContentView(viewModel: .init(
+            therapistService: MockTherapistService(),
+            onSendInvitation: { })
+        )
     }
 }
 #endif

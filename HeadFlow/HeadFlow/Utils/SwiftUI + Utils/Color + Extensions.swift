@@ -18,4 +18,8 @@ extension Color {
     static let paleYellow = Color("PaleYellow")
     static let skyBlue = Color("SkyBlue")
     static let oceanBlue = Color("OceanBlue")
+    
+    static var random: Self {
+        Color(red: .random(in: 0...1), green: .random(in: 0...1), blue: .random(in: 0...1))
+    }
 }

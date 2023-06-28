@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 extension PatientProfile {
     class ViewModel: ObservableObject {
@@ -20,24 +21,37 @@ extension PatientProfile {
             stretchingHistory.count
         }
 
-        var hasNotificationFromTherapist: Bool {
-            Session.shared.hasNotificationFromTherapist
-        }
+        @Published var hasNotificationFromTherapist: Bool = false
         
         let authenticationService: AuthenticationServiceProtocol
         let stretchingService: StretchingServiceProtocol
         let navigationAction: (ProfileNavigationType) -> Void
-
+        let hasNotificationFromTherapistSubject: CurrentValueSubject<Bool, Never>
+        
+        private var cancellables: [AnyCancellable] = []
         private var getStretchingHistoryTask: Task<Void, Never>?
 
         init(authenticationService: AuthenticationServiceProtocol,
              stretchingService: StretchingServiceProtocol,
+             hasNotificationFromTherapistSubject: CurrentValueSubject<Bool, Never>,
              navigationAction: @escaping (ProfileNavigationType) -> Void) {
             self.authenticationService = authenticationService
             self.stretchingService = stretchingService
+            self.hasNotificationFromTherapistSubject = hasNotificationFromTherapistSubject
+            hasNotificationFromTherapist = hasNotificationFromTherapistSubject.value
             self.navigationAction = navigationAction
             
             getStretchingHistory()
+            configureCancellables()
+        }
+        
+        private func configureCancellables() {
+            hasNotificationFromTherapistSubject
+                .receive(on: DispatchQueue.main)
+                .sink { [weak self] value in
+                    self?.hasNotificationFromTherapist = value
+                }
+                .store(in: &cancellables)
         }
         
         func getStretchingHistory() {

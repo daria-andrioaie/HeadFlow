@@ -58,7 +58,7 @@ extension EditProfile {
                     case .success(let user):
                         Session.shared.saveCurrentUser(user: user, token: Session.shared.accessToken!)
                     case .failure(let error):
-                        self?.apiError = Errors.CustomError(error.message)
+                        print(Errors.CustomError(error.message))
                     }
                 }
             }

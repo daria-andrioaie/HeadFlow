@@ -23,9 +23,6 @@ struct TherapistCollaboration {
                 .padding(24)
                 .activityIndicator(viewModel.isLoading)
             }
-            .onAppear {
-                Session.shared.hasNotificationFromTherapist = false
-            }
         }
         
         @ViewBuilder
@@ -102,7 +99,7 @@ struct TherapistCollaboration {
         }
         
         func profileImageView(imageURL: URL?) -> some View {
-            HFAsyncImage(url: imageURL, placeholderImage: .placeholderImage)
+            HFAsyncImage(url: imageURL, placeholderImage: .profileImagePlaceholder)
                 .frame(width: 160, height: 160)
                 .clipShape(Circle())
         }
@@ -136,6 +133,9 @@ struct TherapistCollaboration {
 
 struct TherapistCollaborationView_Previews: PreviewProvider {
     static var previews: some View {
-        TherapistCollaboration.ContentView(viewModel: .init(patientService: MockPatientService(), onBack: { }))
+        TherapistCollaboration.ContentView(viewModel: .init(
+            patientService: MockPatientService(),
+            hasNotificationFromTherapistSubject: .init(false),
+            onBack: { }))
     }
 }

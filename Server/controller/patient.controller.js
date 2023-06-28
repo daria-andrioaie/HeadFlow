@@ -40,7 +40,6 @@ const getCollaboration = async (req, res) => {
 
       const therapistId = req.body.therapistId;
       const isInvitationAccepted = req.body.acceptInvitation;
-      console.log(req.body);
 
       if(typeof therapistId === undefined) {
         throw new Error("Therapist id was not provided.")

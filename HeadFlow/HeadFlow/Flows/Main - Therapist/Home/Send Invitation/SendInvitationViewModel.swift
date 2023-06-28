@@ -23,9 +23,12 @@ extension SendInvitation {
         private var sendInvitationTask: Task<Void, Error>?
 
         let therapistService: TherapistServiceProtocol
+        let onSendInvitation: () -> Void
         
-        init(therapistService: TherapistServiceProtocol) {
+        init(therapistService: TherapistServiceProtocol,
+             onSendInvitation: @escaping () -> Void) {
             self.therapistService = therapistService
+            self.onSendInvitation = onSendInvitation
         }
         
         func searchPatient(with emailAddress: String) {
@@ -69,14 +72,12 @@ extension SendInvitation {
                 await therapistService.sendInvitation(patientId: patient.id, onRequestCompleted: { [weak self] result in
                     switch result {
                     case .success(_):
-                        DispatchQueue.main.async {
-                            self?.invitationStatus = .sent
-                        }
+                        self?.invitationStatus = .sent
+                        self?.onSendInvitation()
+                        
                     case .failure(let apiError):
                         print(apiError.localizedDescription)
-                        DispatchQueue.main.async {
-                            self?.invitationStatus = nil
-                        }
+                        self?.invitationStatus = nil
                     }
                 })
             }

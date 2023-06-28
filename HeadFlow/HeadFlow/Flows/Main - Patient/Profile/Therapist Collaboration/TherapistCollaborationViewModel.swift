@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 extension TherapistCollaboration {
     class ViewModel: ObservableObject {
@@ -20,9 +21,13 @@ extension TherapistCollaboration {
         private var getTherapistTask: Task<Void, Never>?
         private var respondToInvitationTask: Task<Void, Never>?
         private var interruptCollaborationTask: Task<Void, Never>?
+        private let hasNotificationFromTherapistSubject: CurrentValueSubject<Bool, Never>
 
-        init(patientService: PatientServiceProtocol, onBack: @escaping () -> Void) {
+        init(patientService: PatientServiceProtocol,
+             hasNotificationFromTherapistSubject: CurrentValueSubject<Bool, Never>,
+             onBack: @escaping () -> Void) {
             self.patientService = patientService
+            self.hasNotificationFromTherapistSubject = hasNotificationFromTherapistSubject
             self.onBack = onBack
             
             getTherapist()
@@ -51,7 +56,7 @@ extension TherapistCollaboration {
                         default:
                             break
                         }
-                        Session.shared.hasNotificationFromTherapist = false
+                        self?.hasNotificationFromTherapistSubject.send(false)
                     case .failure(let apiError):
                         print(apiError.localizedDescription)
                     }

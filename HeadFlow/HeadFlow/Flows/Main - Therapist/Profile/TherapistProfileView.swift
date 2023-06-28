@@ -63,7 +63,7 @@ struct TherapistProfile {
                         .frame(width: 160, height: 160)
                         .clipShape(Circle())
                 } else {
-                    HFAsyncImage(url: viewModel.currentProfileImage, placeholderImage: .placeholderImage)
+                    HFAsyncImage(url: viewModel.currentProfileImage, placeholderImage: .profileImagePlaceholder)
                         .frame(width: 160, height: 160)
                         .clipShape(Circle())
                 }

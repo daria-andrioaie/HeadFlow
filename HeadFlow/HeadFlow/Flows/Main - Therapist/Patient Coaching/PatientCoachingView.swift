@@ -100,7 +100,7 @@ struct PatientCoaching {
         }
         
         func profileImageView(imageURL: URL?) -> some View {
-            HFAsyncImage(url: imageURL, placeholderImage: .placeholderImage)
+            HFAsyncImage(url: imageURL, placeholderImage: .profileImagePlaceholder)
             .frame(width: 100, height: 100)
             .clipShape(Circle())
         }
@@ -128,6 +128,7 @@ struct PatientCoaching {
             }
             .padding(EdgeInsets(top: 20, leading: 24, bottom: 20, trailing: 24))
             .frame(maxWidth: .infinity)
+            .frame(height: 90)
             .background(Color.oceanBlue.opacity(0.9).cornerRadius(20))
         }
     }

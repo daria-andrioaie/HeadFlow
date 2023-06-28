@@ -19,18 +19,38 @@ extension TherapistHome {
         let navigationAction: (TherapistHome.NavigationType) -> Void
         
         private var getCollaborationsListTask: Task<Void, Error>?
+        private let sendInvitation = PassthroughSubject<Void, Never>()
+        private var cancellables = Array<AnyCancellable>()
         
         var collaborationsForSelectedStatus: [Collaboration] {
             collaborationsMap[selectedCollaborationStatus] ?? []
+        }
+        
+        var noPatientsMessage: String {
+            switch selectedCollaborationStatus {
+            case .pending:
+                return "There are no patients with pending invitations for the moment."
+            case .active:
+                return "There are no active patients for the moment."
+            default:
+                return ""
+            }
+        }
+        
+        var isDataSourceEmpty: Bool {
+            for value in collaborationsMap.values {
+                if !value.isEmpty {
+                    return false
+                }
+            }
+            return true
         }
         
         init(therapistService: TherapistServiceProtocol, navigationAction: @escaping (TherapistHome.NavigationType) -> Void) {
             self.therapistService = therapistService
             self.navigationAction = navigationAction
             
-            collaborationsMap = Dictionary(uniqueKeysWithValues:
-                                    CollaborationStatus.allCases.map { ($0, []) }
-            )
+            collaborationsMap = [:]
         }
         
         func getCollaborationsList() {
@@ -45,6 +65,7 @@ extension TherapistHome {
                             CollaborationStatus.allCases.forEach { collabStatus in
                                 self?.collaborationsMap[collabStatus] = collaborationsResponse.filter { $0.status == collabStatus }
                             }
+                            
                             self?.isLoading = false
                         }
                         
@@ -59,6 +80,12 @@ extension TherapistHome {
             }
         }
         
+        private func configureCancellables() {
+            sendInvitation.sink { [weak self] error in
+                self?.getCollaborationsList()
+            }.store(in: &cancellables)
+        }
+                
         deinit {
             getCollaborationsListTask?.cancel()
         }

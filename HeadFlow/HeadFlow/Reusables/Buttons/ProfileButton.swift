@@ -27,7 +27,7 @@ extension Buttons {
                     .overlay(notificationOverlay, alignment: .topTrailing)
             }
             .buttonStyle(.plain)
-            .padding(.trailing, 40)
+            .padding(.trailing, 24)
             .padding(.bottom, 10)
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
@@ -37,7 +37,7 @@ extension Buttons {
             if hasNotification {
                 Circle()
                     .foregroundColor(.red.opacity(0.7))
-                    .frame(width: 15)
+                    .frame(width: 15, height: 15)
             }
         }
     }
