@@ -16,13 +16,17 @@ extension CountdownScreen {
         var plannedSession: [StretchingExercise] = []
         
         let stretchingService: StretchingServiceProtocol
+        let motionManager: MotionManager
         let onCountdownFinished: ([StretchingExercise]) -> Void
         
         private let timer = Timer.publish(every: 1, on: .main, in: .common)
         private var cancellables = Set<AnyCancellable>()
         
-        init(stretchingService: StretchingServiceProtocol, onCountdownFinished: @escaping ([StretchingExercise]) -> Void) {
+        init(stretchingService: StretchingServiceProtocol,
+             motionManager: MotionManager,
+             onCountdownFinished: @escaping ([StretchingExercise]) -> Void) {
             self.stretchingService = stretchingService
+            self.motionManager = motionManager
             self.onCountdownFinished = onCountdownFinished
             getPlannedSession()
         }
@@ -36,6 +40,7 @@ extension CountdownScreen {
                     case .success(let plannedSession):
                         self?.plannedSession = plannedSession
                         self?.isPlannedSessionLoading = false
+                        self?.motionManager.startComputingCoordinatesInStraightPosition()
                         self?.startCountdown()
 
                     case .failure(let error):
@@ -53,6 +58,7 @@ extension CountdownScreen {
                         self?.timeRemaining -= 1
                     } else {
                         self?.timer.connect().cancel()
+                        self?.motionManager.stopComputingCoordinatesInStraightPosition()
                         self?.onCountdownFinished(self?.plannedSession ?? [])
                     }
                 }

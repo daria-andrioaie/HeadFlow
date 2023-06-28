@@ -878,9 +878,9 @@
 		B8F45E3529C393B400FAB812 /* StretchPlayer */ = {
 			isa = PBXGroup;
 			children = (
+				B8417AD029C3A2210053FD35 /* StretchCoordinator.swift */,
 				B8C6AE3E2A0C1A1500B38A34 /* CountdownScreen */,
 				B84EDD8629D8886D0033E475 /* DrawingViews */,
-				B8417AD029C3A2210053FD35 /* StretchCoordinator.swift */,
 				B88FA55A29CF4BCD00B828EB /* Texts + Stretching.swift */,
 				B8B7442129C8EA4C000DA599 /* StretchSummary */,
 				B84EDD8529D8282D0033E475 /* Execute stretch */,
