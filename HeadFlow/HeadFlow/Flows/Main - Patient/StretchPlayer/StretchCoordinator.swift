@@ -43,8 +43,10 @@ class StretchCoordinator: Coordinator {
     }
     
     func showLoadingScreenScreen() {
-        let countdownScreenVM = CountdownScreen.ViewModel(stretchingService: dependencies.stretchingService) { [weak self] stretchingSession in
+        let countdownScreenVM = CountdownScreen.ViewModel(stretchingService: dependencies.stretchingService,
+                                                          motionManager: dependencies.motionManager) { [weak self] stretchingSession in
             self?.stretchingSet = stretchingSession
+            self?.dependencies.motionManager.startMotionUpdates()
             self?.showExerciseForCurrentIndex()
         }
         self.navigationController.pushHostingController(rootView: CountdownScreen.ContentView(viewModel: countdownScreenVM), animated: true)

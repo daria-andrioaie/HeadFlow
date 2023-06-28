@@ -22,7 +22,9 @@ struct StretchExecutor {
                     .font(.Main.regular(size: 24))
                     .padding(.bottom, 20)
                 
-                DrawingView(exercise: $viewModel.currentStretchingExecise, motionManager: motionManager, isPaused: viewModel.timerState != .running)
+                DrawingView(exercise: $viewModel.currentStretchingExecise,
+                            motionManager: motionManager,
+                            isPaused: viewModel.timerState != .running)
                     .padding(.horizontal, 80)
                     .padding(.vertical, 50)
                 

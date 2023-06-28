@@ -61,7 +61,9 @@ extension PatientProfile {
                 await stretchingService.getAllStretchingSessionsForCurrentUser { [weak self] result in
                     switch result {
                     case .success(let stretchingSessionsResponse):
-                        self?.stretchingHistory = stretchingSessionsResponse
+                        self?.stretchingHistory = stretchingSessionsResponse.sorted {
+                            $0.date > $1.date
+                        }
                         self?.isSessionsCountLoading = false
                         
                     case .failure(let error):

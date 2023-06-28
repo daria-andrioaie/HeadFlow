@@ -22,8 +22,12 @@ struct RotateRightDrawingView: View {
         Canvas { context, size in
             drawProgress(context: &context, size: size)
         }
-        .onChange(of: motionManager.motion) { newValue in
+        .onChange(of: motionManager.currentYaw) { newValue in
             if isPaused {
+                return
+            }
+            
+            guard let newValue else {
                 return
             }
             updateStretchingProgress(for: newValue)
@@ -48,25 +52,21 @@ struct RotateRightDrawingView: View {
         context.stroke(path, with: .color(line.color), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round))
     }
     
-    private func updateStretchingProgress(for motion: CMDeviceMotion?) {
-        if let yaw = motion?.attitude.yaw {
-            var currentYaw = motionManager.degrees(yaw) / Double(exercise.type.maximumDegrees)
+    private func updateStretchingProgress(for newYaw: Double) {
+        var currentYaw = newYaw / Double(exercise.goalDegrees)
+                    
+        guard currentYaw >= -1 && currentYaw < 0 else {
+            return
+        }
             
-            print("Degrees: \(motionManager.degrees(yaw))\n\n\n")
-        
-            guard currentYaw >= -1 && currentYaw < 0 else {
-                return
-            }
+        currentYaw = abs(currentYaw)
             
-            currentYaw = abs(currentYaw)
+        currentPosition = currentYaw
             
-            currentPosition = currentYaw
-            
-            if currentYaw > maximumX {
-                exercise.achievedRangeOfMotion = currentYaw
-                maximumX = currentYaw
-                line.points.append(.init(x: currentYaw, y: 0))
-            }
+        if currentYaw > maximumX {
+            exercise.achievedRangeOfMotion = currentYaw
+            maximumX = currentYaw
+            line.points.append(.init(x: currentYaw, y: 0))
         }
     }
 }

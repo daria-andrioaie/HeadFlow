@@ -21,8 +21,11 @@ struct TiltForwardDrawingView: View {
         Canvas { context, size in
             drawProgress(context: &context, size: size)
         }
-        .onChange(of: motionManager.motion) { newValue in
+        .onChange(of: motionManager.currentPitch) { newValue in
             if isPaused {
+                return
+            }
+            guard let newValue else {
                 return
             }
             updateStretchingProgress(for: newValue)
@@ -47,26 +50,22 @@ struct TiltForwardDrawingView: View {
             context.stroke(path, with: .color(line.color), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round))
     }
     
-    private func updateStretchingProgress(for motion: CMDeviceMotion?) {
-            if let pitch = motion?.attitude.pitch {
-                var currentPitch = motionManager.degrees(pitch) / Double(exercise.type.maximumDegrees)
+    private func updateStretchingProgress(for newPitch: Double) {
+        var currentPitch = newPitch / Double(exercise.goalDegrees)
+                            
+        guard currentPitch >= -1 && currentPitch < 0 else {
+            return
+        }
                 
-                print("Degrees: \(motionManager.degrees(pitch))\n\n\n")
-            
-                guard currentPitch >= -1 && currentPitch < 0 else {
-                    return
-                }
+        currentPitch = abs(currentPitch)
                 
-                currentPitch = abs(currentPitch)
+        currentPosition = currentPitch
                 
-                currentPosition = currentPitch
-                
-                if currentPitch > maximumY {
-                    exercise.achievedRangeOfMotion = currentPitch
-                    maximumY = currentPitch
-                    line.points.append(.init(x: 0, y: currentPitch))
-                }
-            }
+        if currentPitch > maximumY {
+            exercise.achievedRangeOfMotion = currentPitch
+            maximumY = currentPitch
+            line.points.append(.init(x: 0, y: currentPitch))
+        }
     }
 }
 

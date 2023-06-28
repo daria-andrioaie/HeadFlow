@@ -64,7 +64,9 @@ extension PatientCoaching {
                 await therapistService.getAllStretchingSessionsForPatient(patientId: patient.id, onRequestCompleted: { [weak self] result in
                     switch result {
                     case .success(let stretchingSessionsResponse):
-                        self?.stretchingHistory = stretchingSessionsResponse
+                        self?.stretchingHistory = stretchingSessionsResponse.sorted {
+                            $0.date > $1.date
+                        }
                         self?.isLoadingHistory = false
                     case .failure(let error):
                         print(error.localizedDescription)

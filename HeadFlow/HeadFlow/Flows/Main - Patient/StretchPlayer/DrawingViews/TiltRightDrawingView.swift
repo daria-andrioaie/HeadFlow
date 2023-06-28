@@ -12,19 +12,22 @@ extension DrawingView {
     struct TiltRightDrawingView: View {
         @Binding var exercise: StretchingExercise
         @ObservedObject var motionManager: MotionManager
-        var isPaused: Bool
         
         @State private var line = Line()
         @State private var currentPosition: CGFloat = 0
-        
         @State private var maximumX: CGFloat = 0
         
+        var isPaused: Bool
+
         var body: some View {
             Canvas { context, size in
                 drawProgress(context: &context, size: size)
             }
-            .onChange(of: motionManager.motion) { newValue in
+            .onChange(of: motionManager.currentRoll) { newValue in
                 if isPaused {
+                    return
+                }
+                guard let newValue else {
                     return
                 }
                 updateStretchingProgress(for: newValue)
@@ -50,22 +53,20 @@ extension DrawingView {
         
         }
         
-        private func updateStretchingProgress(for motion: CMDeviceMotion?) {
-            if let roll = motion?.attitude.roll {
-                    let currentRoll = motionManager.degrees(roll) / Double(exercise.type.maximumDegrees)
-                
-                    guard currentRoll > 0 && currentRoll <= 1 else {
-                        return
-                    }
+        private func updateStretchingProgress(for newRoll: Double) {
+            let currentRoll = newRoll / Double(exercise.goalDegrees)
+            
+            guard currentRoll > 0 && currentRoll <= 1 else {
+                return
+            }
                     
-                    currentPosition = currentRoll
+            currentPosition = currentRoll
                     
-                    if currentRoll > maximumX {
-                        exercise.achievedRangeOfMotion = currentRoll
-                        maximumX = currentRoll
-                        line.points.append(.init(x: currentRoll, y: 0))
-                    }
-                }
+            if currentRoll > maximumX {
+                exercise.achievedRangeOfMotion = currentRoll
+                maximumX = currentRoll
+                line.points.append(.init(x: currentRoll, y: 0))
+            }
         }
     }
 }

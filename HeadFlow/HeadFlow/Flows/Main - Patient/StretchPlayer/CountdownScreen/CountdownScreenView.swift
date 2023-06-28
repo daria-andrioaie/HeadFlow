@@ -27,31 +27,43 @@ struct CountdownScreen {
         
         var loadingView: some View {
             VStack(spacing: 30) {
-                Text("getting your exercises")
+                ScalingDots()
+                    .frame(height: 70)
+
+                Text("Getting your exercises")
                     .foregroundColor(.danubeBlue)
                     .font(.Main.regular(size: 20))
-                ScalingDots()
             }
         }
         
         var countdownView: some View {
-            Text("\(viewModel.timeRemaining)")
-                .font(.Main.bold(size: 60))
-                .foregroundColor(.danubeBlue)
-                .scaleEffect(animationAmount)
-                .opacity(animationAmount - 0.4)
-                .animation(.easeIn(duration: 1).repeatForever(autoreverses: false), value: animationAmount)
-                .onAppear {
-                    animationAmount = 1.0
-                }
+            VStack(spacing: 30) {
+                Text("\(viewModel.timeRemaining)")
+                    .font(.Main.bold(size: 60))
+                    .foregroundColor(.danubeBlue)
+                    .scaleEffect(animationAmount)
+                    .opacity(animationAmount - 0.4)
+                    .animation(.easeIn(duration: 1).repeatForever(autoreverses: false), value: animationAmount)
+                    .onAppear {
+                        animationAmount = 1.0
+                    }
+                    .frame(height: 70)
+                Text("Ready? Please adopt a straight position.")
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(.danubeBlue)
+                    .font(.Main.regular(size: 20))
             }
+        }
     }
 }
 
 #if DEBUG
 struct CountdownScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        CountdownScreen.ContentView(viewModel: .init(stretchingService: MockStretchingService(), onCountdownFinished: { _ in }))
+        CountdownScreen.ContentView(viewModel: .init(
+            stretchingService: MockStretchingService(),
+            motionManager: MotionManager(),
+            onCountdownFinished: { _ in }))
     }
 }
 #endif

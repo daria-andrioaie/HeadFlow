@@ -22,8 +22,11 @@ struct TiltLeftDrawingView: View {
         Canvas { context, size in
             drawProgress(context: &context, size: size)
         }
-        .onChange(of: motionManager.motion) { newValue in
+        .onChange(of: motionManager.currentRoll) { newValue in
             if isPaused {
+                return
+            }
+            guard let newValue else {
                 return
             }
             updateStretchingProgress(for: newValue)
@@ -48,24 +51,22 @@ struct TiltLeftDrawingView: View {
             context.stroke(path, with: .color(line.color), style: StrokeStyle(lineWidth: line.lineWidth, lineCap: .round))
     }
     
-    private func updateStretchingProgress(for motion: CMDeviceMotion?) {
-            if let roll = motion?.attitude.roll {
-                var currentRoll = motionManager.degrees(roll) / Double(exercise.type.maximumDegrees)
+    private func updateStretchingProgress(for newRoll: Double) {
+        var currentRoll = newRoll / Double(exercise.goalDegrees)
                             
-                guard currentRoll >= -1 && currentRoll < 0 else {
-                    return
-                }
+        guard currentRoll >= -1 && currentRoll < 0 else {
+            return
+        }
                 
-                currentRoll = abs(currentRoll)
+        currentRoll = abs(currentRoll)
                 
-                currentPosition = currentRoll
+        currentPosition = currentRoll
                 
-                if currentRoll > maximumX {
-                    exercise.achievedRangeOfMotion = currentRoll
-                    maximumX = currentRoll
-                    line.points.append(.init(x: (1 - currentRoll), y: 0))
-                }
-            }
+        if currentRoll > maximumX {
+            exercise.achievedRangeOfMotion = currentRoll
+            maximumX = currentRoll
+            line.points.append(.init(x: (1 - currentRoll), y: 0))
+        }
     }
 }
 
