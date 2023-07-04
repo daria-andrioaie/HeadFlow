@@ -72,6 +72,13 @@ struct TiltLeftDrawingView: View {
 
 struct TiltLeftDrawingView_Previews: PreviewProvider {
     static var previews: some View {
-        TiltLeftDrawingView(exercise: .constant(.mock1), motionManager: MotionManager(), isPaused: false)
+        ForEach(previewDevices) {
+            TiltLeftDrawingView(
+                exercise: .constant(.mock1),
+                motionManager: MotionManager(),
+                isPaused: false)
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }

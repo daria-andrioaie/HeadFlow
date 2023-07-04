@@ -70,9 +70,14 @@ extension PatientCoaching {
 
 struct AddExercisesList_Previews: PreviewProvider {
     static var previews: some View {
-        PatientCoaching.AddExercisesList(viewModel: .init(therapistService: MockTherapistService(),
-                                                          patient: .mockPatient1,
-                                                          navigationAction: { _ in }),
-                                         isPresented: .constant(true))
+        ForEach(previewDevices) {
+            PatientCoaching.AddExercisesList(
+                viewModel: .init(therapistService: MockTherapistService(),
+                                patient: .mockPatient1,
+                                navigationAction: { _ in }),
+                isPresented: .constant(true))
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }

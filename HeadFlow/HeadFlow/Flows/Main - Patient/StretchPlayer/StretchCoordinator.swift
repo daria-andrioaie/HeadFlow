@@ -95,15 +95,4 @@ class StretchCoordinator: Coordinator {
         
         self.navigationController.pushHostingController(rootView: StretchSummary.ContentView(viewModel: viewModel))
     }
-
-//    static func initStretchingSet() -> [StretchingExercise] {
-//        //TODO: save a global variable in the database and take it from there
-//        let durationInSeconds = 1
-//        let stretchingSet = StretchType.allCases.filter({
-//            $0 != .unknown
-//        }).map { stretchType in
-//            return StretchingExercise(type: stretchType, duration: durationInSeconds, goalDegrees: stretchType.maximumDegrees, maximumDegrees: stretchType.maximumDegrees)
-//        }
-//        return stretchingSet
-//    }
 }

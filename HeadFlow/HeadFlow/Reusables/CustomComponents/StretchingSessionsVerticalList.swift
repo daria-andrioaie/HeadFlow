@@ -115,9 +115,13 @@ struct StretchingSessionsVerticalList: View {
 #if DEBUG
 struct StretchingSessionsVerticalList_Previews: PreviewProvider {
     static var previews: some View {
-        StretchingSessionsVerticalList(patient: .mockPatient1,
-                                       stretchingSessions: [],
-                                       feedbackService: MockFeedbackService())
+        ForEach(previewDevices) {
+            StretchingSessionsVerticalList(patient: .mockPatient1,
+                                           stretchingSessions: [],
+                                           feedbackService: MockFeedbackService())
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

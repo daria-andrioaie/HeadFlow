@@ -60,10 +60,15 @@ struct CountdownScreen {
 #if DEBUG
 struct CountdownScreenView_Previews: PreviewProvider {
     static var previews: some View {
-        CountdownScreen.ContentView(viewModel: .init(
-            stretchingService: MockStretchingService(),
-            motionManager: MotionManager(),
-            onCountdownFinished: { _ in }))
+        ForEach(previewDevices) {
+            CountdownScreen.ContentView(
+                viewModel: .init(
+                    stretchingService: MockStretchingService(),
+                    motionManager: MotionManager(),
+                    onCountdownFinished: { _ in }))
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

@@ -153,11 +153,15 @@ struct CustomizableExerciseCard: View {
 
 struct CustomizableExerciseCard_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView {
-            VStack {
-                CustomizableExerciseCard(exercise: .constant(.mock1), isEditing: false)
+        ForEach(previewDevices) {
+            ScrollView {
+                VStack {
+                    CustomizableExerciseCard(exercise: .constant(.mock1), isEditing: false)
+                }
+                .padding(.horizontal, 30)
             }
-            .padding(.horizontal, 30)
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
         }
     }
 }

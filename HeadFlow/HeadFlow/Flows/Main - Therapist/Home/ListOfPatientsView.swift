@@ -165,7 +165,13 @@ extension TherapistHome {
 #if DEBUG
 struct ListOfPatientsView_Previews: PreviewProvider {
     static var previews: some View {
-        TherapistHome.ListOfPatientsView(viewModel: .init(therapistService: MockTherapistService(), navigationAction: { _ in }))
+        ForEach(previewDevices) {
+            TherapistHome.ListOfPatientsView(
+                viewModel: .init(therapistService: MockTherapistService(),
+                                 navigationAction: { _ in }))
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

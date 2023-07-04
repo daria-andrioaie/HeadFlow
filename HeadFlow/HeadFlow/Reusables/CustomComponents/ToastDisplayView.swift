@@ -80,7 +80,13 @@ struct ToastDisplayView: View {
 #if DEBUG
 struct ToastDisplayView_Previews: PreviewProvider {
     static var previews: some View {
-        ToastDisplayView(isPresented: .constant(true), message: "Hi! This is a toast display with a very very very very very very very very very very very very very very very very very very very very long message.", backgroundColor: .decoGreen)
+        ForEach(previewDevices) {
+            ToastDisplayView(isPresented: .constant(true),
+                             message: "Hi! This is a toast display with a very very very very very very very very very very very very very very very very very very very very long message.",
+                             backgroundColor: .decoGreen)
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

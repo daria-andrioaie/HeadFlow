@@ -56,11 +56,15 @@ struct BasicExerciseCard: View {
 
 struct BasicExerciseCard_Previews: PreviewProvider {
     static var previews: some View {
-        ScrollView {
-            VStack {
-                BasicExerciseCard(exercise: .mock1, onAdd: { })
+        ForEach(previewDevices) {
+            ScrollView {
+                VStack {
+                    BasicExerciseCard(exercise: .mock1, onAdd: { })
+                }
+                .padding(.horizontal, 30)
             }
-            .padding(.horizontal, 30)
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
         }
     }
 }

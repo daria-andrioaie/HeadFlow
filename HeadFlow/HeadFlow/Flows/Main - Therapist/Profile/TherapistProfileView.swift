@@ -162,6 +162,12 @@ struct TherapistProfile {
 
 struct TherapistProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        TherapistProfile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), navigationAction: { _ in }))
+        ForEach(previewDevices) {
+            TherapistProfile.ContentView(
+                viewModel: .init(authenticationService: MockAuthenticationService(),
+                                 navigationAction: { _ in }))
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }

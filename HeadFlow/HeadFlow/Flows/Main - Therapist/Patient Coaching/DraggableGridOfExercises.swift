@@ -146,14 +146,17 @@ extension PatientCoaching {
 #if DEBUG
 struct DraggableGridOfExercises_Previews: PreviewProvider {
     static var previews: some View {
-        PatientCoaching.DraggableGridOfExercises(
-            viewModel: .init(therapistService: MockTherapistService(),
-                             patient: .mockPatient1,
-                             navigationAction: { _ in })
-        )
-        .padding(.horizontal, 24)
-        .fillBackground()
-        .previewDevice(.iPhone7Plus)
+        ForEach(previewDevices) {
+            PatientCoaching.DraggableGridOfExercises(
+                viewModel: .init(therapistService: MockTherapistService(),
+                                 patient: .mockPatient1,
+                                 navigationAction: { _ in })
+            )
+            .padding(.horizontal, 24)
+            .fillBackground()
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

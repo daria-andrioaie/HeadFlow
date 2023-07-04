@@ -141,6 +141,12 @@ struct EditProfile {
 
 struct EditProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProfile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(), onBack: { }))
+        ForEach(previewDevices) {
+            EditProfile.ContentView(
+                viewModel: .init(authenticationService: MockAuthenticationService(),
+                                 onBack: { }))
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }

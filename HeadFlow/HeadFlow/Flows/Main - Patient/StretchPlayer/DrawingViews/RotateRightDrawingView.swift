@@ -73,6 +73,13 @@ struct RotateRightDrawingView: View {
 
 struct RotateRightDrawingView_Previews: PreviewProvider {
     static var previews: some View {
-        RotateRightDrawingView(exercise: .constant(.mock1), motionManager: MotionManager(), isPaused: false)
+        ForEach(previewDevices) {
+            RotateRightDrawingView(
+                exercise: .constant(.mock1),
+                motionManager: MotionManager(),
+                isPaused: false)
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }

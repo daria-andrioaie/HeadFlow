@@ -55,8 +55,12 @@ struct AnimatedChartView: View {
 @available(iOS 16.0, *)
 struct AnimatedChart_Previews: PreviewProvider {
     static var previews: some View {
-        AnimatedChartView(stretchingHistory: StretchSummary.Model.mockedSet)
-            .frame(height: 400)
+        ForEach(previewDevices) {
+            AnimatedChartView(stretchingHistory: StretchSummary.Model.mockedSet)
+                .frame(height: 400)
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

@@ -36,6 +36,10 @@ struct ScalingDots: View {
 
 struct ScalingDots_Previews: PreviewProvider {
     static var previews: some View {
-        ScalingDots()
+        ForEach(previewDevices) {
+            ScalingDots()
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }

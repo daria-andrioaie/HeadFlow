@@ -11,7 +11,6 @@ enum StretchType: String, CaseIterable {
     case tiltToRight, tiltToLeft
     case tiltForward, tiltBackwards
     case rotateToRight, rotateToLeft
-    case fullRotationRight, fullRotationLeft
     case unknown
     
     /// !!! to be used only for mocking purposes !!!
@@ -30,12 +29,6 @@ enum StretchType: String, CaseIterable {
         case .rotateToLeft:
             return 60
             
-        //TODO: figure out how to compute these two
-        case .fullRotationRight:
-            return 10
-        case .fullRotationLeft:
-            return 10
-            
         case .unknown:
             return 0
         }
@@ -49,8 +42,6 @@ enum StretchType: String, CaseIterable {
         case .tiltBackwards: return "Tilt head backwards"
         case .rotateToRight: return "Look to the right"
         case .rotateToLeft: return "Look to the left"
-        case .fullRotationRight: return "Full circle to right"
-        case .fullRotationLeft: return "Full circle to left"
         case .unknown: return "unknown"
         }
     }
@@ -63,8 +54,6 @@ enum StretchType: String, CaseIterable {
         case .tiltBackwards: return "Backwards extension"
         case .rotateToRight: return "Right axial rotation"
         case .rotateToLeft: return "Left axial rotation"
-        case .fullRotationRight: return "Counter-clockwise rotation"
-        case .fullRotationLeft: return "Clockwise rotation"
         case .unknown: return "unknown"
         }
     }
@@ -77,8 +66,6 @@ enum StretchType: String, CaseIterable {
         case .tiltBackwards: return .tiltBackwards
         case .rotateToRight: return .rotateRIght
         case .rotateToLeft: return .rotateLeft
-        case .fullRotationRight: return .rotateRIght
-        case .fullRotationLeft: return .rotateLeft
         case .unknown: return .tiltLeft
         }
     }

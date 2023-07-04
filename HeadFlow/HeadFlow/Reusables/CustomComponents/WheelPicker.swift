@@ -107,7 +107,11 @@ struct WheelPicker_Previews: PreviewProvider {
     }
     
     static var previews: some View {
-        StatefulPicker()
+        ForEach(previewDevices) {
+            StatefulPicker()
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

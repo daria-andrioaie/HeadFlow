@@ -69,9 +69,7 @@ const getPlannedStretchingSessionOfPatient = async (userId) => {
       { exerciseType: "tiltForward", goalDegrees: 45, maximumDegrees: 45, duration: 5 },
       { exerciseType: "tiltBackwards", goalDegrees: 45, maximumDegrees: 45, duration: 5 },
       { exerciseType: "rotateToRight", goalDegrees: 60, maximumDegrees: 60, duration: 5 },
-      { exerciseType: "rotateToLeft", goalDegrees: 60, maximumDegrees: 60, duration: 5 },
-      { exerciseType: "fullRotationRight", goalDegrees: 10, maximumDegrees: 10, duration: 5 },
-      { exerciseType: "fullRotationLeft", goalDegrees: 10, maximumDegrees: 10, duration: 5 }
+      { exerciseType: "rotateToLeft", goalDegrees: 60, maximumDegrees: 60, duration: 5 }
     ]
     });
   

@@ -113,10 +113,6 @@ extension DetailedStretchingInfo {
                 tableRow(title: "Lateral rotation",
                          firstValue: exerciseRangeDict[.rotateToLeft] ?? 0,
                          secondValue: exerciseRangeDict[.rotateToRight] ?? 0)
-                
-                tableRow(title: "Full rotation",
-                         firstValue: exerciseRangeDict[.fullRotationLeft] ?? 0,
-                         secondValue: exerciseRangeDict[.fullRotationRight] ?? 0)
             }
             .overlay(verticalDivider, alignment: .center)
             .padding(.horizontal, 40)
@@ -183,6 +179,12 @@ extension DetailedStretchingInfo {
 
 struct PDFStretchingSummaryView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailedStretchingInfo.PDFSummaryView(patient: .mockPatient1, stretchingSession: .mock1)
+        ForEach(previewDevices) {
+            DetailedStretchingInfo.PDFSummaryView(
+                patient: .mockPatient1,
+                stretchingSession: .mock1)
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }

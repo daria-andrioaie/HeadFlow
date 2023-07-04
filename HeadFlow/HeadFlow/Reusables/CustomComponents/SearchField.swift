@@ -15,6 +15,7 @@ struct SearchField: View {
     var backgroundColor: Color = .diamond
     var foregroundColor: Color = .oceanBlue
     var isClearButtonShown: Bool = false
+    var textInputAutoCapitalization: TextInputAutocapitalization = .never
     var onCommit: (() -> Void)?
     
     var body: some View {
@@ -23,6 +24,7 @@ struct SearchField: View {
             TextField(placeholder ?? "", text: $text, onCommit: {
                 onCommit?()
             })
+            .textInputAutocapitalization(textInputAutoCapitalization)
             .keyboardType(.emailAddress)
             .textContentType(.emailAddress)
             .accentColor(foregroundColor)

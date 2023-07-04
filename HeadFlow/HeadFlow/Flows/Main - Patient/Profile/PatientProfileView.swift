@@ -67,10 +67,15 @@ struct PatientProfile {
 #if DEBUG
 struct PatientProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        PatientProfile.ContentView(viewModel: .init(authenticationService: MockAuthenticationService(),
-                                                    stretchingService: MockStretchingService(),
-                                                    hasNotificationFromTherapistSubject: .init(false),
-                                                    navigationAction: { _ in }))
+        ForEach(previewDevices) {
+            PatientProfile.ContentView(
+                viewModel: .init(authenticationService: MockAuthenticationService(),
+                                stretchingService: MockStretchingService(),
+                                hasNotificationFromTherapistSubject: .init(false),
+                                 navigationAction: { _ in }))
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

@@ -137,7 +137,14 @@ struct PatientCoaching {
 #if DEBUG
 struct PatientCoachingView_Previews: PreviewProvider {
     static var previews: some View {
-        PatientCoaching.ContentView(viewModel: .init(therapistService: MockTherapistService(), patient: .mockPatient1, navigationAction: { _ in }))
+        ForEach(previewDevices) {
+            PatientCoaching.ContentView(
+                viewModel: .init(therapistService: MockTherapistService(),
+                                 patient: .mockPatient1,
+                                 navigationAction: { _ in }))
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif
