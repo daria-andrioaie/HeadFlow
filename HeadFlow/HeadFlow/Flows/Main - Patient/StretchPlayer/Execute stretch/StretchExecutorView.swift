@@ -162,7 +162,19 @@ struct StretchExecutor {
 #if DEBUG
 struct StretchExecutorView_Previews: PreviewProvider {
     static var previews: some View {
-        StretchExecutor.ContentView(viewModel: .init(stretchingExecise: .init(type: .tiltForward, duration: 5, goalDegrees: StretchType.rotateToRight.maximumDegrees, maximumDegrees: StretchType.rotateToRight.maximumDegrees), exerciseIndex: 3, totalNumberOfExercises: 8), motionManager: MotionManager())
+        ForEach(previewDevices) {
+            StretchExecutor.ContentView(
+                viewModel: .init(
+                    stretchingExecise: .init(
+                        type: .tiltForward,
+                        duration: 5,
+                        goalDegrees: StretchType.rotateToRight.maximumDegrees,
+                        maximumDegrees: StretchType.rotateToRight.maximumDegrees),
+                    exerciseIndex: 3, totalNumberOfExercises: 8),
+                motionManager: MotionManager())
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

@@ -163,10 +163,13 @@ struct SendInvitation {
 #if DEBUG
 struct SendInvitationSheetView_Previews: PreviewProvider {
     static var previews: some View {
-        SendInvitation.ContentView(viewModel: .init(
-            therapistService: MockTherapistService(),
-            onSendInvitation: { })
-        )
+        ForEach(previewDevices) {
+            SendInvitation.ContentView(viewModel: .init(
+                therapistService: MockTherapistService(),
+                onSendInvitation: { }))
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

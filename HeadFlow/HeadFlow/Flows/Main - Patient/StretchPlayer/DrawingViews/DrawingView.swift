@@ -32,15 +32,6 @@ struct DrawingView: View {
             TiltForwardDrawingView(exercise: $exercise, motionManager: motionManager, isPaused: isPaused)
         case .tiltBackwards:
             TiltBackwardsDrawingView(exercise: $exercise, motionManager: motionManager, isPaused: isPaused)
-
-        case .fullRotationRight:
-            Canvas { context, size in
-                
-            }
-        case .fullRotationLeft:
-            Canvas { context, size in
-                
-            }
         case .unknown:
             EmptyView()
         }
@@ -50,7 +41,14 @@ struct DrawingView: View {
 #if DEBUG
 struct DrawingView_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingView(exercise: .constant(.mock1), motionManager: MotionManager(), isPaused: false)
+        ForEach(previewDevices) {
+            DrawingView(
+                exercise: .constant(.mock1),
+                motionManager: MotionManager(),
+                isPaused: false)
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

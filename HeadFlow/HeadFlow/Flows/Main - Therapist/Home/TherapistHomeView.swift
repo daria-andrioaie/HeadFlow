@@ -26,6 +26,12 @@ struct TherapistHome {
 
 struct TherapistHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        TherapistHome.ContentView(viewModel: .init(therapistService: MockTherapistService(), navigationAction: { _ in }))
+        ForEach(previewDevices) {
+            TherapistHome.ContentView(
+                viewModel: .init(therapistService: MockTherapistService(),
+                                 navigationAction: { _ in }))
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }

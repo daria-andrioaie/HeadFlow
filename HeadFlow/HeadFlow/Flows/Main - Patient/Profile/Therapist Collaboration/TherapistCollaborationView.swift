@@ -133,9 +133,14 @@ struct TherapistCollaboration {
 
 struct TherapistCollaborationView_Previews: PreviewProvider {
     static var previews: some View {
-        TherapistCollaboration.ContentView(viewModel: .init(
-            patientService: MockPatientService(),
-            hasNotificationFromTherapistSubject: .init(false),
-            onBack: { }))
+        ForEach(previewDevices) {
+            TherapistCollaboration.ContentView(
+                viewModel: .init(
+                    patientService: MockPatientService(),
+                    hasNotificationFromTherapistSubject: .init(false),
+                    onBack: { }))
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }

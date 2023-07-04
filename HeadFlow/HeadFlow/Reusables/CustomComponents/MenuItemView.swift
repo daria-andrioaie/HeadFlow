@@ -58,12 +58,16 @@ struct MenuItemView: View {
 #if DEBUG
 struct MenuItemView_Previews: PreviewProvider {
     static var previews: some View {
-        VStack {
-            MenuItemView(item: .editProfile, hasNotification: true) {}
-            MenuItemView(item: .therapistCollaboration) {}
+        ForEach(previewDevices) {
+            VStack {
+                MenuItemView(item: .editProfile, hasNotification: true) {}
+                MenuItemView(item: .therapistCollaboration) {}
+            }
+            .padding(.vertical)
+            .background(Color.feathers)
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
         }
-        .padding(.vertical)
-        .background(Color.feathers)
     }
 }
 #endif

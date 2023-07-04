@@ -138,14 +138,11 @@ struct AnyShape: Shape {
 #if DEBUG
 struct AnimatedCheckmarkView_Previews: PreviewProvider {
     static var previews: some View {
-        AnimatedCheckmarkView()
-        
-//        AnimatedCheckmarkView(size: .init(width: 50, height: 50),
-//                              innerShapeSizeRatio: 1/2)
-        
-//        AnimatedCheckmarkView(fromColor: .red, toColor: .mint)
-        
-//        AnimatedCheckmarkView(outerShape: AnyShape(RoundedRectangle(cornerRadius: 12)))
+        ForEach(previewDevices) {
+            AnimatedCheckmarkView()
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

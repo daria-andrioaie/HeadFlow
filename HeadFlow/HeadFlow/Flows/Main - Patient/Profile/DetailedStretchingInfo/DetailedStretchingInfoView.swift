@@ -62,10 +62,6 @@ struct DetailedStretchingInfo {
                 tableRow(title: "Lateral rotation",
                          firstValue: viewModel.exerciseRangeDict[.rotateToLeft] ?? 0,
                          secondValue: viewModel.exerciseRangeDict[.rotateToRight] ?? 0)
-                
-                tableRow(title: "Full rotation",
-                         firstValue: viewModel.exerciseRangeDict[.fullRotationLeft] ?? 0,
-                         secondValue: viewModel.exerciseRangeDict[.fullRotationRight] ?? 0)
             }
             .overlay(verticalDivider, alignment: .center)
             .padding(.horizontal, 40)

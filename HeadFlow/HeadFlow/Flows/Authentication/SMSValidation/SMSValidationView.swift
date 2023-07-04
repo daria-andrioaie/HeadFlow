@@ -119,7 +119,14 @@ struct SMSValidation {
 #if DEBUG
 struct SMSValidationView_Previews: PreviewProvider {
     static var previews: some View {
-        SMSValidation.ContentView(viewModel: .init(phoneNumber: "+40767998715", authenticationService: MockAuthenticationService(), navigationAction: { _ in }))
+        ForEach(previewDevices) {
+            SMSValidation.ContentView(
+                viewModel: .init(phoneNumber: "+40767998715",
+                                 authenticationService: MockAuthenticationService(),
+                                 navigationAction: { _ in }))
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

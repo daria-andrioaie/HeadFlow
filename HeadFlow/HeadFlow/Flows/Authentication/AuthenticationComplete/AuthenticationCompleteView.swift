@@ -38,7 +38,11 @@ struct AuthenticationCompleteView: View {
 #if DEBUG
 struct AuthenticationCompleteView_Previews: PreviewProvider {
     static var previews: some View {
-        AuthenticationCompleteView(afterAppear: { })
+        ForEach(previewDevices) {
+            AuthenticationCompleteView(afterAppear: { })
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

@@ -63,32 +63,36 @@ struct CustomAlert<IconView: View, CancelView: View, ActionView: View>: View {
 #if DEBUG
 struct CustomAlert_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            Color.feathers
-            CustomAlert(alert: .init(title: "Alert!!", message: "This is the message of the alert"), isPresented: .constant(true), iconView: {
-                Image(.bell)
-                    .renderingMode(.template)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .foregroundColor(.apricot)
-                    .frame(width: 50)
-            }, cancelView: {
-                Button {
-                    
-                } label: {
-                    Text("Cancel")
-                        .foregroundColor(.red)
-                        .font(.Main.light(size: 16))
-                }
-            }, actionView: {
-                Button {
-                    
-                } label: {
-                    Text("Go to settings")
-                        .foregroundColor(.oceanBlue)
-                        .font(.Main.regular(size: 20))
-                }
-            })
+        ForEach(previewDevices) {
+            ZStack {
+                Color.feathers
+                CustomAlert(alert: .init(title: "Alert!!", message: "This is the message of the alert"), isPresented: .constant(true), iconView: {
+                    Image(.bell)
+                        .renderingMode(.template)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .foregroundColor(.apricot)
+                        .frame(width: 50)
+                }, cancelView: {
+                    Button {
+                        
+                    } label: {
+                        Text("Cancel")
+                            .foregroundColor(.red)
+                            .font(.Main.light(size: 16))
+                    }
+                }, actionView: {
+                    Button {
+                        
+                    } label: {
+                        Text("Go to settings")
+                            .foregroundColor(.oceanBlue)
+                            .font(.Main.regular(size: 20))
+                    }
+                })
+            }
+            .previewDevice($0)
+            .previewDisplayName($0.rawValue)
         }
     }
 }

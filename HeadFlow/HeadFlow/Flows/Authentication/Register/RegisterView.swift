@@ -109,7 +109,11 @@ struct Register {
 #if DEBUG
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        Register.ContentView(viewModel: .init(navigationAction: { _ in }))
+        ForEach(previewDevices) {
+            Register.ContentView(viewModel: .init(navigationAction: { _ in }))
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

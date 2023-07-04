@@ -55,7 +55,11 @@ extension Onboarding {
 #if DEBUG
 struct CarouselView_Previews: PreviewProvider {
     static var previews: some View {
-        Onboarding.CarouselView()
+        ForEach(previewDevices) {
+            Onboarding.CarouselView()
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

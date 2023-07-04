@@ -39,6 +39,8 @@ const searchPatient = async(therapistId, patientEmailAddress) => {
 
     if(!collaborationWithPatient) {
       return patient;
+    } else if(collaborationWithPatient.status === 'declined') {
+      return patient;
     } else if( collaborationWithPatient.therapist !== therapistId ) {
       throw new Error("no patient")
     } else if(collaborationWithPatient.status === 'pending') {

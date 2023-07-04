@@ -85,7 +85,15 @@ struct PhoneNumberInput {
 #if DEBUG
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
-        PhoneNumberInput.ContentView(viewModel: .init(screenType: .signup(.init(firstName: "Daria", lastName: "Andr", email: "d.a@gmail.com", userType: .patient)), authenticationService: MockAuthenticationService(), presentationController: nil, navigationAction: { _ in }))
+        ForEach(previewDevices) {
+            PhoneNumberInput.ContentView(viewModel: .init(
+                screenType: .signup(.init(firstName: "Daria", lastName: "Andr", email: "d.a@gmail.com", userType: .patient)),
+                authenticationService: MockAuthenticationService(),
+                presentationController: nil,
+                navigationAction: { _ in }))
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif

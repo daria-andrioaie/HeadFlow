@@ -42,7 +42,13 @@ struct Onboarding {
 #if DEBUG
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        Onboarding.ContentView(viewModel: .init(navigateToRegister: { }, navigateToLogin: { }))
+        ForEach(previewDevices) {
+            Onboarding.ContentView(viewModel: .init(
+                navigateToRegister: { },
+                navigateToLogin: { }))
+                .previewDevice($0)
+                .previewDisplayName($0.rawValue)
+        }
     }
 }
 #endif
