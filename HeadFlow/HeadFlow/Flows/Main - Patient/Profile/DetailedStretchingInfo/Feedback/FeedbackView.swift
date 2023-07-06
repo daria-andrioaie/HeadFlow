@@ -11,8 +11,13 @@ struct Feedback {
     struct ContentView: View {
         @StateObject var viewModel: ViewModel
         
-        init(sessionId: String, feedbackService: FeedbackServiceProtocol) {
+        let onTapInput: () -> Void
+        
+        init(sessionId: String,
+             feedbackService: FeedbackServiceProtocol,
+             onTapInput: @escaping () -> Void) {
             self._viewModel = StateObject(wrappedValue: .init(sessionId: sessionId, feedbackService: feedbackService))
+            self.onTapInput = onTapInput
         }
         
         @ViewBuilder
@@ -59,6 +64,9 @@ struct Feedback {
             } else {
                 HStack(alignment: .bottom, spacing: 15) {
                     Feedback.InputView(viewModel: viewModel)
+                        .onTapGesture {
+                            onTapInput()
+                        }
 
                     HFAsyncImage(url: Session.shared.currentUser?.profilePicture, placeholderImage: .profileImagePlaceholder)
                         .frame(width: 40, height: 40)
@@ -110,6 +118,7 @@ struct Feedback {
 struct FeedbackView_Previews: PreviewProvider {
     static var previews: some View {
         Feedback.ContentView(sessionId: "random_session",
-                             feedbackService: MockFeedbackService())
+                             feedbackService: MockFeedbackService(),
+                             onTapInput: { })
     }
 }

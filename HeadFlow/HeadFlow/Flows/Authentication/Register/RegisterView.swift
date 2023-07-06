@@ -59,7 +59,7 @@ struct Register {
                     .font(.Main.regular(size: 18))
                     .foregroundColor(.danubeBlue.opacity(0.8))
                 
-                CustomTextField(inputText: $viewModel.firstNameInput, placeholder: Texts.Register.firstNameInputPlaceholder)
+                CustomTextField(inputText: $viewModel.firstNameInput, placeholder: Texts.Register.firstNameInputPlaceholder, textInputAutoCapitalization: .words)
                     .font(.Main.light(size: 16))
                     .frame(maxWidth: .infinity)
             }
@@ -70,7 +70,7 @@ struct Register {
                 Text("Last name")
                     .font(.Main.regular(size: 18))
                     .foregroundColor(.danubeBlue.opacity(0.8))
-                CustomTextField(inputText: $viewModel.lastNameInput, placeholder: Texts.Register.lastNameInputPlaceholder)
+                CustomTextField(inputText: $viewModel.lastNameInput, placeholder: Texts.Register.lastNameInputPlaceholder, textInputAutoCapitalization: .words)
                     .font(.Main.light(size: 16))
                     .frame(maxWidth: .infinity)
             }

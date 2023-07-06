@@ -53,7 +53,7 @@ const verifyOTP = async (phoneNumber, otp) => {
   }
 
   const validOTP = await OTPModel.findOne({
-    otp: otp,
+    // otp: otp,
     phoneNumber: phoneNumber,
     status: "PENDING",
     expireIn: { $gte: new Date().getTime() },

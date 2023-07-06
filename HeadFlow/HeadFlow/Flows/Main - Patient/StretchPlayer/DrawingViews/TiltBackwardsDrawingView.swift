@@ -15,7 +15,9 @@ struct TiltBackwardsDrawingView: View {
     
     @State private var line = Line(color: .decoGreen)
     @State private var currentPosition: CGFloat = 0
+    
     @State private var maximumY: CGFloat = 0
+    @State private var minimumY: CGFloat = 1
     
     var body: some View {
         Canvas { context, size in
@@ -58,6 +60,11 @@ struct TiltBackwardsDrawingView: View {
         }
                                 
         currentPosition = currentPitch
+        
+        if currentPitch < minimumY {
+            minimumY = currentPitch
+            line.points.append(.init(x: 0, y: (1 - currentPitch)))
+        }
                 
         if currentPitch > maximumY {
             exercise.achievedRangeOfMotion = currentPitch

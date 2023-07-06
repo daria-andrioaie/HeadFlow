@@ -18,6 +18,7 @@ struct CustomTextField: View {
     var keyboardType: UIKeyboardType = .default
     var textContentType: UITextContentType?
     var showKeyboardAutomatically: Bool = false
+    var textInputAutoCapitalization: TextInputAutocapitalization = .never
     
     var inputError: Error? = nil
     var onCommit: (() -> Void)?
@@ -33,6 +34,7 @@ struct CustomTextField: View {
             TextField(placeholder ?? "", text: $inputText, onCommit: {
                 onCommit?()
             })
+                .textInputAutocapitalization(textInputAutoCapitalization)
                 .keyboardType(keyboardType)
                 .textContentType(textContentType)
                 .accentColor(foregroundColor)

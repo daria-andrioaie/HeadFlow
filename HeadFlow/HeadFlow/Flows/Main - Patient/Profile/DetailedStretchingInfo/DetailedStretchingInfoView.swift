@@ -10,7 +10,7 @@ import SwiftUI
 struct DetailedStretchingInfo {
     struct ContentView: View {
         @StateObject private var viewModel: ViewModel
-
+        @State private var isFeedbackInputOn = false
         
         init(patient: User,
              stretchingSession: StretchSummary.Model,
@@ -26,18 +26,33 @@ struct DetailedStretchingInfo {
                     .padding(.bottom, 30)
                 titleView
                     .padding(.bottom, 30)
-                ScrollView(showsIndicators: false) {
-                    VStack {
-                        leftRightComparisonsView
-                            .padding(.bottom, 50)
-                        flexionExtensionComparisonView
-                            .padding(.bottom, 40)
+                ScrollViewReader { proxy in
+                    ScrollView(showsIndicators: false) {
+                        VStack {
+                            leftRightComparisonsView
+                                .padding(.bottom, 50)
+                            flexionExtensionComparisonView
+                                .padding(.bottom, 40)
 
-                        Feedback.ContentView(sessionId: viewModel.stretchingSession.id,
-                                             feedbackService: viewModel.feedbackService)
+                            Feedback.ContentView(sessionId: viewModel.stretchingSession.id,
+                                                 feedbackService: viewModel.feedbackService) {
+                                isFeedbackInputOn = true
+                            }
+                                                 .id("feedback")
+                        }
+                        .padding(.bottom, 24)
                     }
-                    .padding(.bottom, 24)
+                    .onChange(of: isFeedbackInputOn) { newValue in
+                        if newValue {
+                            withAnimation {
+                                proxy.scrollTo("feedback")
+                            }
+                        }
+                    }
                 }
+            }
+            .onTapGesture {
+                hideKeyboard()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }

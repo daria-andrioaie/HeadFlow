@@ -17,6 +17,7 @@ struct TiltLeftDrawingView: View {
     @State private var line = Line(color: .decoGreen)
     @State private var currentPosition: CGFloat = 0
     @State private var maximumX: CGFloat = 0
+    @State private var minimumX: CGFloat = 1
     
     var body: some View {
         Canvas { context, size in
@@ -61,6 +62,11 @@ struct TiltLeftDrawingView: View {
         currentRoll = abs(currentRoll)
                 
         currentPosition = currentRoll
+        
+        if currentRoll < minimumX {
+            minimumX = currentRoll
+            line.points.append(.init(x: (1 - currentRoll), y: 0))
+        }
                 
         if currentRoll > maximumX {
             exercise.achievedRangeOfMotion = currentRoll

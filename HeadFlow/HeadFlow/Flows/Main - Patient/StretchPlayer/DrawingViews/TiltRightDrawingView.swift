@@ -16,6 +16,8 @@ extension DrawingView {
         @State private var line = Line()
         @State private var currentPosition: CGFloat = 0
         @State private var maximumX: CGFloat = 0
+        @State private var minimumX: CGFloat = 1
+
         
         var isPaused: Bool
 
@@ -61,6 +63,11 @@ extension DrawingView {
             }
                     
             currentPosition = currentRoll
+            
+            if currentRoll < minimumX {
+                minimumX = currentRoll
+                line.points.append(.init(x: currentRoll, y: 0))
+            }
                     
             if currentRoll > maximumX {
                 exercise.achievedRangeOfMotion = currentRoll

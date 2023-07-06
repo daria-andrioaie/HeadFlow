@@ -71,10 +71,6 @@ class MotionManager: NSObject, ObservableObject {
     }
     
     func startMotionUpdates() {
-        if !motionManager.isDeviceMotionActive {
-            airpodsAreDisconnected = true
-        }
-        
         motionManager.startDeviceMotionUpdates(to: OperationQueue()) {
             [weak self] motion, error in
             guard let self = self, let motion = motion else {

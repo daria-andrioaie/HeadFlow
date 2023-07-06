@@ -18,7 +18,7 @@ struct AnimatedChartView: View {
             ForEach(stretchingHistory.sorted(by: {$0.date < $1.date})) { stretchingSession in
                 LineMark(
                     x: .value("Date",
-                              Date(milliseconds: stretchingSession.date), unit: .hour),
+                              Date(milliseconds: stretchingSession.date), unit: .second),
                     y: .value("Range",
                               animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0)
                 )
@@ -26,7 +26,7 @@ struct AnimatedChartView: View {
                     .interpolationMethod(.catmullRom)
                 PointMark(
                     x: .value("Date",
-                              Date(milliseconds: stretchingSession.date), unit: .hour),
+                              Date(milliseconds: stretchingSession.date), unit: .second),
                     y: .value("Range",
                               animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0)
                 )
@@ -34,7 +34,7 @@ struct AnimatedChartView: View {
                 
                 AreaMark(
                     x: .value("Date",
-                              Date(milliseconds: stretchingSession.date), unit: .hour),
+                              Date(milliseconds: stretchingSession.date), unit: .second),
                     y: .value("Range",
                               animateAppearance ? stretchingSession.averageRangeOfMotion * 100 : 0)
                 )

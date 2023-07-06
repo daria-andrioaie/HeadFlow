@@ -17,6 +17,7 @@ struct RotateLeftDrawingView: View {
     @State private var currentPosition: CGFloat = 0
     
     @State private var maximumX: CGFloat = 0
+    @State private var minimumX: CGFloat = 1
     
     var body: some View {
         Canvas { context, size in
@@ -59,6 +60,11 @@ struct RotateLeftDrawingView: View {
         }
             
         currentPosition = currentYaw
+        
+        if currentYaw < minimumX {
+            minimumX = currentYaw
+            line.points.append(.init(x: (1 - currentYaw), y: 0))
+        }
             
         if currentYaw > maximumX {
             exercise.achievedRangeOfMotion = currentYaw

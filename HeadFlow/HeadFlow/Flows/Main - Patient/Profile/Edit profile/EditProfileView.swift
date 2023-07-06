@@ -32,6 +32,9 @@ struct EditProfile {
                 viewModel.uploadImage()
             }
             .toastDisplay(isPresented: $viewModel.isConfirmationMessagePresented, message: viewModel.confirmationMessage)
+            .onTapGesture {
+                hideKeyboard()
+            }
         }
         
         var profilePictureView: some View {
@@ -88,7 +91,7 @@ struct EditProfile {
                     .font(.Main.regular(size: 18))
                     .foregroundColor(.danubeBlue.opacity(0.8))
                 
-                CustomTextField(inputText: $viewModel.firstName, placeholder: Texts.Register.firstNameInputPlaceholder)
+                CustomTextField(inputText: $viewModel.firstName, placeholder: Texts.Register.firstNameInputPlaceholder, textInputAutoCapitalization: .words)
                     .font(.Main.light(size: 16))
                     .frame(maxWidth: .infinity)
             }
@@ -99,7 +102,7 @@ struct EditProfile {
                 Text("Last name")
                     .font(.Main.regular(size: 18))
                     .foregroundColor(.danubeBlue.opacity(0.8))
-                CustomTextField(inputText: $viewModel.lastName, placeholder: Texts.Register.lastNameInputPlaceholder)
+                CustomTextField(inputText: $viewModel.lastName, placeholder: Texts.Register.lastNameInputPlaceholder, textInputAutoCapitalization: .words)
                     .font(.Main.light(size: 16))
                     .frame(maxWidth: .infinity)
             }
