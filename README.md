@@ -7,11 +7,11 @@ Essentially, while the patient performs the recovery protocol established by his
 
 
 ## Why?
-Neck pain and, subsequently, decreased neck mobility, is a common problem that affects people from all walks of life nowadays. In fact, researchers consider it to be a widespread issue in modern society, due to several factors, such as improper posture at the workplace, stress, anxiety and depression.
+Neck pain and, subsequently, decreased neck mobility, is a common problem in modern society, due to several factors, such as improper posture at the workplace, stress, anxiety or depression.
 
-On a more optimistic note, kinesiotherapy has long been found to help patients regain their normal range of motion, reduce pain and discomfort, and improve their overall quality of life. With proper guidance from a trained kinesiotherapist, patients can experience significant improvements in their symptoms and regain the ability to perform daily activities with ease. ⛹🏼
+Fortunately, kinesiotherapy has been found to help patients regain their normal range of motion, reduce pain and discomfort, and improve their overall quality of life. With proper guidance from a trained kinesiotherapist, patients can experience significant improvements in their symptoms and regain the ability to perform daily activities with ease. ⛹🏼
 
-However, when patients are considered recovered and interrupt the kinesiotherapy sessions, they are advised to continue the exercise protocol at home, to prevent a relapse. Unfortunately, most of them, as studies show, find it hard to stay accountable at home and many of symptoms reappear after a few weeks or months. 
+However, when patients are considered recovered and interrupt the kinesiotherapy sessions, they are advised to continue the exercise protocol at home, to prevent a relapse. Unfortunately, most of them, as studies show, find it hard to stay accountable at home and many symptoms reappear after a few weeks or months. 
 
 HeadFlow is the perfect solution in this scenario. 🥳 
 
